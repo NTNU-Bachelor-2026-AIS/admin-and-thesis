@@ -1,9 +1,9 @@
 \contentsline {chapter}{\numberline {}Abstract}{i}{}%
 \contentsline {chapter}{\numberline {}Preface}{ii}{}%
-\contentsline {chapter}{\numberline {}Contents}{iii}{}%
-\contentsline {chapter}{\numberline {}List of Figures}{iii}{}%
-\contentsline {chapter}{\numberline {}List of Tables}{iv}{}%
-\contentsline {chapter}{\numberline {}Abbreviations}{vi}{}%
+\contentsline {chapter}{\numberline {}Contents}{iv}{}%
+\contentsline {chapter}{\numberline {}List of Figures}{iv}{}%
+\contentsline {chapter}{\numberline {}List of Tables}{v}{}%
+\contentsline {chapter}{\numberline {}Abbreviations}{vii}{}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{}%
 \contentsline {section}{\numberline {1.1}Motivation}{1}{}%
 \contentsline {section}{\numberline {1.2}Project description}{2}{}%
