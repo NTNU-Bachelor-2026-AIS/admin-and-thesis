@@ -35,8 +35,9 @@
 | #2  |**Research**| Research og prototype av MapLibre (visning av kart)      |      8       |  Daniel & Aleksander  |
 | #3  |  **Docs**  | Skrive teori og begrunnelse for teknologivalg i rapport  |      5       |  Alle                 |
 | #4  | **Design** | Iterativ forbedring av Figma-design                      |      2       |  Alle                 |
+| #5  |  **Dev**   | Prøv å sette opp github actions for nettsiden            |      5       |  Daniel               |
 
-* **Total Story Points:** 20
+* **Total Story Points:** 25
 * **Kommentar:** Nikolai fokuserer på å impementere UI-baseline med styrbord systemet siden vi er usikker når han kan jobbe. Aleksander og Daniel vil fokusere på å sette opp å forstå hovedbibloteket for denne oppgaven.
 
 ---
@@ -48,5 +49,6 @@
 
 ## 5. Risiko og Avhengigheter
 * **Risiko:** MapLibre kan vise seg å være mer komplekst å integrere med React enn først antatt.
-* **Tiltak:** Vi bruker tid på grundig research av MapLibre tidlig i uken.
+* **Risiko:** Github actions kan vise seg å være mer komplekst å integrere enn først antatt.
+* **Tiltak:** Vi bruker tid på grundig research av MapLibre og github actions tidlig i uken.
 * **Avhengighet:** Venter fortsatt på endelige data-sett fra Kystverket, men dette blokkerer ikke oppstart av frontend.
