@@ -1,0 +1,14 @@
+Hei Marius!
+
+Vi ønsker å ha et statusmøte på slack imorga for å presentere fremgangen i prosjektet så langt og avklare veien videre.
+
+Agenda for møtet:
+Demo av nåværende løsning
+Bruk av biblioteker og hvilken system som er forventet
+Diskusjon om Scope siden grunnlaget er ferdigstilt.
+Tilbakemelding på design og prosjektet
+
+Med å gjøre dette håper vi å ha felles forståelse av scope og at tekniske valgenbe våre støtter behvoene.
+
+Med Vennlig Hilsen, 
+Daniel, Aleksander
