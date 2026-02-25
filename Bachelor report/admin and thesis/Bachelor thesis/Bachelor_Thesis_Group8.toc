@@ -4,28 +4,30 @@
 \contentsline {chapter}{\numberline {}List of Figures}{iv}{}%
 \contentsline {chapter}{\numberline {}List of Tables}{v}{}%
 \contentsline {chapter}{\numberline {}Abbreviations}{vii}{}%
-\contentsline {chapter}{\numberline {1}Introduction}{1}{}%
-\contentsline {section}{\numberline {1.1}Motivation}{1}{}%
-\contentsline {section}{\numberline {1.2}Project description}{2}{}%
-\contentsline {subsection}{\numberline {1.2.1}Stakeholders}{2}{}%
-\contentsline {chapter}{\numberline {2}Theory}{3}{}%
-\contentsline {section}{\numberline {2.1}Equations}{3}{}%
-\contentsline {section}{\numberline {2.2}Tables and footnotes}{4}{}%
-\contentsline {section}{\numberline {2.3}A single figure}{5}{}%
-\contentsline {section}{\numberline {2.4}Citations}{5}{}%
-\contentsline {chapter}{\numberline {3}Methods}{7}{}%
-\contentsline {section}{\numberline {3.1}Section one}{7}{}%
-\contentsline {subsection}{\numberline {3.1.1}Subsection one}{7}{}%
-\contentsline {subsubsection}{\numberline {3.1.1.1}Subsubsection one}{7}{}%
-\contentsline {subsubsection}{\numberline {3.1.1.2}Subsubsection Two}{7}{}%
-\contentsline {subsection}{\numberline {3.1.2}Subsection Two}{7}{}%
-\contentsline {section}{\numberline {3.2}Section two}{7}{}%
-\contentsline {chapter}{\numberline {4}Results}{9}{}%
-\contentsline {section}{\numberline {4.1}More figures}{9}{}%
-\contentsline {chapter}{\numberline {5}Discussion}{11}{}%
-\contentsline {section}{\numberline {5.1}Future work}{11}{}%
-\contentsline {chapter}{\numberline {6}Conclusions}{13}{}%
-\contentsline {chapter}{\numberline {}References}{15}{}%
-\contentsline {chapter}{\numberline {}Appendices:}{15}{}%
-\contentsline {chapter}{\numberline {}A - Github repository}{16}{}%
-\contentsline {chapter}{\numberline {}B - Sidenote statistics}{17}{}%
+\contentsline {chapter}{\numberline {}Terms}{1}{}%
+\contentsline {chapter}{\numberline {1}Introduction}{2}{}%
+\contentsline {section}{\numberline {1.1}Motivation}{3}{}%
+\contentsline {section}{\numberline {1.2}Project description}{3}{}%
+\contentsline {subsection}{\numberline {1.2.1}Stakeholders}{3}{}%
+\contentsline {section}{\numberline {1.3}Thesis structure}{4}{}%
+\contentsline {chapter}{\numberline {2}Theory}{5}{}%
+\contentsline {section}{\numberline {2.1}Equations}{5}{}%
+\contentsline {section}{\numberline {2.2}Tables and footnotes}{6}{}%
+\contentsline {section}{\numberline {2.3}A single figure}{7}{}%
+\contentsline {section}{\numberline {2.4}Citations}{7}{}%
+\contentsline {chapter}{\numberline {3}Methods}{9}{}%
+\contentsline {section}{\numberline {3.1}Section one}{9}{}%
+\contentsline {subsection}{\numberline {3.1.1}Subsection one}{9}{}%
+\contentsline {subsubsection}{\numberline {3.1.1.1}Subsubsection one}{9}{}%
+\contentsline {subsubsection}{\numberline {3.1.1.2}Subsubsection Two}{9}{}%
+\contentsline {subsection}{\numberline {3.1.2}Subsection Two}{9}{}%
+\contentsline {section}{\numberline {3.2}Section two}{9}{}%
+\contentsline {chapter}{\numberline {4}Results}{11}{}%
+\contentsline {section}{\numberline {4.1}More figures}{11}{}%
+\contentsline {chapter}{\numberline {5}Discussion}{13}{}%
+\contentsline {section}{\numberline {5.1}Future work}{13}{}%
+\contentsline {chapter}{\numberline {6}Conclusions}{15}{}%
+\contentsline {chapter}{\numberline {}References}{17}{}%
+\contentsline {chapter}{\numberline {}Appendices:}{17}{}%
+\contentsline {chapter}{\numberline {}A - Github repository}{18}{}%
+\contentsline {chapter}{\numberline {}B - Sidenote statistics}{19}{}%
