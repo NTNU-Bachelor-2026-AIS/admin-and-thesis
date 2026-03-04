@@ -1,24 +1,53 @@
 
 % The subsections written are only suggestions, to display how sections and subsections may look for your thesis
 
-\textbf{Chapter contents}
 
-\begin{itemize}
-  \item 1.1 Motivation
-  \item 1.2 Project Description
-  \item 1.3 Thesis structure
-\end{itemize}
+%\textbf{Chapter contents}
+
+%\begin{itemize}
+%  \item 1.1 Motivation
+%  \item 1.2 Project Description
+%  \item 1.3 Thesis structure
+%\end{itemize}
+
+%\cleardoublepage
+
+%Inspired by another Report
+\textit{This chapter presents the background of the project, outlines the objective and defines the requirements}
+% Will reformulate
+\section{Background}
+Information about the seafaring vessels around the Norwegian coast are paramount for national security and the security of said vessels, thus it is paramount that such information is available in a concise and easy to understand format for the professionals working in the Norwegian coastal administration. Every day millions of anomaly messages are sent out from a ships AIS messaging unit, and parsing through all these messages to see which are more important than others is a significant and important task for our government.  
+
+% Maybe we should add some refrences here
 
 \cleardoublepage
 
-Information about the seafaring vessels around the Norwegian coast are paramount for national security and the security of said vessels, thus it is paramount that such information is available in a concise and easy to understand format for the professionals working in the Norwegian coastal administration. Every day millions of anomaly messages are sent out from a ships AIS messaging unit, and parsing through all these messages to see which are more important than others is a significant and important task for our government.  
+% Pretty good
+\section{Objective}
 
+The objective of this project is to develop a web-based program that can visualise AIS anomaly data to provide maritime experts with better usable insights. The program will also serve as a tool for both live monitoring and historical analysis.
+
+\textbf{Specific goals include:}
+\begin{itemize}
+\item \textbf{Advanced Map Visualization:} Implementing a map interface using MapLibre to display anomaly clusters, satellite paths, and base station locations.
+
+\item \textbf{Data Aggregation and Clustering:} Developing methods to handle high-density data without overwhelming the user interface.
+
+\item \textbf{Temporal Analysis:} Provide a time based feature that allows users to visualise data forward and backward in time to observe development of anomalies.
+
+\item \textbf{Efficient Querying:} Building a bridge between the React frontend and the backend database to allow users to filter data by ship type, anomaly category, and time intervals.
+\end{itemize}
+
+% Need to have meeting to discuss both our motivations. Also see if it means our motivation for picking the project or for the problem existing.
 \section{Motivation}
 
 During a normal day the NCA gets around 80 million AIS messages that are suspected and flagged as anomalies. 
 
-\noindent At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+\section{Requirements}
 
+The solution will be implemented as a local database and a website that can query the data it needs and visualise that information. All data processing will be handled on the device hosting the database. 
+
+% Will be used to reformulate background, will probably be removed.
 \section{Project description}
 
 
@@ -34,23 +63,35 @@ This project is used as a prototype for software that kystverket themselves can 
 
 \subsection{Stakeholders}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+% Unsure if we students count for stakeholders
+\begin{itemize}
+\item \textbf{The Norwegian Coastal Administration (Kystverket):} The primary stakeholder and "client." They provide the problem description, the tech stack requirements (Azure, .NET, React), and the AIS data.
+\item \textbf{The Project Team:} Two students from NTNU responsible for the design, implementation, and testing of the visualization prototype.
+\item \textbf{Maritime Operators:} The end-users who require an intuitive interface to maintain maritime safety.
+\end{itemize}
 
 
 
+% Needs to be redone as well following what each chapter will be about however that easily changes over time and will need to be changed a lot.
 \section{Thesis structure}
 
 The report will be used to outline how the problem was solved based on the problem description in section 1.2, how this was solved technically, what tools were used etc.\\
 
-Chapter 2 will be delving into the theory for the project, what if any equations the software was based on. This will give the underlying theory on how mapping visualization works, How previous research in visualization of in browser map systems, and fast clustering and or showcasing of data. \\
+\begin{itemize}
+
+\item \textbf{Chapter 2 – Theory:} will be delving into the theory for the project, what if any equations the software was based on. This will give the underlying theory on how mapping visualization works, How previous research in visualization of in browser map systems, and fast clustering and or showcasing of data. \\
 
 
-Chapter 3 focuses on the methodology and hardware the group used during the project, what libraries, programming languages and libraries, also how the project was structured from start to finish.\\
+\item \textbf{Chapter 3 – Methods:} focuses on the methodology and hardware the group used during the project, what libraries, programming languages and libraries, also how the project was structured from start to finish.\\
 
 
-Chapter 4 describes the results the group accomplished, how it was accomplished, why certain solutions to problems were used, describing the process and solution in detail.\\ 
+\item \textbf{Chapter 4 – Results:} describes the results the group accomplished, how it was accomplished, why certain solutions to problems were used, describing the process and solution in detail.\\ 
 
 
-Chapter 5 discusses the project in detail. It explains the group members' thoughts on the project, how the plan was followed, if there were discrepancies between the plan and the actual progression of the project.\\
+\item \textbf{Chapter 5 – Discussion:} discusses the project in detail. It explains the group members' thoughts on the project, how the plan was followed, if there were discrepancies between the plan and the actual progression of the project.\\
 
-Chapter 6 serves as a conclusion to the report and discussion on future development on the software that can be done, our recommendations 
+\item \textbf{Chapter 6 – Conclusion:} serves as a conclusion to the report and discussion on future development on the software that can be done, our recommendations 
+
+\item \textbf{Chapter 7 – Societal Impact:}
+
+\end{itemize}
