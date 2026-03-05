@@ -1,9 +1,30 @@
+# --- Core LaTeX Build Artifacts ---
 *.aux
 *.log
-*.out
 *.toc
 *.lof
 *.lot
-*.fls
-*.fdb_latexmk
+*.out
 *.synctex.gz
+*.fdb_latexmk
+*.fls
+*.dvi
+
+# --- Bibliography (Biber / BibTeX) ---
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+
+# --- Glossaries / Abbreviations ---
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
+
+# Gonna set up github actions to create it on github.
+Bachelor_Thesis_Group8.pdf
+Terms.pdf

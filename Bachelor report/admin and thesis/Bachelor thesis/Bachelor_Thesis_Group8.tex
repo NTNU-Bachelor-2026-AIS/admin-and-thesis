@@ -37,8 +37,12 @@
     \addtocounter{page}{-1}
     \newpage
     } %sets new page command to insert an empty page without adding to the page counter or having a page number
+\usepackage[colorlinks=true]{hyperref} % For clickable links
+\usepackage[acronym, toc]{glossaries} % For glossary and abbreviations
 
+\makeglossaries
 
+\loadglsentries{glossary}
 
 
 \begin{document}
@@ -56,7 +60,7 @@
 \noindent  \textcolor{gray}{\large Aleksander Nesvik, Daniel Alnes} \\
 \vspace{1cm}
 
-\noindent \textbf{\Large Visualisation of AIS message for the Norwegian Coastal Administration} \\
+\noindent \textbf{\Large Visualisation of ais message for the Norwegian Coastal Administration} \\
 \vspace{0.5cm}
 
 \noindent {\large A more secure ocean for the norwegian people} \\
