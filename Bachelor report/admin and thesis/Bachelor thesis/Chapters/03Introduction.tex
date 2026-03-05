@@ -11,12 +11,34 @@
 %\end{itemize}
 
 %\cleardoublepage
+% Moved up here might be removed when combined into background and objective
+\section{Project description}
+
+
+From the NCA we were tasked with creating a data-visualization software that better displays crucial information about anomalies, than the one they already have in use. 
+
+
+The software in use today has a lack of features that the client wishes to have, like different visualization methods. i.e(heatmapping, hexagonal visualization) etc. 
+
+
+This project is used as a prototype for software that kystverket themselves can take further, where all data used for visualization is dummy data. It was expected that we work in the React programming language, while using libraries and frameworks that they already use at the NCA.
 
 %Inspired by another Report
 \textit{This chapter presents the background of the project, outlines the objective and defines the requirements}
-% Will reformulate
+% Refrences are important in this area of the thesis.
+https://www.kystverket.no/en/sea-transport-and-ports/ais/ais-norge/
+https://www.barentswatch.no/en/articles/ais-displays-status-report-at-sea/
+https://www.kystverket.no/en/sea-transport-and-ports/ais/
+https://www.kystverket.no/en/about-us/what-is-the-role-of-the-nca/
 \section{Background}
-Information about the seafaring vessels around the Norwegian coast are paramount for national security and the security of said vessels, thus it is paramount that such information is available in a concise and easy to understand format for the professionals working in the Norwegian coastal administration. Every day millions of anomaly messages are sent out from a ships \acrshort{ais} messaging unit, and parsing through all these messages to see which are more important than others is a significant and important task for our government.  
+Norway manages one of the world's most extensive coastlines, and the \gls{nca} is the national agency responsible for coastal management, maritime safety, and emergency preparedness % Ref to https://www.kystverket.no/en/about-us/what-is-the-role-of-the-nca/
+A central part of this mission is "acrshort{ais} Norway" which is a national tracking network operated by the acrshort{nca} that combines around 90 shore base stations with a few acrshort{ais} satellites. %https://www.kystverket.no/en/sea-transport-and-ports/ais/ais-norge/
+Even though it was originally developed as a anti-collision tool, the \acrfull{ais} is now a critical part of the infrastructure for vessel traffic services, search and rescue operations, and environmental protection. %https://www.kystverket.no/en/about-us/what-is-the-role-of-the-nca/, https://www.barentswatch.no/en/articles/ais-displays-status-report-at-sea/
+
+% Didnt have enough time to finish just made a simple outline.
+They are allready using a solution however it doesnt have advanced visualisation capabilities like hexagonal binning and temporal analysis. Which are needed for operators to quickly interpret the massive volume of data. Therefore the Nca wants a more intuitive web based solution that allows real-time monitoring and historical anomaly patterns.
+
+%Information about the seafaring vessels around the Norwegian coast are paramount for national security and the security of said vessels, thus it is paramount that such information is available in a concise and easy to understand format for the professionals working in the Norwegian coastal administration. Every day millions of anomaly messages are sent out from a ships \acrshort{ais} messaging unit, and parsing through all these messages to see which are more important than others is a significant and important task for our government.  
 
 % Maybe we should add some refrences here
 
@@ -25,7 +47,7 @@ Information about the seafaring vessels around the Norwegian coast are paramount
 % Pretty good
 \section{Objective}
 
-The objective of this project is to develop a web-based program that can visualise AIS anomaly data to provide maritime experts with better usable insights. The program will also serve as a tool for both live monitoring and historical analysis.
+The objective of this project is to develop a web-based program that can visualise \acrshort{ais} anomaly data to provide maritime experts with better usable insights. The program will also serve as a tool for both live monitoring and historical analysis.
 
 \textbf{Specific goals include:}
 \begin{itemize}
@@ -41,31 +63,38 @@ The objective of this project is to develop a web-based program that can visuali
 % Need to have meeting to discuss both our motivations. Also see if it means our motivation for picking the project or for the problem existing.
 \section{Motivation}
 
-During a normal day the NCA gets around 80 million AIS messages that are suspected and flagged as anomalies. 
+During a normal day the \acrshort{nca} gets around 80 million \acrshort{ais} messages that are suspected and flagged as anomalies. 
+
+The team chose to work on "Visualisation of \acrshort{ais}" Anomaly Detection" because it addresses a critical real world problem while utilizing modern technical solutions. Maritime security is a field of immense societal importance in Norway. Therefore we believe contributing a prototype to the \acrshort{nca} is a very meaningful purpose for our work.
+
+Furthermore, we are particularly interested in the challenges of Data Processing and Visualisation as well as Front End Functionality. Even so, handling 80 million data points in a web browser presents a significant technical hurdle. However, because of our groups experience in web development and data processing we believe this project allows us to apply those skills in a large scale problem.
 
 \section{Requirements}
 
 The solution will be implemented as a local database and a website that can query the data it needs and visualise that information. All data processing will be handled on the device hosting the database. 
+\begin{itemize}
+\item \textbf{Frontend:} Must be built using React and TypeScript
+\item \textbf{Map Engine:} Must utilize MapLibre or an equivalent library used by the \acrshort{nca}.
+\item \textbf{Data Querying:} The application must be able to query a database to handle the large amounts of data.
+\end{itemize}
 
-% Will be used to reformulate background, will probably be removed.
-\section{Project description}
+% Will probably change over time make sure its up to date.
+\section{Software and Technology Stack}
+The following technologies were used throughout the development of the project:
+\begin{itemize}
+\item \textbf{React & TypeScript:} Core frontend framework
+\item \textbf{MapLibre GL JS:} Mapping engine for high-performance maps.
+\item \textbf{Node.js / .NET:} Backend enviorments for data querying.
+%\item \textbf{Azure:} Deployment and cloud environment. % Depends on if it counts as being used right now
+\item \textbf{NCA Test Datasets:} Simulated \acrshort{ais} anomaly logs.
+\end{itemize}
 
-
-From the NCA we were tasked with creating a data-visualization software that better displays crucial information about anomalies, than the one they already have in use. 
-
-
-The software in use today has a lack of features that the client wishes to have, like different visualization methods. i.e(heatmapping, hexagonal visualization) etc. 
-
-
-This project is used as a prototype for software that kystverket themselves can take further, where all data used for visualization is dummy data. It was expected that we work in the React programming language, while using libraries and frameworks that they already use at the NCA.
-
-
-
+% Not sure if we even need this?
 \subsection{Stakeholders}
 
 % Unsure if we students count for stakeholders
 \begin{itemize}
-\item \textbf{The Norwegian Coastal Administration (Kystverket):} The primary stakeholder and "client." They provide the problem description, the tech stack requirements (Azure, .NET, React), and the AIS data.
+\item \textbf{The Norwegian Coastal Administration (Kystverket):} The primary stakeholder and "client." They provide the problem description, the tech stack requirements (Azure, .NET, React), and the \acrshort{ais} data.
 \item \textbf{The Project Team:} Two students from NTNU responsible for the design, implementation, and testing of the visualization prototype.
 \item \textbf{Maritime Operators:} The end-users who require an intuitive interface to maintain maritime safety.
 \end{itemize}
@@ -74,8 +103,6 @@ This project is used as a prototype for software that kystverket themselves can 
 
 % Needs to be redone as well following what each chapter will be about however that easily changes over time and will need to be changed a lot.
 \section{Thesis structure}
-
-The report will be used to outline how the problem was solved based on the problem description in section 1.2, how this was solved technically, what tools were used etc.\\
 
 \begin{itemize}
 
