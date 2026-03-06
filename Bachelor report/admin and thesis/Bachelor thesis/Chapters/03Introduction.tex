@@ -11,32 +11,24 @@
 %\end{itemize}
 
 %\cleardoublepage
-% Moved up here might be removed when combined into background and objective
-\section{Project description}
-
-
-From the NCA we were tasked with creating a data-visualization software that better displays crucial information about anomalies, than the one they already have in use. 
-
-
-The software in use today has a lack of features that the client wishes to have, like different visualization methods. i.e(heatmapping, hexagonal visualization) etc. 
-
-
-This project is used as a prototype for software that kystverket themselves can take further, where all data used for visualization is dummy data. It was expected that we work in the React programming language, while using libraries and frameworks that they already use at the NCA.
 
 %Inspired by another Report
 \textit{This chapter presents the background of the project, outlines the objective and defines the requirements}
 % Refrences are important in this area of the thesis.
-https://www.kystverket.no/en/sea-transport-and-ports/ais/ais-norge/
-https://www.barentswatch.no/en/articles/ais-displays-status-report-at-sea/
-https://www.kystverket.no/en/sea-transport-and-ports/ais/
-https://www.kystverket.no/en/about-us/what-is-the-role-of-the-nca/
+%https://www.kystverket.no/en/sea-transport-and-ports/ais/ais-norge/
+%https://www.barentswatch.no/en/articles/ais-displays-status-report-at-sea/
+%https://www.kystverket.no/en/sea-transport-and-ports/ais/
+%https://www.kystverket.no/en/about-us/what-is-the-role-of-the-nca/
 \section{Background}
-Norway manages one of the world's most extensive coastlines, and the \gls{nca} is the national agency responsible for coastal management, maritime safety, and emergency preparedness % Ref to https://www.kystverket.no/en/about-us/what-is-the-role-of-the-nca/
-A central part of this mission is "acrshort{ais} Norway" which is a national tracking network operated by the acrshort{nca} that combines around 90 shore base stations with a few acrshort{ais} satellites. %https://www.kystverket.no/en/sea-transport-and-ports/ais/ais-norge/
+Norway manages one of the world's most extensive coastlines, and the \gls{nca} is the national agency responsible for coastal management, maritime safety, and emergency preparedness. % Ref to https://www.kystverket.no/en/about-us/what-is-the-role-of-the-nca/
+A central part of this mission is "\acrshort{ais} Norway" which is a national tracking network operated by the \acrshort{nca} that combines around 90 shore base stations with a few \acrshort{ais} satellites. %https://www.kystverket.no/en/sea-transport-and-ports/ais/ais-norge/
 Even though it was originally developed as a anti-collision tool, the \acrfull{ais} is now a critical part of the infrastructure for vessel traffic services, search and rescue operations, and environmental protection. %https://www.kystverket.no/en/about-us/what-is-the-role-of-the-nca/, https://www.barentswatch.no/en/articles/ais-displays-status-report-at-sea/
 
-% Didnt have enough time to finish just made a simple outline.
-They are allready using a solution however it doesnt have advanced visualisation capabilities like hexagonal binning and temporal analysis. Which are needed for operators to quickly interpret the massive volume of data. Therefore the Nca wants a more intuitive web based solution that allows real-time monitoring and historical anomaly patterns.
+
+While the \acrshort{nca} currently utilizes analytical tools to identify deviations in acrshort{ais} data, the existing solutions lack advanced visualization capabilities such as hexagonal binning and temporal analysis. These features are essential for operators to gain proper insight into the anomalies, because of the massive scale of data. Every day around 60-80 million messages are flagged as anomalies which makes it hard for operators to figure out which anomalies are technical issues and which are security threats. To solve this issue, the \acrshort{nca} hopes for a more intuitive, web-based prototype with more advanced analytical tools such as hexagonal binning, heat-maps and temporal analysis.% https://www.kystverket.no/en/sea-transport-and-ports/ais/ais-norge/
+
+
+
 
 %Information about the seafaring vessels around the Norwegian coast are paramount for national security and the security of said vessels, thus it is paramount that such information is available in a concise and easy to understand format for the professionals working in the Norwegian coastal administration. Every day millions of anomaly messages are sent out from a ships \acrshort{ais} messaging unit, and parsing through all these messages to see which are more important than others is a significant and important task for our government.  
 
