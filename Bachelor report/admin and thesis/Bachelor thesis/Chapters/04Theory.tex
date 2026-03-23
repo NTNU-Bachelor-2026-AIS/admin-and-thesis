@@ -1,66 +1,80 @@
+\chapter{Theory}
+This chapter delves into the theoretical foundations of the technologies and principles employed in the project.
 
-
-
+% Will also make sure verything is abbreviated in the future
+% Needs to be fully redone following template of what it does
 \section{Data visualization}
-\noindent Data visualization is the practice of displaying information in an easier to understand format than as raw data. While datasets grow in magnitude, it gets increasingly complex to parse information from them, thus data visualization tries to mitigate this problem by displaying the data in new forms, In the context of the project this can be in different way such as heatmaps and clusters, which shows where data is most heavily concentrated  
+\noindent As digital systems generate increasingly massive datasets, processing and understanding that information manually becomes inefficient and highly complex. Data visualization addresses this problem by displaying raw data in forms that are easier to understand. This is done since such systems can leverage human visual perception to identify patterns, trends, and outliers. In the context of the project this can be in different way such as heatmaps and clusters, which intuitively shows where data is most heavily concentrated.
 https://www.ibm.com/think/topics/data-visualization
+https://www.tableau.com/learn/articles/data-visualization
 
 
 \section{Clustering}
-Clustering pertains to a method of aggregating data points into groups or clusters. Clustering can be done based on the type of data, if it is desireable one can cluster based on specific parameters like movie genre and user details. There are multiple different clustering algorithms that server different purposes, like based on density, proximity or similar groups of objects. 
+Clustering pertains to a method of aggregating data points into groups or clusters. While clustering can be done based on specific parameters(like media genres or user details), in a geographic context, algorithms typically group objects based on density and proximity. Visualising large geographic datasets can easily cause visual clutter if thousands of individual data points are rendered in close proximity. Clustering can mitigate this by aggregating nearby data points into a single point/group based on the current zoom level of the map. As the user zooms in, the clusters will dynamically break apart into smaller groups or individual points. 
 https://www.ibm.com/think/topics/clustering
+https://developers.google.com/machine-learning/clustering/overview
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{Figures/Clustering_Data.png}
-  \caption{Illustration of clustering of data points. Source: https://www.grammarly.com/blog/ai/what-is-clustering/}
+  \caption{[Illustration of spatial data clustering]{Illustration of clustering of data points based on spatial proximity. Source: https://www.grammarly.com/blog/ai/what-is-clustering/}
   \label{fig:latlong}
 \end{figure}
 
 
-\section{HeatMap}
-Heatmaps are used for data visualization, to show relationship between variables, like amount of data points per type, the amount of data has a color leading to a higher concentration of data having a darker color than less concentrated areas of points. This leads to intuitive visualization of data for humans to parse. 
+\section{Heat Map}
+While clustering groups discrete points together, heat maps are used for data visualization to show relationship between variables and the density of data over a given area. The amount of data dictates a color gradient, leading to a higher concentration of data having a darker or warmer color than less concentrated areas. This leads to intuitive visualization of data for humans to parse, instantly highlighting "hotspots" of activity without needing to process individual data points. 
 https://www.atlassian.com/data/charts/heatmap-complete-guide
 
 
 \section{Scatter map}
-A scatter map is a type of scatter plot, wherein a scatter plot is used to show correlation between variables or points, where each point is plotted on a x,y coordinate plane, where one can use different statistical methods to derive correlation between the points, a scatter map is doing this type of plotting but for longitude and latitude, that then shows the points of data on a map for visualization. 
+A scatter map is a spatial adoption of a traditional scatter plot. Wherein a standard scatter plot is used to show correlation between variables on an abstract  x,y coordinate plane using statistical methods, a scatter map preforms this plotting using geographic coordinates. Each point of data is plotted using logitude as the X-axis and latitude as the Y-axis. This gives the user precise visualization of individual entities or incidents on a geographic map once a user zooms past the aggregated clustering layers.
 https://www.atlassian.com/data/charts/what-is-a-scatter-plot
 
 \section{Web Map}
-Web maps are maps created for geographic visualization on the internet. Web maps are a newer tool that allows users to have interactable maps on websites that are easy to use and insightful for what data is shown. Web maps are created by having a basemap which is the first layer showing the map itself, without specific data on. On top of the basemap there is added layers, that are shown above it. This can be data points of incidents happening in a geoggraphic area, charting of train tracks in a country, and much more that is defined by the needs of the user. 
+Web maps are maps created for geographic visualization on the internet. They are a modern tool that allows users to have interactable maps on websites that are easy to use and insightful for what data is shown. Web maps are constructed by having a "basemap", which is the first layer showing the map itself without specific data. On top of the basemap, additional operational layers are added. This can be data points of incidents happening in a geographic area, charting of train tracks in a country, and much more that is defined by the needs of the user. 
 https://www.mapbox.com/insights/web-maps
 
 
 \section{vector tiles}
-Vector tiles are whats used in current times by most web map providers. Vector tiles save geographic data in vector format to show the contents of the map, instead of png images that were used in the past. Vector tiles allow for more styling and customization than the mentioned images, and have lead to smoother usage of web maps, at the cost of more processing power needed.
+Vector tiles are the current standard utilized by most web map providers. Instead of the static PNG images that were used in the past, vector tiles save geographic data in a mathematical vector format. They allow for significantly more styling and customization than image-based formats, and have led to smoother, pixel-free zooming. However, because the browser must render the map geometry mathematically whenever the user zooms, this smoother usage comes at the cost of more processing power needed on the client's device.
 https://docs.mapbox.com/data/tilesets/guides/vector-tiles-introduction/
 
 \section{API}
-
+In modern software architecture, an Application Programming Interface (API) is a crucial tool that allows communication between distinct software systems. In geographic applications, API's decouple the frontend web map from the from the backend database. So when a user interacts with the map, the frontend request specific subsets of data from the API, which returns the geographic coordinates in  a lightweight format such as JSON or GeoJSON.
 https://aws.amazon.com/what-is/api/
 
 
 \section{hardware acceleration}
-Hardware acceleration is a method to get increased performance in computing tasks, which include rendering graphics in browsers. Hardware acceleration works by offloading tasks that are normally done by the CPU(central processing unit) to other hardware in the computer like the GPU(Graphics processing unit) that has massively more parallel processing capability than the CPU, for tasks that require it, significantly speeding up such computations.
+Hardware acceleration is a method to get increased performance in computing tasks, which include rendering graphics and vector tiles in browsers. Hardware acceleration works by offloading tasks that are normally done by the CPU(Central Processing Unit) to other hardware in the computer like the GPU(Graphics Processing Unit). The GPU has massively more parallel processing capability than the CPU, significantly speeding up such computations for tasks that require it.
 https://www.sciencedirect.com/topics/computer-science/hardware-acceleration
 
 \subsection{WebGL}
-
+In web enviorments, this hardware acceleration is achived via WebGL (Web Graphics Library).
 https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API
 
-\section{Software principles make subsections i.e cohesion, testing}
+\section{Software principles}
+To ensure that the software developed for this project remains scalable, maintainable, and robust, several core software engineering principles were adhered to. 
+
+\subsection{Cohesion and Coupling}
+
+\subsection{Testing}
 lorem ipsum
 lorem ipsum
 lorem ipsum
 
-\section{Agile Development make subsections i.e issues}
+\section{Agile Development}
+This project was managed using Agile development principles. The Agile work flow prioritize adaptability, iterative progress, and continuous delivery. Which makes them ideal for software projects where technical requirements may evolve.
+\subsection{Scrum and Issue Tracking}
 lorem ipsum
 lorem ipsum
 lorem ipsum
 
 %equations, bib. \\
+%\section{Sprint/Scrum}
+% Might make sprint its own section
 
+\begin{comment}
 \section{Equations}
 
 A simple equation can be included as: \\
@@ -168,3 +182,4 @@ Figure \ref{fig:latlong} is included as an example. The square brackets before t
 \section{Citations}
 
 Here are some examples on how to reference a source (where none is relevant to the text but just for illustration purposes only). One may cite a single reference by calling \cite{wolves_of_mount_mckinley}, or several in the same bracket by calling \cite{machine_learning, clustering_impossibility} when they are all related to the same statement. There are many different styles on how to cite, and how the layout and order of your citation style is presented. This is my favorite, as I find it neat and tidy \cite{sheep}. It will show up in order of appearance in the references section.
+\end{comment}
