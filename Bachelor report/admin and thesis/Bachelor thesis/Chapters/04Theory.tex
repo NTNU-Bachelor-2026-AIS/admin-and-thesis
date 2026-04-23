@@ -1,15 +1,104 @@
 \chapter{Theory}
-This chapter delves into the theoretical foundations of the technologies and principles employed in the project.
+% Used AI to help me decide on the flow of the theory chapter.
+% This chapter gives the scientific background that justifies the design of the
+% AIS‑anomaly visualisation prototype.  The layout follows a “lab‑process”
+% pattern: domain → digital‑twin → visual‑analysis concepts → web‑mapping stack
+% → rendering → software‑engineering foundations → agile development.
 
-% Will also make sure verything is abbreviated in the future
-% Needs to be fully redone following template of what it does
+This chapter introduces
+
+%=====================================================================
+% 2.1  Automatic Identification System (AIS)
+%=====================================================================
+\section{Automatic Identification System (AIS)}
+% source: Kystverket AIS‑Norway description (project brief)
+The Automatic Identification System (AIS) is a system that transfers navigation data. However the system is prone to errors due to wrong configurations, area jamming, or message spoofing. Kystverket processes this data to detect errors in messages. In practice this pipeline identifies 60-80 million messages with errors every single day.
+%=====================================================================
+% 2.2  Digital Twin
+%=====================================================================
+\section{Digital Twin}
+% source: IBM “What is a digital twin?” https://www.ibm.com/think/topics/digital-twin
+
+A digital twin is a digital representation of a physical object or system. An AIS digital twin primarily represents a ship's location and speed, but it also stores additional information such as the vessel type. The main purpose of a digital twin is to enable real time tracking and to provide historical data for further analysis in the future if needed.
+%   – economic and safety benefits are described in the Capgemini report .
+
+%=====================================================================
+% 2.3  Human‑Centric Data Visualisation
+%=====================================================================
+\section{Human‑Centric Data Visualisation}
+% source: https://ieeexplore.ieee.org/document/5599750
+Human visual perception excels at spotting patters and extracting meaningful information. However there are usually limits or systems that are harder for humans to recognize. Therefore, visualisation techniques focus on presenting data in a way that leverage's a humans pattern recognition.
+
+\subsection{Heat‑Map Visualisation}
+% source: https://www.atlassian.com/data/charts/heatmap-complete-guide
+Heat-maps visualise point density with color gradients usually with warm to cold gradients. This system enables human operators to locate "hot-spots" of data. This is useful since human operators get a better visual distinction of areas compared to other visualisation methods such as scatter maps.
+
+
+\subsection{Clustering}
+% source: https://link.springer.com/article/10.1007/s12530-012-9062-5
+Dynamic clustering adapts to the zoom level of the user by aggregating nearby points. This can cause 1 thousand points to become represented by 1 point labelled with 1000, which improves scale perception.
+
+\subsection{Scatter Map (Geographic Scatter‑Plot)}
+% source: https://www.atlassian.com/data/charts/what-is-a-scatter-plot
+A scatter map plots individual AIS pings using latitude and longitude to provide a precice location once clusters are decomposed. When combined with clustering it perserves point accuracy while still conveying scale.
+
+%=====================================================================
+% 2.4  Web‑Mapping Stack
+%=====================================================================
+\section{Web‑Mapping Stack}
+% source: https://doc.arcgis.com/en/arcgis-online/reference/what-is-web-map.htm
+A web map is an interactive display composed of a map system, a rendering library, and a data-retrieval system. Its primary function is to present geographic information in a way that supports analysis.
+
+\subsection{Vector Tiles}
+% source: https://en.wikipedia.org/wiki/Vector_tiles
+Vector tiles are packets of geographic data which are packaged into pre-defined square tiles. This hybrid approach maintains high visual quality while avoiding full map pre-rendering.
+
+\subsection{MapLibre}
+% source: https://maplibre.org/maplibre-gl-js/docs/  https://maplibre.org/maplibre-gl-js/docs/API/classes/Map/
+Maplibre leverage's vector tiles and WebGL to render interactive maps directly in a browser. 
+
+\subsection{REST API}
+% source: https://www.redhat.com/en/topics/api/what-is-a-rest-api
+The REST API provides AIS anomalies as GeoJSON files on request.
+
+%=====================================================================
+% 2.5  Rendering Acceleration
+%=====================================================================
+\section{Rendering Acceleration}
+% source: https://www.geeksforgeeks.org/data-science/what-is-gpu-acceleration/
+GPU-based hardware acceleration markedly improves the performance of compute-intensive applications. The principal uses of GPU's are graphics rendering and parallel computation.
+
+
+\subsection{WebGL}
+% source: https://en.wikipedia.org/wiki/WebGL
+WebGL connects the GPU to the browser and allows Maplibre to render vector maps, when compared to the normal speed when using the cpu the result becomes fast enough that it seems real time.
+
+%=====================================================================
+% 2.6  Software‑Engineering Principles Might be in method unsure though.
+%=====================================================================
+
+
+
+%=====================================================================
+% 2.7  Agile Development Practices Unsure if this should be here or in method.
+%=====================================================================
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%
+
+
+\begin{comment}
+
 \section{Data visualization}
-\noindent As digital systems generate increasingly massive datasets, processing and understanding that information manually becomes inefficient and highly complex. Data visualization addresses this problem by displaying raw data in forms that are easier to understand. This is done since such systems can leverage human visual perception to identify patterns, trends, and outliers. In the context of the project this can be in different way such as heatmaps and clusters, which intuitively shows where data is most heavily concentrated.
+\noindent Processing massive datasets manually is inefficient, so data-visualisation techniques are required. Data visualization displays raw data in forms that leverage human perception to identify patterns, trends, and outliers. In the project we employ methods such as heatmaps and clusters, which intuitively display density with color gradients and aggregations of points.
 https://www.ibm.com/think/topics/data-visualization
 https://www.tableau.com/learn/articles/data-visualization
 
 
-\section{Clustering}
+\subsection{Clustering}
 Clustering pertains to a method of aggregating data points into groups or clusters. While clustering can be done based on specific parameters(like media genres or user details), in a geographic context, algorithms typically group objects based on density and proximity. Visualising large geographic datasets can easily cause visual clutter if thousands of individual data points are rendered in close proximity. Clustering can mitigate this by aggregating nearby data points into a single point/group based on the current zoom level of the map. As the user zooms in, the clusters will dynamically break apart into smaller groups or individual points. 
 https://www.ibm.com/think/topics/clustering
 https://developers.google.com/machine-learning/clustering/overview
@@ -22,12 +111,12 @@ https://developers.google.com/machine-learning/clustering/overview
 \end{figure}
 
 
-\section{Heat Map}
+\subsection{Heat Map}
 While clustering groups discrete points together, heat maps are used for data visualization to show relationship between variables and the density of data over a given area. The amount of data dictates a color gradient, leading to a higher concentration of data having a darker or warmer color than less concentrated areas. This leads to intuitive visualization of data for humans to parse, instantly highlighting "hotspots" of activity without needing to process individual data points. 
 https://www.atlassian.com/data/charts/heatmap-complete-guide
 
 
-\section{Scatter map}
+\subsection{Scatter map}
 A scatter map is a spatial adoption of a traditional scatter plot. Wherein a standard scatter plot is used to show correlation between variables on an abstract  x,y coordinate plane using statistical methods, a scatter map preforms this plotting using geographic coordinates. Each point of data is plotted using logitude as the X-axis and latitude as the Y-axis. This gives the user precise visualization of individual entities or incidents on a geographic map once a user zooms past the aggregated clustering layers.
 https://www.atlassian.com/data/charts/what-is-a-scatter-plot
 
@@ -36,14 +125,15 @@ Web maps are maps created for geographic visualization on the internet. They are
 https://www.mapbox.com/insights/web-maps
 
 
-\section{vector tiles}
+\subsection{vector tiles}
 Vector tiles are the current standard utilized by most web map providers. Instead of the static PNG images that were used in the past, vector tiles save geographic data in a mathematical vector format. They allow for significantly more styling and customization than image-based formats, and have led to smoother, pixel-free zooming. However, because the browser must render the map geometry mathematically whenever the user zooms, this smoother usage comes at the cost of more processing power needed on the client's device.
 https://docs.mapbox.com/data/tilesets/guides/vector-tiles-introduction/
+
+\subsection{MapLibre}
 
 \section{API}
 In modern software architecture, an Application Programming Interface (API) is a crucial tool that allows communication between distinct software systems. In geographic applications, API's decouple the frontend web map from the from the backend database. So when a user interacts with the map, the frontend request specific subsets of data from the API, which returns the geographic coordinates in  a lightweight format such as JSON or GeoJSON.
 https://aws.amazon.com/what-is/api/
-
 
 \section{hardware acceleration}
 Hardware acceleration is a method to get increased performance in computing tasks, which include rendering graphics and vector tiles in browsers. Hardware acceleration works by offloading tasks that are normally done by the CPU(Central Processing Unit) to other hardware in the computer like the GPU(Graphics Processing Unit). The GPU has massively more parallel processing capability than the CPU, significantly speeding up such computations for tasks that require it.
@@ -52,6 +142,7 @@ https://www.sciencedirect.com/topics/computer-science/hardware-acceleration
 \subsection{WebGL}
 In web enviorments, this hardware acceleration is achived via WebGL (Web Graphics Library).
 \url{https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API}
+
 
 \section{Software principles}
 To ensure that the software developed for this project remains scalable, maintainable, and robust, several core software engineering principles were adhered to. 
@@ -73,7 +164,7 @@ lorem ipsum
 %equations, bib. \\
 %\section{Sprint/Scrum}
 % Might make sprint its own section
-
+\end{comment}
 \begin{comment}
 \section{Equations}
 
