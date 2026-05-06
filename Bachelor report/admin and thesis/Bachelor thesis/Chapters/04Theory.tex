@@ -4,7 +4,7 @@
 % pattern: domain → digital‑twin → visual‑analysis concepts → web‑mapping stack
 % → rendering → software‑engineering foundations → agile development.
 
-This chapter introduces
+This chapter gives the theoretical background for the bachelor project, explaining technologies and principles used. 
 
 %=====================================================================
 % 2.1  Automatic Identification System (AIS)
@@ -24,57 +24,143 @@ A digital twin is a digital representation of a physical object or system. An AI
 %=====================================================================
 % 2.3  Human‑Centric Data Visualisation
 %=====================================================================
+\section{Data Visualization}
+
+\noindent Data visualization is the practice of displaying information in an easier to understand format than as raw data. While datasets grow in magnitude, it gets increasingly complex to parse information from them, thus data visualization tries to mitigate this problem by displaying the data in new forms, In the context of the project this can be in different way such as heatmaps and clusters, which shows where data is most heavily concentrated  
+https://www.ibm.com/think/topics/data-visualization
+
+
 \section{Human‑Centric Data Visualisation}
+
 % source: https://ieeexplore.ieee.org/document/5599750
-Human visual perception excels at spotting patters and extracting meaningful information. However there are usually limits or systems that are harder for humans to recognize. Therefore, visualisation techniques focus on presenting data in a way that leverage's a humans pattern recognition.
+\noindent Human visual perception excels at spotting patters and extracting meaningful information. However there are usually limits or systems that are harder for humans to recognize. Therefore, visualisation techniques focus on presenting data in a way that leverage's a humans pattern recognition.
 
 \subsection{Heat‑Map Visualisation}
-% source: https://www.atlassian.com/data/charts/heatmap-complete-guide
-Heat-maps visualise point density with color gradients usually with warm to cold gradients. This system enables human operators to locate "hot-spots" of data. This is useful since human operators get a better visual distinction of areas compared to other visualisation methods such as scatter maps.
+
+Heatmaps are used for data visualization, to show relationship between variables, like amount of data points per type, the amount of data has a color leading to a higher concentration of data having a darker color than less concentrated areas of points. This leads to intuitive visualization of data for humans to parse. https://www.atlassian.com/data/charts/heatmap-complete-guide
 
 
-\subsection{Clustering}
-% source: https://link.springer.com/article/10.1007/s12530-012-9062-5
-Dynamic clustering adapts to the zoom level of the user by aggregating nearby points. This can cause 1 thousand points to become represented by 1 point labelled with 1000, which improves scale perception.
+\section{Clustering}
+
+Clustering pertains to a method of aggregating data points into groups or clusters. Clustering can be done based on the type of data, if it is desireable one can cluster based on specific parameters like movie genre and user details. There are multiple different clustering algorithms that server different purposes, like based on density, proximity or similar groups of objects. 
+https://www.ibm.com/think/topics/clustering
+
 
 \subsection{Scatter Map (Geographic Scatter‑Plot)}
-% source: https://www.atlassian.com/data/charts/what-is-a-scatter-plot
-A scatter map plots individual AIS pings using latitude and longitude to provide a precice location once clusters are decomposed. When combined with clustering it perserves point accuracy while still conveying scale.
+
+A scatter map is a type of scatter plot, wherein a scatter plot is used to show correlation between variables or points, where each point is plotted on a x,y coordinate plane, where one can use different statistical methods to derive correlation between the points, a scatter map is doing this type of plotting but for longitude and latitude, that then shows the points of data on a map for visualization. 
+https://www.atlassian.com/data/charts/what-is-a-scatter-plot
+
 
 %=====================================================================
 % 2.4  Web‑Mapping Stack
 %=====================================================================
 \section{Web‑Mapping Stack}
-% source: https://doc.arcgis.com/en/arcgis-online/reference/what-is-web-map.htm
-A web map is an interactive display composed of a map system, a rendering library, and a data-retrieval system. Its primary function is to present geographic information in a way that supports analysis.
+
+Web maps are maps created for geographic visualization on the internet. Web maps are a newer tool that allows users to have interactable maps on websites that are easy to use and insightful for what data is shown. Web maps are created by having a basemap which is the first layer showing the map itself, without specific data on. On top of the basemap there is added layers, that are shown above it. This can be data points of incidents happening in a geoggraphic area, charting of train tracks in a country, and much more that is defined by the needs of the user. https://www.mapbox.com/insights/web-maps
 
 \subsection{Vector Tiles}
-% source: https://en.wikipedia.org/wiki/Vector_tiles
-Vector tiles are packets of geographic data which are packaged into pre-defined square tiles. This hybrid approach maintains high visual quality while avoiding full map pre-rendering.
+
+Vector tiles are whats used in current times by most web map providers. Vector tiles save geographic data in vector format to show the contents of the map, instead of png images that were used in the past. Vector tiles allow for more styling and customization than the mentioned images, and have lead to smoother usage of web maps, at the cost of more processing power needed. https://docs.mapbox.com/data/tilesets/guides/vector-tiles-introduction/
 
 \subsection{MapLibre}
-% source: https://maplibre.org/maplibre-gl-js/docs/  https://maplibre.org/maplibre-gl-js/docs/API/classes/Map/
-Maplibre leverage's vector tiles and WebGL to render interactive maps directly in a browser. 
+
+Maplibre is an open source Map library that started as a fork of mapbox-gl-js. it utilizes vector tile rendering with WebGL for highly performant map rendering and interaction. Maplibre is used for rendering geopsatial data into human readable visualization.
+ https://github.com/maplibre/maplibre-gl-js
+https://maplibre.org/about/
+
+
+\section{API}
+\noindent
+An API(Application Programming Interface) is a method for different software to communicate with each other, most commonly in the way of client server. API's define the protocols and rules for which software communicate, what format the data is sent in and what data is used. 
+https://aws.amazon.com/what-is/api/
+https://www.ibm.com/think/topics/api
+
+
+\subsection{Client-Server Architecture}
+\noindent
+The client-server architecture is established around server computers, processing requests from client computers, over a network. This communication is done through protocols like HTTP, leading to the server responding to the client request appropriately. \url{https://www.researchgate.net/publication/376512127_Architectural_Review_of_Client-Server_Models}
+
+\subsection{REST Architecture}
+\noindent 
+Representational State Transfer(REST) is a software architecture. REST is designed around constraints concerning the client-server architecture. REST is stateless meaning the entire context of the communication is stored on the client. The client sends the entire information related to the request to the server, leading to the server never keeping state. Additionally, REST is designed around a uniform interface, denoting that data transfer is optimized for the standard web communication, not on a per application basis. 
+ \url{https://roy.gbiv.com/pubs/dissertation/rest_arch_style.htm}
+
+
 
 \subsection{REST API}
 % source: https://www.redhat.com/en/topics/api/what-is-a-rest-api
-The REST API provides AIS anomalies as GeoJSON files on request.
+a 
+A REST API is an API designed around the constraints of the REST Architecture. REST APIS are designed around creating reading updating and deleting data. These operations are defined by the REST api with an example being GET being used as a request to access data on a server. In conclusion, is the REST API a standardised way to build web api's and is commonly used today, which handles different data formats, with high scalability 
+ \url{https://www.ibm.com/think/topics/rest-apis}
 
 %=====================================================================
 % 2.5  Rendering Acceleration
 %=====================================================================
-\section{Rendering Acceleration}
-% source: https://www.geeksforgeeks.org/data-science/what-is-gpu-acceleration/
-GPU-based hardware acceleration markedly improves the performance of compute-intensive applications. The principal uses of GPU's are graphics rendering and parallel computation.
+\section{Hardware Acceleration}
+
+Hardware acceleration is a method to get increased performance in computing tasks, which include rendering graphics in browsers. Hardware acceleration works by offloading tasks that are normally done by the CPU(central processing unit) to other hardware in the computer like the GPU(Graphics processing unit) that has massively more parallel processing capability than the CPU, for tasks that require it, significantly speeding up such computations.
+ \url{https://www.sciencedirect.com/topics/computer-science/hardware-acceleration}
+
 
 
 \subsection{WebGL}
-% source: https://en.wikipedia.org/wiki/WebGL
-WebGL connects the GPU to the browser and allows Maplibre to render vector maps, when compared to the normal speed when using the cpu the result becomes fast enough that it seems real time.
+WebGL is a graphics api that is used in both 2d and 3d graphics rendering along with interaction, in compatible web browsers. WebGL allows for hardware acceleration, leading to software using it being more performant. WebGL has browser support from the majority of browser providers, in addition to not requiring browser plugins, leading to ease of use. WebGL is highly used in fields like visualization, and charting. 
+ \url{https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API}
+ \url{https://www.sitepoint.com/beginners-guide-webgl/}
 
 %=====================================================================
 % 2.6  Software‑Engineering Principles Might be in method unsure though.
 %=====================================================================
+\section{Software Engineering Principles}
+Software systems are frequently designed after established, software engineer principles and methodologies, manufactured by pioneers in the field. The principles are created such that following them typically improves code quality and design of software. 
+\subsection{Separation of Concerns}
+Lorem ipsum
+\subsection{Cohesion and Coupling}
+Lorem ipsum
+\subsection{Modularity}
+Lorem ipsum
+\subsection{Testing Principles}
+Lorem ipsum
+\subsection{Documentation}
+Lorem ipsum
+
+
+
+\section{Testing}
+
+\subsection{manual testing}
+
+\subsection{automatic testing }
+
+
+\section{Project Management and Development Process}
+
+\subsection{Agile Development}
+\subsection{Scrum Framework}
+\subsection{Iterative Development}
+\subsection{Sprint Planning and Execution}
+\subsection{Backlog Management}
+
+
+\section{Frontend Architecture}
+
+\subsection{React}
+
+
+
+\section{Geographic Visualization System}
+\subsection{Deck.gl}
+\subsection{Layer-Based Rendering}
+\subsection{Supercluster}
+
+
+\section{Backend Infrastructure}
+
+\subsection{Docker}
+\subsection{Containerization}
+\subsection{Database System}
+\subsection{Database Seeding}
 
 
 
