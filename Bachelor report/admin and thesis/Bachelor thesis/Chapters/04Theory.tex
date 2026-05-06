@@ -27,29 +27,30 @@ A digital twin is a digital representation of a physical object or system. An AI
 \section{Data Visualization}
 
 \noindent Data visualization is the practice of displaying information in an easier to understand format than as raw data. While datasets grow in magnitude, it gets increasingly complex to parse information from them, thus data visualization tries to mitigate this problem by displaying the data in new forms, In the context of the project this can be in different way such as heatmaps and clusters, which shows where data is most heavily concentrated  
-https://www.ibm.com/think/topics/data-visualization
+\url{https://www.ibm.com/think/topics/data-visualization}
 
 
 \section{Human‑Centric Data Visualisation}
 
 % source: https://ieeexplore.ieee.org/document/5599750
 \noindent Human visual perception excels at spotting patters and extracting meaningful information. However there are usually limits or systems that are harder for humans to recognize. Therefore, visualisation techniques focus on presenting data in a way that leverage's a humans pattern recognition.
+\url{https://ieeexplore.ieee.org/document/5599750}
 
 \subsection{Heat‑Map Visualisation}
 
-Heatmaps are used for data visualization, to show relationship between variables, like amount of data points per type, the amount of data has a color leading to a higher concentration of data having a darker color than less concentrated areas of points. This leads to intuitive visualization of data for humans to parse. https://www.atlassian.com/data/charts/heatmap-complete-guide
+Heatmaps are used for data visualization, to show relationship between variables, like amount of data points per type, the amount of data has a color leading to a higher concentration of data having a darker color than less concentrated areas of points. This leads to intuitive visualization of data for humans to parse. \url{https://www.atlassian.com/data/charts/heatmap-complete-guide}
 
 
 \section{Clustering}
 
 Clustering pertains to a method of aggregating data points into groups or clusters. Clustering can be done based on the type of data, if it is desireable one can cluster based on specific parameters like movie genre and user details. There are multiple different clustering algorithms that server different purposes, like based on density, proximity or similar groups of objects. 
-https://www.ibm.com/think/topics/clustering
+\url{https://www.ibm.com/think/topics/clustering}
 
 
 \subsection{Scatter Map (Geographic Scatter‑Plot)}
 
 A scatter map is a type of scatter plot, wherein a scatter plot is used to show correlation between variables or points, where each point is plotted on a x,y coordinate plane, where one can use different statistical methods to derive correlation between the points, a scatter map is doing this type of plotting but for longitude and latitude, that then shows the points of data on a map for visualization. 
-https://www.atlassian.com/data/charts/what-is-a-scatter-plot
+\url{https://www.atlassian.com/data/charts/what-is-a-scatter-plot}
 
 
 %=====================================================================
@@ -57,24 +58,24 @@ https://www.atlassian.com/data/charts/what-is-a-scatter-plot
 %=====================================================================
 \section{Web‑Mapping Stack}
 
-Web maps are maps created for geographic visualization on the internet. Web maps are a newer tool that allows users to have interactable maps on websites that are easy to use and insightful for what data is shown. Web maps are created by having a basemap which is the first layer showing the map itself, without specific data on. On top of the basemap there is added layers, that are shown above it. This can be data points of incidents happening in a geoggraphic area, charting of train tracks in a country, and much more that is defined by the needs of the user. https://www.mapbox.com/insights/web-maps
+Web maps are maps created for geographic visualization on the internet. Web maps are a newer tool that allows users to have interactable maps on websites that are easy to use and insightful for what data is shown. Web maps are created by having a basemap which is the first layer showing the map itself, without specific data on. On top of the basemap there is added layers, that are shown above it. This can be data points of incidents happening in a geoggraphic area, charting of train tracks in a country, and much more that is defined by the needs of the user. \url{https://www.mapbox.com/insights/web-maps}
 
 \subsection{Vector Tiles}
 
-Vector tiles are whats used in current times by most web map providers. Vector tiles save geographic data in vector format to show the contents of the map, instead of png images that were used in the past. Vector tiles allow for more styling and customization than the mentioned images, and have lead to smoother usage of web maps, at the cost of more processing power needed. https://docs.mapbox.com/data/tilesets/guides/vector-tiles-introduction/
+Vector tiles are whats used in current times by most web map providers. Vector tiles save geographic data in vector format to show the contents of the map, instead of png images that were used in the past. Vector tiles allow for more styling and customization than the mentioned images, and have lead to smoother usage of web maps, at the cost of more processing power needed. \url{https://docs.mapbox.com/data/tilesets/guides/vector-tiles-introduction/}
 
 \subsection{MapLibre}
 
 Maplibre is an open source Map library that started as a fork of mapbox-gl-js. it utilizes vector tile rendering with WebGL for highly performant map rendering and interaction. Maplibre is used for rendering geopsatial data into human readable visualization.
- https://github.com/maplibre/maplibre-gl-js
-https://maplibre.org/about/
+\url{https://github.com/maplibre/maplibre-gl-js}
+\url{https://maplibre.org/about/}
 
 
 \section{API}
 \noindent
 An API(Application Programming Interface) is a method for different software to communicate with each other, most commonly in the way of client server. API's define the protocols and rules for which software communicate, what format the data is sent in and what data is used. 
-https://aws.amazon.com/what-is/api/
-https://www.ibm.com/think/topics/api
+\url{https://aws.amazon.com/what-is/api/}
+\url{https://www.ibm.com/think/topics/api}
 
 
 \subsection{Client-Server Architecture}
@@ -114,53 +115,95 @@ WebGL is a graphics api that is used in both 2d and 3d graphics rendering along 
 %=====================================================================
 \section{Software Engineering Principles}
 Software systems are frequently designed after established, software engineer principles and methodologies, manufactured by pioneers in the field. The principles are created such that following them typically improves code quality and design of software. 
-\subsection{Separation of Concerns}
-Lorem ipsum
+
 \subsection{Cohesion and Coupling}
-Lorem ipsum
-\subsection{Modularity}
-Lorem ipsum
-\subsection{Testing Principles}
-Lorem ipsum
+Coupling and cohesion refers to a design principle for creating  sustainable and scalable code. Coupling refers to how tightly parts of the software depends on other parts, wherein if parts of the software have high coupling to other parts, then it will be harder to add and or change the project without it breaking. Cohesion describes if parts of the software are designed to fulfill a singular task, rather than being unfocused and serving multiple unrelated purposes. The goal for coupling and cohesion is to have high cohesion and low coupling, which in turn leads to better designed software. 
+\url{https://www.geeksforgeeks.org/software-engineering/software-engineering-coupling-and-cohesion/}
+
+\subsection{Separation of Concerns}
+Separation of concerns, is a software design principle, aimed at separating functionality, and system parts into cohesive units that solve specific concerns. This leads to independent parts of the system with specific responsibilities, leading to a more modular design. 
+\url{https://www.geeksforgeeks.org/software-engineering/separation-of-concerns-soc/}
+
+\subsection{single responsibility principle}
+The single responsibility principle dictates that a part of software, shall only have have one responsibility, such that code is modular and reusable. As a result of using this principle, code is easier to extend, becoming more manageable.
+\url{https://www.geeksforgeeks.org/system-design/single-responsibility-in-solid-design-principle/}
+
 \subsection{Documentation}
-Lorem ipsum
+Code documentation is the process of explaining through documentation with comments, how parts, methods and flow of a project works. Documentation is crucial for clarity and maintainability of code, whereas undocumented code carries confusion and unexplained complexity, leading to less effective development.  
+\url{https://www.ibm.com/think/topics/code-documentation}
+
+\subsection{Refactoring}
+Refactoring is an essential part of maintaining and creating good code. Refactoring is a restructure of already created code, where it is changed to better follow good design principles, while maintaining the same functionality. as a result of this, code becomes easier to maintain and extend, leading to the overall quality increasing.  
+\url{https://refactoring.com/}
 
 
+\section{Design}
+Design is a crucial part of software creation. defining the look and function of the end product. 
+
+\subsection{Wireframes}
+Wireframes are a tool used to create design blueprints for applications and websites. It is an effective tool, normally employed during the early phases of a development project. Wireframes allow for sketching UI/UX to varying degrees of detail, which the software will be designed after. 
+\url{https://www.figma.com/resource-library/what-is-wireframing/}
 
 \section{Testing}
+Testing of software allows the developers to locate errors in code, and design software. 
 
-\subsection{manual testing}
+\subsection{Manual Testing}
+Manual testing is the process wherein the developer tests the software through various methods, one being testing the end user experience, through direct interaction with the application or software. This enables bugs to be identified and end-user design to be tested in a single process. Manual Testing is a flexible approach  to testing, where other defects with the software outside of the part being directly tested, can be identified through use of the application. 
+\url{https://www.geeksforgeeks.org/software-testing/software-testing-manual-testing/}
 
-\subsection{automatic testing }
 
-
-\section{Project Management and Development Process}
+\section{Project Management}
+Project management refers to the process of coordinating and structuring the development process of a project. There are different project management styles, which aim to improve coordination, management, and overall effectiveness of the project.
 
 \subsection{Agile Development}
+Agile Development pertains to software development approaches emphasizing incremental development with early feedback. This creates a loop of development and feedback that ensures projects avoid unecessary, unguided work on superfluous systems or features. There exists agile methods that are frameworks, giving guidance on how to develop following the agile principles, the most common one being Scrum  
+\url{https://learn.microsoft.com/en-us/devops/plan/what-is-agile}
+
 \subsection{Scrum Framework}
-\subsection{Iterative Development}
-\subsection{Sprint Planning and Execution}
-\subsection{Backlog Management}
+Scrum is a project management framework designed after agile principles. Scrum emphasizes iterative development by segregating work into an iterable time-period called a sprint cycle. following the scrum framework requires having specific roles, including scrum master, which coaches and monitors the scrum process in a project. product owners, being the ones the project is created for, and the core feedback loop. The development team is the last role, consisting of a small development team responsible for the implementation of the project, following the Scrum framework.
+
+The work in a scrum project, is represented through scrum artifacts, being sectioned in three distinct parts. Sprint backlog is the features and requirements the product owner requires to be done. Sprint backlog is features, bugs and implementations being worked on for a team's current sprint cycle, that is intended to be complete by the end of a cycle. An increment is an end goal of a sprint. 
+
+Sprints are executed as time-boxed iterations where the development team works on selected backlog items. A sprint itself is planned beforehand, setting the goals to be worked on in the project. after a sprint is worked on, a sprint review and retrospective is held. The review being a informal showcase of the work done, while a retrospective is a review of the sprint itself, clarifying the strengths and weaknesses the current sprint had. Sprints are normally worked on in a weekly or biweekly timetable, with frequent feedback from the product owner. 
 
 
-\section{Frontend Architecture}
+\url{https://www.atlassian.com/agile/scrum}
+
+
+
+\section{System Architecture}
+System architecture describes 
 
 \subsection{React}
+React is a javascript library, with a component based architecture. Components are reusable pieces of code that define the user interface to be rendered. React's approach delivers scalability, modularity and reusability to projects using it. React is commonly paired with typescript, typescript is an addition to javascript, with added types, leading to strongly typed react applications, emphasizing type safety. 
+\url{https://www.w3schools.com/typescript/typescript_intro.php}
+\url{https://www.geeksforgeeks.org/reactjs/reactjs-introduction/}
 
-
-
-\section{Geographic Visualization System}
 \subsection{Deck.gl}
-\subsection{Layer-Based Rendering}
-\subsection{Supercluster}
+Deck.gl is an open source, high performance, webGL based visualization framework originally created by Uber. visualization is handled through layering, each layer being able to contain its own visualization method. Layers allow for event handling, and custom rendering of complex visualization methods, based on data sets. data sets containing geographic data is frequently used with map providers to map data points, to map coordinates, allowing for human readable visualization of complex data. 
+\url{https://carto.com/glossary/deckgl/}
+\url{https://deck.gl/docs/get-started/learning-resources}
+\url{https://deck.gl/}
+\url{https://developers.google.com/maps/documentation/javascript/deckgl-overlay-view}
+
+\subsection{Javascript object notation(JSON}
+Javascript object notation, is a data structure created for ease of readability for humans, being based on javascript. JSON data is architecturaly designed around objects with key/value pairs, saved in array containing an entire data set. The JSON data format is universally parsable for programming langauges and computers. 
+\url{https://www.json.org/json-en.html}
+
+\subsection{GeoJSON}
+GeoJSON is a data structure, based on JSON, changed to represent geographic data in json format. GeoJSON encodes the specifics of a geographic feature, the feature being able to contain data on specific points, objects or areas. Geographic features are saved similarily to JSON as collections of objects, thus creating a dataset of geographic data. 
+\url{https://datatracker.ietf.org/doc/html/rfc7946}
 
 
-\section{Backend Infrastructure}
-
+\subsection{Supercluster.js}
+Supercluster.js is a javascript library, created for clustering GeoJSON data features, based on proximity. Clustering is calculated through zoom level of the the map instance, on the points in the browser window currently visible. Clustering is done through the hierarchical greedy clustering method, grouping points based on radius around various points chosen from the dataset. Performance of the library is gained by reusing previous clustering calculation, leading to increased performance in zoom and drag operations reusing past data. 
+\url{https://github.com/mapbox/supercluster}
+\url{https://blog.mapbox.com/clustering-millions-of-points-on-a-map-with-supercluster-272046ec5c97}
+ 
 \subsection{Docker}
-\subsection{Containerization}
-\subsection{Database System}
-\subsection{Database Seeding}
+Docker is a platform meant for separating infrastructure used in creating software, i.e the code, from the application itself, allowing it to be run in isolated instance. These instances are called docker containers. Containers are standardized packages of the software. The standardized storage of software leads to applications being able to run through the container, creating a system where applications can be run on different operating systems and hardware, without requiring downloads of software dependencies or programming languages. 
+\url{https://docs.docker.com/get-started/docker-overview/}
+\url{https://www.docker.com/resources/what-container/}
 
 
 
