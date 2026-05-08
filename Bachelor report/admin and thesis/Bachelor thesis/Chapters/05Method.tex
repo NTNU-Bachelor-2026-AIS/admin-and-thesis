@@ -90,13 +90,20 @@ Task tracking was handled using GitHub Projects, which provided a shared Kanban-
 %=====================================================================
 \section{Technology Stack}
 
-The technology stack was primarily decided by the customer's existing infrastructure. Since the prototype is intended to work with Kystverket's systems, using their technology choices ensures compatibility. It also allows the team to leverage the customer's expertise if questions arise, since this is a prototype using their techstack.
+The technology stack was primarily decided by the customer's existing infrastructure. Since the prototype is intended to work with Kystverket's systems, using their technology choices ensures compatibility. It also allows the team to leverage the customer's expertise if questions arise, choice tools such as map provider and visualization libraries were decided by the group, based on research and requirements. 
 
 \subsection{Frontend}
 \begin{itemize}
-\item \textbf{React \& TypeScript:} Core frontend framework and language, chosen as a requirement from the customer.
+\item \textbf{Javascript:} Programming langauge used through react.
+\item \textbf{React:} Used as programming tool for the project. 
+\item \textbf{Typescript:} Used with react for type safety.
 \item \textbf{MapLibre GL JS:} Mapping engine used for rendering interactive, high-performance maps with WebGL acceleration.
-%\item \textbf{Vite:} 
+\item \textbf{Deck.gl} Library used for visualization of anomaly data.
+\item \textbf{Axios} Library used for REST API communication.
+%\item \textbf{Vite:}
+\item \textbf{React-window} Library used for virtualization of list. 
+\item \textbf{SuperCluster} Library used for calculation of cluster based on anomaly data, used for visualizing clusters. 
+%\item \textbf{Vite:}  
 % TODO: Go over as a group to make sure no libraries or dependencies are missing.
 
 \end{itemize}
@@ -108,6 +115,7 @@ The technology stack was primarily decided by the customer's existing infrastruc
 \item \textbf{Docker:} Used for containerising the backend services.
 % TODO: Mention other things used in the backend making sure nothing is missing.
 \end{itemize}
+
 
 The backend was originally provided by Kystverket as a working codebase pre-populated with test data, since actual AIS anomaly data is confidential. The team forked this repository and updated it throughout the project. The most notable addition was a master query endpoint described in Section 3.4.1
 % TODO: Describe the test dataset briefly (rough size, time range, types of anomalies if known).
@@ -135,6 +143,82 @@ The backend infrastructure and test database were provided by the customer, pre-
 \subsection{Frontend Architecture}
 The frontend architecture follows a client-driven data flow where data is retrieved from the backend through REST API calls using Axios. The received data is stored in React state as a geoJSON featureCollection, which is passed to individual Deck.gl layers responsible for rendering the visualisations. This is done after a map instance is created through a map container class, using maplibre. deck.gl is subsequently used for rendering data points overlaid visually on the map. Interactivity is handled through React components, where state changes control filtering and updating of the rendered layers. Individual Deck.gl layers also implement click event handlers, which update application state and trigger the rendering of additional information components or different visualization layers. 
 
+The frontend architecture was designed to follow a client-driven data flow, where data is to be retrieved from the docker backend, through API calls via the react Axios library. Data requested through the REST API backend, section \ref{sec: rest api}. Is then saved as geoJSON in the frontend. geoJSON is to then serve as anomaly-group data points in the system. Data retrieval leads to map creation through Maplibre, which functions as the map visualized on the application. Maplibre is the base map visualization layer of the application, serving as the map in which data points are overlaid. Visualization on maplibre, is done through the deck.gl library. section \ref{sec:deckgl} Deck.gl allows different visualization methods to be implemented through the deck.gl API, deck.gl serves as the main visualization component, which uses the geoJSON data to visualize anomalies. 
+
+
+The frontend itself is structured as a collection of React components, that are made to interact through, use of state and an event driven design. State is used for rerendering layers, and change of state itself is implemented to change through user interface and API calls. 
+
+
+All core parts of the interface, such as maplibre, are wrapped as components to be rendered by the react tree. Components acquire data from modules holding functions for data initialization, change of visualization method, with click interaction and searching function implemented. 
+
+
+The frontend is designed to allow for user interaction, through a user interface of react components. The design is allowed for end users to be able to interact with specific anomaly groups, through click events, allowing the user to observe anomaly groups visualized through different implementations such as a heatmap or a clustered scatterplot. Interaction is designed to allow for the user to retrieve information on anomaly groups through click events on clusters, creating a component with information and allowing further interaction. 
+
+
+
+\subsubsection{Frontend Data Flow}
+
+
+The frontend data flow through REST API calls was chosen because it allows for large data sets to be retrieved and saved using react state, allowing for the data to be sent through the application where needed for visualization and component purposes. 
+
+
+\paragraph{Data Retrieval and Filtering Strategy}
+
+When specific or filtered data is required, the frontend issues additional REST API requests to the backend, rather than performing full dataset filtering locally. The frontend state is then updated with the returned subset of data. 
+
+
+
+\subsubsection{React Component Structure}
+
+The backend infrastructure and test database were provided by the customer, pre-populated with test data since actual AIS anomaly data is confidential. The team's main contribution to the backend was a master query endpoint. This endpoint accepts all filter parameters (anomaly type, mmsi, and time range.) and returns only the matching data. Instead of getting all the anomaly groups and filtering on the frontend, all variables get sent to the backend which queries the data again. This was done since keeping old data and filtering client-side was slow and inefficient.
+
+
+
+\subsubsection{REST Communication with Axios}
+
+REST communication between frontend and backend was handled using axios. This was chosen to enable asynchronous HTTP requests, without blocking the user interface, while allowing for dynamic updates to the dataset where needed, such as querying for specific anomaly types or date range. Axios allows for the application to be designed to update in real time, where a API call returns a promise of the data requested, which in turn allows the application to update after the data is successfully retrieved, leading to real time updating of the user interface. This in turn leads to a more responsive user interface for end users. 
+\url{https://www.geeksforgeeks.org/reactjs/axios-in-react-a-guide-for-beginners/}
+
+
+\subsubsection{GeoJSON Data Handling}
+
+GeoJSON serves as the container for all geographic data for anoamlies in the project, this file format was chosen in discussion with the Customer, based on GeoJSON's strengths such as human readability and simplicity of use and parsing. 
+
+
+The anomaly set is saved as a featureCollection in geoJSON, with a featureCollection being the entire set of geographic objects. The anomaly data is built up such that all anomaly groups are part of a collection, while individual anomaly groups also are collections that have individual features inside, a feature being an individual anomaly inside a group, relating to a single ship's anomaly. 
+
+
+The design of the application parses the anomaly groups themselves, while allowing for individual anomalies from a group to be rendered in its own layer. This is done through first getting an individual anomaly group through an API request, leading to a returned group, which in turn gives access to the groups ID in which all individual anomalies are part of, leading to an API request for the specific anomaly relating to the group, which contains the information specific anomalies inside. 
+
+\url{https://medium.com/@dmitry.sobolevsky/feature-and-featurecollection-in-geojson-f36ec38ebdb1}
+
+
+\subsection*{Anomaly Group and anomalies}
+As mentiooned in section 3.4.2.4, anomalies and anomaly groups are part of featureCollections. anomalies themselves are implemented as features with data on geometric location. 
+
+
+\subsubsection{State Management and Rendering}
+
+
+\subsubsection{Maplibre}
+
+Maplibre is used as the base map of the application. An interactive map being crucial for the project, it was decided to use maplibre based on its strengths, such as being an open source project that has all required functionality of the map, also having integrated deck.gl support for adding layers on top through a overlay. Utilization of vector tiles in maplibre, is another factor in why it was chosen, where vector tiles lead to improved performance and interactivity, while having a smoother picture than alternatives. section \ref{sec:vector tiles}.
+
+
+Maplibre initializes itself upon application boot, in a bright style used for readability for users. After its initialization, it is responsible for interaction, in dragging and zooming the map. Interaction leads to states being updated that other parts of the program can use, such as clusters being updated through zooming, and map location. Visualization functionality is something maplibre has, being able to natively visualize scatterplots and other layers. This was not chosen as a valid approach of visualization in the project, due to the high amount of data required to be visualized, which deck.gl is specialized for. 
+
+\subsubsection{Deck.gl Layer Integration}
+Deck.gl is the visualization library used on top of Maplibre.
+The decision to use the library came from the the requirement to visualize hundreds of thousands of points concurrently on map. Performance is then one of the main factors driving the choice, as deck.gl is created specifically for the task of visualizing large datasets, being optimized for performance. 
+
+Deck.gl visualization is implemented by being added as a layer above the maplibre layer, leading to data points being shown in a way that seems native to maplibre itself. Deck.gl is responsible for creating all visualization layers and achieves this by functions being created that return the layer to be used on the map. Layers are created through the current dataset being sent on request of a layer, where it then returns the layer that is to be visualized, this is then handled on the map, with deck.gl overlaying its points on top.  
+
+
+\subsubsection{Interactive Event Handling}
+
+
+
+
 % TODO: Describe the React component structure at a high level.
 % - How is routing handled?
 % - What are the main pages/views? (Map view, filter panel, detail cards, etc.)
@@ -147,10 +231,6 @@ The frontend architecture follows a client-driven data flow where data is retrie
 
 % FOCUS: This is your core contribution — give it proper space.
 % Describe HOW you implemented each visualisation technique from your Theory chapter.
-
-\subsection{Map Setup and Rendering}
-
-The base map is implemented using MapLibre GL JS, as the engine for rendering the map. based on a vector tile set from openFreeMap  \url{https://tiles.openfreemap.org}. \label{sec:vector tiles} The tile set chosen was bright in color. Deck.gl was chosen for rendering data points on the map, with points being overlaid on top of the base map
 
 
 
@@ -182,10 +262,9 @@ A heat map layer was implemented for visualization of the full dataset. \ref{sec
 The anomaly group layer, is a visualization layer that gives a detailed representation of a single anomaly group, section \ref{sec:anomalies and anomaly groups}. The anomaly group visualization layer is created through a custom deck.gl layer. This layer consists of a signal strength layer, using data from the individual anomalies inside the group, that are connected to a satellite or base station with a signal strength number value, normalized between 0 and 1. The signal strength layer adds lines from the source anomaly, to the receiving base station and or satellite, indicating the strength of received AIS-message.   
 
 
+\subsection{individual anomaly layer}
 
 
-
-\subsection{Frontend Components}
 
 
 \subsection{Scope and Feature Prioritisation}
@@ -218,10 +297,12 @@ The project scope was decided through ongoing discussions with the customer. Hex
 
 % FOCUS: Wireframes, UI/UX decisions, user feedback.
 
-\subsection{Wireframes and UI Design}
+\subsection{Wireframes}
 
 
 \subsection{User Feedback}
+
+\subsection*{UI design}
 
 
 %=====================================================================
