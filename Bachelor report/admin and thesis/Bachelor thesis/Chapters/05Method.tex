@@ -112,7 +112,51 @@ The backend infrastructure and test database were provided by the customer, pre-
 % TODO: Maybe include how data is returned and used? Geojson and such
 
 \subsection{Frontend Architecture}
-The frontend architecture follows a client-driven data flow where data is retrieved from the backend through REST API calls using Axios. The received data is stored in React state as a geoJSON featureCollection, which is passed to individual Deck.gl layers responsible for rendering the visualisations. This is done after a map instance is created through a map container class, using maplibre. deck.gl is subsequently used for rendering data points overlaid visually on the map. Interactivity is handled through React components, where state changes control filtering and updating of the rendered layers. Individual Deck.gl layers also implement click event handlers, which update application state and trigger the rendering of additional information components or different visualization layers. 
+
+The frontend architecture was designed to follow a client-driven data flow, where data is to be retrieved from the docker backend, through API calls via the react Axios library. Data requested through the REST API backend, section \ref{sec: rest api}. Is then saved as geoJSON in the frontend. geoJSON is to then serve as anomaly-group data points in the system. Data retrieval leads to map creation through Maplibre, which functions as the map visualized on the application. Maplibre is the base map visualization layer of the application, serving as the map in which data points are overlaid. Visualization on maplibre, is done through the deck.gl library. section \ref{sec:deckgl} Deck.gl allows different visualization methods to be implemented through the deck.gl API, deck.gl serves as the main visualization component, which uses the geoJSON data to visualize anomalies. 
+
+The frontend itself is structured as a collection of React components, that are made to interact through, use of state and an event driven design. State is used for rerendering layers, and change of state itself is implemented to change through user interface and API calls. 
+
+
+All core parts of the interface, such as maplibre, are wrapped as components to be rendered by the react tree. Components acquire data from modules holding functions for data initialization, change of visualization method, with click interaction and searching function implemented. 
+
+The frontend is designed to allow for user interaction, through a user interface of react components. The design is allowed for end users to be able to interact with specific anomaly groups, through click events, allowing the user to observe anomaly groups visualized through different implementations such as a heatmap or a clustered scatterplot. Interaction is designed to allow for the user to retrieve information on anomaly groups through click events on clusters, creating a component with information and allowing further interaction. 
+
+
+
+\subsubsection{Frontend Data Flow}
+
+
+The frontend data flow through REST API calls was chosen because it allows for large data sets to be retrieved and saved using react state, allowing for the data to be sent through the application where needed for visualization and component purposes.  
+
+
+\paragraph{Data Retrieval and Filtering Strategy}
+When specific or filtered data is required, the frontend issues additional REST API requests to the backend, rather than performing full dataset filtering locally. The frontend state is then updated with the returned subset of data. 
+
+
+
+\subsubsection{React Component Structure}
+
+
+
+\subsubsection{REST Communication with Axios}
+REST communication between frontend and backend was handled using axios. This was chosen to enable asynchronous HTTP requests, without blocking the user interface, while allowing for dynamic updates to the dataset where needed, such as querying for specific anomaly types or date range. Axios allows for the application to be designed to update in real time, where a API call returns a promise of the data requested, which in turn allows the application to update after the data is successfully retrieved, leading to real time updating of the user interface. This in turn leads to a more responsive user interface for end users. 
+\url{https://www.geeksforgeeks.org/reactjs/axios-in-react-a-guide-for-beginners/}
+
+\subsubsection{GeoJSON Data Handling}
+geoJSON as file format for the project was chosen to represent anomalies, because it was implemented by the customer through the backend, while being a format that emphasizes human readability, section \ref{sec:geoJSON}
+
+\subsubsection{State Management and Rendering}
+
+
+\subsubsection{Maplibre}
+
+\subsubsection{Deck.gl Layer Integration}
+
+\subsubsection{Interactive Event Handling}
+
+
+
 
 % TODO: Describe the React component structure at a high level.
 % - How is routing handled?
