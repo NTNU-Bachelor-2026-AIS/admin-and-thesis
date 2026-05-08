@@ -88,7 +88,7 @@ The technology stack was primarily decided by the customer's existing infrastruc
 % TODO: Mention other things used in the backend making sure nothing is missing.
 \end{itemize}
 
-The backend was originally provided by Kystverket as a working codebase pre-populated with test data, since actual AIS anomaly data is confidential. The team forked this repository and updated it throughout the project. The most notable addition was a master query endpoint described in Section 3.4.
+The backend was originally provided by Kystverket as a working codebase pre-populated with test data, since actual AIS anomaly data is confidential. The team forked this repository and updated it throughout the project. The most notable addition was a master query endpoint described in Section 3.4.1
 % TODO: Describe the test dataset briefly (rough size, time range, types of anomalies if known).
 
 %=====================================================================
@@ -103,7 +103,7 @@ The backend was originally provided by Kystverket as a working codebase pre-popu
 % TODO: Add a figure showing the overall system architecture.
 % A simple box diagram: Database <-> Backend (Go/Docker) <-> REST API <-> Frontend (React/MapLibre)
 
-The system follows a client-server architecture. The backend is written in Go and runs inside a Docker container that exposes a REST API. Swagger is used for API documentation. The frontend is built with React and TypeScript and gets the data it needs through API calls to the backend.
+The system follows a client-server architecture. The backend is written in Go and runs inside a Docker container that exposes a REST API. Swagger is used for API documentation. The frontend is built with React and TypeScript and retrieves the data it needs through API calls to the backend.
 
 \subsection{Backend and Data Flow}
 
@@ -112,6 +112,7 @@ The backend infrastructure and test database were provided by the customer, pre-
 % TODO: Maybe include how data is returned and used? Geojson and such
 
 \subsection{Frontend Architecture}
+The frontend architecture follows a client-driven data flow where data is retrieved from the backend through REST API calls using Axios. The received data is stored in React state as a geoJSON featureCollection, which is passed to individual Deck.gl layers responsible for rendering the visualisations. This is done after a map instance is created through a map container class, using maplibre. deck.gl is subsequently used for rendering data points overlaid visually on the map. Interactivity is handled through React components, where state changes control filtering and updating of the rendered layers. Individual Deck.gl layers also implement click event handlers, which update application state and trigger the rendering of additional information components or different visualization layers. 
 
 % TODO: Describe the React component structure at a high level.
 % - How is routing handled?
@@ -128,7 +129,9 @@ The backend infrastructure and test database were provided by the customer, pre-
 
 \subsection{Map Setup and Rendering}
 
-The map interface is built using MapLibre GL JS, which leverage's WebGL for GPU-accelerated rendering directly in the browser. GPU acceleration is important since rendering tens of thousands of data points using only the CPU makes the website less responsive cause of lag.
+The base map is implemented using MapLibre GL JS, as the engine for rendering the map. based on a vector tile set from openFreeMap  \url{https://tiles.openfreemap.org}. \label{sec:vector tiles} The tile set chosen was bright in color. Deck.gl was chosen for rendering data points on the map, with points being overlaid on top of the base map
+
+
 
 % TODO: Describe the base map setup:
 % - What vector tile source did you use? (customer-provided? OpenMapTiles? Maptiler?)
@@ -137,22 +140,37 @@ The map interface is built using MapLibre GL JS, which leverage's WebGL for GPU-
 
 \subsection{Clustering}
 
-The frontend uses MapLibre's built-in clustering to dynamically aggregate nearby anomaly points based on the zoom level of the user. At lower zoom levels clusters display a count label showing the number of aggregated points. As the user zooms in the clusters break apart into smaller groups and eventually into individual scatter points. This perserves both scale perception and point accuracy.
+
+As mentioned in Section \ref{sec:supercluster}, Supercluster.js is used for calculating clusters based on zoom level and the current map bounds. Supercluster calculates clusters based on the base dataset acquired from the API, calculating all clusters on application load. Map interactions such as zooming and dragging result in clusters being retrieved for the current zoom level and map bounds. The clustering data itself is used with deck.gl,Section \ref{sec:deckgl}. Visualization through deck.gl is accomplished through creating a custom layer, consisting of a label-layer, whose purpose is to be a point counter for the amount of anomalies inside the cluster, this is put over, a scatterplot-layer. section \ref{sec:scattermap}, which combines to create the clustering layer.This layer is re-rendered whenever the clustering output changes due to updates in zoom level or map bounds. Furthermore does clustering visualization have dynamics sizing based on amount of anomalies inside a cluster, leading to clusters being scaled proportional to their anomaly count. 
 
 % TODO: Add technical details:
 % - What clustering radius/parameters did you use?
 % - How are cluster colours determined (step expressions? interpolation?)
 % - Any custom cluster styling?
+% - add figure
 
 \subsection{Heat Map}
-
-A heat map layer was implemented as an alternative visualisation mode, toggled via the filter. The heat map uses colour gradients to show point density, which enables operators to quickly locate hotspot areas of anomaly concentration.
-
+A heat map layer was implemented for visualization of the full dataset. \ref{sec:heatmap}. deck.gl was used for heat map visualization, where the library provided the methods to create the heat map, with the data provided being the base API data of the full dataset. 
 % TODO: Describe the MapLibre heat map layer configuration:
 % - What colour ramp did you use?
 % - How does the weight/intensity scale with zoom?
 % - Any specific property used for weighting (e.g. anomaly severity)?
 
+
+\subsection{Anomaly Group Layer}
+The anomaly group layer, is a visualization layer that gives a detailed representation of a single anomaly group, section \ref{sec:anomalies and anomaly groups}. The anomaly group visualization layer is created through a custom deck.gl layer. This layer consists of a signal strength layer, using data from the individual anomalies inside the group, that are connected to a satellite or base station with a signal strength number value, normalized between 0 and 1. The signal strength layer adds lines from the source anomaly, to the receiving base station and or satellite, indicating the strength of received AIS-message.   
+
+
+
+
+
+\subsection{Frontend Components}
+
+
+\subsection{Scope and Feature Prioritisation}
+
+The project scope was decided through ongoing discussions with the customer. Hexagonal binning was initially identified as a desired feature in the project brief. However due to time constraints it was not implemented in the final prototype. The team prioritised clustering, heat maps, and the filter system based on customer feedback since these provided the most immediate analytical value. 
+% TODO: Include what we cut / didnt focus on
 % NOTE TO SELF: Your Introduction (Section 1.2 Objective) lists hexagonal binning
 % and advanced temporal analysis as goals. Since hex binning was not implemented
 % and temporal analysis is limited to time-range filtering, you should either:
@@ -160,10 +178,6 @@ A heat map layer was implemented as an alternative visualisation mode, toggled v
 %   (b) address the gap explicitly in Discussion (recommended — explain the
 %       scoping decision made with the customer).
 
-\subsection{Scope and Feature Prioritisation}
-
-The project scope was decided through ongoing discussions with the customer. Hexagonal binning was initially identified as a desired feature in the project brief. However due to time constraints it was not implemented in the final prototype. The team prioritised clustering, heat maps, and the filter system based on customer feedback since these provided the most immediate analytical value. 
-% TODO: Include what we cut / didnt focus on
 
 \subsection{Filter System}
 
