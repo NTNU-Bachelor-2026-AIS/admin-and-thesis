@@ -12,8 +12,15 @@ This chapter gives the theoretical background for the bachelor project, explaini
 \section{Automatic Identification System (AIS)}
 \label{sec:AIS}
 % source: Kystverket AIS‑Norway description (project brief)
-The Automatic Identification System (AIS) is a system that transfers navigation data, from an individual ship, to a base station on the norwegian coast, and or a sattelite. 
+The Automatic Identification System (AIS) is a system that transfers navigation data, from an individual ship, to a base station on the norwegian coast, a satellite or between ships. 
 However the system is prone to errors due to wrong configurations, area jamming, or message spoofing. Kystverket processes this data to detect errors in messages. In practice this pipeline identifies 60-80 million messages with errors every single day.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth,height=0.70\textheight,keepaspectratio]{Figures/ais-message-example.jpg}
+    \caption[AIS message exapmle]{Example of ais message flow: \url{https://mc.nato.int/nsc/media-centre/news-archive/2021/ais-automatic-identification-system-overview}}
+    \label{fig:ais_image}
+\end{figure}
+
 %=====================================================================
 % 2.2  Digital Twin
 %=====================================================================
@@ -49,12 +56,25 @@ Anomalies refer to detected irregularities from AIS messages. Messages sent from
 \subsection{Heat‑Map Visualisation}
 \label{sec:heatmap}
 Heatmaps are used for data visualization, to show relationship between variables, like amount of data points per type, the amount of data has a color leading to a higher concentration of data having a darker color than less concentrated areas of points. This leads to intuitive visualization of data for humans to parse. \url{https://www.atlassian.com/data/charts/heatmap-complete-guide}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth,height=0.3\textheight,keepaspectratio]{Figures/London-heat-map.png}
+    \caption[London heat map example]{Example of a heat map visualization  Source: \url{https://www.cse.org.uk/research-consultancy/consultancy-projects/london-heat-map-informing-a-citys-decarbonisation-plan/}}
+    \label{fig:heatmap_image}
+\end{figure}
 
 
 \section{Clustering}
 
 Clustering pertains to a method of aggregating data points into groups or clusters. Clustering can be done based on the type of data, if it is desireable one can cluster based on specific parameters like movie genre and user details. There are multiple different clustering algorithms that server different purposes, like based on density, proximity or similar groups of objects. 
 \url{https://www.ibm.com/think/topics/clustering}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth,height=0.3\textheight,keepaspectratio]{Figures/clustering-example.png}
+    \caption[Clustering visualization]{Example of clustered data points using the k-means clustering method. Source: \url{https://www.datanovia.com/en/blog/k-means-clustering-visualization-in-r-step-by-step-guide/}}
+    \label{fig:clustering_visualization}
+\end{figure}
 
 
 \subsection{Scatter Map (Geographic Scatter‑Plot)}
@@ -73,6 +93,12 @@ Web maps are maps created for geographic visualization on the internet. Web maps
 \subsection{Vector Tiles}
 \label{sec:vector tiles}
 Vector tiles are whats used in current times by most web map providers. Vector tiles save geographic data in vector format to show the contents of the map, instead of png images that were used in the past. Vector tiles allow for more styling and customization than the mentioned images, and have lead to smoother usage of web maps, at the cost of more processing power needed. \url{https://docs.mapbox.com/data/tilesets/guides/vector-tiles-introduction/}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{Figures/vector-tile-example.png}
+  \caption[Illustration of vector tiles ]{Illustration of vector tile zoom levels. Source: \url{https://docs.qgis.org/3.44/en/docs/user_manual/working_with_vector_tiles/vector_tiles.html}}
+  \label{fig:vector_tile_image}
+\end{figure}
 
 \subsection{MapLibre}
 
@@ -180,9 +206,15 @@ Sprints are executed as time-boxed iterations where the development team works o
 A system that is mostly utilized by developers is a daily Scrum or as a more general term a daily stand up. This system is a time every day that happens once a day when all or most developers have shown up to work. This meeting is set up for developers to discuss what problems they are working on and what issues they have run into, however the max time spent in this meeting is only 15 minutes. Then using this discussion the next 24 hours of work can be planned, while also letting developers have an easier time discussing problems they have with other members with expertise.
 % TODO: include daily stand ups here.
 % https://www.agile-academy.com/en/scrum-master/daily-standup/
-
-
 \url{https://www.atlassian.com/agile/scrum}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth,height=0.3\textheight,keepaspectratio]{Figures/scrum-framework.png}
+    \caption{Scrum framework overview of the scrum lifecycle. Source: \url{https://www.scrum.org/resources/what-scrum-module}}
+    \label{fig:scrum_framework}
+\end{figure}
+
 
 
 
@@ -253,7 +285,7 @@ https://developers.google.com/machine-learning/clustering/overview
   \centering
   \includegraphics[width=0.9\textwidth]{Figures/Clustering_Data.png}
   \caption[Illustration of spatial data clustering]{Illustration of clustering of data points based on spatial proximity. Source: \url{https://www.grammarly.com/blog/ai/what-is-clustering/}}
-  \label{fig:latlong}
+  \label{fig:clustering_image}
 \end{figure}
 
 
@@ -276,6 +308,12 @@ https://www.mapbox.com/insights/web-maps
 \subsection{vector tiles}
 Vector tiles are the current standard utilized by most web map providers. Instead of the static PNG images that were used in the past, vector tiles save geographic data in a mathematical vector format. They allow for significantly more styling and customization than image-based formats, and have led to smoother, pixel-free zooming. However, because the browser must render the map geometry mathematically whenever the user zooms, this smoother usage comes at the cost of more processing power needed on the client's device.
 https://docs.mapbox.com/data/tilesets/guides/vector-tiles-introduction/
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\textwidth]{Figures/vector-tile-example.png}
+  \caption[Illustration of vector tiles ]{Illustration of vector tile zoom levels. Source: \url{https://docs.qgis.org/3.44/en/docs/user_manual/working_with_vector_tiles/vector_tiles.html}}
+  \label{fig:vector_tile_image}
+\end{figure}
 
 \subsection{MapLibre}
 
