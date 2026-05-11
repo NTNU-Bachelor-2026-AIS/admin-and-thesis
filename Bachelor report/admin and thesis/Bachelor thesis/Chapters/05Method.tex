@@ -33,6 +33,7 @@ In a two-person team, the risk of one member being stuck on a problem without th
 The project was conducted by a two-member team where responsibilities were divided to ensure that core Scrum artifacts were maintained consistently throughout the project. One member served as a Scrum master, taking control of sprint documentation, backlog maintenance, and handling of sprint meetings and stand-ups. The other member was responsible for handling meeting notes. While all remaining responsibilities were shared equally which included development, testing, and design.
 
 \subsection{Meeting Structure}
+\label{sec: meeting structure}
 %The project spanned from January 2026, with delivery on the 20th of May. 
 % TODO: Add about issues with workload and how we handled it.
 
@@ -42,7 +43,7 @@ Biweekly meetings were held with the supervisor to review academic progress and 
 
 \subsection{Communication}
 
-The main communication platform the team utilized was Discord. This platform was used to plan meetings and work on tasks as well as asking questions. Its main use was discussions and saving information that would be reused later. However we also utilized outlook to contact our supervisor and plan meetings. The customer at Kystverket used Slack to communicate and used it to plan meetings and answer technical questions.
+The main communication platform the team utilized was Discord. This platform was used to plan meetings and work on tasks as well as asking questions. Its main use was discussions and saving information that would be reused later. However outlook was also utilized to contact the supervisor and plan meetings. The customer at Kystverket used Slack to communicate and used it to plan meetings and answer technical questions.
 
 \subsection{Task Management}
 
@@ -280,6 +281,7 @@ The filter system was scoped early in the project. Group-level filtering was cho
 A simple date-time range selector was selected for temporal filtering. The design goal is to let operators restrict the visualisation to a chosen time period and then use other tools to further identify special factors of points in that period. However it was still focused on being within the scope while being feasible to develop so it focused on simplicity.
 
 \subsection{Satellite Implementation}
+Satellite connections was implemented as a layer that would only be visualised when a point is clicked to follow the project scope and make sure that complexity stayed low. This decision made sure that operators could not clutter the screen with satellites and allows them to see the points and connections easily.
 
 \subsection{Interactive Features}
 
@@ -291,6 +293,10 @@ The filtering controls are designed for simple, interactive operation. A pop-up 
 \section{Design Process}
 The design process started early, with customer meetings outlining the already in use system, and other systems that are similar. This was then used as a design basis for the groups implementation of the project. 
 
+
+\subsection{Design Approach}
+
+The design of the user interface followed a three-stage approach. First, existing visualisation systems within geographic and maritime sectors were reviewed to identify common interaction patterns and layout conventions used in this domain. Second, the design principles introduced in Section \ref{sec:design} were applied to the interface making sure the system followed principles like simplicity and consistency which helps reduce the risk of operators becoming overwhelmed working with large amounts of data. Third, the project was adapted to fit the specific project requirements. 
 % FOCUS: Wireframes, UI/UX decisions, user feedback.
 
 \subsection{Wireframes}
@@ -321,9 +327,7 @@ Wireframes, as seen below. Were created in figma at the start of the project. Th
 
 \subsection{User Feedback}
 
-\subsection{UI Design}
-
-
+User feedback was gathered primarily trough the biweekly customer meetings as described in \ref{sec: meeting structure}. These were used to gain feedback on design mostly using the customers opinion to further reduce complexity and scope while making sure the product was developed how they wanted.
 
 %=====================================================================
 % 3.7  Testing
