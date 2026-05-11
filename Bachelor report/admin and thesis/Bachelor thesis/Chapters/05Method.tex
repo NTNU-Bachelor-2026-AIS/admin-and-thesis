@@ -227,15 +227,10 @@ Deck.gl visualization is implemented by being added as a layer above the maplibr
 % 3.5  Visualisation Implementation
 %=====================================================================
 \section{Visualisation Implementation}
+Visualization methods that were implemented, were chosen based on customer needs, and changed throughout the project lifecycle. Below are the visualization methods that were chosen to implement. 
 
 % FOCUS: This is your core contribution — give it proper space.
 % Describe HOW you implemented each visualisation technique from your Theory chapter.
-
-\subsection{Map Setup and Rendering}
-
-The base map is implemented using MapLibre GL JS, as the engine for rendering the map. based on a vector tile set from openFreeMap  \url{https://tiles.openfreemap.org}. \label{sec:vector tiles} The tile set chosen was bright in color. Deck.gl was chosen for rendering data points on the map, with points being overlaid on top of the base map
-
-
 
 % TODO: Describe the base map setup:
 % - What vector tile source did you use? (customer-provided? OpenMapTiles? Maptiler?)
@@ -254,26 +249,29 @@ As mentioned in Section \ref{sec:supercluster}, Supercluster.js is used for calc
 % - add figure
 
 \subsection{Heat Map}
-A heat map layer was implemented for visualization of the full dataset. \ref{sec:heatmap}. deck.gl was used for heat map visualization, where the library provided the methods to create the heat map, with the data provided being the base API data of the full dataset. 
+A heat map layer was implemented for visualization of the full dataset. \ref{sec:heatmap}. Heat map visualization is done through deck.gl base layer. implemented through radius based coloring with tighter knit data points leading to red color, and yellow being the lighter areas. 
 % TODO: Describe the MapLibre heat map layer configuration:
 % - What colour ramp did you use?
 % - How does the weight/intensity scale with zoom?
 % - Any specific property used for weighting (e.g. anomaly severity)?
 
 
+\subsection{Base station layer}
+
+A layer to visualize base stations is a requirement to implement, based on base stations being needed to visualize signal strength related to anomalies. The layer was implemented through an icon-layer with deck.gl, with an icon of a database being used to symbolize the base station on the map. This layer was then to be used together with other layers related to it, showing how anomalies at sea and base stations communicate. 
+
+
 \subsection{Anomaly Group Layer}
-The anomaly group layer, is a visualization layer that gives a detailed representation of a single anomaly group, section \ref{sec:anomalies and anomaly groups}. The anomaly group visualization layer is created through a custom deck.gl layer. This layer consists of a signal strength layer, using data from the individual anomalies inside the group, that are connected to a satellite or base station with a signal strength number value, normalized between 0 and 1. The signal strength layer adds lines from the source anomaly, to the receiving base station and or satellite, indicating the strength of received AIS-message.   
 
+The anomaly group layer, is a visualization layer that gives a detailed representation of a single anomaly group, section \ref{sec:anomalies and anomaly groups}. The anomaly group visualization layer is created through a custom deck.gl layer. This layer consists of a signal strength layer, using data from the individual anomalies inside the group, that are connected to a satellite or base station with a signal strength number value. This value is then used to color from red to green, the line, which is used to indicate if the signal is strong, being a green coloring, or weak, being redder coloring.  
 
+\subsection{individual anomaly layer}
 
-
-
-\subsection{Frontend Components}
-
+An individual anomaly visualization layer was requested by the customer during the later stages of development. This layer was implemented as a scatter plot, which each point representing a singular ship, from the anomaly group. The individual points are were designed to be colored from red to green, based on signal strength, with green being considered a strong signal, and red a weak one. 
 
 \subsection{Scope and Feature Prioritisation}
 
-The project scope was decided through ongoing discussions with the customer. Hexagonal binning was initially identified as a desired feature in the project brief. However due to time constraints it was not implemented in the final prototype. The team prioritised clustering, heat maps, and the filter system based on customer feedback since these provided the most immediate analytical value. 
+The project scope was decided through ongoing discussions with the customer. Hexagonal binning was initially identified as a desired feature in the project brief. However due to time constraints it was not implemented in the final prototype. The scope of the project changed throughout development, leading to some new features being requested, some of which were cut. The team prioritised clustering, heat maps, and the filter system based on customer feedback since these provided the most immediate analytical value. 
 % TODO: Include what we cut / didnt focus on
 % NOTE TO SELF: Your Introduction (Section 1.2 Objective) lists hexagonal binning
 % and advanced temporal analysis as goals. Since hex binning was not implemented
@@ -291,6 +289,8 @@ The filter system was scoped early in the project. Group-level filtering was cho
 
 A simple date-time range selector was selected for temporal filtering. The design goal is to let operators restrict the visualisation to a chosen time period and then use other tools to further identify special factors of points in that period. However it was still focused on being within the scope while being feasible to develop so it focused on simplicity.
 
+\subsection{Satellite implementation}
+
 \subsection{Interactive Features}
 
 The filtering controls are designed for simple, interactive operation. A pop-up calendar component was implemented for date selection, and a drop-down listing the available types was implemented for anomaly type selection. A third component was for inputting numbers which was implemented for mmsi selection. These standard interfaces were chosen to keep the filtering workflow familiar to other systems while also allowing operators without prior training to use the prototype.
@@ -299,29 +299,58 @@ The filtering controls are designed for simple, interactive operation. A pop-up 
 % 3.6  Design Process
 %=====================================================================
 \section{Design Process}
+The design process started early, with customer meetings outlining the already in use system, and other systems that are similar. This was then used as a design basis for the groups implementation of the project. 
+
 % FOCUS: Wireframes, UI/UX decisions, user feedback.
 
+\subsection{Wireframes}
+Wireframes, as seen below. Were created in figma at the start of the project. The application was decided to be based on a single page design, containing a user interface to allow for interaction and visualization. The design was to contain the map, as the core part of the application, with it taking up the entire page. On top of the map, other components like a search bar, and the visualized anomalies and base station were to be overlaid, with filtering via various variables like date range, were to be implemented in a popup on the page. The design was also to have an info component for anomalies. 
+\begin{figure}[!htbp]
+    \centering
 
-\subsection{Wireframes and UI Design}
+    \subfloat[Main page wireframe]{%
+        \includegraphics[width=0.90\textwidth,height=0.30\textheight,keepaspectratio]{Figures/wireframe-main-page.png}
+        \label{fig:wireframe_main}
+    }
 
+    \vspace{0.5cm}
+
+    \subfloat[Date picker component]{%
+        \includegraphics[width=0.48\textwidth,height=0.25\textheight,keepaspectratio]{Figures/wireframe-date-picker.png}
+        \label{fig:wireframe_date}
+    }
+    \hfill
+    \subfloat[Filter component]{%
+        \includegraphics[width=0.48\textwidth,height=0.25\textheight,keepaspectratio]{Figures/wireframe-filter-component.png}
+        \label{fig:wireframe_filter}
+    }
+
+    \caption{Wireframes created in Figma showing main UI layout and components}
+    \label{fig:wireframes_overview}
+\end{figure}
 
 \subsection{User Feedback}
+
+\subsection{UI Design}
+
 
 
 %=====================================================================
 % 3.7  Testing
 %=====================================================================
 \section{Testing}
+Testing of the project was done through manual testing of the application itself, with planned automatic tests to be implemented later.  
 
 % FOCUS: What you tested, how, and why certain approaches were chosen.
 
 \subsection{Backend API Testing}
-
+As the backend was primarily created by the customer, leading to actual tests not being created by the group. However manual testing of results were done through a swagger api, to check the result of request, while also being tested in the application itself. 
 
 \subsection{Frontend Testing}
-
+Frontend testing was done manually by the group, through interaction with the website itself, and through console log of code, to fix errors and ensure correctness. 
 
 \subsection{Manual and Performance Testing}
+Performance was not specifically tested through hard coded logic, considering deck.gl as a library is already optimized for data set. But was tested throughout use of the website, together with some optimizations being implemented such as recalculations of clusters not being done on every interaction with the map, which was an issue earlier in development. 
 
 %=====================================================================
 % End of Methods chapter
