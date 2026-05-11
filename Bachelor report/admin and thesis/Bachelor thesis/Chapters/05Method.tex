@@ -17,10 +17,17 @@
 \subsection{Scrum Framework}
 The Scrum framework, described in Section 2.X, was adopted to structure the development process. The framework was introduced by the supervising lecturer, who provided pre-filled sprint templates and documentation to support its application for groups. This lowered the time investment of adopting the system and methodology, while ensuring that sprint artefacts such as the backlog and retrospectives were maintained throughout the project. 
 
+The Scrum framework, described in Section 2.X, was adopted to structure the development process. The framework was introduced by the supervising lecturer, who provided pre-filled sprint templates and documentation to support its application for groups. This lowered the time investment of adopting the system and methodology, while ensuring that sprint artefacts such as the backlog and retrospectives were maintained throughout the project. 
 % TODO: Need to add more info about retrospectives. How long each sprint was 1-2 weeks
 Scrum was also well suited given the projects biweekly meetings with the supervisor and the customer at Kystverket. Each sprint would ensure that further development in the project could be presented and discussed, allowing scope adjustments to be made based based on the feedback. Should technical issues occur, such as limitations or issues with the AIS dataset or uncertainty around feasibility or scope for specific visualisation features. Then the iterative structure allows focus on the backlog until discussions about scope or features are had with the customer at Kystverket rather than following a fixed plan.
 
 \subsection{Daily Stand-Ups}
+Daily stand-up meetings were established as a core part of the sprint work flow, in line with the Scrum practices described in Section 2.X. The primary purpose of the stand-ups is to maintain accountability between team members and to further facilitate collaborative problem-solving between team members depending on problems blocking further development. 
+% TODO: Need to add more info about retrospectives. How long each sprint was 1-2 weeks
+Scrum was also well suited given the projects biweekly meetings with the supervisor and the customer at Kystverket. Each sprint would ensure that further development in the project could be presented and discussed, allowing scope adjustments to be made based based on the feedback. Should technical issues occur, such as limitations or issues with the AIS dataset or uncertainty around feasibility or scope for specific visualisation features. Then the iterative structure allows focus on the backlog until discussions about scope or features are had with the customer at Kystverket rather than following a fixed plan.
+
+\subsection{Daily Stand-Ups}
+
 Daily stand-up meetings were established as a core part of the sprint work flow, in line with the Scrum practices described in Section 2.X. The primary purpose of the stand-ups is to maintain accountability between team members and to further facilitate collaborative problem-solving between team members depending on problems blocking further development. 
 
 In a two-person team, the risk of one member being stuck on a problem without the other member being aware is likely. Therefore by utilizing a daily meeting it allows such issues to be discussed early and not let it stop further project development. They can also be utilized as a daily forced break for the team. Sustained work without regular breaks is not equated to consistent productivity, while also being a way to quickly discuss a problem for further collaborative work after the stand-up meeting.
@@ -50,6 +57,7 @@ Task tracking was handled using GitHub Projects, which provided a shared Kanban-
 % Unsure where i should put how we used github with branching might put it in another section.
 % TODO: Maybe add link and theory to theory chapter
 % https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/customizing-the-board-layout
+
 
 %=====================================================================
 % 3.2  Tools and Platforms
@@ -146,7 +154,9 @@ The backend infrastructure and test database were provided by the customer, pre-
 \subsection{Frontend Architecture}
 The frontend architecture follows a client-driven data flow where data is retrieved from the backend through REST API calls using Axios. The received data is stored in React state as a geoJSON featureCollection, which is passed to individual Deck.gl layers responsible for rendering the visualisations. This is done after a map instance is created through a map container class, using maplibre. deck.gl is subsequently used for rendering data points overlaid visually on the map. Interactivity is handled through React components, where state changes control filtering and updating of the rendered layers. Individual Deck.gl layers also implement click event handlers, which update application state and trigger the rendering of additional information components or different visualization layers. 
 
-The frontend architecture was designed to follow a client-driven data flow, where data is to be retrieved from the docker backend, through API calls via the react Axios library. Data requested through the REST API backend, section \ref{sec: rest api}. Is then saved as geoJSON in the frontend. geoJSON is to then serve as anomaly-group data points in the system. Data retrieval leads to map creation through Maplibre, which functions as the map visualized on the application. Maplibre is the base map visualization layer of the application, serving as the map in which data points are overlaid. Visualization on maplibre, is done through the deck.gl library. section \ref{sec:deckgl} Deck.gl allows different visualization methods to be implemented through the deck.gl API, deck.gl serves as the main visualization component, which uses the geoJSON data to visualize anomalies. 
+
+The frontend architecture follows a client-driven data flow where data is retrieved from the backend through REST API calls using Axios, section \ref{sec: rest api}. The received data is stored in React state as a geoJSON featureCollection, which is passed to individual Deck.gl layers responsible for rendering the visualisations. This is done after a map instance is created through a map container class, using maplibre. deck.gl is subsequently used for rendering data points overlaid visually on the map. Interactivity is handled through React components, where state changes control filtering and updating of the rendered layers. Individual Deck.gl layers also implement click event handlers, which update application state and trigger the rendering of additional information components or different visualization layers. \ref{sec:deckgl}.
+
 
 
 The frontend itself is structured as a collection of React components, that are made to interact through, use of state and an event driven design. State is used for rerendering layers, and change of state itself is implemented to change through user interface and API calls. 
@@ -171,12 +181,6 @@ When specific or filtered data is required, the frontend issues additional REST 
 
 
 
-\subsubsection{React Component Structure}
-
-The backend infrastructure and test database were provided by the customer, pre-populated with test data since actual AIS anomaly data is confidential. The team's main contribution to the backend was a master query endpoint. This endpoint accepts all filter parameters (anomaly type, mmsi, and time range.) and returns only the matching data. Instead of getting all the anomaly groups and filtering on the frontend, all variables get sent to the backend which queries the data again. This was done since keeping old data and filtering client-side was slow and inefficient.
-
-
-
 \subsubsection{REST Communication with Axios}
 
 REST communication between frontend and backend was handled using axios. This was chosen to enable asynchronous HTTP requests, without blocking the user interface, while allowing for dynamic updates to the dataset where needed, such as querying for specific anomaly types or date range. Axios allows for the application to be designed to update in real time, where a API call returns a promise of the data requested, which in turn allows the application to update after the data is successfully retrieved, leading to real time updating of the user interface. This in turn leads to a more responsive user interface for end users. 
@@ -196,11 +200,9 @@ The design of the application parses the anomaly groups themselves, while allowi
 \url{https://medium.com/@dmitry.sobolevsky/feature-and-featurecollection-in-geojson-f36ec38ebdb1}
 
 
-\subsection*{Anomaly Group and anomalies}
-As mentiooned in section 3.4.2.4, anomalies and anomaly groups are part of featureCollections. anomalies themselves are implemented as features with data on geometric location. 
+\subsection{Anomaly Group and anomalies}
+As mentiooned in section 3.4.2.4, anomalies and anomaly groups are part of featureCollections. anomalies themselves are implemented as features with data on geometric location. Anomalies have signal strength and properties such as location of the anomaly and name of the ship that sent the anomaly etc.("unsure of this is to be here") 
 
-
-\subsubsection{State Management and Rendering}
 
 
 \subsubsection{Maplibre}
@@ -210,17 +212,13 @@ Maplibre is used as the base map of the application. An interactive map being cr
 
 Maplibre initializes itself upon application boot, in a bright style used for readability for users. After its initialization, it is responsible for interaction, in dragging and zooming the map. Interaction leads to states being updated that other parts of the program can use, such as clusters being updated through zooming, and map location. Visualization functionality is something maplibre has, being able to natively visualize scatterplots and other layers. This was not chosen as a valid approach of visualization in the project, due to the high amount of data required to be visualized, which deck.gl is specialized for. 
 
+
 \subsubsection{Deck.gl Layer Integration}
+
 Deck.gl is the visualization library used on top of Maplibre.
 The decision to use the library came from the the requirement to visualize hundreds of thousands of points concurrently on map. Performance is then one of the main factors driving the choice, as deck.gl is created specifically for the task of visualizing large datasets, being optimized for performance. 
 
 Deck.gl visualization is implemented by being added as a layer above the maplibre layer, leading to data points being shown in a way that seems native to maplibre itself. Deck.gl is responsible for creating all visualization layers and achieves this by functions being created that return the layer to be used on the map. Layers are created through the current dataset being sent on request of a layer, where it then returns the layer that is to be visualized, this is then handled on the map, with deck.gl overlaying its points on top.  
-
-
-\subsubsection{Interactive Event Handling}
-
-
-
 
 % TODO: Describe the React component structure at a high level.
 % - How is routing handled?
@@ -232,6 +230,7 @@ Deck.gl visualization is implemented by being added as a layer above the maplibr
 %=====================================================================
 \section{Visualisation Implementation}
 
+Visualization methods that were implemented, were chosen based on customer needs, and changed throughout the project lifecycle. Below are the visualization methods that were chosen to implement. 
 % FOCUS: This is your core contribution — give it proper space.
 % Describe HOW you implemented each visualisation technique from your Theory chapter.
 
@@ -254,25 +253,31 @@ As mentioned in Section \ref{sec:supercluster}, Supercluster.js is used for calc
 % - add figure
 
 \subsection{Heat Map}
-A heat map layer was implemented for visualization of the full dataset. \ref{sec:heatmap}. deck.gl was used for heat map visualization, where the library provided the methods to create the heat map, with the data provided being the base API data of the full dataset. 
+A heat map layer was implemented for visualization of the full dataset. \ref{sec:heatmap}. Heat map visualization is done through deck.gl base layer. implemented through radius based coloring with tighter knit data points leading to red color, and yellow being the lighter areas. 
 % TODO: Describe the MapLibre heat map layer configuration:
 % - What colour ramp did you use?
 % - How does the weight/intensity scale with zoom?
 % - Any specific property used for weighting (e.g. anomaly severity)?
 
 
+\subsection{Base station layer}
+
+A layer to visualize base stations is a requirement to implement, based on base stations being needed to visualize signal strength related to anomalies. The layer was implemented through an icon-layer with deck.gl, with an icon of a database being used to symbolize the base station on the map. This layer was then to be used together with other layers related to it, showing how anomalies at sea and base stations communicate. 
+
 \subsection{Anomaly Group Layer}
-The anomaly group layer, is a visualization layer that gives a detailed representation of a single anomaly group, section \ref{sec:anomalies and anomaly groups}. The anomaly group visualization layer is created through a custom deck.gl layer. This layer consists of a signal strength layer, using data from the individual anomalies inside the group, that are connected to a satellite or base station with a signal strength number value, normalized between 0 and 1. The signal strength layer adds lines from the source anomaly, to the receiving base station and or satellite, indicating the strength of received AIS-message.   
+
+The anomaly group layer, is a visualization layer that gives a detailed representation of a single anomaly group, section \ref{sec:anomalies and anomaly groups}. The anomaly group visualization layer is created through a custom deck.gl layer. This layer consists of a signal strength layer, using data from the individual anomalies inside the group, that are connected to a satellite or base station with a signal strength number value. This value is then used to color from red to green, the line, which is used to indicate if the signal is strong, being a green coloring, or weak, being redder coloring.  
 
 
 \subsection{individual anomaly layer}
 
+An individual anomaly visualization layer was requested by the customer during the later stages of development. This layer was implemented as a scatter plot, which each point representing a singular ship, from the anomaly group. The individual points are were designed to be colored from red to green, based on signal strength, with green being considered a strong signal, and red a weak one. 
 
 
 
 \subsection{Scope and Feature Prioritisation}
 
-The project scope was decided through ongoing discussions with the customer. Hexagonal binning was initially identified as a desired feature in the project brief. However due to time constraints it was not implemented in the final prototype. The team prioritised clustering, heat maps, and the filter system based on customer feedback since these provided the most immediate analytical value. 
+The project scope was decided through ongoing discussions with the customer. Hexagonal binning was initially identified as a desired feature in the project brief. However due to time constraints it was not implemented in the final prototype. The scope of the project changed throughout development, leading to some new features being requested, some of which were cut. The team prioritised clustering, heat maps, and the filter system based on customer feedback since these provided the most immediate analytical value. 
 % TODO: Include what we cut / didnt focus on
 % NOTE TO SELF: Your Introduction (Section 1.2 Objective) lists hexagonal binning
 % and advanced temporal analysis as goals. Since hex binning was not implemented
@@ -280,29 +285,22 @@ The project scope was decided through ongoing discussions with the customer. Hex
 %   (a) soften the Introduction wording (e.g. "investigate" instead of "implement"), or
 %   (b) address the gap explicitly in Discussion (recommended — explain the
 %       scoping decision made with the customer).
-
-
 \subsection{Filter System}
-
-
 
 \subsection{Temporal Filtering}
 
-
-
-\subsection{Interactive Features}
-
+\subsection{satellite implementation}
 
 %=====================================================================
 % 3.6  Design Process
 %=====================================================================
 \section{Design Process}
-
+The design process started early, with customer meetings outlining the already in use system, and other systems that are similar. This was then used as a design basis for the groups implementation of the project. 
 % FOCUS: Wireframes, UI/UX decisions, user feedback.
 
 \subsection{Wireframes}
-
-\begin{figure}[H]
+Wireframes, as seen below. Were created in figma at the start of the project. The application was decided to be based on a single page design, containing a user interface to allow for interaction and visualization. The design was to contain the map, as the core part of the application, with it taking up the entire page. On top of the map, other components like a search bar, and the visualized anomalies and base station were to be overlaid, with filtering via various variables like date range, were to be implemented in a popup on the page. The design was also to have an info component for anomalies. 
+\begin{figure}[!htbp]
     \centering
 
     \subfloat[Main page wireframe]{%
@@ -335,17 +333,17 @@ The project scope was decided through ongoing discussions with the customer. Hex
 % 3.7  Testing
 %=====================================================================
 \section{Testing}
-
+Testing of the project was done through manual testing of the application itself, with planned automatic tests to be implemented later.  
 % FOCUS: What you tested, how, and why certain approaches were chosen.
 
 \subsection{Backend API Testing}
-
+As the backend was primarily created by the customer, leading to actual tests not being created by the group. However manual testing of results were done through a swagger api, to check the result of request, while also being tested in the application itself. 
 
 \subsection{Frontend Testing}
-
+Frontend testing was done manually by the group, through interaction with the website itself, and through console log of code, to fix errors and ensure correctness. 
 
 \subsection{Manual and Performance Testing}
-
+Performance was not specifically tested through hard coded logic, considering deck.gl as a library is already optimized for data set. But was tested throughout use of the website, together with some optimizations being implemented such as recalculations of clusters not being done on every interaction with the map, which was an issue earlier in development. 
 %=====================================================================
 % End of Methods chapter
 %=====================================================================
