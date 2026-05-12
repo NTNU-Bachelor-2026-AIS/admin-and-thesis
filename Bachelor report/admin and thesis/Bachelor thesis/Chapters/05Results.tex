@@ -43,78 +43,171 @@ To showcase the complete architecture, different diagrams will be used.
 %=====================================================================
 
 \section{Frontend}
+The resulting frontend of the project was created following the method in section \ref{sec:design_process}. Figure \ref{fig:frontend_result_image} shows the finished frontend. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth,height=0.7\textheight,keepaspectratio]{Figures/full_application_image.png}
+    \caption[frontend result image]{Frontend result}
+    \label{fig:frontend_result_image}
+\end{figure}
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
-
+A singular page was created for the application, being the only page needed for all functionality. User interaction is handled through the user interface components shown in the image, allowing to change visualization layer. it also allows filtering of anomalies based on date, type and mmsi. This is all handled through backend requests, updating the map instantly.  
 
 \section{Visualisation Results}
 All visualisation methods described in the Method chapter were implemented in the final system. The system includes clustering, heat map, anomaly group visualisation, individual anomaly visualisation, and base station visualisation. Additional proposed features were not implemented
 
-\subsubsection{Clustering Visualization}
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui offici
+
+\subsection{Base Station Visualization}
+A base station layer is is part of the application, implemented as mentioned in section \ref{sec:base_station}. The base station layer is visualized through blue icons in figure \ref{fig:base_station_result_image}. The base station layer itself is persistent, meaning that it is a visualization layer that will always be present in the app, even if other methods of visualizing the data points are changed. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth,height=0.3\textheight,keepaspectratio]{Figures/clustering-result.png}
-    \caption[Clustering result image]{Result clustering visualization
+    \includegraphics[width=0.4\textwidth,height=0.2\textheight,keepaspectratio]{Figures/Base-station-view.png}
+    \caption[base station view]{Base station layer}
+    \label{fig:base_station_result_image}
+\end{figure}
+Base stations are linked to anomalies through backend data representing transmissions from individual anomalies. This is then used in other layers to connect base stations to anomalies through signal strength. The base stations data itself will never change in position, as they are static points on the map. This provides persistent reference in relation to anomaly and transmitted base station, and helps end users visually observing the distance between anomaly cluster and base station, Leading to visual feedback on the spatial relationship between anomalies and base stations.
+
+\subsubsection{Clustering Visualization}
+As described in section \ref{sec:clustering_method}. The clustering approach is implemented with Supercluster.js calculating clusters through proximity based on radius, and zoom level (Section \ref{sec:supercluster}). This approach produces grouped anomaly points, with numeric labels indicating the number of anomalies in each cluster, as shown in Figure \ref{fig:clustering_result_image}. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth,height=0.35\textheight,keepaspectratio]{Figures/clustering-result.png}
+    \caption[Clustering result image]{Result clustering visualization}
     \label{fig:clustering_result_image}
 \end{figure}
+Clustered view allows for user interaction through zooming and dragging the viewable map area, where clusters outside of the view on the map, are not displayed. When the application is more zoomed out, the clusters are aggregated into fewer larger groups. Clusters are calculated based on a radius of 40 pixel around a point, aggregating based on radius, and zoom level. Zoomed in the clustered views shows smaller aggregation of clusters, as the anomaly groups have greater distance between, leading to a greater number of clusters, with the opposite being true for lower zoom levels. 
 
 
+\subsection{Heat Map Visualization}
+The system includes a heat map visualization layer, The heat map is implemented as in section \ref{sec:Heat_Map_method}. An example of the implemented heat map visualization is shown in figure
+\ref{fig:heatmap_result_image}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.54\textwidth,height=0.35\textheight,keepaspectratio]{Figures/heatmap-result.png}
+    \caption[heatmap result image]{Heat map result }
+    \label{fig:heatmap_result_image}
+\end{figure}
+Color is generated through calculating the sum of points inside a radius of 40 pixels, meaning points inside a circle are calculated as a sum, leading to higher density of points being weighted more.\url{https://deck.gl/docs/api-reference/aggregation-layers/heatmap-layer}. 
+The resulting heat map layer allows for zoom and drag operations to change the heat map view dynamically, with zoomed in levels having less dense representation, while zoomed out levels lead to higher aggregates per pixel radius, and denser representation overall. 
 
-\subsection{Map Visualization}
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 \subsection{Anomaly Group Visualization}
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+Individual anomaly group visualization is created as shown in figure \ref{fig:anomaly_group_result_image}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth,height=0.6\textheight,keepaspectratio]{Figures/anomaly-group-layer-result.png}
+    \caption[anomaly group result image]{Anomaly group layer}
+    \label{fig:anomaly_group_result_image}
+\end{figure}
+
+The layer shows an info component for the current group, with coordinates and start date, with type of anomaly. Signal strength is visualized through the lines, connecting the individual anomalies inside the group to the base stations shown in the picture as blue symbols. The info component allows for users to show anomalies inside the group, through button press on the component, leading to the visualization being changed to the individual anomaly visualization. 
+
+
 \subsection{Individual Anomaly Visualization}
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-\subsection{Base Station Visualization}
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+Individual anomalies, are shown as a scatterplot, section \ref{sec:scatter_plot}. The visualization shows the points colored based on signal strength, from red to green. This is done through the signal strength value being normalized from 0 to 1, in the database. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/individual_anomaly_layer_result.png}
+    \caption[individual anomaly result image]{Individual anomaly layer}
+    \label{fig:individual_anomaly_result_image}
+\end{figure}
+Figure \ref{fig:individual_anomaly_result_image}, shows the completed layer. anomalies are correctly colored through the signal strength variable, with an info component being shown for an anomaly, through clicking on it. The info component illustrates features of the anomaly, like it's direction, name, and MMSI. 
+
+
+
+
+
+
+%=====================================================================
+\section{Backend}
+The backend system was developed by the customer and provided as part of the project infrastructure. It exposes a REST API used by the frontend to retrieve anomaly data. anomaly data is created as a geoJSON feature collection, with features indicating a single anomaly group. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/db_models.png}
+    \caption[db model diagram]{database model diagram}
+    \label{fig:individual_anomaly_result_image}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/db_result.png}
+    \caption[db result image]{database diagram}
+    \label{fig:individual_anomaly_result_image}
+\end{figure}
+
+The above figures show 
 
 %=====================================================================
 \section{User Interaction Results}
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 \subsection{Map Interaction Behaviour}
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 \subsection{Filtering System Behaviour}
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 \subsection{User Workflow}
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 %=====================================================================
 \section{Data Handling Results}
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 \subsection{GeoJSON Data Structure}
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 \subsection{Backend Query and Response Behaviour}
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 \subsection{State Updates and Data Flow}
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 %=====================================================================
 \section{Performance Observations}
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 \subsection{Rendering Performance}
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 \subsection{Effect of Clustering on Performance}
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 \subsection{System Responsiveness}
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 %=====================================================================
 \section{Project Outcome}
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 \subsection{Delivered vs Planned Features}
+'
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 \subsection{Scope Changes During Development}
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 \subsection{Final System Capabilities}
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 %=====================================================================
 \section{Limitations of the System}
+
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 

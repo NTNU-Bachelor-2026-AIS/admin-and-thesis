@@ -229,7 +229,7 @@ Visualization methods that were implemented, were chosen based on customer needs
 % - Initial map center, zoom level, bounds?
 
 \subsection{Clustering}
-
+\label{sec:clustering_method}
 
 As mentioned in Section \ref{sec:supercluster}, Supercluster.js is used for calculating clusters based on zoom level and the current map bounds. Supercluster calculates clusters based on the base dataset acquired from the API, calculating all clusters on application load. Map interactions such as zooming and dragging result in clusters being retrieved for the current zoom level and map bounds. The clustering data itself is used with deck.gl,Section \ref{sec:deckgl}. Visualization through deck.gl is accomplished through creating a custom layer, consisting of a label-layer, whose purpose is to be a point counter for the amount of anomalies inside the cluster, this is put over, a scatterplot-layer. section \ref{sec:scattermap}, which combines to create the clustering layer.This layer is re-rendered whenever the clustering output changes due to updates in zoom level or map bounds. Furthermore does clustering visualization have dynamics sizing based on amount of anomalies inside a cluster, leading to clusters being scaled proportional to their anomaly count. 
 
@@ -240,6 +240,7 @@ As mentioned in Section \ref{sec:supercluster}, Supercluster.js is used for calc
 % - add figure
 
 \subsection{Heat Map}
+\label{sec:Heat_Map_method}
 A heat map layer was implemented for visualization of the full dataset. \ref{sec:heatmap}. Heat map visualization is done through deck.gl base layer. implemented through radius based coloring with tighter knit data points leading to red color, and yellow being the lighter areas. 
 % TODO: Describe the MapLibre heat map layer configuration:
 % - What colour ramp did you use?
@@ -248,7 +249,7 @@ A heat map layer was implemented for visualization of the full dataset. \ref{sec
 
 
 \subsection{Base Station Layer}
-
+\label{sec:base_station}
 A layer to visualize base stations is a requirement to implement, based on base stations being needed to visualize signal strength related to anomalies. The layer was implemented through an icon-layer with deck.gl, with an icon of a database being used to symbolize the base station on the map. This layer was then to be used together with other layers related to it, showing how anomalies at sea and base stations communicate. 
 
 
@@ -291,6 +292,7 @@ The filtering controls are designed for simple, interactive operation. A pop-up 
 % 3.6  Design Process
 %=====================================================================
 \section{Design Process}
+\label{sec:design_process}
 The design process started early, with customer meetings outlining the already in use system, and other systems that are similar. This was then used as a design basis for the groups implementation of the project. 
 
 
