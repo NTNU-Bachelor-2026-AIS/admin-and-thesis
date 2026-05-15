@@ -163,20 +163,29 @@ The
 %=====================================================================
 \section{Data Handling Results}
 
-Result data handling works 
+This section describes the final data structures and backend data handling used in the system.
 
 \subsection{GeoJSON Data Structure}
 
-The backend provides
+The final GeoJSON structure is shown in figure \ref{fig:geoJSON-result_image}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/geoJSON-result.png}
+    \caption[geoJSON result]{geoJSON message}
+    \label{fig:geoJSON-result_image}
+\end{figure}
+Anomaly data is completely integrated in a featurecollection, with the individual features being anomaly groups. These features are individually processed in the frontend, as a dataset, through deck.gl. 
+
 
 \subsection{Backend Query and Response Behaviour}
-
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
-\subsection{State Updates and Data Flow}
-
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
+Figure \ref{fig:swagger-result_image} showcases an API endpoint, created as a master query allowing for filtered requests on all relevant variables. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/swagger_api.png}
+    \caption[swagger result]{swagger endpoint}
+    \label{fig:swagger-result_image}
+\end{figure}
+General endpoints for retrieving all anomaly data, as well as filtered datasets, are implemented. requesting filtered data leads to the base data set changing to contain the new data, while in other cases such as the sidebar having its own data variable to not change the main map data through search. 
 %=====================================================================
 \section{Performance Observations}
 
