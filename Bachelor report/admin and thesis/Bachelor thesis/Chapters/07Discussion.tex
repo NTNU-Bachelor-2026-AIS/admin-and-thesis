@@ -72,13 +72,7 @@ The performance of the system is highly dependent on hardware specifications, wi
 
 Base rendering performance of maplibre, is observed to not have issues, with performance being taxed on the visualization methods and dataset size, rather than the map. Datasets were tested from thousands, to over one hundred thousand, with both having little issues on group computers. The architectural design of the project is not bottlenecked based on the backend, but with frontend using supercluster to recalculate clusters based on zoom, and similar calculations being done on heat map, leads to zoom and move operations being most taxing on the system. This can be tweaked to recalculate fewer times on zoom level, but will lead to a less responsive system. The core bottleneck of any performance is then the frontend itself, with the backend being called in milliseconds. 
 
-\subsection{Impact of Clustering and Aggregation}
 
-Before clustering was implemented, the scatter plot of individual points in the data set was used. This proved to be significantly slower than after clustering was implemented on the data set, with aggregation leading to fewer data points being rendered at one time, thus clustering had an impact on performance.
-
-\subsection{Responsiveness and System Limitations}
-
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 %=====================================================================
 
 \section{Project Execution}
@@ -93,13 +87,13 @@ Before clustering was implemented, the scatter plot of individual points in the 
 
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-\subsection{Iteration, Refactoring, and Problem Handling}
+\subsection{Iteration and refactoring}
 
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 \subsection{Code Quality and Maintainability}
 
-The code quality was designed to follow software principles, but due to lack of experience with react itself, some uncertainties about use of specific methods arose. The use of prior programming experience to create files that handle specific tasks, are however used to simplify the program, with refactoring being done multiple times to follow these guidelines. 
+The code quality was designed to follow software principles, but due to lack of experience with react itself, some uncertainties about use of specific methods arose. The use of prior programming experience to create files that handle specific tasks, are however used to simplify the program, with refactoring being done multiple times to follow these guidelines
 
 \subsection{Customer communication}
 
@@ -107,24 +101,19 @@ The code quality was designed to follow software principles, but due to lack of 
 
 \subsection{problems during development}
 
-Multiple problems arose during the development of the project. A core problem being 
+Multiple problems arose during the development of the project. A core problem being the changing of the scope throughout the project, which lead to features being cut in focus on new features being added.This was handled through communication with the customer, where functionality to focus on was honed in on. 
 
 %=====================================================================
 
 \section{Limitations}
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+Although the project fulfilled the main end requirements through scope changes that the the customer requested, it still has limitations and is a concept testing software. 
 
 \subsection{Technical Limitations}
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+Technical limitations include not having implemented real AIS data from the customer in the project. This would be unlikely to have happened with any amount of work on the project as such information is classified, resulting in it being something the customer can take forward themselves. Other limitations are satellite orbit not being plotted, as was a request that was given, but not able to implement in time. This would have allowed for users to see the orbit from the satellite, from its current position, to its positions in the future. Although satellite orbit was not implemented, satellites themselves were, and show up in the signal strength visualization. Another feature from the project outline not implemented, that was quietly removed from scope, is automatic report generation, but this was removed as a request in the project, where focus went into concept testing. 
 
-\subsection{Project and Requirement Limitations}
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-\subsection{Performance Constraints}
-
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 %=====================================================================
