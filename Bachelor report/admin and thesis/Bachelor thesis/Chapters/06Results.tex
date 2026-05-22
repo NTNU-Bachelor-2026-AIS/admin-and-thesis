@@ -44,29 +44,30 @@ To showcase the complete architecture, different diagrams will be used.
     \label{fig:Use_Case_image}
 \end{figure}
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+The use case diagram showcases from \ref{fig:use_case_image} showcases a user experience of a maritime operator. An operator can view anomalies, switch between visualizations and access specific information from anomalies and anomaly groups. 
 
 \subsubsection{Package Diagram}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\textwidth,height=0.7\textheight,keepaspectratio]{Figures/Use_Case_Diagram.png}
+    \includegraphics[width=0.95\textwidth,height=0.7\textheight,keepaspectratio]{Figures/Package_Diagram.png}
     \caption[Package Diagram]{Package}
     \label{fig:Package_Diagram_image}
 \end{figure}
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+The package diagram in figure \ref{fig:Package_Diagram_image}, showcases the structure used in the project. Files are put into folders related to their function, such as components being put into the component folder, with subfolders used when needed. This follows a basic react package structure, with a modular design that simplifies understanding. 
 
 
 \subsubsection{Sequence Diagram (Data Flow)}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\textwidth,height=0.7\textheight,keepaspectratio]{Figures/Use_Case_Diagram.png}
+    \includegraphics[width=0.95\textwidth,height=0.7\textheight,keepaspectratio]{Figures/Sequence_Diagram.png}
     \caption[Sequence Diagram]{Sequence}
     \label{fig:Sequence_Diagram_image}
 \end{figure}
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+The sequency diagram in figure \ref{fig:Sequence_Diagram_image}, showcases the flow, from user interaction to change of state. As illsutrated in the image, if a user requests to apply a filter, a http get request is sent to an endpoint, which then queries the database. This then returns a geoJSON featurecollection as a promise, and is then asynchronously accessed through react. This then creates the deck.gl layer requestsed, and overlays it on the map, leading to an updated visualization for the end user. 
 
 %=====================================================================
 
@@ -263,6 +264,7 @@ Responsiveness of the system is observed to be at a satisfactory level, although
 %=====================================================================
 \section{Testing}
 
+Testing was done manually, as mentioned in section \ref{sec:testing_method}. Console logging and observation based testing was used, to ensure all features work, with performance testing being done through use of the application. 
 
 %=====================================================================
 \section{Project Outcome}
@@ -276,6 +278,10 @@ During development, and from the start of the project, the project differed in s
 \subsection{Delivered vs Planned Features}
 
 Almost all planned features from the project outline and through meetings were implemented, some being seen as extra features later in development by the customer. A report generating system and satellite orbit visualization feature were not delivered. However satellites themselves were implemented and shown as connected to anomalies through a signal strength line in the anomaly group layer, showing its position at the time of data transmission. The overall delivered features implement majority of the project outlines', while overall implementing the requested features from the customer. 
+
+\section{comparison to customers tools}
+
+As the resulting application is testing concepts for the customer, a direct comparison yields little value, as the customer themselves mentioned that the currently in use tools are superior in their core functionality. However as the currently implemented application is testing new visualization methods and features, this then bring value to the customer to test if their already in use software, or software they are to make themselves, should have these features. As a result the software created for the project is better in the specifics of testing new concepts.
 
 %=====================================================================
 
