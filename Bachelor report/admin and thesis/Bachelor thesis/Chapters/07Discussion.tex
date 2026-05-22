@@ -1,51 +1,130 @@
 
 %=====================================================================
-\section{Discussion}
+\textit{This chapter discusses and rates the finished project.}
+
+\section{overview of end product}
+
+The finished product meets the main requirement the customer requested, with few from the original project description being omitted. The quality of the finished project as a test of concepts for new visualization methods for the customer was noted in feedback section ???. 
+
+The overall solution itself is satisfactory to the customer, through allowing them to test concepts of new visualization modes like the signal strength and heat map layers. Working with the customer ended well, with communication being frequent, as new features were added, and questions arose. 
+
+
+The project itself shows that visualization of large datasets, with new visualization methods the customer is not currently using, can bring value, and led to the customer requesting such features be added to their already in-use software solution.  
+
 
 \section{Discussion of Technical Solution}
 
-\subsection{System Architecture and Design Choices}
+The technical solution itself, is documented, and functions well, with emphasis being put on trying to simplify it, with multiple helper classes, and refactoring being done throughout the project. 
 
-\subsection{Frontend Implementation and State Management}
 
-\subsection{Visualization Methods and Data Representation}
+\subsection{System Architecture}
 
-\subsection{Backend Design and Data Flow}
+The system architecture choice, of having deck.gl overlaid over maplibre as base map, with a docker backend providing data. Worked well in the development of the project. The modular approach of the project, lead to maplibre being separate from the deck.gl implementation, with the map itself only being responsible for handling all map related functionality such as zoom, movement etc. This ended up simplifying the complexity of the project, leading to cleaner code, with a clear separation of concerns in the project code. For this to happen there was a period of refactoring code that was too tightly coupled, with the map itself containing too much functionality unrelated to its task. 
 
-\subsection{Filtering Strategy and Query Handling}
+The architecture choice was also partially guided by the customer. With request to use react, and other tools that is already in use by the customer, influenced the groups choice of architecture, also with the backend being provided by the customer. Maplibre being mentioned in the project document, lead to influencing its choice as map provider, together with it being open source. 
 
+\subsection{Frontend}
+
+The frontend itself, successfully followed the wireframe of the project, set up at the beginning, as its main inspiration. The design itself is minimalist compared to other sites, with the main focus being on the implementation of the map and visualizations. Map choice had positive and negative sides, with maplibre being a a fork of now closed source project mapBox, leading to maplibre having less documentation than the group needed, with some documentation, being more detailed on mapBox's website, related to the same code. This means the choice of maplibre, became a confusing endeavour of finding out how to work with the library, instead of implementing it at the beginning, to a higher degree than desired. 
+
+
+deck.gl as a choice for visualization library proved to be fruitful. With the library providing all functionality needed to create requested customer features. Layering with deck.gl, allowed for easy maplibre integration through the use of a mapBox overlay, since maplibre is a fork of mapBox, no other code was required to implement it than would be for mapBox itself. 
+
+
+The choice of react typescript being used for programming the application, lead to types being enforced more than without typescript, but leading to confusion in implementation, as the groups lack of experience with react and typescript, lead to lost development time, learning the basics and more advanced tools such as context, with, was one of the tools used to simplify the code.  
+
+The frontend design itself, with one page that covers all required functionality, and components to allow for information and user interaction, was overall good for the project. One point of it being superior to a multi-page application, was that it allowed to always observe the map and visualization implementation, even when manually testing components and other features. Another positive is the overall simplicity of the site, where the main focus was testing concepts for the customer, and the customer themselves requesting to use less time on the design itself, and more time on functionality. 
+
+Overall, the frontend implementation fulfilled the main goals of the project, while showing how use of third party tools can be challenging, and choice of tools being an important step in creation of software. 
+
+
+\subsection{Visualization Methods and User Interaction}
+
+The chosen visualization methods were effective for different aspects of anomaly visualizaiton, each with their own strenghts and weaknesses related to readability, performance and interaction. 
+
+Clustering resulted in a leap in performance increase, compared to normal scatter plot of all points in the data set, this is positive as it also improved readability. The zoom function with recalculation of layers is smooth, but will depend on the speed of the computer. This layer was implemented well with a focus on simple visualization, like with a number indicating amount of anomaly groups in a cluster, being done in a way that is simple and readable. This layer also is interactive, with pressing a single individual anomaly group cluster leading to the anomaly group layer, this is performant through api call to the backend, instead of acquiring the information through frontend filtering. The main drawback with clustering is the lack of specific details of each anomaly group, requiring multiple layer changes to go into an anomaly group and then into the individual anomalies, it gives a generally simpler overview of where anomalies are grouped, and how numerous they are, but no specific details on the anomalies inside. Although this is worth the tradeoff versus having a normal scatterplot with a chaotic amount of points shown at once. 
+
+Heat map visualization gives value in working the entire dataset, instead of a clustered version of it, as the clustering visualization does. This leads to an overview of all data based on proximity, leading to a more specific version of say a clustering visualization, where instead of bigger points based on amount the coloring itself shows a more detailed representation of where hot spots arise. The way of using coloring instead of number for size, leads to a more intuitive human reading of anomaly aggregation, than just size and number. This then makes it a worthy trade for the performance intensity of the heat map layer, with it being noticeably slower than the other visualization methods, but giving a better overview of all data. 
+
+The anomaly group layer gives value in pure information about the group itself. Signal strength visualization itself gives value to the layer, with the requested implementation of it being given positive feedback. The detail of the specific location and anomaly type from the info component, with the connection to base stations and satellite(s), proved to give an excellent overview of how an anomaly group is connected to receivers of AIS messages. 
+
+The individual anomaly layer was requested, with an info component being used to showcase every individual anomalies data properties. This layer gives more insight into the individual anomalies in a group with their heading and signal strength. The layer itself gives values to the project, with no obvious downsides being present. 
+
+The other visualizations such as base station layer and satellite, are required for other layers such as anomaly group with signal strength to give any useful information, leading to them being crucial for the project themselves, with no obvious downsides to their implementation. 
+
+User interaction is a core part of the application. The user should be able to interact without slowdown and get the required info without errors. From observed manual testing and development of the project, the user interaction is fast, but depends more heavily on the computer used, as the graphics card available to use for rendering of the site will be a limiting factor. Actual user interaction is based heavily around the zoom and camera location of the application. This interaction with the map has drawbacks such as performance loss, but allows for information on anomalies, filtering and searching. This user interactivity comes with the downside of the performance loss, with system responsiveness being affected. As a core feature of the application, the trade of with responsiveness and performance are offset, with non static datasets being much easier to analyse. 
+
+
+\subsection{Backend and data handling}
+
+The backend being provided by the customer, has comprehensive documentation of endpoints through swagger, with all the endpoints needed for the project implemented. Docker proved to simplify the process of running the backend, with few sentences of code being required to start and fill the database with test data. Observing the backend performance showed no critical performance or data errors, but the delivered backend itself comse with limitations on being constrained to the predefined API structure, with extensions being more complicated for the group to implement themselves, due to lack of experience with the programming language GO. Although the observed performance was satisfactory, testing of the performance was not controlled by the group itself, with core negatives of the backend implementation being wait time for customer to implement required features, a less often occurrence. As a result the backend was well implemented, but not controlled solely by the group, this being a tradeoff.
+
+Data handling through GeoJSON, proved a good choice for both the backend and frontend, with the libraries used already supporting the data. The data itself being parsed through a deck.gl layer. The layer being responsible for parsing data from each GeoJSON feature. Proved to be an effective design, that allows for simple access to data, through accessing properties and geometry of said features. A tradeoff of using GeoJSON is that the frontend must have prior knowledge of the data structure in order to correctly access said properties and geometry. This introduces dependency on a clear schema. Another issue with data, has been asynchronous errors, with wrong data being delivered, or data being accessed before delivery. 
+  
 %=====================================================================
 
 \section{Performance and Scalability Discussion}
 
-\subsection{Rendering Performance and Optimization Techniques}
+The performance of the system is highly dependent on hardware specifications, with particular effect coming from GPU capability. Webgl has highest effect on greater GPU's, leading to performance being bottlenecked on weaker systems. 
+
+
+\subsection{Rendering Performance}
+
+Base rendering performance of maplibre, is observed to not have issues, with performance being taxed on the visualization methods and dataset size, rather than the map. Datasets were tested from thousands, to over one hundred thousand, with both having little issues on group computers. The architectural design of the project is not bottlenecked based on the backend, but with frontend using supercluster to recalculate clusters based on zoom, and similar calculations being done on heat map, leads to zoom and move operations being most taxing on the system. This can be tweaked to recalculate fewer times on zoom level, but will lead to a less responsive system. The core bottleneck of any performance is then the frontend itself, with the backend being called in milliseconds. 
 
 \subsection{Impact of Clustering and Aggregation}
 
-\subsection{Heatmap Performance Considerations}
+Before clustering was implemented, the scatter plot of individual points in the data set was used. This proved to be significantly slower than after clustering was implemented on the data set, with aggregation leading to fewer data points being rendered at one time, thus clustering had an impact on performance.
 
-\subsection{System Responsiveness Under Load}
+\subsection{Responsiveness and System Limitations}
 
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 %=====================================================================
 
-\section{Project Execution Discussion}
+\section{Project Execution}
 
-\subsection{Development Methodology and Workflow}
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-\subsection{Customer Involvement and Requirement Changes}
+\subsection{Development Methodology}
 
-\subsection{Iteration and Refactoring Process}
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+\subsection{Customer Involvement and Scope Changes}
+
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+\subsection{Iteration, Refactoring, and Problem Handling}
+
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 \subsection{Code Quality and Maintainability}
 
+The code quality was designed to follow software principles, but due to lack of experience with react itself, some uncertainties about use of specific methods arose. The use of prior programming experience to create files that handle specific tasks, are however used to simplify the program, with refactoring being done multiple times to follow these guidelines. 
+
+\subsection{Customer communication}
+
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+\subsection{problems during development}
+
+Multiple problems arose during the development of the project. A core problem being 
+
 %=====================================================================
 
-\section{System Limitations}
+\section{Limitations}
 
-\subsection{Visualization Limitations}
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
-\subsection{Backend and Data Handling Limitations}
+\subsection{Technical Limitations}
+
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+\subsection{Project and Requirement Limitations}
+
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 \subsection{Performance Constraints}
+
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 %=====================================================================
