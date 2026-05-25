@@ -77,31 +77,51 @@ Base rendering performance of maplibre, is observed to not have issues, with per
 
 \section{Project Execution}
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+This section evaluates the project management process described in Section \ref{sec:dev_methodology}, focusing on how the chosen methodology, team structure, and communication practices influenced the development outcome.
 
-\subsection{Development Methodology}
+Although the adopted methods ensured a structured development process, several of them introduced weekly overhead that proved disproportionate for a two-person team operating under a fixed deadline. The following subsections evaluate each aspect individually.
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+\subsection{Scrum Framework and Sprint Structure}
 
-\subsection{Customer Involvement and Scope Changes}
+The Scrum framework provided a consistent structure for planning and delivery. The system was designed for large groups, so it had issues in relation to workload and redundancy for groups of two. Therefore, the daily stand-up system was altered and implemented to occur multiple times a day instead to make sure the group had proper accountability and focus in relation to scope. It also helped keep motivation high and allowed the group to quickly make changes to tasks depending on problems found with them. Instead of the standard two-week sprint, the group used weekly sprints as well, to supplement issues which were fixed by multiple daily stand-ups. Since it was a group of two, the focus of the project and scope were defined and worked toward each week while also making sure the backlog was handled.
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+However, several Scrum artifacts introduced documentation overhead that provided limited value at this team size. This became a bigger issue because of the decision to have weekly sprints, which increased the overhead that needed to be handled compared to the standard system. The problem was amplified because sprints documented and reviewed the backlog every week, even though group members had continuous visibility into task status through GitHub Projects.
+ % Maybe ref or  section
 
-\subsection{Iteration and refactoring}
+In relation to sprint documentation, the sprint artefacts provided traceable project documentation, which served as a reference when writing the report while ensuring important information was not lost in miscommunication.
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+\subsection{Team Composition and Workload Distribution}
 
+In a group of two where both members had mostly the same knowledge and expertise, workload was distributed based on member preference and the nature of each task, which made documentation responsibilities formally split where one member handled the sprint documentation while the other handled meeting documentation while development tasks were shared. In practice however, more demanding tasks were rotated between members to maintain motivation. This type of informal balancing worked well for a group of 2 but would not scale to a larger team, where responsibilities would be split more evenly with explicit role definitions. 
+
+\subsection{Communication and Meeting Structure}
+
+Slack provided an efficient channel for direct communication with the customer, enabling rapid resolution of short technical questions. The customer's domain expertise allowed complex questions to be resolved within short discussions rather than through a long discussion. While communication with the supervisor was handled primarily through email, with in person consultations used for urgent issues, because most work was conducted on campus.
+
+For meetings, biweekly meetings were held with both the supervisor and the customer at Kystverket. Before these meetings, discussions were held to discuss which questions should be asked. However, most of these discussions happened through a small meeting before the actual meeting or through daily stand-ups within the group.
+
+Most meetings with the customer were focused on whether the customer liked what had been developed, followed by technical questions to figure out the difficulty of harder problems and what they wanted the group to focus on. With the supervisor, however, problems relating to documentation and any issues with what had been done were mostly discussed. There were sometimes occasions where meeting times were delayed because the customer was busy or had taken a break from work.
+
+\subsection{Task Management and Version Control}
+
+The task management infrastructure described in Section \ref{sec:task_management} worked effectively for the project, although the multi-repository setup introduced some context-switching overhead. The four workflow stages would have been more useful in a larger group, however since work was handled in person they served mainly to track which tasks had not been done or which member was currently working on each task. The three-repository structure occasionally caused issues to be filed in the wrong board, where they were overlooked until rediscovered and relocated. The burndown chart was generated automatically and used to track project progress and identify whether the project was accumulating unaddressed issues. The three-board structure worked better than a single combined board, because GitHub Projects allowed all three to be viewed together at the overview level while keeping each repository's issues separated at the detail level.
+
+For version control, Git was utilized because it allows code to be reverted easily if new code breaks the system or creates unexpected issues. Branching was useful overall, even though it occasionally caused merge conflicts and required refactoring after code was combined. This was still preferable to working in a single shared branch, where both members would have caused conflicts continuously during development.
+
+\subsection{Scope Management}
+
+Scope management was handled reactively through customer meetings rather than through a formal change process, which had both benefits and drawbacks. The weekly sprint cycle allowed scope changes to be incorporated quickly, which was valuable given the short development period and limited team capacity. This approach kept development aligned with the customer's interests and prevented time from being spent on challenging features that were not needed. However, the absence of a formal scope freeze meant that new requests led to planned features being cut to accommodate them. The reactive approach worked well within the constrained timeline, although a longer project would have permitted more features to be properly developed and polished. For a project of similar length, a formal scope freeze date would improve predictability. Weighted prioritization could also help larger teams manage competing requests, but the small team size and direct communication with the customer made this less necessary in this project.
+
+% Should be in technical solution and discussion of that since 
+\begin{comment}
 \subsection{Code Quality and Maintainability}
 
 The code quality was designed to follow software principles, but due to lack of experience with react itself, some uncertainties about use of specific methods arose. The use of prior programming experience to create files that handle specific tasks, are however used to simplify the program, with refactoring being done multiple times to follow these guidelines
 
-\subsection{Customer communication}
-
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
 \subsection{problems during development}
 
 Multiple problems arose during the development of the project. A core problem being the changing of the scope throughout the project, which lead to features being cut in focus on new features being added.This was handled through communication with the customer, where functionality to focus on was honed in on. 
+\end{comment}
 
 %=====================================================================
 
