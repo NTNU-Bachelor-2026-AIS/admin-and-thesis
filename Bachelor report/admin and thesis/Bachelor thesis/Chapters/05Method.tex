@@ -173,8 +173,7 @@ When specific or filtered data is required, the frontend issues additional REST 
 
 \subsubsection{REST Communication with Axios}
 
-REST communication between frontend and backend was handled using axios. This was chosen to enable asynchronous HTTP requests, without blocking the user interface, while allowing for dynamic updates to the dataset where needed, such as querying for specific anomaly types or date range. Axios allows for the application to be designed to update in real time, where a API call returns a promise of the data requested, which in turn allows the application to update after the data is successfully retrieved, leading to real time updating of the user interface. This in turn leads to a more responsive user interface for end users. 
-\url{https://www.geeksforgeeks.org/reactjs/axios-in-react-a-guide-for-beginners/}
+REST communication between frontend and backend was handled using axios. This was chosen to enable asynchronous HTTP requests, without blocking the user interface, while allowing for dynamic updates to the dataset where needed, such as querying for specific anomaly types or date range. Axios allows for the application to be designed to update in real time, where a API call returns a promise of the data requested, which in turn allows the application to update after the data is successfully retrieved, leading to real time updating of the user interface. This in turn leads to a more responsive user interface for end users\parencite{geeksforgeeks_axios}.
 
 
 \subsubsection{GeoJSON Data Handling}
@@ -185,9 +184,7 @@ GeoJSON serves as the container for all geographic data for anoamlies in the pro
 The anomaly set is saved as a featureCollection in geoJSON, with a featureCollection being the entire set of geographic objects. The anomaly data is built up such that all anomaly groups are part of a collection, while individual anomaly groups also are collections that have individual features inside, a feature being an individual anomaly inside a group, relating to a single ship's anomaly. 
 
 
-The design of the application parses the anomaly groups themselves, while allowing for individual anomalies from a group to be rendered in its own layer. This is done through first getting an individual anomaly group through an API request, leading to a returned group, which in turn gives access to the groups ID in which all individual anomalies are part of, leading to an API request for the specific anomaly relating to the group, which contains the information specific anomalies inside. 
-
-\url{https://medium.com/@dmitry.sobolevsky/feature-and-featurecollection-in-geojson-f36ec38ebdb1}
+The design of the application parses the anomaly groups themselves, while allowing for individual anomalies from a group to be rendered in its own layer. This is done through first getting an individual anomaly group through an API request, leading to a returned group, which in turn gives access to the groups ID in which all individual anomalies are part of, leading to an API request for the specific anomaly relating to the group, which contains the information specific anomalies inside\parencite{medium_feature_featurecollection}.
 
 
 \subsection{Anomaly Group And Anomalies}
