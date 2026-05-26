@@ -13,6 +13,10 @@
 %\usepackage[bf]{caption} %makes float captions bold
 \usepackage{caption}
 \captionsetup{font=bf}
+\makeatletter
+\renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{3em}}
+\renewcommand*\l@table{\@dottedtocline{1}{1.5em}{3em}}
+\makeatother
 \usepackage{array}
 \usepackage{booktabs}
 \usepackage{graphicx} %to include graphics
