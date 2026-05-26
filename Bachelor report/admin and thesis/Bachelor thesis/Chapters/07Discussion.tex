@@ -1,37 +1,35 @@
 
 %=====================================================================
-\textit{This chapter discusses and rates the finished project.}
+\textit{This chapter evaluates the finished project and reflects on the technical, methodological, and contextual factors that shaped the outcome.}
 
-\section{overview of end product}
+\section{Overview of End Product}
 
-The finished product meets the main requirement the customer requested, with few from the original project description being omitted. The quality of the finished project as a test of concepts for new visualization methods for the customer was noted in feedback section ???. 
+The finished product meets the main requirement the customer requested, with few features from the original project description being omitted. The quality of the finished project as a concept test for new visualization methods was noted in the customer feedback presented in Section~\ref{sec:customer_feedback}.
 
-The overall solution itself is satisfactory to the customer, through allowing them to test concepts of new visualization modes like the signal strength and heat map layers. Working with the customer ended well, with communication being frequent, as new features were added, and questions arose. 
+The overall solution was assessed as satisfactory by the customer, as it allowed them to test concepts of new visualization modes like signal strength, clustering, and heat map layers. Collaboration with the customer was effective troughout the project, with frequent communication supporting the addition of new features and the resolution of technical questions as they arose.
 
-
-The project itself shows that visualization of large datasets, with new visualization methods the customer is not currently using, can bring value, and led to the customer requesting such features be added to their already in-use software solution.  
-
+The project demonstrates that visualization of large datasets through methods not currently in use by the customer can provide concrete value. This is reflected in the customer's stated intention to incorporate several of these features into their existing software.
 
 \section{Discussion of Technical Solution}
 
-The technical solution itself, is documented, and functions well, with emphasis being put on trying to simplify it, with multiple helper classes, and refactoring being done throughout the project. 
+The technical solution, described in Section~\ref{sec:system_architecture}, is documented and functions as intended, with emphasis on simplification through the use of helper classes and repeated refactoring throughout the project.
 
 
 \subsection{System Architecture}
 
-The system architecture choice, of having deck.gl overlaid over maplibre as base map, with a docker backend providing data. Worked well in the development of the project. The modular approach of the project, lead to maplibre being separate from the deck.gl implementation, with the map itself only being responsible for handling all map related functionality such as zoom, movement etc. This ended up simplifying the complexity of the project, leading to cleaner code, with a clear separation of concerns in the project code. For this to happen there was a period of refactoring code that was too tightly coupled, with the map itself containing too much functionality unrelated to its task. 
+The system architecture, with Deck.gl overlaid on MapLibre as the base map and a Docker-based backend providing data, worked well throughout development. The modular approach led to MapLibre being separated from the Deck.gl implementation (Section~\ref{sec:deckgl}), with the map itself responsible only for  map-related functionality such as zooming and movement. This separation simplified the overall complexity and produced cleaner code with a clear separation of concerns. Achieving this required a period of refactoring tightly coupled code, particularly where the map itself contained functionality unrelated to its task. 
 
-The architecture choice was also partially guided by the customer. With request to use react, and other tools that is already in use by the customer, influenced the groups choice of architecture, also with the backend being provided by the customer. Maplibre being mentioned in the project document, lead to influencing its choice as map provider, together with it being open source. 
+The architecture choice was partially guided by the customer, whose request to use React and other technologies already in use within their infrastructure shaped the group's decisions, alongside with the customer providing the backend. Maplibre was suggested in the project document and was ultimately selected as the map provider, supported by its open-source nature and use of vector tiles (Section~\ref{sec:vector tiles}).
 
 \subsection{Frontend}
 
-The frontend itself, successfully followed the wireframe of the project, set up at the beginning, as its main inspiration. The design itself is minimalist compared to other sites, with the main focus being on the implementation of the map and visualizations. Map choice had positive and negative sides, with maplibre being a a fork of now closed source project mapBox, leading to maplibre having less documentation than the group needed, with some documentation, being more detailed on mapBox's website, related to the same code. This means the choice of maplibre, became a confusing endeavour of finding out how to work with the library, instead of implementing it at the beginning, to a higher degree than desired. 
+The frontend implementation successfully followed the wireframes established at the beginning of the project (Section~\ref{sec:design_process}). The design is minimalist by comparison to other applications, prioritizing the map and visualization components over additional interface elements. 
 
+The choice of map provider had both advantages and disadvantages. Maplibre is a fork of the now closed-source Mapbox, which meant that documentation was less comprehensive than required, and that more detailed information for equivalent code often had to be retrived from the Mapbox website. As a result working with MapLibre required more time spent understanding the library than was originally anticipated, delaying implementation beyond what had been planned.
 
-deck.gl as a choice for visualization library proved to be fruitful. With the library providing all functionality needed to create requested customer features. Layering with deck.gl, allowed for easy maplibre integration through the use of a mapBox overlay, since maplibre is a fork of mapBox, no other code was required to implement it than would be for mapBox itself. 
+Deck.gl (Section~\ref{sec:deckgl}) proved to be an effective choice for visualization, providing all functionality needed to implement the customer's requested features. Layering through Deck.gl allowed straightforward integration with MapLibre by utilizing a MapBox-style overlay. Since MapLibre is a fork of MapBox, no additional integration code was required beyond what would have been needed for MapBox itself. 
 
-
-The choice of react typescript being used for programming the application, lead to types being enforced more than without typescript, but leading to confusion in implementation, as the groups lack of experience with react and typescript, lead to lost development time, learning the basics and more advanced tools such as context, with, was one of the tools used to simplify the code.  
+The use of React with TypeScript enforced stronger type safety than plain React, but introduced an initial learning curve. The group's lack of experience with coding standards for react and typescript, led to development time being spent on learning the basics as well as more advanced tools such as Context, which was ultimately used to simplify the code.  
 
 The frontend design itself, with one page that covers all required functionality, and components to allow for information and user interaction, was overall good for the project. One point of it being superior to a multi-page application, was that it allowed to always observe the map and visualization implementation, even when manually testing components and other features. Another positive is the overall simplicity of the site, where the main focus was testing concepts for the customer, and the customer themselves requesting to use less time on the design itself, and more time on functionality. 
 
