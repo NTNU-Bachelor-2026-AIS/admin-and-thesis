@@ -12,8 +12,7 @@ This chapter gives the theoretical background for the bachelor project, explaini
 \section{Automatic Identification System (AIS)}
 \label{sec:AIS}
 % source: Kystverket AIS‑Norway description (project brief)
-The Automatic Identification System (AIS) is a system that transfers navigation data, from an individual ship, to a base station on the norwegian coast, a satellite or between ships. 
-However the system is prone to errors due to wrong configurations, area jamming, or message spoofing. Kystverket processes this data to detect errors in messages. In practice this pipeline identifies 60-80 million messages with errors every single day.
+The Automatic Identification System (AIS) is a system used to transfer information about a ship, including its location and heading, to base stations, satellites and other ships around the Norwegian coast. The system is prone to errors due to incorrect configurations, area jamming, or message spoofing. Kystverket processes this data to detect errors in AIS messages. In practice, this pipeline identifies millions of anomalous messages per day.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth,height=0.70\textheight,keepaspectratio]{Figures/ais-message-example.jpg}
@@ -27,7 +26,7 @@ However the system is prone to errors due to wrong configurations, area jamming,
 \section{Digital Twin}
 % source: IBM “What is a digital twin?” https://www.ibm.com/think/topics/digital-twin
 
-A digital twin is a digital representation of a physical object or system. An AIS digital twin primarily represents a ship's location and speed, but it also stores additional information such as the vessel type. The main purpose of a digital twin is to enable real time tracking and to provide historical data for further analysis in the future if needed \parencite{ibm_digital_twin}.
+A digital twin is a digital representation of a physical object or system. An AIS digital twin primarily represents a ship's location and speed, but may also include additional information such as the vessel type and heading. The main purpose of a digital twin is to enable real-time tracking and to provide historical data for further analysis \parencite{ibm_digital_twin}.
 %   – economic and safety benefits are described in the Capgemini report .
 
 
@@ -38,28 +37,28 @@ A digital twin is a digital representation of a physical object or system. An AI
 \label{sec:anomalies and anomaly groups}
 
 
-Anomalies refer to detected irregularities from AIS messages. Messages sent from boats that are anomalous, are of differing types, including speed, unexpected maneuver, and jumping anomalies, where these pertain to if a ships message shows impossible distance covered, or speed. Anomaly groups are grouping of anomalies of similar type, into one group. These groups are created through grouping by proximity between anomalies. Anomaly groups themselves are in the geoJSON data format as features in a featurecollection. See section \ref{sec:geoJSON}
+Anomalies refer to detected irregularities from AIS messages. Anomalous messages are of differing types, including speed, unexpected maneuver, and jumping anomalies, where these pertain to if a ship's message shows impossible speed or distance covered. Anomaly groups are collections of anomalies of similar type. These groupings are created through proximity between anomalies. Anomaly groups themselves are in the geoJSON data format as features within a FeatureCollection. See section \ref{sec:geoJSON}.
  
 %=====================================================================
 % 2.3  Human‑Centric Data Visualisation
 %=====================================================================
 \section{Data Visualization}
 
-\noindent Data visualization is the practice of displaying information in an easier to understand format than as raw data. While datasets grow in magnitude, it gets increasingly complex to parse information from them, thus data visualization tries to mitigate this problem by displaying the data in new forms, In the context of the project this can be in different way such as heatmaps and clusters, which shows where data is most heavily concentrated  
-\parencite{what_is_data_visualization}
+\noindent Data visualization is the practice of displaying information in a more understandable format than raw data. As datasets grow in magnitude, it becomes increasingly complex to parse information from them, thus data visualization tries to mitigate this problem by displaying the data in new forms. In the context of the project this encompasses different visualization methods such as heatmaps and clusters, which give a simplified view of where data is concentrated
+\parencite{what_is_data_visualization}.
 
 
 \section{Human-Centric Data Visualisation}
 
 % source: https://ieeexplore.ieee.org/document/5599750
-\noindent Human visual perception excels at spotting patters and extracting meaningful information. However there are usually limits or systems that are harder for humans to recognize. Therefore, visualisation techniques focus on presenting data in a way that leverage's a humans pattern recognition.
+\noindent Human visual perception excels at spotting patterns and extracting meaningful information. However, there are limits on the amount of information humans can parse. Therefore, visualisation techniques focus on presenting data in a way that better fits humans' pattern recognition. This is accomplished in various ways, one of which being reducing visual clutter through removing or aggregating data. 
 \parencite{human_data_visualization}
 
 \subsection{Heat-Map Visualisation}
 \label{sec:heatmap}
 
 
-Heatmaps are used for data visualization, to show relationship between variables, like amount of data points per type, the amount of data has a color leading to a higher concentration of data having a darker color than less concentrated areas of points. This leads to intuitive visualization of data for humans to parse.\parencite{HeatMaps}
+Heatmaps are used for data visualization, to show relationship between variables, such as the distribution of data points per type, the quantity of data is represented through color, where higher concentrations have a darker color than less concentrated areas of points. This leads to intuitive visualization of datasets.\parencite{HeatMaps}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth,height=0.3\textheight,keepaspectratio]{Figures/London-heat-map.png}
@@ -70,7 +69,7 @@ Heatmaps are used for data visualization, to show relationship between variables
 
 \section{Clustering}
 
-Clustering pertains to a method of aggregating data points into groups or clusters. Clustering can be done based on the type of data, if it is desireable one can cluster based on specific parameters like movie genre and user details. There are multiple different clustering algorithms that server different purposes, like based on density, proximity or similar groups of objects. \parencite{ibm_clustering}
+Clustering pertains to a method of aggregating data points into groups or clusters. Clusters can be created based on various factors such as movie genre, user details or anomaly type. There are multiple different clustering algorithms that serve different purposes, such as density or proximity-based methods. \parencite{ibm_clustering}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth,height=0.3\textheight,keepaspectratio]{Figures/clustering-example.png}
@@ -83,7 +82,7 @@ Clustering pertains to a method of aggregating data points into groups or cluste
 \label{sec:scatter_plot}
 
 
-A scatter map is a type of scatter plot, wherein a scatter plot is used to show correlation between variables or points, where each point is plotted on a x,y coordinate plane, where one can use different statistical methods to derive correlation between the points, a scatter map is doing this type of plotting but for longitude and latitude, that then shows the points of data on a map for visualization.\parencite{atlassian_scatter_plot}
+A scatter plot is a visualization method used to show correlation between variables or points, where each point is plotted on a x,y coordinate plane. Scatter plots are used in visualizing relationships between points of data, allowing for patterns and outliers to appear in data visually. A scatter map is an approach to scatter plots where longitude and latitude replace x and y coordinates. Resulting in points being visualized on a map. This allows the visualization of geographic data, giving insight on patterns and congregation of data points \parencite{atlassian_scatter_plot}.
 
 
 %=====================================================================
