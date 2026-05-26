@@ -251,6 +251,7 @@ The performance of the system has been observed through rigorous use of the appl
 The rendering performance is responsive, but will vary based on graphics processing speed of differing computers Section \ref{sec:hardware_acceleration}. rendering happens first with the base map, then with data points, with the other user interface parts appearing with the map. Different visualization methods have different performance, with clustering being faster than heat maps in all cases. 
 
 \subsection{Effect of Clustering on Performance}
+\label{sec:effect_of_clustering_results}
 
 Clustering had a profound effect on the speed of the application, where rendering a scatterplot natively, with over one hundred thousand data points, proved very inefficient. Clustering renders less data points, while the same data remains on the actual map. Due to data points being rendered as they are in view, clustering leads to fewer data points being shown while zoomed out, with zooming in showing more data points, while still not being cluttered as a normal scatterplot would be. 
 
