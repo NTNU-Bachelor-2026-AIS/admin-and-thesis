@@ -16,10 +16,10 @@
 % Unsure about what Arne should be called. Since he controls everything so just put him down as supervising lecturer.
 \subsection{Scrum Framework}
 \label{sec:dev_methodology}
-The Scrum framework, described in Section 2.X, was adopted to structure the development process. The framework was introduced by the supervising lecturer, who provided pre-filled sprint templates and documentation to support its application for groups. This lowered the time investment of adopting the system and methodology, while ensuring that sprint artefacts such as the backlog and retrospectives were maintained throughout the project. 
+The Scrum framework, described in Section 2.X, was adopted to structure the development process. The framework was introduced by the supervising lecturer, who provided pre-filled sprint templates and documentation to support its application for groups. Scrum was chosen because it allows for its suitability with iterative development, and a continuous feedback loop, that allows for early changes in development. This lowered the time investment of adopting the system and methodology, while ensuring that sprint artefacts such as the backlog and retrospectives were maintained throughout the project. 
 
 % TODO: Need to add more info about retrospectives. How long each sprint was 1-2 weeks
-Scrum was also well suited given the projects biweekly meetings with the supervisor and the customer at Kystverket. Each sprint would ensure that further development in the project could be presented and discussed, allowing scope adjustments to be made based based on the feedback. Should technical issues occur, such as limitations or issues with the AIS dataset or uncertainty around feasibility or scope for specific visualisation features. Then the iterative structure allows focus on the backlog until discussions about scope or features are had with the customer at Kystverket rather than following a fixed plan.
+Scrum was also well suited given the project's biweekly meetings with the supervisor and the customer at Kystverket. Each sprint would ensure that further development in the project could be presented and discussed, allowing scope adjustments to be made based based on the feedback. Should technical issues occur, such as limitations or issues with the AIS dataset or uncertainty around feasibility or scope for specific visualisation features. Then the iterative structure allows focus on the backlog until discussions about scope or features are had with the customer at Kystverket rather than following a fixed plan.
 
 \subsection{Daily Stand-Ups}
 Daily stand-up meetings were established as a core part of the sprint work flow, in line with the Scrum practices described in Section 2.X. The primary purpose of the stand-ups is to maintain accountability between team members and to further facilitate collaborative problem-solving between team members depending on problems blocking further development. 
@@ -48,6 +48,8 @@ The main communication platform the team utilized was Discord. This platform was
 
 \subsection{Task Management}
 \label{sec:task_management}
+
+
 Task tracking was handled using GitHub Projects, which provided a shared Kanban-style board across the team's three repositories: one for the frontend, one for the backend, and one for administrative documents such as meeting notes and sprint documentation. Github Projects was selected as the task management tool as the team was allready using Github for version control. Issues were created and tracked through workflow stages to maintain workload transparency and motivation. These workflow stages were: To Do, In Progress, In Review, and Done. These stages ensured that team members could easily see work progress trough a sprint and pick up extra tasks in the backlog when they are done with other problems without even needing to ask a group member. This combined with the three-repository structure made sure issues were seperated based on the repository it was on making sure issues were relevant to the repository.
 % Unsure where i should put how we used github with branching might put it in another section.
 % TODO: Maybe add link and theory to theory chapter
@@ -177,7 +179,7 @@ REST communication between frontend and backend was handled using axios. This wa
 
 
 \subsubsection{GeoJSON Data Handling}
-
+\label{sec:GeoJSON Data Handling}
 GeoJSON serves as the container for all geographic data for anoamlies in the project, this file format was chosen in discussion with the Customer, based on GeoJSON's strengths such as human readability and simplicity of use and parsing. 
 
 
@@ -188,7 +190,8 @@ The design of the application parses the anomaly groups themselves, while allowi
 
 
 \subsection{Anomaly Group And Anomalies}
-As mentiooned in section 3.4.2.4, anomalies and anomaly groups are part of featureCollections. anomalies themselves are implemented as features with data on geometric location. Anomalies have signal strength and properties such as location of the anomaly and name of the ship that sent the anomaly etc.("unsure of this is to be here") 
+
+As mentioned in section \ref{sec:anomalies and anomaly groups}, anomalies and anomaly groups are part of geoJSON featureCollections. anomaly groups and anomalies are implemented as features in a featureCollection, containing properties and geometry. Geometry contains the geographic location of an anomaly, with properties containing specific data such as anomaly type, which come in three forms: unexpected maneuver, speed and jumping anomalies. And other data such as the id of the anomaly, its heading or last activity date. 
 
 
 
@@ -216,6 +219,8 @@ Deck.gl visualization is implemented by being added as a layer above the maplibr
 % 3.5  Visualisation Implementation
 %=====================================================================
 \section{Visualisation Implementation}
+
+
 Visualization methods that were implemented, were chosen based on customer needs, and changed throughout the project lifecycle. Below are the visualization methods that were chosen to implement. 
 
 % FOCUS: This is your core contribution — give it proper space.
@@ -229,7 +234,9 @@ Visualization methods that were implemented, were chosen based on customer needs
 \subsection{Clustering}
 \label{sec:clustering_method}
 
-As mentioned in Section \ref{sec:supercluster}, Supercluster.js is used for calculating clusters based on zoom level and the current map bounds. Supercluster calculates clusters based on the base dataset acquired from the API, calculating all clusters on application load. Map interactions such as zooming and dragging result in clusters being retrieved for the current zoom level and map bounds. The clustering data itself is used with deck.gl,Section \ref{sec:deckgl}. Visualization through deck.gl is accomplished through creating a custom layer, consisting of a label-layer, whose purpose is to be a point counter for the amount of anomalies inside the cluster, this is put over, a scatterplot-layer. section \ref{sec:scattermap}, which combines to create the clustering layer.This layer is re-rendered whenever the clustering output changes due to updates in zoom level or map bounds. Furthermore does clustering visualization have dynamics sizing based on amount of anomalies inside a cluster, leading to clusters being scaled proportional to their anomaly count. 
+Clustering was implemented, as a way to reduce visual clutter and improve human readability when visualizing large datasets, based on customer request. As mentioned in Section \ref{sec:supercluster}, Supercluster.js is used for calculating clusters based on zoom level and the current map bounds. Supercluster calculates clusters based on the base dataset acquired from the API, calculating all clusters on application load. Map interactions such as zooming and dragging result in clusters being retrieved for the current zoom level and map bounds. Supercluster itself was chosen for its ease of use with geoJSON, while being designed for fast calculations, through the use of hierarchical greedy clustering, while reusing previous calculations\ref{sec:supercluster}. 
+
+The clustering data itself is used with deck.gl,Section \ref{sec:deckgl}. Visualization through deck.gl is accomplished through creating a custom layer, consisting of a label-layer, whose purpose is to be a point counter for the amount of anomalies inside the cluster, this is put over, a scatterplot-layer. section \ref{sec:scattermap}, which combines to create the clustering layer.This layer is re-rendered whenever the clustering output changes due to updates in zoom level or map bounds. Furthermore does clustering visualization have dynamics sizing based on amount of anomalies inside a cluster, leading to clusters being scaled proportional to their anomaly count. 
 
 % TODO: Add technical details:
 % - What clustering radius/parameters did you use?
