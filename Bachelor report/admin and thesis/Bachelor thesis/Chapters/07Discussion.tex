@@ -1,4 +1,4 @@
-
+% TODO: Add more refs to theory as well
 %=====================================================================
 \textit{This chapter evaluates the finished project and reflects on the technical, methodological, and contextual factors that shaped the outcome.}
 
@@ -34,8 +34,11 @@ The use of React with TypeScript enforced stronger type safety than plain React,
 
 The single-page design, which covered all required functionality through interactive components, suited the project well. One advantage over a multi-page architecture, was that the map and visualization remained visible at all times, including during manual testing of other components. The overall simplicity of the interface also aligned with the projects focus on concept testing, particularly as the customer themselves had requested that less time would be spent on design and more on functionality.
  
-
 Overall, the frontend implementation fulfilled the project's main goals while highlighting how the use of third party tools can present challenges, and how tool selection is an important step in any software development project. 
+
+\subsection{Code Quality and Maintainability}
+
+The code quality was designed to follow software principles, but due to lack of experience with react itself, some uncertainties about use of specific methods arose. The use of prior programming experience to create files that handle specific tasks, are however used to simplify the program, with refactoring being done multiple times to follow these guidelines
 
 
 \subsection{Visualization Methods and User Interaction}
@@ -57,14 +60,19 @@ The individual anomaly layer, implemented as a scatter plot (Section~\ref{sec:sc
 
 The remaining visualizations, including the base station layer (Section~\ref{sec:base_station}) and the satellite layer, are required for layers such as the anomaly group with signal strength to provide any useful information. They are therefore crucial too the project and presents no notable drawbacks in their implementation. 
 
-User interaction is a core part of the application, and user's should be able to navigate and retrieve information without noticeable slowdown or errors. Based on manual testing during development, user interaction was observed to remain responsive, even though performance remains heavily dependant on hardware used, with the available GPU acting as the main limiting factor for rendering performance (Section~\ref{sec:hardware_acceleration}).% TODO: Add measured data for interaction latency
+User interaction is a core element of the application, and users should be able to navigate and retrieve information without noticeable slowdown or errors. Based on manual testing during development, user interaction was observed to remain responsive, even though performance remains heavily dependant on hardware used, with the available GPU acting as the main limiting factor for rendering performance (Section~\ref{sec:hardware_acceleration}).% TODO: Add measured data for interaction latency
+% Combine both into one maybe
+Most user interaction centers on zoom level and camera position within the map. Although this map interaction has performance costs, it enables access to anomaly information, filtering and searching. As interactivity is a core feature of the application, this trade off is acceptable, since dynamic datasets are far easier to analyse interactively than statically.
 
-Actual user interaction is based heavily around the zoom and camera location of the application. This interaction with the map has drawbacks such as performance loss, but allows for information on anomalies, filtering and searching. This user interactivity comes with the downside of the performance loss, with system responsiveness being affected. As a core feature of the application, the trade of with responsiveness and performance are offset, with non static datasets being much easier to analyse. 
 
+\subsection{Backend and Data Handling}
 
-\subsection{Backend and data handling}
+The backend was provided by the customer with most of the endpoints required by the project already implemented, supported by comprehensive Swagger documentation. Docker simplified the process of running the backend, requiring only a few commands to start and fill the database with test data. 
 
-The backend being provided by the customer, has comprehensive documentation of endpoints through swagger, with all the endpoints needed for the project implemented. Docker proved to simplify the process of running the backend, with few sentences of code being required to start and fill the database with test data. Observing the backend performance showed no critical performance or data errors, but the delivered backend itself comse with limitations on being constrained to the predefined API structure, with extensions being more complicated for the group to implement themselves, due to lack of experience with the programming language GO. Although the observed performance was satisfactory, testing of the performance was not controlled by the group itself, with core negatives of the backend implementation being wait time for customer to implement required features, a less often occurrence. As a result the backend was well implemented, but not controlled solely by the group, this being a tradeoff.
+The group's main contribution to the backend was a master query endpoint ((Section~\ref{sec:backend_and_data_flow_method}), which combines all filter parameters into a single backend query and returns only the matching dataset.
+Client-side filtering on top of an already-filtered dataset would have been possible, however that solution would have required keeping the original dataset in memory and rerunning the filter logic on the frontend to further filter the data the group allready has. However that would be inefficient at the dataset sizes used in this project, because the containerized backend responds in the millisecond range and routing filter operations to the backend to then be handled by the query proved faster than client-side re-filtering. Because of this the rendered dataset always reflects the currently active filters directly, without the need to keep a seperate "full dataset" on the frontend. When users need to drill down further within the active dataset, the sidebar search component provides this functionality locally without requiring an additional backend request.
+
+Observation of the backend showed no critical performance or data errors. However, working with the delivered backend introduced limitations, on being constrained to the predefined API structure, with extensions being more complicated for the group to implement themselves, due to lack of experience with the programming language GO. Although the observed performance was satisfactory, testing of the performance was not controlled by the group itself, with core negatives of the backend implementation being wait time for customer to implement required features, a less often occurrence. As a result the backend was well implemented, but not controlled solely by the group, this being a tradeoff.
 
 Data handling through GeoJSON, proved a good choice for both the backend and frontend, with the libraries used already supporting the data. The data itself being parsed through a deck.gl layer. The layer being responsible for parsing data from each GeoJSON feature. Proved to be an effective design, that allows for simple access to data, through accessing properties and geometry of said features. A tradeoff of using GeoJSON is that the frontend must have prior knowledge of the data structure in order to correctly access said properties and geometry. This introduces dependency on a clear schema. Another issue with data, has been asynchronous errors, with wrong data being delivered, or data being accessed before delivery. 
   
@@ -72,13 +80,12 @@ Data handling through GeoJSON, proved a good choice for both the backend and fro
 
 \section{Performance and Scalability Discussion}
 
-The performance of the system is highly dependent on hardware specifications, with particular effect coming from GPU capability. Webgl has highest effect on greater GPU's, leading to performance being bottlenecked on weaker systems. 
+The performance of the system is highly dependent on hardware specifications, with the GPU having a particularly strong. WebGL benefits significantly from more capable GPUs \ref{sec:hardware_acceleration}), meaning that performance is bottlenecked on weaker systems. 
 
 
 \subsection{Rendering Performance}
 
-Base rendering performance of maplibre, is observed to not have issues, with performance being taxed on the visualization methods and dataset size, rather than the map. Datasets were tested from thousands, to over one hundred thousand, with both having little issues on group computers. The architectural design of the project is not bottlenecked based on the backend, but with frontend using supercluster to recalculate clusters based on zoom, and similar calculations being done on heat map, leads to zoom and move operations being most taxing on the system. This can be tweaked to recalculate fewer times on zoom level, but will lead to a less responsive system. The core bottleneck of any performance is then the frontend itself, with the backend being called in milliseconds. 
-
+The base rendering performance of MapLibre was observed to be unproblematic, with performance being taxed on the visualization methods and dataset size, rather than the map. Datasets ranging from a ten thousand to over 1 million points were tested. The architectural design of the project is not bottlenecked based on the backend, but with frontend using supercluster (Section~\ref{sec:supercluster}) to recalculate clusters based on zoom, and similar calculations being done on heat map, leads to zoom and move operations being most taxing on the system. This can be tweaked to recalculate fewer times on zoom level, but will lead to a less responsive system. The core bottleneck of any performance is then the frontend itself, with the backend being called in milliseconds. 
 
 %=====================================================================
 
@@ -121,9 +128,6 @@ Scope management was handled reactively through customer meetings rather than th
 
 % Should be in technical solution and discussion of that since 
 \begin{comment}
-\subsection{Code Quality and Maintainability}
-
-The code quality was designed to follow software principles, but due to lack of experience with react itself, some uncertainties about use of specific methods arose. The use of prior programming experience to create files that handle specific tasks, are however used to simplify the program, with refactoring being done multiple times to follow these guidelines
 
 \subsection{problems during development}
 
@@ -134,11 +138,11 @@ Multiple problems arose during the development of the project. A core problem be
 
 \section{Limitations}
 
-Although the project fulfilled the main end requirements through scope changes that the the customer requested, it still has limitations and is a concept testing software. 
+Although the project fulfilled the main requirements as adjusted through customer-requested scope changes, several limitations remain which reflect its role as concept-testing software. 
 
 \subsection{Technical Limitations}
 
-Technical limitations include not having implemented real AIS data from the customer in the project. This would be unlikely to have happened with any amount of work on the project as such information is classified, resulting in it being something the customer can take forward themselves. Other limitations are satellite orbit not being plotted, as was a request that was given, but not able to implement in time. This would have allowed for users to see the orbit from the satellite, from its current position, to its positions in the future. Although satellite orbit was not implemented, satellites themselves were, and show up in the signal strength visualization. Another feature from the project outline not implemented, that was quietly removed from scope, is automatic report generation, but this was removed as a request in the project, where focus went into concept testing. 
+One technical limitation is that real AIS data from the customer was not integrated into the project. This integration would not have been feasible within the scope of the project, as the data is classified which makes it a task that would need to be handled internally. Another limitations is the absence of satellite orbit plotting, which was a requested but could not be implemented within the available time. This feature would have allowed users to view a satellite's orbit from from its current position to its future projected positions. Although satellite orbits were not implemented, satellites themselves are present in the system and appear in the signal strength visualization. A further feature from the original project outline that was not implemented is automatic report generation. This was removed from the scope during the project as focus shifted toward concept testing. 
 
 
 
