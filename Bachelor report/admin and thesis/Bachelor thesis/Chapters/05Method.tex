@@ -140,6 +140,7 @@ The backend was originally provided by Kystverket as a working codebase pre-popu
 The system follows a client-server architecture. The backend is written in Go and runs inside a Docker container that exposes a REST API. Swagger is used for API documentation. The frontend is built with React and TypeScript and retrieves the data it needs through API calls to the backend.
 
 \subsection{Backend and Data Flow}
+\label{sec:backend_and_data_flow_method}
 
 The backend infrastructure and test database were provided by the customer, pre-populated with test data since actual AIS anomaly data is confidential. The team's main contribution to the backend was a master query endpoint. This endpoint accepts all filter parameters (anomaly type, mmsi, and time range.) and returns only the matching data. Instead of getting all the anomaly groups and filtering on the frontend, all variables get sent to the backend which queries the data again. This was done since keeping old data and filtering client-side was slow and inefficient.
 
