@@ -148,7 +148,9 @@ Individual anomalies, are shown as a scatterplot, section \ref{sec:scatter_plot}
 \end{figure}
 Figure \ref{fig:individual_anomaly_result_image}, shows the completed layer. anomalies are correctly colored through the signal strength variable, with an info component being shown for an anomaly, through clicking on it. The info component illustrates features of the anomaly, like it's direction, name, and MMSI. 
 
+\subsection{Maplibre}
 
+Maplibre initializes itself upon application boot, in a bright style used for readability for users. After its initialization, it is responsible for interaction, in dragging and zooming the map. Interaction leads to states being updated that other parts of the program can use, such as clusters being updated through zooming, and map location. Visualization functionality is something maplibre has, being able to natively visualize scatterplots and other layers. This was not chosen as a valid approach of visualization in the project, due to the high amount of data required to be visualized, which deck.gl is specialized for. 
 %=====================================================================
 \section{Backend}
 The backend system was developed by the customer and provided as part of the project infrastructure. It exposes a REST API used by the frontend to retrieve anomaly data. anomaly data is created as a geoJSON feature collection, with features indicating a single anomaly group. 
