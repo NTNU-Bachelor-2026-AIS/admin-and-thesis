@@ -20,12 +20,13 @@
 %https://www.kystverket.no/en/sea-transport-and-ports/ais/
 %https://www.kystverket.no/en/about-us/what-is-the-role-of-the-nca/
 \section{Background}
-Norway manages one of the world's most extensive coastlines, and the \gls{nca} is the national agency responsible for coastal management, maritime safety, and emergency preparedness. % Ref to https://www.kystverket.no/en/about-us/what-is-the-role-of-the-nca/
-A central part of this mission is "\acrshort{ais} Norway" which is a national tracking network operated by the \acrshort{nca} that combines around 90 shore base stations with a few \acrshort{ais} satellites. %https://www.kystverket.no/en/sea-transport-and-ports/ais/ais-norge/
-Even though it was originally developed as a anti-collision tool, the \acrfull{ais} is now a critical part of the infrastructure for vessel traffic services, search and rescue operations, and environmental protection. %https://www.kystverket.no/en/about-us/what-is-the-role-of-the-nca/, https://www.barentswatch.no/en/articles/ais-displays-status-report-at-sea/
+Norway manages one of the world's most extensive coastlines, and the \gls{nca} is the national agency responsible for coastal management, maritime safety, and emergency preparedness \parencite{kystverket_nca_role}.
+A central part of this is monitoring of sea-faring vessels. This is done through the use of AIS (Automatic Identification System), a messaging system that transmits information about a vessel, including its heading and location. 
+These messages are handled by "\acrshort{ais} Norway" which is a national tracking network operated by the \acrshort{nca} that combines around 90 shore base stations and a few \acrshort{ais} satellites \parencite{kystverket_ais_norge}.
+Even though it was originally developed as a anti-collision tool, the \acrfull{ais} is now a critical part of the infrastructure for vessel traffic services, search and rescue operations, and environmental protection \parencite{barentswatch_ais_status_report}.
 
 
-While the \acrshort{nca} currently utilizes analytical tools to identify deviations in acrshort{ais} data, the existing solutions lack advanced visualization capabilities such as hexagonal binning and temporal analysis. These features are essential for operators to gain proper insight into the anomalies, because of the massive scale of data. Every day around 60-80 million messages are flagged as anomalies which makes it hard for operators to figure out which anomalies are technical issues and which are security threats. To solve this issue, the \acrshort{nca} hopes for a more intuitive, web-based prototype with more advanced analytical tools such as hexagonal binning, heat-maps and temporal analysis.% https://www.kystverket.no/en/sea-transport-and-ports/ais/ais-norge/
+While the NCA currently utilizes analytical tools to identify deviations in AIS data, the existing solutions lack advanced visualization capabilities such as heat maps, clustering and temporal analysis. These features are essential for operators to gain proper insight into the anomalies, because of the massive scale of data. Every day millions of AIS messages are flagged as anomalies, which makes it hard for operators to differentiate between anomalies that are technical issues and potential security threats. To solve this issue, the \acrshort{nca} hopes for a more intuitive, web-based prototype with new visualization methods \parencite{kystverket_ais_norge}.
 
 
 
@@ -36,10 +37,10 @@ While the \acrshort{nca} currently utilizes analytical tools to identify deviati
 
 \cleardoublepage
 
-% Pretty good
+
 \section{Objective}
 
-The objective of this project is to develop a web-based program that can visualise \acrshort{ais} anomaly data to provide maritime experts with better usable insights. The program will also serve as a tool for both live monitoring and historical analysis.
+The objective of this project is to develop a web-based program that can visualise \acrshort{ais} anomaly data to provide maritime experts with improved insights. The program will also serve as a tool for both live monitoring and historical analysis.
 
 \textbf{Specific goals include:}
 \begin{itemize}
@@ -47,7 +48,7 @@ The objective of this project is to develop a web-based program that can visuali
 
 \item \textbf{Data Aggregation and Clustering:} Developing methods to handle high-density data without overwhelming the user interface.
 
-\item \textbf{Temporal Analysis:} Provide a time based feature that allows users to visualise data forward and backward in time to observe development of anomalies.
+\item \textbf{Temporal Analysis:} Provide a time-based feature that allows users to visualize data forward and backward in time to observe development of anomalies.
 
 \item \textbf{Efficient Querying:} Building a bridge between the React frontend and the backend database to allow users to filter data by ship type, anomaly category, and time intervals.
 \end{itemize}
@@ -55,11 +56,11 @@ The objective of this project is to develop a web-based program that can visuali
 % Need to have meeting to discuss both our motivations. Also see if it means our motivation for picking the project or for the problem existing.
 \section{Motivation}
 
-During a normal day the \acrshort{nca} gets around 80 million \acrshort{ais} messages. From these messages millions can become flagged as anomalies. 
+During a normal day the \acrshort{nca} gets around 80 million \acrshort{ais} messages. From these messages millions can potentially be flagged as anomalies. 
 
-The team chose to work on "Visualisation of \acrshort{ais}" Anomaly Detection" because it addresses a critical real world problem while utilizing modern technical solutions. Maritime security is a field of immense societal importance in Norway. Therefore we believe contributing a prototype to the \acrshort{nca} is a very meaningful purpose for our work.
+The team chose to work on Visualization of \acrshort{ais} Anomaly Detection because it addresses a critical real-world problem while using modern technical approaches. Maritime security is a field of immense societal importance in Norway. Therefore we believe that contributing a prototype to the \acrshort{nca} is a very meaningful purpose for our work.
 
-Furthermore, we are particularly interested in the challenges of Data Processing and Visualisation as well as Front End Functionality. Even so, handling 80 million data points in a web browser presents a significant technical hurdle. However, because of our groups experience in web development and data processing we believe this project allows us to apply those skills in a large scale problem.
+Furthermore, we are particularly interested in the challenges of data processing and visualisation as well as front-end functionality. Managing millions of data points in a web browser presents a significant technical hurdle. However, because of the group's experience in web development and data processing we believe this project allows us to apply those skills in a large scale problem.
 
 \section{Requirements}
 
@@ -69,12 +70,12 @@ The requirements for the project were developed in communication with the custom
 
 \subsection{Functional Requirements}
 
-Functional requirements from the customer, include support for new visualization methods such as clustering and heat maps. Also will the system need to have filtering and anomaly representations that give information about signal strength, position and anomaly type. 
+Functional requirements from the customer include support for new visualization methods such as clustering and heat maps. The system must also include filtering and anomaly representations displaying signal strength, position and anomaly type. 
 
 
 \subsection{System Requirements}
 
-The solution will be implemented as a local database and a website that can query the data it needs and visualise that information. All data processing will be handled on the device hosting the database. 
+The solution will be implemented as a local database and a website that can query and visualize the stored data. All data processing will be handled on the device hosting the database. 
 \begin{itemize}
 \item \textbf{Frontend:} Must be built using React and TypeScript
 \item \textbf{Map Engine:} Must utilize MapLibre or an equivalent library used by the \acrshort{nca}.
@@ -85,11 +86,11 @@ The solution will be implemented as a local database and a website that can quer
 \section{Software and Technology Stack}
 The following technologies were used throughout the development of the project:
 \begin{itemize}
-\item \textbf{React \& TypeScript:} Core frontend framework
+\item \textbf{React \& TypeScript:} Frontend framework and language
 \item \textbf{MapLibre GL JS:} Mapping engine for high-performance maps.
-\item \textbf{Node.js / .NET:} Backend enviorments for data querying.
+\item \textbf{Customer provided backend} A Docker container-based backend system built in Go, used for data storage and querying.
 %\item \textbf{Azure:} Deployment and cloud environment. % Depends on if it counts as being used right now
-\item \textbf{NCA Test Datasets:} Simulated \acrshort{ais} anomaly logs.
+\item \textbf{NCA Test Datasets:} Simulated \acrshort{ais} anomaly data.
 \end{itemize}
 
 % Not sure if we even need this?
@@ -97,8 +98,8 @@ The following technologies were used throughout the development of the project:
 
 % Unsure if we students count for stakeholders
 \begin{itemize}
-\item \textbf{The Norwegian Coastal Administration (Kystverket):} The primary stakeholder and "client." They provide the problem description, the tech stack requirements (Azure, .NET, React), and the \acrshort{ais} data.
-\item \textbf{The Project Team:} Two students from NTNU responsible for the design, implementation, and testing of the visualization prototype.
+\item \textbf{The Norwegian Coastal Administration (Kystverket):} The primary stakeholder and "client." They provide the problem description, the tech stack requirements, and the \acrshort{ais} data.
+\item \textbf{The Project Team:} Two NTNU students responsible for the design, implementation, and testing of the visualization prototype.
 \item \textbf{Maritime Operators:} The end-users who require an intuitive interface to maintain maritime safety.
 \end{itemize}
 
@@ -109,19 +110,19 @@ The following technologies were used throughout the development of the project:
 
 \begin{itemize}
 
-\item \textbf{Chapter 2 – Theory:} will be delving into the theory for the project, what if any equations the software was based on. This will give the underlying theory on how mapping visualization works, How previous research in visualization of in browser map systems, and fast clustering and or showcasing of data. \\
+\item \textbf{Chapter 2 – Theory:} This chapter presents the theoretical background of the project. This will give the underlying theory on how mapping visualization works, how previous research in visualization of in browser map systems, and how clustering and visualization of data is achieved. \\
 
 
-\item \textbf{Chapter 3 – Methods:} focuses on the methodology and hardware the group used during the project, what libraries, programming languages and libraries, also how the project was structured from start to finish.\\
+\item \textbf{Chapter 3 – Methods:} This chapter describes methodology and hardware the group used during the project, what libraries and programming langauges that were used, also how the project was structured and developed from start to finish, why explaining why certain tools and methodology were used.\\
 
 
-\item \textbf{Chapter 4 – Results:} describes the results the group accomplished, how it was accomplished, why certain solutions to problems were used, describing the process and solution in detail.\\ 
+\item \textbf{Chapter 4 – Results:} This chapter describes the results the group accomplished, how it was accomplished, while describing the solution in detail.\\ 
 
 
-\item \textbf{Chapter 5 – Discussion:} discusses the project in detail. It explains the group members' thoughts on the project, how the plan was followed, if there were discrepancies between the plan and the actual progression of the project.\\
+\item \textbf{Chapter 5 – Discussion:} this chapter discusses how the project went in detail. It explains the group's reflections on the project, how the plan was followed, if there were discrepancies between the plan and the actual progression of the project.\\
 
-\item \textbf{Chapter 6 – Conclusion:} serves as a conclusion to the report and discussion on future development on the software that can be done, our recommendations 
+\item \textbf{Chapter 6 – Conclusion:} This chapter serves as a conclusion to the report and discusses future development on the software that can be done.
 
-\item \textbf{Chapter 7 – Societal Impact:}
+\item \textbf{Chapter 7 – Societal Impact:} This chapter describes any societal or environmental consequences the product has
 
 \end{itemize}
