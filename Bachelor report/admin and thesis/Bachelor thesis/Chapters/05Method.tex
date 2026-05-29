@@ -1,12 +1,28 @@
+% =====================================================================
+% METHOD CHAPTER — RESTRUCTURED FOR 1:1 RED THREAD WITH RESULTS
+%
+% NUMBERING NOW MIRRORS RESULTS:
+%   Method 3.1 → Results 4.1  (Project Management)
+%   Method 3.2 → Results 4.2  (System Architecture)
+%   Method 3.3 → Results 4.3  (Frontend)
+%   Method 3.4 → Results 4.4  (Backend and Data Handling)
+%   Method 3.5 → Results 4.5  (Visualization)
+%   Method 3.6 → Results 4.6  (Filter and Interaction)
+%   Method 3.7 → Results 4.7  (Testing and Performance)
+%   Method 3.8 → Results 4.8  (Customer Feedback)
+% =====================================================================
 % This chapter describes the methodology, tools, and implementation choices
 % used during the development of the AIS anomaly visualisation prototype.
 
+% Might need to be expanded based on presentation about writing.
 \textit{This chapter outlines the development process, tools and frameworks used, system architecture, and testing strategies employed throughout the project.}
 
 %=====================================================================
-% 3.1  Development Methodology
+% 3.1  Project Management and Process
+% CHANGED: Was "Development Methodology" — renamed to match Results 4.1
+% "Project Management". Tools and Platforms merged in as 3.1.7.
 %=====================================================================
-\section{Development Methodology}
+\section{Project Management and Process}
 
 % FOCUS: Describe HOW you organised the project. Sprint structure,
 % meeting routines, roles, and task tracking.
@@ -14,12 +30,13 @@
 
 %The team used an Agile approach with the Scrum framework to organise the project. Work was divided into sprints of one to two weeks, where sprint length was adjusted depending on workload from other courses.
 % Unsure about what Arne should be called. Since he controls everything so just put him down as supervising lecturer.
+This section describes how the project was organized, including the development methodology, team structure, meeting routines, communication, and task management tools used throughout the project.
 \subsection{Scrum Framework}
 \label{sec:dev_methodology}
 The Scrum framework, described in Section \ref{sec:scrum_framework_theory}, was adopted to structure the development process. The framework was introduced by the supervising lecturer, who provided pre-filled sprint templates and documentation to support its application for groups. Scrum was chosen for its suitability with iterative development and its continuous feedback loop, which allows for early changes in direction. This lowered the time investment of adopting the system and methodology, while ensuring that sprint artefacts such as the backlog and retrospectives were maintained throughout the project. 
 
 % TODO: Need to add more info about retrospectives. How long each sprint was 1-2 weeks
-Scrum was also well suited given the project's biweekly meetings with the supervisor and the customer at Kystverket. Each sprint would ensure that further development in the project could be presented and discussed, allowing scope adjustments to be made based on the feedback. Should technical issues occur, such as limitations or issues with the AIS dataset or uncertainty around feasibility or scope for specific visualisation features. The iterative structure then allows focus on the backlog until discussions about scope or features with the customer at Kystverket rather than following a fixed plan.
+Scrum was also well suited given the project's biweekly meetings with the supervisor and the customer at Kystverket. Each sprint would ensure that further development in the project could be presented and discussed, allowing scope adjustments to be made based on the feedback, which would help if technical issues were to occur, such as limitations or issues with the AIS dataset or uncertainty around feasibility or scope for specific visualisation features. The iterative structure then allows focus on the backlog until discussions about scope or features with the customer at Kystverket rather than following a fixed plan.
 
 \subsection{Daily Stand-Ups}
 Daily stand-up meetings were established as a core part of the sprint work flow, in line with the Scrum practices described in Section \ref{sec:scrum_framework_theory}. The primary purpose of the stand-ups is to maintain accountability between team members and to further facilitate collaborative problem-solving between team members when problems blocking further development arise. 
@@ -55,14 +72,14 @@ Task tracking was handled using GitHub Projects, which provided a shared Kanban-
 % TODO: Maybe add link and theory to theory chapter
 % https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/customizing-the-board-layout
 
+% CHANGED: Moved from standalone Section 3.2 into Project Management.
+% These are process tools — they belong with the process description.
+% Communication Tools subsection removed since 3.1.5 already covers it.
 
-%=====================================================================
-% 3.2  Tools and Platforms
-%=====================================================================
-
-\section{Tools and Platforms}
+\subsection{Tools and Platforms}
 % Needs to add why to selection of every tool.
-\subsection{Development Tools}
+% Think going down to subsub section isnt good something needs to be done to fix it.
+\subsubsection{Development Tools}
 \begin{itemize}
 \item \textbf{Visual Studio Code:} Primary development environment used by all team members and was selected for its extensive extension system and integrated terminal.
 \item \textbf{Git \& GitHub:} Used for version control, branching, pull requests, and task management via GitHub Projects.
@@ -70,39 +87,39 @@ Task tracking was handled using GitHub Projects, which provided a shared Kanban-
 \item \textbf{Swagger:} Used for API documentation and testing of backend endpoints.
 \end{itemize}
 
-\subsection{Design Tools}
+\subsubsection{Design Tools}
 \begin{itemize}
 \item \textbf{Figma:} Used for designing wireframes and UI mockups for the web application.
 \end{itemize}
 
-% Allready mentioned might remove
-\subsection{Communication Tools}
-\begin{itemize}
-\item \textbf{Discord:} Primary communication platform for team discussions, quick coordination, and informal meetings.
-\item \textbf{Slack:} Used for communication with the customer (Kystverket), including asking technical questions and discussing issues.
-\item \textbf{Outlook:} Used for planning meetings with Supervisor.
-\end{itemize}
-\begin{comment}
-%Should be in AI decleration instead.
-\subsection{AI Tools}
-\begin{itemize}
-\item \textbf{ChatGPT \& Gemini:} Primarily used for technical issues, understanding technologies, and spell checking. 
-\end{itemize}
-\end{comment}
 % TODO: Talk with other group member about their ai usage to make sure nothing is missing
 % TODO: Add other tools
 
+%=====================================================================
+% 3.2  System Architecture
+% CHANGED: Was Section 3.4. Renumbered to match Results 4.2.
+% Technology Stack folded in as 3.2.1 (tech decisions that produce architecture).
+% MapLibre and Deck.gl promoted to subsections here (infrastructure choices).
+%=====================================================================
+\section{System Architecture}
+\label{sec:system_architecture}
+% FOCUS: Describe how the pieces fit together. Include a diagram if possible.
+% The chess thesis has sequence diagrams, class diagrams, package diagrams —
+% you should have at least one architecture diagram here.
 
-%=====================================================================
-% 3.3  Technology Stack
-%=====================================================================
-\clearpage
-\section{Technology Stack}
+% TODO: Add a figure showing the overall system architecture.
+% A simple box diagram: Database <-> Backend (Go/Docker) <-> REST API <-> Frontend (React/MapLibre)
+
+% Needs better section intro with linguistic bridge to theory does it mostly but talks about system isntead of section
+The system follows a client-server architecture (Section~\ref{sec:client_server}). The backend is written in Go and runs inside a Docker container that exposes a REST API (Section~\ref{sec: rest api}). Swagger is used for API documentation. The frontend is built with React and TypeScript and retrieves the data it needs through API calls to the backend.
+
+\subsection{Technology Stack}
 
 The technology stack was primarily decided by the customer's existing infrastructure. Since the prototype is intended to work with Kystverket's systems, using their technology choices ensures compatibility. It also allows the team to leverage the customer's expertise if questions arise. Tools where the customer had no preference, such as map provider and visualization libraries, were decided by the group based on research and project requirements. 
 
 % More Why's need to be added cause it is method.
-\subsection{Frontend}
+% NOTE: Each item still needs rationale — "Used as programming tool" is not Method-level.
+\subsubsection{Frontend Technologies}
 \begin{itemize}
 % Unsure why Javascript is here
 \item \textbf{Javascript:} Programming language used through react.
@@ -118,7 +135,8 @@ The technology stack was primarily decided by the customer's existing infrastruc
 
 \end{itemize}
 
-\subsection{Backend}
+% NOTE: Each item still needs rationale — "Used as programming tool" is not Method-level.
+\subsubsection{Backend Technologies}
 \begin{itemize}
 \item \textbf{PostgreSQL:} The database storing the AIS anomaly test data, provided by the customer.
 \item \textbf{Swagger:} API documentation is auto-generated using Swagger annotations in the Go source code. A Swagger UI endpoint is available for exploring and testing the API.
@@ -129,41 +147,10 @@ The technology stack was primarily decided by the customer's existing infrastruc
 The backend was originally provided by Kystverket as a working codebase pre-populated with test data, since actual AIS anomaly data is confidential. The team forked this repository and updated it throughout the project. The most notable addition was a master query endpoint described in Section \ref{sec:backend_and_data_flow_method}.
 % TODO: Describe the test dataset briefly (rough size, time range, types of anomalies if known).
 
-%=====================================================================
-% 3.4  System Architecture
-%=====================================================================
-\section{System Architecture}
-\label{sec:system_architecture}
-% FOCUS: Describe how the pieces fit together. Include a diagram if possible.
-% The chess thesis has sequence diagrams, class diagrams, package diagrams —
-% you should have at least one architecture diagram here.
-
-% TODO: Add a figure showing the overall system architecture.
-% A simple box diagram: Database <-> Backend (Go/Docker) <-> REST API <-> Frontend (React/MapLibre)
-
-The system follows a client-server architecture (Section~\ref{sec:client_server}). The backend is written in Go and runs inside a Docker container that exposes a REST API (Section~\ref{sec: rest api}). Swagger is used for API documentation. The frontend is built with React and TypeScript and retrieves the data it needs through API calls to the backend.
-
-\subsection{Backend and Data Flow}
-\label{sec:backend_and_data_flow_method}
-
-The backend infrastructure and test database were provided by the customer, pre-populated with test data since actual AIS anomaly data is confidential. The team's main contribution to the backend was a master query endpoint. This endpoint accepts all filter parameters (anomaly type, mmsi, and time range.) and returns only the matching data. Instead of getting all the anomaly groups and filtering on the frontend, all variables get sent to the backend which queries the data again. This was done since keeping old data and filtering client-side was slow and inefficient.
-
-% TODO: Maybe include how data is returned and used? Geojson and such
-
-\subsection{Frontend Architecture}
-
-The frontend architecture follows a client-driven data flow where data is retrieved from the backend through REST API calls using Axios, Section~\ref{sec: rest api}. The received data is stored in React state as a geoJSON featureCollection, which is passed to individual Deck.gl layers responsible for rendering the visualisations. This is done after a map instance is created through a map container class, using maplibre. deck.gl is subsequently used for rendering data points overlaid visually on the map. Interactivity is handled through React components, where state changes control filtering and updating of the rendered layers. Individual Deck.gl layers also implement click event handlers, which update application state and trigger the rendering of additional information components or different visualization layers (~\ref{sec:deckgl}).
-
-
-% Basically repeats what was said above with all three under so consolidate useful info or delete.
-The frontend itself is structured as a collection of React components, that are made to interact through, use of state and an event driven design. State is used for rerendering layers, and change of state itself is implemented to change through user interface and API calls. 
-
-
-All core parts of the interface, such as maplibre, are wrapped as components to be rendered by the react tree. Components acquire data from modules holding functions for data initialization, change of visualization method, with click interaction and searching function implemented. 
-
-
-The frontend is designed to allow for user interaction, through a user interface of react components. The design is allowed for end users to be able to interact with specific anomaly groups, through click events, allowing the user to observe anomaly groups visualized through different implementations such as a heatmap or a clustered scatterplot. Interaction is designed to allow for the user to retrieve information on anomaly groups through click events on clusters, creating a component with information and allowing further interaction. 
-
+ 
+\subsection{Architecture Overview}
+ 
+% ADDED: Concise architecture description connecting the tech stack above to the actual structure
 
 
 \subsubsection{Frontend Data Flow}
@@ -172,27 +159,9 @@ The frontend is designed to allow for user interaction, through a user interface
 The frontend data flow through REST API calls was chosen because it allows for large data sets to be retrieved and saved using react state, allowing for the data to be sent through the application where needed for visualization and component purposes. 
 
 
-\paragraph{Data Retrieval and Filtering Strategy}
+%\paragraph{Data Retrieval and Filtering Strategy}
 % Good but should be expanded to include why
-When specific or filtered data is required, the frontend issues additional REST API requests to the backend, rather than performing full dataset filtering locally. The frontend state is then updated with the returned subset of data. 
-
-
-
-\subsubsection{REST Communication with Axios}
-%Needs to be broken up sentences are too long
-
-REST communication between frontend and backend was handled using Axios. This was chosen to enable asynchronous HTTP requests, without blocking the user interface, while allowing for dynamic updates to the dataset where needed, such as querying for specific anomaly types or date range. Axios allows for the application to be designed to update in real time, where an API call returns a promise of the data requested, which in turn allows the application to update after the data is successfully retrieved, leading to real time updating of the user interface. This in turn leads to a more responsive user interface for end users\parencite{geeksforgeeks_axios}.
-
-
-\subsubsection{GeoJSON Data Handling}
-\label{sec:GeoJSON Data Handling}
-GeoJSON serves as the container for all geographic data for anomalies in the project, this file format was chosen in discussion with the customer, based on GeoJSON's strengths such as human readability and simplicity of use and parsing. 
-
-% Need to use a standard capitalization of featurecollection might be added to abbreviations.
-The anomaly set is saved as a featureCollection in geoJSON, with a featureCollection being the entire set of geographic objects. The anomaly data is built up such that all anomaly groups are part of a collection, while individual anomaly groups also are collections that have individual features inside, a feature being an individual anomaly inside a group, relating to a single ship's anomaly. 
-
-%Split into shorten sentences.
-The design of the application parses the anomaly groups themselves, while allowing for individual anomalies from a group to be rendered in its own layer. This is done through first getting an individual anomaly group through an API request, leading to a returned group, which in turn gives access to the groups ID in which all individual anomalies are part of, leading to an API request for the specific anomaly relating to the group, which contains the information specific anomalies inside\parencite{medium_feature_featurecollection}.
+%When specific or filtered data is required, the frontend issues additional REST API requests to the backend, rather than performing full dataset filtering locally. The frontend state is then updated with the returned subset of data. 
 
 
 \subsection{Anomaly Group And Anomalies}
@@ -218,25 +187,54 @@ The decision to use the library came from the requirement to visualize hundreds 
 % Talks a bit too much about stuff that should be in results this is design decision.
 Deck.gl visualization is implemented by being added as a layer above the maplibre layer, leading to data points being shown in a way that seems native to maplibre itself. Deck.gl is responsible for creating all visualization layers and achieves this by functions being created that return the layer to be used on the map. Layers are created through the current dataset being sent on request of a layer, where it then returns the layer that is to be visualized, this is then handled on the map, with deck.gl overlaying its points on top.  
 
+%=====================================================================
+% 3.3  Frontend
+% CHANGED: Was scattered across 3.4.2 Frontend Architecture + 3.5 Design Process.
+% Now unified to match Results 4.3 Frontend.
+% Design Process folded in as subsections (design feeds the frontend).
+%=====================================================================
+\section{Frontend}
+
 % TODO: Describe the React component structure at a high level.
 % - How is routing handled?
 % - What are the main pages/views? (Map view, filter panel, detail cards, etc.)
 % - How does state management work for filters and map state?
 
-%=====================================================================
-% 3.5  Design Process
-%=====================================================================
-\section{Design Process}
+This section describes the frontend architecture, the design process that shaped it, and the communication patterns between frontend and backend. The resulting frontend is present in Section 4.3.
+% Use proper ref but shows the red string connecting 3.3 to 4.3
+
+\subsection{Frontend Architecture}
+
+The frontend architecture follows a client-driven data flow where data is retrieved from the backend through REST API calls using Axios (Section~\ref{sec: rest api}). The received data is stored in React state as a geoJSON featureCollection, which is passed to individual Deck.gl layers responsible for rendering the visualisations. This is done after a map instance is created through a map container class, using maplibre. deck.gl is subsequently used for rendering data points overlaid visually on the map. Interactivity is handled through React components, where state changes control filtering and updating of the rendered layers. Individual Deck.gl layers also implement click event handlers, which update application state and trigger the rendering of additional information components or different visualization layers (~\ref{sec:deckgl}).
+
+\subsubsection{REST Communication with Axios}
+%Needs to be broken up sentences are too long
+
+REST communication between frontend and backend was handled using Axios. This was chosen to enable asynchronous HTTP requests, without blocking the user interface, while allowing for dynamic updates to the dataset where needed, such as querying for specific anomaly types or date range. Axios allows for the application to be designed to update in real time, where an API call returns a promise of the data requested, which in turn allows the application to update after the data is successfully retrieved, leading to real time updating of the user interface. This in turn leads to a more responsive user interface for end users\parencite{geeksforgeeks_axios}.
+
+
+\subsubsection{GeoJSON Data Handling}
+\label{sec:GeoJSON Data Handling}
+GeoJSON serves as the container for all geographic data for anomalies in the project, this file format was chosen in discussion with the customer, based on GeoJSON's strengths such as human readability and simplicity of use and parsing. 
+
+% Need to use a standard capitalization of featurecollection might be added to abbreviations.
+The anomaly set is saved as a featureCollection in geoJSON, with a featureCollection being the entire set of geographic objects. The anomaly data is built up such that all anomaly groups are part of a collection, while individual anomaly groups also are collections that have individual features inside, a feature being an individual anomaly inside a group, relating to a single ship's anomaly. 
+
+%Split into shorten sentences.
+The design of the application parses the anomaly groups themselves, while allowing for individual anomalies from a group to be rendered in its own layer. This is done through first getting an individual anomaly group through an API request, leading to a returned group, which in turn gives access to the groups ID in which all individual anomalies are part of, leading to an API request for the specific anomaly relating to the group, which contains the information specific anomalies inside\parencite{medium_feature_featurecollection}.
+
+
+\subsection{Design Process}
 \label{sec:design_process}
 The design process started early, with customer meetings outlining the customer's existing system, and other systems that are similar. This was then used as a design basis for the groups implementation of the project. 
 
 
-\subsection{Design Approach}
+\subsubsection{Design Approach}
 
 The design of the user interface followed a three-stage approach. First, existing visualisation systems within geographic and maritime sectors were reviewed to identify common interaction patterns and layout conventions used in this domain. Second, the design principles introduced in Section \ref{sec:design_theory} were applied to the interface making sure the system followed principles like simplicity and consistency, which helps reduce the risk of operators becoming overwhelmed working with large amounts of data. Third, the project was adapted to fit the specific project requirements. 
 % FOCUS: Wireframes, UI/UX decisions, user feedback.
 
-\subsection{Wireframes}
+\subsubsection{Wireframes}
 Wireframes, as seen below, were created in Figma at the start of the project. The application was decided to be based on a single page design, containing a user interface to allow for interaction and visualization. The design was to contain the map, as the core part of the application, with it taking up the entire page. On top of the map, other components like a search bar, and the visualized anomalies and base station were to be overlaid, with filtering via various variables like date range, were to be implemented in a popup on the page. The design was also to have an info component for anomalies. 
 \begin{figure}[!htbp]
     \centering
@@ -262,16 +260,25 @@ Wireframes, as seen below, were created in Figma at the start of the project. Th
     \label{fig:wireframes_overview}
 \end{figure}
 
-% Iffy about this in Method might rewrite it to fit the why.
-\subsection{User Feedback}
-\label{sec: user feedback}
-
-User feedback was gathered primarily through the biweekly customer meetings as described in \ref{sec: meeting structure}. These were used to gain feedback on design mostly using the customers opinion to further reduce complexity and scope while making sure the product was developed how they wanted.
-
 %=====================================================================
-% 3.6  Visualisation Implementation
+% 3.4  Backend and Data Flow
+% CHANGED: Was 3.4.1. Renumbered to match Results 4.4.
+%=====================================================================
+\section{Backend and Data Flow}
+\label{sec:backend_and_data_flow_method}
+% Section intro with bridge to System Architecture
+
+% This is actual content might need some more content
+The backend infrastructure and test database were provided by the customer, pre-populated with test data since actual AIS anomaly data is confidential. The team's main contribution to the backend was a master query endpoint. This endpoint accepts all filter parameters (anomaly type, mmsi, and time range.) and returns only the matching data. Instead of getting all the anomaly groups and filtering on the frontend, all variables get sent to the backend which queries the data again. This was done since keeping old data and filtering client-side was slow and inefficient.
+
+% TODO: Maybe include how data is returned and used? Geojson and such
+%=====================================================================
+% 3.5  Visualisation Implementation
+% CHANGED: Was 3.6. Renumbered to match Results 4.5.
 %=====================================================================
 \section{Visualisation Implementation}
+
+% Needs actual section intro since what is here allready works but for the rest not the section in itself.
 
 
 Visualization methods that were implemented were chosen based on customer needs, and changed throughout the project lifecycle. Below are the visualization methods that were chosen to implement. 
@@ -288,7 +295,7 @@ Visualization methods that were implemented were chosen based on customer needs,
 \label{sec:clustering_method}
 
 % Some sentences need to be split for a cleaner structure.
-Clustering was implemented, as a way to reduce visual clutter and improve human readability when visualizing large datasets, based on customer request. As mentioned in Section \ref{sec:supercluster}, Supercluster.js is used for calculating clusters based on zoom level and the current map bounds. Supercluster calculates clusters based on the base dataset acquired from the API, calculating all clusters on application load. Map interactions such as zooming and dragging result in clusters being retrieved for the current zoom level and map bounds. Supercluster itself was chosen for its ease of use with geoJSON, while being designed for fast calculations, through the use of hierarchical greedy clustering, while reusing previous calculations\ref{sec:supercluster}. 
+Clustering was implemented, as a way to reduce visual clutter and improve human readability when visualizing large datasets, based on customer request. As mentioned in Section \ref{sec:supercluster}, Supercluster.js is used for calculating clusters based on zoom level and the current map bounds. Supercluster calculates clusters based on the base dataset acquired from the API, calculating all clusters on application load. Map interactions such as zooming and dragging result in clusters being retrieved for the current zoom level and map bounds. Supercluster itself was chosen for its ease of use with geoJSON, while being designed for fast calculations, through the use of hierarchical greedy clustering, while reusing previous calculations (Section~\ref{sec:supercluster}). 
 
 The clustering data itself is used with deck.gl,Section \ref{sec:deckgl}. Visualization through deck.gl is accomplished through creating a custom layer, consisting of a label-layer, whose purpose is to be a point counter for the amount of anomalies inside the cluster, this is put over, a scatterplot-layer. section \ref{sec:scattermap}, which combines to create the clustering layer.This layer is re-rendered whenever the clustering output changes due to updates in zoom level or map bounds. Furthermore does clustering visualization have dynamics sizing based on amount of anomalies inside a cluster, leading to clusters being scaled proportional to their anomaly count. 
 
@@ -300,29 +307,32 @@ The clustering data itself is used with deck.gl,Section \ref{sec:deckgl}. Visual
 
 \subsection{Heat Map}
 \label{sec:Heat_Map_method}
+
 A heat map layer was implemented for visualization of the full dataset. \ref{sec:heatmap}. Heat map visualization is done through deck.gl base layer. implemented through radius based coloring with tighter knit data points leading to red color, and yellow being the lighter areas. 
 % TODO: Describe the MapLibre heat map layer configuration:
 % - What colour ramp did you use?
 % - How does the weight/intensity scale with zoom?
 % - Any specific property used for weighting (e.g. anomaly severity)?
 
+% Maybe deck.gl parameters and ref to theory also the ref is just there and not properly in the sentence.
+
 
 \subsection{Base Station Layer}
 \label{sec:base_station}
-A layer to visualize base stations is a requirement to implement, based on base stations being needed to visualize signal strength related to anomalies. The layer was implemented through an icon-layer with deck.gl, with an icon of a database being used to symbolize the base station on the map. This layer was then to be used together with other layers related to it, showing how anomalies at sea and base stations communicate. 
+A base station layer waas required to support visualization of signal strength anomalies. The layer was implemented through an icon-layer with deck.gl, with an icon of a database being used to symbolize the base station on the map. This layer was then to be used together with other layers related to it, showing how anomalies at sea and base stations communicate. 
 
 
 \subsection{Anomaly Group Layer}
 
-The anomaly group layer, is a visualization layer that gives a detailed representation of a single anomaly group, section \ref{sec:anomalies and anomaly groups}. The anomaly group visualization layer is created through a custom deck.gl layer. This layer consists of a signal strength layer, using data from the individual anomalies inside the group, that are connected to a satellite or base station with a signal strength number value. This value is then used to color from red to green, the line, which is used to indicate if the signal is strong, being a green coloring, or weak, being redder coloring.  
+The anomaly group layer, is a visualization layer that gives a detailed representation of a single anomaly group, section \ref{sec:anomalies and anomaly groups}. The anomaly group visualization layer is created through a custom deck.gl layer. This layer consists of a signal strength layer, using data from the individual anomalies inside the group, that are connected to a satellite or base station with a signal strength number value. This value used to color from red to green, indicating whether the signal is weak (red) or strong (green).  
 
 \subsection{Individual Anomaly Layer}
 
-An individual anomaly visualization layer was requested by the customer during the later stages of development. This layer was implemented as a scatter plot, which each point representing a singular ship, from the anomaly group. The individual points are were designed to be colored from red to green, based on signal strength, with green being considered a strong signal, and red a weak one. 
+An individual anomaly visualization layer was requested by the customer during the later stages of development. This layer was implemented as a scatter plot, with each point representing a singular ship, from the anomaly group. The individual points are colored from red to green, based on signal strength, with green being considered a strong signal, and red a weak one. 
 
 \subsection{Scope and Feature Prioritisation}
 
-The project scope was decided through ongoing discussions with the customer. Hexagonal binning was initially identified as a desired feature in the project brief. However due to time constraints it was not implemented in the final prototype. The scope of the project changed throughout development, leading to some new features being requested, some of which were cut. The team prioritised clustering, heat maps, and the filter system based on customer feedback since these provided the most immediate analytical value. 
+The project scope was decided through ongoing discussions with the customer. Hexagonal binning was initially identified as a desired feature in the project brief. However due to time constraints it was not implemented in the final prototype. The scope of the project changed throughout development, leading to some new features being requested, some of which were cut. The team prioritized clustering, heat maps, and the filter system based on customer feedback since these provided the most immediate analytical value. 
 % TODO: Include what we cut / didnt focus on
 % NOTE TO SELF: Your Introduction (Section 1.2 Objective) lists hexagonal binning
 % and advanced temporal analysis as goals. Since hex binning was not implemented
@@ -331,6 +341,14 @@ The project scope was decided through ongoing discussions with the customer. Hex
 %   (b) address the gap explicitly in Discussion (recommended — explain the
 %       scoping decision made with the customer).
 
+%=====================================================================
+% 3.6  Filter and Interaction
+% CHANGED: Was part of 3.6 Visualization Implementation.
+% Now standalone section to match Results 4.6 Filter and Interaction Results.
+%=====================================================================
+\section{Filter and Interaction}
+
+% Section intro with bridge to visualization can use a back refrence and a forward reference
 
 \subsection{Filter System}
 
@@ -348,12 +366,14 @@ Satellite connections was implemented as a layer that would only be visualised w
 The filtering controls are designed for simple, interactive operation. A pop-up calendar component was implemented for date selection, and a drop-down listing the available types was implemented for anomaly type selection. A third component was for inputting numbers which was implemented for mmsi selection. These standard interfaces were chosen to keep the filtering workflow familiar to other systems while also allowing operators without prior training to use the prototype.
 
 
-
 %=====================================================================
 % 3.7  Testing
+% Matches Results 4.7 Testing and Performance.
 %=====================================================================
 \section{Testing}
 \label{sec:testing_method}
+% Needs section intro with forward reference
+
 Testing of the project was done through manual testing of the application itself, with planned automatic tests to be implemented later.  
 
 % FOCUS: What you tested, how, and why certain approaches were chosen.
@@ -364,9 +384,20 @@ As the backend was primarily created by the customer, leading to actual tests no
 \subsection{Frontend Testing}
 Frontend testing was done manually by the group, through interaction with the website itself, and through console log of code, to fix errors and ensure correctness. 
 
-\subsection{Manual and Performance Testing}
+\subsection{Performance Observation Methodology}
 Performance was not specifically tested through hard coded logic, considering deck.gl as a library is already optimized for data set. But was tested throughout use of the website, together with some optimizations being implemented such as recalculations of clusters not being done on every interaction with the map, which was an issue earlier in development. 
 
+%=====================================================================
+% 3.8  User Feedback
+% CHANGED: Renumbered to match Results 4.8 Customer Feedback.
+%=====================================================================
+\section{User Feedback}
+\label{sec:user_feedback}
+% Section intro with bridge
+
+User feedback was gathered primarily through the biweekly customer meetings as described in \ref{sec: meeting structure}. These were used to gain feedback on design mostly using the customers opinion to further reduce complexity and scope while making sure the product was developed how they wanted.
+
+% 
 %=====================================================================
 % End of Methods chapter
 %=====================================================================
