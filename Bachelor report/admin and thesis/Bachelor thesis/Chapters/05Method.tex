@@ -15,7 +15,7 @@
 % used during the development of the AIS anomaly visualisation prototype.
 
 % Might need to be expanded based on presentation about writing.
-\textit{This chapter outlines the development process, tools and frameworks used, system architecture, and testing strategies employed throughout the project.}
+\textit{This chapter outlines the development process, tools, frameworks, system architecture, and testing strategies employed throughout the project.}
 
 %=====================================================================
 % 3.1  Project Management and Process
@@ -29,51 +29,52 @@
 % Mirror the chess thesis Section 3.3 for level of detail.
 
 %The team used an Agile approach with the Scrum framework to organise the project. Work was divided into sprints of one to two weeks, where sprint length was adjusted depending on workload from other courses.
-% Unsure about what Arne should be called. Since he controls everything so just put him down as supervising lecturer.
+
 This section describes how the project was organized, including the development methodology, team structure, meeting routines, communication, and task management tools used throughout the project.
 
 \subsection{Scrum Framework}
 \label{sec:dev_methodology}
 
-The Scrum framework, described in Section \ref{sec:scrum_framework_theory}, was adopted to structure the development process. The framework was introduced by the supervising lecturer, who provided pre-filled sprint templates and documentation to support its application for groups. Scrum was chosen for its suitability with iterative development and its continuous feedback loop, which allows for early changes in direction. This lowered the time investment of adopting the system and methodology, while ensuring that sprint artefacts such as the backlog and retrospectives were maintained throughout the project. 
+The Scrum framework, described in Section \ref{sec:scrum_framework_theory}, was employed to structure the development process. It was introduced by the supervising lecturer, who provided pre-filled sprint templates and documentation to support its use in group-based projects. Scrum was chosen for its suitability with iterative development and its continuous feedback loop, which allows for early changes in direction. This reduced the time investment of adopting the framework, while ensuring that sprint artefacts such as the backlog and retrospectives were consistently maintained throughout the project.
 
-% TODO: Need to add more info about retrospectives. How long each sprint was 1-2 weeks
-Scrum was also well suited given the project's biweekly meetings with the supervisor and the customer at the NCA. Each sprint would ensure that further development in the project could be presented and discussed, allowing scope adjustments to be made based on the feedback, which would help if technical issues were to occur, such as limitations or issues with the AIS dataset or uncertainty around feasibility or scope for specific visualisation features. The iterative structure then allows focus on the backlog until discussions about scope or features with the customer at the NCA rather than following a fixed plan. The project's internal sprint structure was organized into weekly sprints, which followed issues created on Github related to that weeks iteration. At the end of each sprint, a short retrospective meeting was conducted to evaluate the progress of the group, planning what to focus on the next group, which lead to what to prioritize from the backlog if any issues were not completed during the sprint. This was then used to plan the following sprint. 
+
+Scrum was also well suitable due to the project's biweekly meetings with both the supervisor and the customer at the NCA. Each sprint provided opportunities to present and discuss ongoing development, allowing scope adjustments to be made based on feedback. This helped the group particularly when dealing with technical constraints, such as limitations or issues with the AIS dataset or uncertainty around feasibility or scope for specific visualisation features. The iterative structure allowed focus on the backlog until discussions about scope or features with the customer at the NCA rather than following a fixed plan. The project's internal sprint structure was organized into weekly sprints, which followed issues created on GitHub related to each week's iteration. At the end of each sprint, a short retrospective meeting was conducted to evaluate the progress of the group, planning what to focus on the next sprint. This informed prioritisation of backlog items, if any issues were not completed during the sprint. This was used when planning the following sprint.
 
 \subsection{Daily Stand-Ups}
 
 
-Daily stand-up meetings were established as a core part of the sprint work flow, in line with the Scrum practices described in Section \ref{sec:scrum_framework_theory}. The primary purpose of the stand-ups is to maintain accountability between team members and to further facilitate collaborative problem-solving between team members when problems blocking further development arise. 
+Daily stand-up meetings were established as an integral part of the sprint workflow, in accordance with the Scrum practices described in Section \ref{sec:scrum_framework_theory}. The primary purpose of the stand-ups was to maintain accountability between team members and to further facilitate collaborative problem-solving between team members when problems blocking further development occurred. 
 
-In a two-person team, the risk of one member being stuck on a problem without the other member being aware is likely. Daily meeting allowed such issues to be discussed early, preventing them from blocking further project development. They can also be utilized as a daily forced break for the team. Sustained work without regular breaks does not equated to consistent productivity. While also being a way to quickly discuss a problem for further collaborative work after the stand-up meeting. While the daily stand up was followed once daily, there were multiple days where daily meetings while walking to facilitate a break were done, while discussing the project further. 
+In a two-person team, the risk of one member being stuck on a problem without the other member being aware is likely. Daily meetings allowed such issues to be discussed early, preventing them from blocking progress. They were also utilized as a daily forced break for the team. Sustained work without regular breaks does not equate to consistent productivity. In addition, they served as a way to quickly discuss a problem for further collaborative work after the stand-up meeting. While the daily stand-up was followed once daily, there were multiple days where meetings were conducted while walking, combining discussion of the project with a short break.
 
 
 %Every day the team had a stand-up meeting at 12:00 where members discussed issues they had run into, what they were working on, and what to focus on next. However a lot of days we had multiple daily stand ups to clear our head and keep motivation high.
 
 \subsection{Team Composition and Roles}
 
-The project was conducted by a two-member team where responsibilities were divided to ensure that core Scrum artifacts were maintained consistently throughout the project. One member served as a Scrum master, taking control of sprint documentation, backlog maintenance, and handling of sprint meetings and stand-ups. The other member was responsible for handling meeting notes. While all remaining responsibilities were shared equally, which included development, testing, and design.
+The project was conducted by a two-member team, with responsibilities divided to ensure that core Scrum artifacts were maintained consistently throughout the project. One member served as a Scrum master, taking control of sprint documentation, backlog maintenance, and handling of sprint meetings and stand-ups. The other member was responsible for handling meeting notes. All remaining responsibilities, including development, testing and design, were shared equally. 
 
 \subsection{Meeting Structure}
 \label{sec: meeting structure}
 %The project spanned from January 2026, with delivery on the 20th of May. 
 % TODO: Add about issues with workload and how we handled it.
 
-Biweekly meetings were held with the supervisor to review academic progress and discuss the project's technical direction. Meetings with the customer at the NCA were arranged as biweekly meetings focused on presenting completed work and gathering feedback while clarifying the scope of the project. The outcomes from both meetings would be recorded in meeting notes and be stored in the administrative repository, which ensures that decisions remained accessible to both team members through the project making sure the scope of the project remained stable. Some biweekly meetings were occasionally rescheduled in agreement with the supervisor or customer due to scheduling conflicts. These issues were solved through communication with the involved party. 
+Biweekly meetings were held with the supervisor to review academic progress and discuss the project's technical direction. Customer meetings with the NCA were arranged biweekly and focused on presenting completed work and gathering feedback while clarifying the scope of the project. The outcomes from both meetings were recorded in meeting notes and were stored in a dedicated Discord document channel, ensuring that decisions remained accessible to both team members throughout the project and that the project scope remained stable. Occasionally, biweekly meetings were rescheduled in agreement with the supervisor or customer due to scheduling conflicts. These conflicts were resolved through communication with the relevant party. No formal meeting invitation documents were used, as scheduling was handled directly through email or Slack communication, with meeting notes being written for each scheduled meeting. 
 
 % TODO: Maybe talk about how they were busy some times also wondering how to word kystverket.
 
 \subsection{Communication}
 
-The main communication platform the team utilized was Discord. Discord was selected for its support of persistent text channels and voice communication. This platform was used to plan meetings and work on tasks as well as asking questions. Its main use was discussions and saving information that would be reused later. However Outlook was also utilized to contact the supervisor and plan meetings. The customer at Kystverket used Slack to communicate and used it to plan meetings and answer technical questions.
+The main communication platform the team utilized was Discord. Discord was selected due to its support of persistent text channels and voice communication. The platform was used for planning meetings, task coordination and general communication. It primarily served as a channel for communication and storing information. Outlook was also utilized to contact the supervisor and plan meetings. The customer at the NCA used Slack to communicate, primarily to plan meetings, ask for progress updates, and answer technical questions.
 
 \subsection{Task Management}
 \label{sec:task_management}
 
 
-Task tracking was handled using GitHub Projects, which provided a shared Kanban-style board across the team's three repositories: one for the frontend, one for the backend, and one for administrative documents such as meeting notes and sprint documentation. Github Projects was selected as the task management tool as the team was already using Github for version control. Issues were created and tracked through workflow stages to maintain workload transparency and motivation. These workflow stages were: To Do, In Progress, In Review, and Done. These stages ensured that team members could easily see work progress through a sprint and pick up extra tasks in the backlog when they are done with other problems without even needing to ask a group member. This combined with the three-repository structure made sure issues were separated based on the repository it was on. This made sure issues were relevant to the repository.
+Task tracking was handled using GitHub Projects, which provided a shared Kanban-style board across the team's three repositories: one for the frontend, one for the backend, and one for administrative documents such as meeting notes and sprint documentation. The tool was selected as the task management tool, as the team was already using GitHub for version control. Issues were created and tracked through workflow stages to ensure workload transparency and motivation. These workflow stages were: To Do, In Progress, In Review, and Done. These stages ensured that team members could easily see work progress through a sprint and pick up extra tasks in the backlog when tasks were completed without requiring communication with the other team member. Combined with the three-repository structure, this ensured issues were separated based on the repository it was on, while keeping issues at their relevant repository.
 
-GitHub branching was used to isolate development between developers. This was used so that each member worked on their own specific tasks. Code changes were implemented on the separate branches, when complete being reviewed by the responsible member and merged to the main branch. 
+
+GitHub branching was used to isolate development between developers. Each member worked on dedicated branches on tasks assigned to that member. Upon completion, branches were reviewed by the responsible member and merged to the main branch. 
 % Unsure where i should put how we used github with branching might put it in another section.
 % TODO: Maybe add link and theory to theory chapter
 % https://docs.github.com/en/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/customizing-the-board-layout
@@ -88,14 +89,14 @@ GitHub branching was used to isolate development between developers. This was us
 \subsubsection{Development Tools}
 \begin{itemize}
 \item \textbf{Visual Studio Code:} Primary development environment used by all team members and was selected for its extensive extension system and integrated terminal.
-\item \textbf{Git \& GitHub:} Used for version control, branching, pull requests, and task management via GitHub Projects. Github was selected due to the groups prior knowledge with the tool, while task management and sprint being handled through it due to recommendation from the supervisor.
-\item \textbf{Docker:} The backend was containerised using Docker to ensure a consistent and reproducible runtime environment. This was chosen by the customer due to ease of use of docked containers.
-\item \textbf{Swagger:} Used for API documentation and testing of backend endpoints, originally set up by the customer. This was chosen by the customer to allow for comprehensive testing and information about API endpoints.
+\item \textbf{Git \& GitHub:} Used for version control, branching, pull requests, and task management via GitHub Projects. GitHub was adopted due to the groups prior knowledge with the tool, while task management and sprint being handled through it due to recommendation from the supervisor.
+\item \textbf{Docker:} The backend was containerised using Docker to ensure a consistent and reproducible runtime environment. This was preferred by the customer due to ease of use of Docker containers.
+\item \textbf{Swagger:} Used for API documentation and testing of backend endpoints, originally set up by the customer. This was selected by the customer for comprehensive API testing and documentation. 
 \end{itemize}
 
 \subsubsection{Design Tools}
 \begin{itemize}
-\item \textbf{Figma:} Used for designing wireframes and UI mockups for the web application. This was used due to allowing for collaboration between members, while being a free tool that came recommended by the customer. 
+\item \textbf{Figma:} Used for designing wireframes and UI mockups for the web application. This was used due to its support for collaboration between members, while being a free tool that came recommended by the customer. 
 \end{itemize}
 
 % TODO: Talk with other group member about their ai usage to make sure nothing is missing
@@ -117,33 +118,33 @@ GitHub branching was used to isolate development between developers. This was us
 % A simple box diagram: Database <-> Backend (Go/Docker) <-> REST API <-> Frontend (React/MapLibre)
 
 % Needs better section intro with linguistic bridge to theory does it mostly but talks about system isntead of section
-The system follows a client-server architecture (Section~\ref{sec:client_server}). The backend is written in Go and runs inside a Docker container that exposes a REST API (Section~\ref{sec: rest api}). Swagger is used for API documentation. The frontend is built with React and TypeScript and retrieves the data it needs through API calls to the backend.
+The architecture follows a client-server model (Section~\ref{sec:client_server}). The backend is implemented in Go and running inside a Docker container exposing a REST API (Section~\ref{sec: rest api}). Swagger is used for API documentation, and the frontend is built with React and TypeScript retrieving the data it needs through API calls to the backend.
 
 
 \subsection{Architecture Overview}
  
 % ADDED: Concise architecture description connecting the tech stack above to the actual structure
-The system is structured as a  client-server architecture consisting of a frontend, backend, and database. The frontend communicates with the backend through REST API calls using axios, which leads to the backend sending a dataset based on request variables. This dataset is then visualized through deck.gl in the frontend, which is laid over the maplibre map. 
+The system is based on a client-server architecture consisting of a React frontend, Docker backend, and database. The React frontend communicates with the backend through REST API calls using Axios, which results in the backend sending a dataset based on request parameters. This dataset is then visualized through Deck.gl in the frontend, layered over a Maplibre map. 
 
 
 \subsection{Technology Stack}
 
-The technology stack was primarily decided by the customer's existing infrastructure. Since the prototype is intended to work with Kystverket's systems, using their technology choices ensures compatibility. It also allows the team to leverage the customer's expertise if questions arise. Tools where the customer had no preference, such as map provider and visualization libraries, were decided by the group based on research and project requirements. 
+The technology stack was primarily determined by the customer's existing infrastructure. Since the prototype is intended to work with the NCA's systems, using their technology choices ensures compatibility. It also allows the team to leverage the customer's expertise if questions arise. Tools for which the customer has no preference, such as the map provider and visualization libraries, were decided by the group based on research and project requirements. 
 
 % More Why's need to be added cause it is method.
 % NOTE: Each item still needs rationale — "Used as programming tool" is not Method-level.
 \subsubsection{Frontend Technologies}
 \begin{itemize}
 % Unsure why Javascript is here
-\item \textbf{Javascript:} Programming language used through react. This was chosen due to customer requirement, and that it allows for comprehensive interaction implementation to the proejct. 
-\item \textbf{React:} React was used as a programming library for javascript, because it allows for reusable components and props. 
-\item \textbf{Typescript:} Typescript was used for react to implement more type safety to the project. 
-\item \textbf{MapLibre GL JS:} Mapping engine used for rendering interactive, high-performance maps with WebGL acceleration. This was chosen due to being mentioned by the customer, and due to being an open source tool allowing for different base-map styles. 
-\item \textbf{Deck.gl:} This is the Library used for visualization of anomaly data, and was chosen due to prolific use by the industry, and due to being hardware accelerated and designed to handle large amounts of data as its purpose. In addition to providing a large suite of visualization methods. 
+\item \textbf{JavaScript:} Programming language used by React. This was chosen due to customer requirement, and that it allows for comprehensive interaction implementation to the project. 
+\item \textbf{React:} React was used as a JavaScript library, due to its reusable component-based architecture and props.
+\item \textbf{Typescript:} Typescript was used with React to implement more type safety to the project. 
+\item \textbf{MapLibre GL JS:} Mapping engine used for rendering interactive, high-performance maps with WebGL acceleration. This was chosen due to being recommended by the customer, and being open-source. 
+\item \textbf{Deck.gl:} This is the Library used for visualization of anomaly data, and was chosen due to being widely used in the industry, being GPU-accelerated and designed to handle large-scale datasets. In addition to providing a large suite of visualization methods. 
 \item \textbf{Axios:} Library used for REST API communication. This was used due to simplifying data retrieval from the backend API. 
 %\item \textbf{Vite:}
-\item \textbf{React-window:} Library used for virtualization of list. This was chosen due to simplicity of implementation.
-\item \textbf{SuperCluster:} Library used for calculation of cluster based on anomaly data, used for visualizing clusters. This was chosen due to using hierarchical greedy clustering (Section~\ref{sec:supercluster}), while being made to calculate on geoJSON datasets.
+\item \textbf{React-window:} Library used for virtualization of lists. This was chosen due to simplicity of implementation.
+\item \textbf{SuperCluster:} Library used for calculation of clusters based on anomaly data, used for visualizing clusters. This was chosen due to using hierarchical greedy clustering (Section~\ref{sec:supercluster}), and being designed to calculate on GeoJSON datasets.
 % TODO: Go over as a group to make sure no libraries or dependencies are missing.
 
 \end{itemize}
@@ -151,13 +152,13 @@ The technology stack was primarily decided by the customer's existing infrastruc
 % NOTE: Each item still needs rationale — "Used as programming tool" is not Method-level.
 \subsubsection{Backend Technologies}
 \begin{itemize}
-\item \textbf{PostgreSQL:} The database storing the AIS anomaly test data, provided by the customer.
-\item \textbf{Swagger:} API documentation is auto-generated using Swagger annotations in the Go source code. A Swagger UI endpoint is available for exploring and testing the API.
+\item \textbf{PostgreSQL:} The database storing the AIS anomaly test data, supplied by the customer.
+\item \textbf{Swagger:} Swagger generates API documentation through annotations in the Go backend. A Swagger UI endpoint is available locally for exploring and testing the API.
 \item \textbf{Docker:} Used for containerizing the backend services.
 % TODO: Mention other things used in the backend making sure nothing is missing.
 \end{itemize}
 
-The backend was originally provided by Kystverket as a working codebase pre-populated with test data, since actual AIS anomaly data is confidential. The team forked this repository and updated it throughout the project. The most notable addition was a master query endpoint described in Section \ref{sec:backend_and_data_flow_method}. The test dataset is implemented using three types of anomalies, being  based on speed, maneuver and jumping anomalies. These are given groups related to the same type, that can range from many thousands, to one. 
+The backend was originally provided by the NCA as a working codebase, pre-populated with test data for development, since actual AIS anomaly data is confidential. The team forked this repository and updated it throughout the project. The most notable addition was a master query endpoint described in Section \ref{sec:backend_and_data_flow_method}. The test dataset consists of three anomaly types: speed, maneuver, and jumping anomalies. Anomalies are grouped by type and proximty, ranging from thousands to a single anomaly entry per group. 
 % TODO: Describe the test dataset briefly (rough size, time range, types of anomalies if known).
 
 
@@ -165,25 +166,25 @@ The backend was originally provided by Kystverket as a working codebase pre-popu
 \subsection{Anomaly Group And Anomalies}
 
 % Capitalization issues need to be fixed with standards like abbreviations or terminologies.
-As mentioned in section \ref{sec:anomalies and anomaly groups}, anomalies and anomaly groups are part of geoJSON featureCollections. Anomaly groups and anomalies are implemented as features in a featureCollection, containing properties and geometry. Geometry contains the geographic location of an anomaly, with properties containing specific data such as anomaly type, which come in three forms: unexpected maneuver, speed and jumping anomalies. This includes other data such as the id of the anomaly, its heading or last activity date. 
+As mentioned in section \ref{sec:anomalies and anomaly groups}, anomalies and anomaly groups are represented as GeoJSON FeatureCollections. Anomaly groups and anomalies are implemented as features in a FeatureCollection, containing properties and geometry. Geometry defines the geographic location of an anomaly, with properties containing specific data such as anomaly type, of which there are three types: unexpected maneuver, speed and jumping anomalies. This includes other data such as the id of the anomaly, its heading or last activity date. 
 
 
 
-\subsubsection{Maplibre}
+\subsubsection{MapLibre}
 
-Maplibre is used as the base map of the application. An interactive map being crucial for the project, it was decided to use maplibre based on its strengths, such as being an open source project that has all required functionality of the map, also having integrated deck.gl support for adding layers on top through a overlay. Utilization of vector tiles in maplibre, is another factor in why it was chosen, where vector tiles lead to improved performance and interactivity, while having a smoother picture than alternatives. section \ref{sec:vector tiles}.
+MapLibre is used as the base map of the application. As an interactive map is crucial for the project, it was decided to use MapLibre based on its strengths, such as being an open source project that provides all required mapping functionality, while having integrated Deck.gl support for adding layers on top through a overlay. The utilization of vector tiles in MapLibre is another factor in why it was chosen, where vector tiles lead to improved performance and interactivity, while having a smoother picture than alternatives (see Section~\ref{sec:vector_tiles}).
 
 
-Maplibre serves as the foundational map layer for the application. While Maplibre itself can be used to visualize, it was decided to use deck.gl for visualization, while maplibre is focused on handling zoom, interaction and the base map, while visualization layers are rendered on top of maplibre. 
+MapLibre serves as the foundational map layer for the application. While MapLibre itself can be used to visualize, Deck.gl was chosen for visualizing the dataset, whereas MapLibre is focused on handling zoom, interaction and the base map, while visualization layers are rendered on top of MapLibre. 
 
 
 \subsection{Deck.gl Layer Integration}
 
-Deck.gl is the visualization library used on top of Maplibre.
-The decision to use the library came from the requirement to visualize hundreds of thousands of points concurrently on map. Performance is then one of the main factors driving the choice, as deck.gl is created specifically for the task of visualizing large datasets, being optimized for performance. 
+Deck.gl is the visualization library used as a layer on top of MapLibre.
+The decision to use the library came from the requirement to visualize hundreds of thousands of points concurrently on the map. Performance is one of the main factors driving the choice, as Deck.gl is created specifically for the task of visualizing large datasets.
 
 % Talks a bit too much about stuff that should be in results this is design decision.
-Deck.gl visualization is implemented by being added as a layer above the maplibre layer. It is responsible for rendering anomaly data as visualization layers above the base map. The layers are defined through functions that generate layer objects based on the dataset received from the backend.
+Deck.gl is responsible for rendering anomaly data as visualization layers above the base map. The layers are defined through functions that generate layer objects based on the dataset received from the backend.
 
 
 %=====================================================================
@@ -199,59 +200,61 @@ Deck.gl visualization is implemented by being added as a layer above the maplibr
 % - What are the main pages/views? (Map view, filter panel, detail cards, etc.)
 % - How does state management work for filters and map state?
 
-This section describes the frontend architecture, the design process that shaped it, and the communication patterns between frontend and backend. The resulting frontend is present in Section 4.3.
+This section describes the frontend architecture, the design process that shaped it, and the communication patterns between frontend and backend. The resulting implementation is presented in Section 4.3.
 % Use proper ref but shows the red string connecting 3.3 to 4.3
 
 \subsection{Frontend Architecture}
 
-The frontend architecture follows a client-driven data flow where data is retrieved from the backend through REST API calls using Axios (Section~\ref{sec: rest api}). The received data is stored in React state as a geoJSON FeatureCollection, which is passed to individual Deck.gl layers responsible for rendering the visualisations. This is done after a map instance is created through a map container class, using maplibre. deck.gl is subsequently used for rendering data points overlaid visually on the map. Interactivity is handled through React components, where state changes control filtering and updating of the rendered layers. Individual Deck.gl layers also implement click event handlers, which update application state and trigger the rendering of additional information components or different visualization layers (~\ref{sec:deckgl}).
+The frontend architecture follows a client-driven data flow where data is retrieved from the backend through REST API calls using Axios (Section~\ref{sec: rest api}). The received data is stored in React state as a GeoJSON FeatureCollection, which is passed to individual Deck.gl layers responsible for rendering the visualisations. This is done after a map instance is created through a map container class using MapLibre. Deck.gl is subsequently used for rendering data points overlaid on the map. Interactivity is handled through React components, where state changes control filtering and updating of the rendered layers. Individual Deck.gl layers also implement click event handlers, which update application state and trigger the rendering of additional information components or different visualization layers (Section~\ref{sec:deckgl}).
 
 \subsection{Frontend component structure}
 
 
-The frontend is implemented as a single-page application, centered around the main map. The interface is structured as a set of components, with the map being central to the page. Different components are put over the map that allow for filtering, anomaly search and context sensitive information displays for anomalies.  
+The frontend is implemented as a single-page application, centered around the main map. The interface is structured as a set of components, with the map acting as the central component. Different components are positioned over the map allowing for filtering, anomaly search and context sensitive information displays for anomalies.  
 
 
-The application maintains shared state of the currently loaded dataset, being sent down to components that need it. Active filters are maintained with a state, where any changed in the current filter is observed by other components, and will trigger visualization change. 
+The application maintains shared state of the currently loaded dataset, which is passed to components that require it. Active filters are maintained through state management, where any change in the current filter is observed by other components, triggering visualization changes. 
 
 
-The applications uses no routing, as it is a single page application, with all components dynamically handled and updated based on application state. 
+The application uses no routing, as it is a single page application, with all components dynamically displayed and updated based on application state. 
 
 \subsubsection{REST Communication with Axios}
 %Needs to be broken up sentences are too long
 
-REST communication between frontend and backend was handled using Axios. This was chosen to enable asynchronous HTTP requests, without blocking the user interface, while allowing for dynamic updates to the dataset where needed, such as querying for specific anomaly types or date range. Axios allows for the application to be designed to update in real time, where an API call returns a promise of the data requested, which in turn allows the application to update after the data is successfully retrieved, allowing real-time updating of the user interface. This in turn leads to a more responsive user interface for end users\parencite{geeksforgeeks_axios}.
+REST communication between frontend and backend was handled using Axios. This was chosen to enable asynchronous HTTP requests, without blocking the user interface. This enabled dynamic updates to the dataset on request, such as querying for specific anomaly types or date range. Axios allowed the application to update in real-time, where an API call returns a promise of the data requested. This allowed for the UI to update after data has been retrieved. This is intended to facilitate a more responsive user interface for end users \parencite{geeksforgeeks_axios}.
 
 
 \subsubsection{GeoJSON Data Handling}
 \label{sec:GeoJSON Data Handling}
 
 
-GeoJSON serves as the container for all geographic data for anomalies in the project, this file format was chosen in discussion with the customer, based on GeoJSON's strengths such as human readability and simplicity of use and parsing (Section~\ref{sec:geoJSON}). 
+GeoJSON serves as the container for all geographic data for anomalies in the project. This file format was chosen in discussion with the customer, based on GeoJSON's strengths such as human readability and simplicity in use and parsing (Section~\ref{sec:geoJSON}). 
 
 % Need to use a standard capitalization of featurecollection might be added to abbreviations.
-The frontend retrieves and interprets FeatureCollection data sent from the backend, for rendering purposes. Each feature represents an anomaly group or anomaly, with metadata containing information about type and geographic location. 
+The frontend retrieves and interprets FeatureCollection data sent from the backend, for rendering purposes. Each Feature represents an anomaly group or anomaly, with metadata containing information about type and geographic location. 
 
 %Split into shorten sentences.
-The design of the application parses the anomaly groups themselves, while allowing for individual anomalies from a group to be rendered in its own layer. This is done through first getting an individual anomaly group through an API request, leading to a returned group, which in turn gives access to the groups ID in which all individual anomalies are part of, leading to an API request for the specific anomaly relating to the group, which contains the information specific anomalies inside\parencite{medium_feature_featurecollection}.
+The design of the application processes the anomaly groups themselves, while allowing for individual anomalies from a group to be rendered in its own layer. This is done through first retrieving an individual anomaly group through an API request. The returned group provides access to its ID, which identifies the associated anomalies. An API request is sent related to these anomalies, wherein a new layer is created visualizing them \parencite{medium_feature_featurecollection}.
 
 
 \subsection{Design Process}
 \label{sec:design_process}
 
 
-The design process was guided by design and wireframe theory described in Section~\ref{sec:design_theory} and Section~\ref{sec:wireframes_theory} The process started early, with customer meetings outlining the customer's existing system, and other systems that are similar. This was then used as a design basis for the groups implementation of the project. 
+The design process was guided by the design and wireframing theories described in Section~\ref{sec:design_theory} and Section~\ref{sec:wireframes_theory}. The process started early with customer meetings where the customer's existing system was presented, and other systems that are similar. This was then used as a design basis for the group's implementation of the project. 
 
 
 \subsubsection{Design Approach}
 
-The design of the user interface followed a three-stage approach. First, existing visualisation systems within geographic and maritime sectors were reviewed to identify common interaction patterns and layout conventions used in this domain. Second, the design principles introduced in Section \ref{sec:design_theory} were applied to the interface making sure the system followed principles like simplicity and consistency, which helps reduce the risk of operators becoming overwhelmed working with large amounts of data. Third, the project was adapted to fit the specific project requirements. 
+The design of the user interface followed a three-stage approach. First, existing visualisation systems within geographic and maritime sectors were reviewed to identify common interaction patterns and layout conventions used in this domain. Second, the design principles introduced in Section \ref{sec:design_theory} were applied to the interface. This ensured the system followed principles like simplicity and consistency, helping reduce the risk of operators becoming overwhelmed working with large amounts of data. Third, the project was adapted to fit the specific project requirements. The design of the application changed throughout the project due to customer feedback, although the main UI design followed the wireframes created at the start of the project. 
 % FOCUS: Wireframes, UI/UX decisions, user feedback.
 
 \subsection{Wireframes}
 
-Wireframes Section~\ref{sec:wireframes_theory}, as seen below, were created in Figma at the start of the project. The application was decided to be based on a single page design, containing a user interface to allow for interaction and visualization. The design was to contain the map, as the core part of the application, with it taking up the entire page. On top of the map, other components like a search bar, and the visualized anomalies and base station were to be overlaid, with filtering via various variables like date range, were to be implemented in a popup on the page. The design was also to have an info component for anomalies. 
-\begin{figure}[!htbp]
+The wireframes, described in  Section~\ref{sec:wireframes_theory}, as shown in Figure~\ref{fig:wireframes_overview}, were created in Figma at the start of the project. The application was decided to be based on a single page design, containing a user interface to allow for interaction and visualization. The design was to contain the map, as the core part of the application, with it taking up most of the page. On top of the map, other components like a search bar and visualized anomalies and base stations were to be overlaid, with filtering through various variables like date range were to be implemented in a popup on the page. The design was also to have an info component for anomalies.
+
+\vspace{10pt} 
+\begin{figure}[H]
     \centering
 
     \subfloat[Main page wireframe]{%
@@ -274,6 +277,7 @@ Wireframes Section~\ref{sec:wireframes_theory}, as seen below, were created in F
     \caption{Wireframes created in Figma showing main UI layout and components}
     \label{fig:wireframes_overview}
 \end{figure}
+\vspace{-10pt}
 
 %=====================================================================
 % 3.4  Backend and Data Flow
@@ -285,13 +289,11 @@ Wireframes Section~\ref{sec:wireframes_theory}, as seen below, were created in F
 
 % This is actual content might need some more content
 
-The backend infrastructure and test database were provided by the customer, pre-populated with test data since actual AIS anomaly data is confidential. The team's main contribution to the backend was a master query endpoint. This endpoint accepts all filter parameters (anomaly type, mmsi, and time range.) and returns only the matching data. Instead of getting all the anomaly groups and filtering on the frontend, all variables get sent to the backend which queries the data again. This was done since keeping old data and filtering client-side was slow and inefficient.
+The backend infrastructure and test database were provided by the customer, pre-populated with test data since actual AIS anomaly data is confidential. The team's main contribution to the backend was a master query endpoint. This endpoint accepts all filter parameters (anomaly type, MMSI, and time range) and returns only the matching data. Instead of getting all the anomaly groups and filtering on the frontend, all variables get sent to the backend which queries the data again. This approach was chosen because keeping old data and filtering client-side was slow and inefficient.
 
-The anomaly set is saved as a featureCollection in geoJSON, with a featureCollection being the entire set of geographic objects. The anomaly data is built up such that all anomaly groups are part of a collection.
+The anomaly set is saved as a FeatureCollection in geoJSON, with a FeatureCollection being the entire set of geographic objects. The anomaly data is built up such that all anomaly groups are part of a collection.
 
-While individual anomaly groups also are collections that have individual features inside, a feature being an individual anomaly inside a group, relating to a single ship's anomaly. 
-
-When a request is made, the backend first retrieves the relevant anomaly groups, based on the frontend request, returning a geoJSON FeatureCollection. 
+When a request is made, the backend first retrieves the relevant anomaly groups, based on the frontend request, returning a GeoJSON FeatureCollection. 
 
 % TODO: Maybe include how data is returned and used? Geojson and such
 %=====================================================================
@@ -318,9 +320,9 @@ The visualization methods implemented in this project were selected based on req
 \label{sec:clustering_method}
 
 % Some sentences need to be split for a cleaner structure.
-Clustering was implemented based on customer request, as a way to reduce visual clutter and improve human readability when visualizing large datasets. It follows general clustering theory from (Section~\ref{sec:clustering}). As mentioned in Section \ref{sec:supercluster}, Supercluster.js is used for calculating clusters based on zoom level and the current map bounds. Supercluster calculates clusters based on the base dataset acquired from the API. The clustering behavior is controlled through a fixed radius parameter, where anomalies close together in the predefined radius are put in a cluster. Map interactions such as zooming and dragging result in clusters being retrieved for the current zoom level and map bounds. Supercluster itself was chosen for its ease of use with geoJSON, while being designed for fast calculations, through the use of hierarchical greedy clustering, while reusing previous calculations (Section~\ref{sec:supercluster}). 
+Clustering was implemented at the request of the customer as a way to reduce visual clutter and improve human readability when visualizing large datasets. It follows general clustering theory from (Section~\ref{sec:clustering}). As mentioned in Section \ref{sec:supercluster}, Supercluster.js is used for calculating clusters based on zoom level and the current map bounds. Supercluster calculates clusters based on the base dataset acquired from the API. The clustering behavior is controlled through a fixed radius parameter, where anomalies close together in the predefined radius are put in a cluster. Map interactions such as zooming and dragging result in clusters being retrieved for the current zoom level and map bounds. Supercluster itself was chosen for its ease of use with geoJSON, while being designed for fast calculations, through the use of hierarchical greedy clustering, while reusing previous calculations (Section~\ref{sec:supercluster}). 
 
-The clustering data itself is used with deck.gl,Section \ref{sec:deckgl}. Visualization through deck.gl is accomplished through creating a custom layer, consisting of a label-layer, whose purpose is to be a point counter for the amount of anomalies inside the cluster, this is put over, a scatterplot-layer. section \ref{sec:scattermap}, which combines to create the clustering layer.This layer is re-rendered whenever the clustering output changes due to updates in zoom level or map bounds. Furthermore does clustering visualization have dynamic sizing based on amount of anomalies inside a cluster, leading to clusters being scaled proportional to their anomaly count. 
+The clustering data itself is used with deck.gl (Section~\ref{sec:deckgl}). Visualization through deck.gl is accomplished through creating a custom layer, consisting of a label-layer, used to display the amount of anomalies within each cluster, placed above a scatterplot-layer section \ref{sec:scattermap}. This combines to create the clustering layer. This layer is re-rendered whenever the clustering output changes due to updates in zoom level or map bounds. Additionally, cluster visualization includes dynamic sizing based on amount of anomalies inside a cluster, leading to clusters being scaled in size proportional to their anomaly count. 
 
 % TODO: Add technical details:
 % - What clustering radius/parameters did you use?
