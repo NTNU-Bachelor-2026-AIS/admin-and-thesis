@@ -14,7 +14,6 @@
 %   4.10 Project Outcome        (keep; move "comparison" subsection to Discussion)
 %=====================================================================
 \textit{This chapter outlines the results of the project, explaining the functionality and design of the completed project.}
-
 % Might change it to not have this section and make it all into intro.
 % =====================================================================
 % TODO — 4.1 PROJECT OVERVIEW
@@ -26,14 +25,8 @@
 %  - List the actual delivered features concretely instead of "the main core of
 %    what the customer wanted to test" (vague).
 % =====================================================================
-\section{Project overview}
 
-The application is a locally hosted, visualization software, designed to visualize anomalies and anomaly groups. Multiple visualization methods requested by customer are implemented, to a degree found satisfactory to the customer. 
-
-The project itself is developed following general coding standards such as single responsibility and coupling and cohesion, to the best of the group's ability, with refactoring having been done multiple times throughout the project to better follow these standards. 
-
-The end result has completed functionality that the customer has wanted throughout the project, as the project developed the requests changed, leading to the end functionality being the main core of what the customer wanted to test as concepts. The specifics on the implementation were chosen by the group members, such as technology choice, outside of requested uses such as react and a map provider choice being guided.  
-
+This chapter presents the resulting application, a locally hosted visualization tool for AIS anomalies and anomaly groups. The system implements clustering, heat map, base station, anomaly group, and individual anomaly visualization layers, supported by a filtering system and interactive features. The technology stack was partly guided by the customer, with React and the map provider specified, while remaining tool choices were made by the group. The following sections describe the delivered system, organized in the same order as the Method chapter: project management, system architecture, frontend, backend and data handling, visualization, filtering and interaction, testing and performance, customer feedback, and project outcome.
 
 \newpage
 % =====================================================================
@@ -48,11 +41,14 @@ The end result has completed functionality that the customer has wanted througho
 % =====================================================================
 \section{Project management}
 
-The project followed the Scrum-based process described in Section ~\ref{sec:dev_methodology}, divided into % TODO add final number of sprints.
+%TODO Add number of sprints issues and such.
+The project followed the Scrum-based process described in Section ~\ref{sec:dev_methodology}, divided into approximately 16 weekly sprints, with occasional two-week exceptions over the project period. Each sprint included a sprint planning session, daily synchronization meetings, and a retrospective. Bi-weekly were held with both the supervisor and the customer at Kystverket, though scheduling occasionally extended the interval to three weeks. At the end of the project, the GitHub Projects contained 106 completed issues actross the frontend, backend and administrative repositories.
+%TODO add final number of sprints. might change.
+% Had some sprints which were exceptions were they were 2 weeks sometimes. 
 
 
 % =====================================================================
-% TODO — 4.3 SYSTEM ARCHITECTURE  (mirrors Method 3.2)
+%TODO — 4.3 SYSTEM ARCHITECTURE  (mirrors Method 3.2)
 %  - HEADING HIERARCHY: "Architecture overview" is a \section but should be a
 %    \subsection under System Architecture. The three diagrams are \subsubsection
 %    under it — after fixing, they become \subsection (one level up).
@@ -69,15 +65,10 @@ The project followed the Scrum-based process described in Section ~\ref{sec:dev_
 % =====================================================================
 \section{System Architecture}
 
-The final system architecture consists of a React frontend communicating with a backend REST API. The frontend is responsible for rendering visualization layers and handling user interaction, while the backend provides GeoJSON formatted anomaly data and database generation. The architecture separates visualization, filtering, and data retrieval into different parts. 
- 
- 
-\section{Architecture overview}
-
-To showcase the complete architecture, different diagrams will be used.  
+The final system architecture consists of a React frontend communicating with a backend REST API. The frontend is responsible for rendering visualization layers and handling user interaction, while the backend provides GeoJSON formatted anomaly data and database generation. The architecture separates visualization, filtering, and data retrieval into different parts. The following diagrams illustrate the system's structure, data flow and user interaction. 
 
 
-\subsubsection{Use Case Diagram}
+\subsection{Use Case Diagram}
 
 \begin{figure}[H]
     \centering
@@ -86,10 +77,11 @@ To showcase the complete architecture, different diagrams will be used.
     \label{fig:Use_Case_image}
 \end{figure}
 
-The use case diagram from \ref{fig:use_case_image} showcases a user experience of a maritime operator. An operator can view anomalies, switch between visualizations and access specific information from anomalies and anomaly groups. 
+The use case diagram in Figure~\ref{fig:Use_Case_image} illustrates the expected user experience for a maritime operator. It showcases the core capabilities delivered by the system, allowing an operator to view anomalies, switch between different visualizations layers, and access specific information regarding individual anomalies and anomaly groups. 
 
-\subsubsection{Package Diagram}
+\subsection{Package Diagram}
 
+%TODO Get a new diagram image
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth,height=0.7\textheight,keepaspectratio]{Figures/Package_Diagram.png}
@@ -97,10 +89,11 @@ The use case diagram from \ref{fig:use_case_image} showcases a user experience o
     \label{fig:Package_Diagram_image}
 \end{figure}
 
-The package diagram in figure \ref{fig:Package_Diagram_image}, showcases the structure used in the project. Files are put into folders related to their function, such as components being put into the component folder, with subfolders used when needed. This follows a basic react package structure, with a modular design that simplifies understanding. 
+%TODO Check if i have the proper theory mentione to say this.
+The package diagram in Figure~\ref{fig:Package_Diagram_image} outlines the modular directory structure used in the frontend repository. Files are put into folders related to their function, such as components being isolated within a dedicated component folder, with necessary subfolders. This aligns with standard React architecture patterns, ensuring the codebase remains modular and easily navigable. 
 
 
-\subsubsection{Sequence Diagram (Data Flow)}
+\subsection{Sequence Diagram (Data Flow)}
 
 \begin{figure}[H]
     \centering
@@ -109,7 +102,7 @@ The package diagram in figure \ref{fig:Package_Diagram_image}, showcases the str
     \label{fig:Sequence_Diagram_image}
 \end{figure}
 
-The sequence diagram in figure \ref{fig:Sequence_Diagram_image}, showcases the flow, from user interaction to change of state. As illustrated in the image, if a user requests to apply a filter, an HTTP get request is sent to an endpoint, which then queries the database. This then returns a geoJSON featurecollection as a promise, and is then asynchronously accessed through react. This then creates the deck.gl layer requested, and overlays it on the map, leading to an updated visualization for the end user. 
+The sequence diagram in figure~\ref{fig:Sequence_Diagram_image}, maps the data flow from user interaction to visual state change. As illustrated in the image, if a user requests to apply a filter, an HTTP get request is sent to an endpoint, which then queries the database. This then returns a geoJSON featurecollection as a promise, and is then asynchronously accessed through react. This then creates the deck.gl layer requested, and overlays it on the map, leading to an updated visualization for the end user. 
 
 %=====================================================================
 % TODO — 4.4 FRONTEND  (mirrors Method 3.3)
@@ -159,14 +152,14 @@ The backend system was developed by the customer and provided as part of the pro
     \centering
     \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/db_models.png}
     \caption[db model diagram]{database model diagram}
-    \label{fig:individual_anomaly_result_image}
+    \label{fig:databse_model_diagram_image}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/db_result.png}
     \caption[db result image]{database schema}
-    \label{fig:individual_anomaly_result_image}
+    \label{fig:database_schema_image}
 \end{figure}
 
 The above figures show the backend database structure. An anomaly group contains anomalies, where the anomaly group itself has the start time and last activity time of the group itself, sourced from the first instance of an anomaly being created in a group. Anomalies themselves have signal strength and their own data, with the group containing general data related to the group such as the general area of the anomalies, represented as location. 
