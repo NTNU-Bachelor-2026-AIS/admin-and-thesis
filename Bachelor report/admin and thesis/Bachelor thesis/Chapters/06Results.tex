@@ -1,30 +1,72 @@
-
-
 %=====================================================================
-% 4. Results
-%=====================================================================
+% 4. RESULTS — TODO ROADMAP
+%
+% TARGET SECTION ORDER (to mirror Method 3.1–3.8):
+%   4.1 Project Overview        (brief intro, no Method counterpart — keep short)
+%   4.2 Project Management      <- Method 3.1
+%   4.3 System Architecture     <- Method 3.2
+%   4.4 Frontend                <- Method 3.3
+%   4.5 Backend and Data Handling <- Method 3.4  (MERGE current Backend + Data Handling Results)
+%   4.6 Visualization Results   <- Method 3.5  (reorder: Clustering→HeatMap→BaseStation→Group→Individual)
+%   4.7 Filter and Interaction Results <- Method 3.6  (NEW — currently missing)
+%   4.8 Testing and Performance <- Method 3.7
+%   4.9 Customer Feedback       <- Method 3.8
+%   4.10 Project Outcome        (keep; move "comparison" subsection to Discussion)
 %=====================================================================
 \textit{This chapter outlines the results of the project, explaining the functionality and design of the completed project.}
 
-
+% Might change it to not have this section and make it all into intro.
+% =====================================================================
+% TODO — 4.1 PROJECT OVERVIEW
+%  - This is a brief intro section with no direct Method counterpart. Keep it short.
+%  - MOVE TO DISCUSSION: para 2 ("developed following coding standards... to the
+%    best of the groups ability") — this evaluates code quality, it is not a result.
+%  - REMOVE EVALUATION: "to a degree found satisfactory to the customer" — either
+%    drop it or replace with a reference to the Customer Feedback section (4.9).
+%  - List the actual delivered features concretely instead of "the main core of
+%    what the customer wanted to test" (vague).
+% =====================================================================
 \section{Project overview}
 
 The application is a locally hosted, visualization software, designed to visualize anomalies and anomaly groups. Multiple visualization methods requested by customer are implemented, to a degree found satisfactory to the customer. 
 
-The project itself is developed following general coding standards such as single responsibility and coupling and cohesion, to the best of the groups ability, with refactoring having been done multiple times throughout the project to better follow these standards. 
+The project itself is developed following general coding standards such as single responsibility and coupling and cohesion, to the best of the group's ability, with refactoring having been done multiple times throughout the project to better follow these standards. 
 
 The end result has completed functionality that the customer has wanted throughout the project, as the project developed the requests changed, leading to the end functionality being the main core of what the customer wanted to test as concepts. The specifics on the implementation were chosen by the group members, such as technology choice, outside of requested uses such as react and a map provider choice being guided.  
 
 
 \newpage
-%=====================================================================
+% =====================================================================
+% TODO — 4.2 PROJECT MANAGEMENT  (mirrors Method 3.1)
+%  - INCOMPLETE: the sentence ends mid-thought ("divided into % TODO"). Fill in the
+%    actual number of sprints and sprint length.
+%  - ADD: a short factual summary of how the process ran — number of sprints,
+%    how many customer/supervisor meetings, what the board looked like at the end.
+%    Keep it FACTUAL (what happened). Evaluation of whether Scrum worked is
+%    Discussion (you already have that in Project Execution).
+%  - ADD a linguistic bridge: "as described in Section~\ref{sec:dev_methodology}".
+% =====================================================================
 \section{Project management}
 
 The project followed the Scrum-based process described in Section ~\ref{sec:dev_methodology}, divided into % TODO add final number of sprints.
 
 
-
-%=====================================================================
+% =====================================================================
+% TODO — 4.3 SYSTEM ARCHITECTURE  (mirrors Method 3.2)
+%  - HEADING HIERARCHY: "Architecture overview" is a \section but should be a
+%    \subsection under System Architecture. The three diagrams are \subsubsection
+%    under it — after fixing, they become \subsection (one level up).
+%  - The opening "System Architecture" prose + "Architecture overview" prose are
+%    two separate sections saying overlapping things — MERGE into one section with
+%    an intro paragraph then the diagrams.
+%  - ADD bridge: "resulting from the design described in Section~\ref{sec:system_architecture}".
+%  - FIGURE CAPTIONS are one word ("Use Case", "Package", "Sequence") — expand to
+%    describe what each diagram shows.
+%  - BROKEN REF: "\ref{fig:use_case_image}" (lowercase) does not match label
+%    "fig:Use_Case_image" (uppercase). Also the sentence has duplicate "showcases".
+%  - Each diagram paragraph should explain what the READER should take from the
+%    diagram, not just "the diagram showcases X".
+% =====================================================================
 \section{System Architecture}
 
 The final system architecture consists of a React frontend communicating with a backend REST API. The frontend is responsible for rendering visualization layers and handling user interaction, while the backend provides GeoJSON formatted anomaly data and database generation. The architecture separates visualization, filtering, and data retrieval into different parts. 
@@ -44,7 +86,7 @@ To showcase the complete architecture, different diagrams will be used.
     \label{fig:Use_Case_image}
 \end{figure}
 
-The use case diagram showcases from \ref{fig:use_case_image} showcases a user experience of a maritime operator. An operator can view anomalies, switch between visualizations and access specific information from anomalies and anomaly groups. 
+The use case diagram from \ref{fig:use_case_image} showcases a user experience of a maritime operator. An operator can view anomalies, switch between visualizations and access specific information from anomalies and anomaly groups. 
 
 \subsubsection{Package Diagram}
 
@@ -67,10 +109,20 @@ The package diagram in figure \ref{fig:Package_Diagram_image}, showcases the str
     \label{fig:Sequence_Diagram_image}
 \end{figure}
 
-The sequency diagram in figure \ref{fig:Sequence_Diagram_image}, showcases the flow, from user interaction to change of state. As illsutrated in the image, if a user requests to apply a filter, a http get request is sent to an endpoint, which then queries the database. This then returns a geoJSON featurecollection as a promise, and is then asynchronously accessed through react. This then creates the deck.gl layer requestsed, and overlays it on the map, leading to an updated visualization for the end user. 
+The sequence diagram in figure \ref{fig:Sequence_Diagram_image}, showcases the flow, from user interaction to change of state. As illustrated in the image, if a user requests to apply a filter, an HTTP get request is sent to an endpoint, which then queries the database. This then returns a geoJSON featurecollection as a promise, and is then asynchronously accessed through react. This then creates the deck.gl layer requested, and overlays it on the map, leading to an updated visualization for the end user. 
 
 %=====================================================================
-
+% TODO — 4.4 FRONTEND  (mirrors Method 3.3)
+%  - ADD bridge: reference both the design process AND the frontend architecture
+%    in Method ("following the architecture in Section~\ref{...} and the design
+%    process in Section~\ref{sec:design_process}").
+%  - WIREFRAME-TO-RESULT LINK MISSING: the single biggest red-thread gap here.
+%    Add one sentence comparing the final UI to the wireframes (Method 3.3):
+%    did it follow them, or diverge based on feedback?
+%  - The three lowercase mini-paragraphs (components/dropdown/filter) should be one
+%    paragraph describing the delivered UI layout. They currently read as notes.
+%  - "allowing for users to write change the dataset" — "write" looks accidental.
+% =====================================================================
 \section{Frontend}
 The resulting frontend of the project was created following the method in section \ref{sec:design_process}. Figure \ref{fig:frontend_result_image} shows the finished frontend. 
 
@@ -81,78 +133,27 @@ The resulting frontend of the project was created following the method in sectio
     \label{fig:frontend_result_image}
 \end{figure}
 
-A singular page was created for the application, being the only page needed for all functionality. As shown in figure \ref{fig:frontend_result_image}, the user interface is made up of multiple part. The base map takes up the center of the application, with visualization overlaid on top of the map.
+A singular page was created for the application, being the only page needed for all functionality. As shown in figure \ref{fig:frontend_result_image}, the user interface is made up of multiple parts. The base map takes up the center of the application, with visualization overlaid on top of the map.
 
-components such as a sidebar on the right, contain the entire dataset, allowing for searching of anomalies based on type or mmsi. 
+Components such as a sidebar on the top right contain the entire dataset, allowing for searching of anomalies based on type or mmsi. 
 A visualization dropdown menu allows to change between the two main visualization modes, changing when the mode is selected. 
-on the top middle of the page, is a filtering component, allowing for users to write change the dataset currently rendered, between different anomaly types, date range and mmsi of the anomaly itself. 
+on the top middle of the page, is a filtering component, allowing for users to change the dataset currently rendered, between different anomaly types, date range and mmsi of the anomaly itself. 
 
-\section{Visualisation Results}
-All visualisation methods described in the Method chapter were implemented in the final system. The system includes clustering, heat map, anomaly group visualisation, individual anomaly visualisation, and base station visualisation. Additional proposed features were not implemented
-
-
-\subsection{Base Station Visualization}
-A base station layer is is part of the application, implemented as mentioned in section \ref{sec:base_station}. The base station layer is visualized through blue icons in figure \ref{fig:base_station_result_image}. The base station layer itself is persistent, meaning that it is a visualization layer that will always be present in the app, even if other methods of visualizing the data points are changed. 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\textwidth,height=0.2\textheight,keepaspectratio]{Figures/Base-station-view.png}
-    \caption[base station view]{Base station layer}
-    \label{fig:base_station_result_image}
-\end{figure}
-Base stations are linked to anomalies through backend data representing transmissions from individual anomalies. This is then used in other layers to connect base stations to anomalies through signal strength. The base stations data itself will never change in position, as they are static points on the map. This provides persistent reference in relation to anomaly and transmitted base station, and helps end users visually observing the distance between anomaly cluster and base station, Leading to visual feedback on the spatial relationship between anomalies and base stations.
-
-\subsubsection{Clustering Visualization}
-The clustering visualisation, implemented as described in Section \ref{sec:clustering_method},
-As described in section \ref{sec:clustering_method}. The clustering approach is implemented with Supercluster.js calculating clusters through proximity based on radius, and zoom level (Section \ref{sec:supercluster}). This approach produces grouped anomaly points, with numeric labels indicating the number of anomalies in each cluster, as shown in Figure \ref{fig:clustering_result_image}. 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\textwidth,height=0.35\textheight,keepaspectratio]{Figures/clustering-result.png}
-    \caption[Clustering result image]{Result clustering visualization}
-    \label{fig:clustering_result_image}
-\end{figure}
-Clusters are calculated through the use of a radius that computes the amount of points inside a circle of a defined radius, in the case of the project being 40 pixels. points inside the pixel radius are aggregated, and shown as a single point. A higher density of points in a cluster leads to the that cluster being shown as larger on the map. Recalculation of clusters happens when zooming and dragging is done in the application, where clusters are divided into smaller parts due to points increasing in distance, moving outside of the defined radius. 
-
-
-\subsection{Heat Map Visualization}
-The system includes a heat map visualization layer, The heat map is implemented as in section \ref{sec:Heat_Map_method}. An example of the implemented heat map visualization is shown in figure
-\ref{fig:heatmap_result_image}.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.54\textwidth,height=0.35\textheight,keepaspectratio]{Figures/heatmap-result.png}
-    \caption[heatmap result image]{Heat map result }
-    \label{fig:heatmap_result_image}
-\end{figure}
-Color is generated through calculating the sum of points inside a radius of 40 pixels, meaning points inside a circle are calculated as a sum, leading to higher density of points being weighted more.\url{https://deck.gl/docs/api-reference/aggregation-layers/heatmap-layer}. 
-The resulting heat map layer allows for zoom and drag operations to change the heat map view dynamically, with zoomed in levels having less dense representation, while zoomed out levels lead to higher aggregates per pixel radius, and denser representation overall. 
-
-
-\subsection{Anomaly Group Visualization}
-anomaly group visualization is created as shown in figure \ref{fig:anomaly_group_result_image}.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth,height=0.6\textheight,keepaspectratio]{Figures/anomaly-group-layer-result.png}
-    \caption[anomaly group result image]{Anomaly group layer}
-    \label{fig:anomaly_group_result_image}
-\end{figure}
-
-The layer shows an info component for the current group, with coordinates and start date, with type of anomaly. Signal strength is visualized through lines, connecting the individual anomalies inside the group to the base stations shown in the picture as blue symbols. The info component allows for users to show anomalies inside the group, through button press on the component, leading to the visualization being changed to the individual anomaly visualization. 
-
-
-\subsection{Individual Anomaly Visualization}
-Individual anomalies, are shown as a scatterplot, section \ref{sec:scatter_plot}. The visualization shows the points colored based on signal strength, from red to green. This is done through the signal strength value being normalized from 0 to 1, in the database. 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/individual_anomaly_layer_result.png}
-    \caption[individual anomaly result image]{Individual anomaly layer}
-    \label{fig:individual_anomaly_result_image}
-\end{figure}
-Figure \ref{fig:individual_anomaly_result_image}, shows the completed layer. anomalies are correctly colored through the signal strength variable, with an info component being shown for an anomaly, through clicking on it. The info component illustrates features of the anomaly, like it's direction, name, and MMSI. 
-
-\subsection{Maplibre}
-
-Maplibre initializes itself upon application boot, in a bright style used for readability for users. After its initialization, it is responsible for interaction, in dragging and zooming the map. Interaction leads to states being updated that other parts of the program can use, such as clusters being updated through zooming, and map location. Visualization functionality is something maplibre has, being able to natively visualize scatterplots and other layers. This was not chosen as a valid approach of visualization in the project, due to the high amount of data required to be visualized, which deck.gl is specialized for. 
 %=====================================================================
-\section{Backend}
+% TODO — 4.5 BACKEND AND DATA HANDLING  (mirrors Method 3.4)
+%  - MERGE: move the "Backend" section AND "Data Handling Results" section here,
+%    next to each other, so they mirror Method 3.4. Currently they are separated
+%    by the Customer Feedback section — that breaks the order.
+%  - The MapLibre subsection currently sits at the END of Visualization Results
+%    (4.6). It is runtime behavior, so it belongs here in architecture/backend OR
+%    in Frontend, NOT inside Visualization Results. Decide and move it.
+%  - DUPLICATE LABELS: both database figures use \label{fig:individual_anomaly_result_image}.
+%    Rename to fig:db_model_diagram and fig:db_schema_diagram.
+%  - Reference the figures explicitly ("Figures X and Y show...").
+%  - ADD bridge to Method: "The backend described in Section~\ref{sec:backend_and_data_flow_method}...".
+% =====================================================================
+
+\section{Backend and Data handling}
 The backend system was developed by the customer and provided as part of the project infrastructure. It exposes a REST API used by the frontend to retrieve anomaly data. anomaly data is created as a geoJSON feature collection, with features indicating a single anomaly group. 
 \begin{figure}[H]
     \centering
@@ -173,54 +174,18 @@ The above figures show the backend database structure. An anomaly group contains
 The anomalies and anomaly groups are generated by the docker backend, with amount of anomalies set through a configuration file. specific commands to generate anomalies and build the database are used, leading to a database filled with an amount of points set by the developer. The docker backend running allows for the frontend to send requests to API endpoints to request data, while the frontend itself runs through localhost. 
 
 %=====================================================================
-\section{Customer feedback}
-\label{sec:customer_feedback}
+% TODO — DATA HANDLING RESULTS  (MERGE into Backend → becomes part of 4.5)
+%  - This whole section belongs next to Backend (move up). Together they form
+%    "Backend and Data Handling" mirroring Method 3.4.
+%  - GeoJSON Data Structure: reference the figure properly and capitalize
+%    "FeatureCollection" consistently.
+%  - Backend Query and Response Behaviour: this is your MASTER QUERY result — one
+%    of the strongest own-contribution items. Expand it (the TODO is already here).
+%    Add a bridge to Method 3.4 and Discussion. Show what the endpoint returns.
+% =====================================================================
+%\section{Data Handling Results}
 
-Feedback was collected from two sources through the process described in Section~\ref{sec:user_feedback}: the product owner at Kystverket, and an internal user who works with the AIS analysis system that is closely related to this project.
-
-\subsection{Product owner evaluation}
-
-The product owner evaluated the delivered features across four areas: clustering, signal strength visualisation, heat map, and the solution as a whole.
-
-\subsection{Clustering}
-
-The clustering visualisation was assessed positively because it helped provide a proper overview over a large amount of data without the visual clutter. The product owner also noted that clustering is allready utilized by other large data systems at Kystverket, however it has not yet been applied to the AIS anomaly monitoring. A suggestion that was given for further development was to be able to display the types and counts of anomalies within each cluster. This would allow operators to asses if further exploring a cluster is worthwhile quickly.
-
-\subsection{Signal Strength}
-
-The signal strength visualisation was described as a concept they were very interested in. The product owner noted that low signal strength between a vessel and a base station is a error in AIS messages that causes the creation of anomaly messages. Other systems they utilise for signal strength take longer to find the data and doesnt vizualise it properly. Increasing the time to analyse anomaly groups and increasing time complexity for the operator. Our solution was assesed as effective both at macro level, where lines from anomaly groups to base stations are visible while zoomed out. While also being effective at the micro level, where individual individual signal strength values are visible when zoomed in. A suggestion was given to extend the visualisation to include additional data like signal strength before and after an anomaly occurs, however this would require additional data from Kystverket.
-
-\subsection{Heat Map}
-
-The heat map was assesed to be a useful tool that complements clustering. This was because clustering only shows volume trough numbers for large areas and requires zooming in to find areas with large amounts of points, while the heat map is valuable since it allows identification of all the hot spots on a large map at a zoomed-out level without requiring additional work from the user.
-
-\subsection{General Solution}
-
-The overall solution was eveluated positively for its features like toggling between visualisation types, filtering by anomaly type, and the ability to drill down to the individual anomaly level. The product owner also noted that reimplementing anomaly group and base station views was necessary for the signal strength concept to provide value, even though those views already exist in Kystverket's current system.
-
-\subsection{Internal user feedback}
-
-An internal user of Kystverket's existing AIS analysis system provided additional suggestions for further development.
-
-\begin{itemize}
-  \item Normalising the heat map against vessel traffic density in
-    each area, so that the visualisation reflects where anomalies are
-    overrepresented rather than where traffic volume is highest.
-  \item Extending signal strength visualisation to cover all position
-    reports from a vessel, not only those linked to anomalies, to
-    provide a more complete picture of signal quality over time.
-  \item Disabling clustering at low data densities where
-    consolidation removes useful detail from the view.
-  \item Adding aggregated per-vessel statistics to support long-term
-    credibility assessment of individual ships.
-  \item Displaying anomaly frequency graphs over time to reveal how
-    the situation develops hourly or daily.
-\end{itemize}
-
-%=====================================================================
-\section{Data Handling Results}
-
-This section describes the final data structures and backend data handling used in the system.
+%This section describes the final data structures and backend data handling used in the system.
 
 \subsection{GeoJSON Data Structure}
 
@@ -243,8 +208,119 @@ Figure \ref{fig:swagger-result_image} showcases an API endpoint, created as a ma
     \label{fig:swagger-result_image}
 \end{figure}
 General endpoints for retrieving all anomaly data, as well as filtered datasets, are implemented. requesting filtered data leads to the base data set changing to contain the new data, while in other cases such as the sidebar having its own data variable to not change the main map data through search. 
+
+% =====================================================================
+% TODO — 4.6 VISUALIZATION RESULTS  (mirrors Method 3.5)
+%  - REORDER subsections to match Method 3.5:
+%    Clustering → Heat Map → Base Station → Anomaly Group → Individual Anomaly.
+%    Currently Base Station is first and Clustering is a \subsubsection under it.
+%  - HEADING FIX: "Clustering Visualization" is \subsubsection — make it \subsection
+%    (sibling of the others, not a child of Base Station).
+%  - METHOD-CONTENT BLEED (the big one): the Clustering and Heat Map paragraphs
+%    RE-EXPLAIN the 40-pixel radius mechanism. That belongs in Method 3.5. Replace
+%    with WHAT THE FIGURE SHOWS: where density is highest, how clusters look at the
+%    shown zoom level. Reference the performance result (4.8) instead of re-deriving it.
+%  - BARE URL in Heat Map (\url{deck.gl...}) must become a \parencite{}.
+%  - MOVE the "Maplibre" subsection out of here (see 4.5 TODO).
+%  - "it's direction" → "its direction" (possessive) in Individual Anomaly.
+% =====================================================================
+
+\section{Visualization Results}
+All visualization methods described in the Method chapter were implemented in the final system. The system includes clustering, heat map, anomaly group visualization, individual anomaly visualization, and base station visualization. Additional proposed features were not implemented
+
+\subsubsection{Clustering Visualization}
+The clustering visualization, implemented as described in Section \ref{sec:clustering_method},
+As described in section \ref{sec:clustering_method}. The clustering approach is implemented with Supercluster.js calculating clusters through proximity based on radius, and zoom level (Section \ref{sec:supercluster}). This approach produces grouped anomaly points, with numeric labels indicating the number of anomalies in each cluster, as shown in Figure \ref{fig:clustering_result_image}. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth,height=0.35\textheight,keepaspectratio]{Figures/clustering-result.png}
+    \caption[Clustering result image]{Result clustering visualization}
+    \label{fig:clustering_result_image}
+\end{figure}
+Clusters are calculated through the use of a radius that computes the amount of points inside a circle of a defined radius, in the case of the project being 40 pixels. points inside the pixel radius are aggregated, and shown as a single point. A higher density of points in a cluster leads to that cluster being shown as larger on the map. Recalculation of clusters happens when zooming and dragging is done in the application, where clusters are divided into smaller parts due to points increasing in distance, moving outside of the defined radius. 
+
+
+\subsection{Heat Map Visualization}
+The system includes a heat map visualization layer. The heat map is implemented as in section \ref{sec:Heat_Map_method}. An example of the implemented heat map visualization is shown in figure
+\ref{fig:heatmap_result_image}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.54\textwidth,height=0.35\textheight,keepaspectratio]{Figures/heatmap-result.png}
+    \caption[heatmap result image]{Heat map result }
+    \label{fig:heatmap_result_image}
+\end{figure}
+Color is generated through calculating the sum of points inside a radius of 40 pixels, meaning points inside a circle are calculated as a sum, leading to higher density of points being weighted more.\url{https://deck.gl/docs/api-reference/aggregation-layers/heatmap-layer}. 
+The resulting heat map layer allows for zoom and drag operations to change the heat map view dynamically, with zoomed in levels having less dense representation, while zoomed out levels lead to higher aggregates per pixel radius, and denser representation overall. 
+
+\subsection{Base Station Visualization}
+A base station layer is part of the application, implemented as mentioned in section \ref{sec:base_station}. The base station layer is visualized through blue icons in figure \ref{fig:base_station_result_image}. The base station layer itself is persistent, meaning that it is a visualization layer that will always be present in the app, even if other methods of visualizing the data points are changed. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth,height=0.2\textheight,keepaspectratio]{Figures/Base-station-view.png}
+    \caption[base station view]{Base station layer}
+    \label{fig:base_station_result_image}
+\end{figure}
+Base stations are linked to anomalies through backend data representing transmissions from individual anomalies. This is then used in other layers to connect base stations to anomalies through signal strength. The base stations data itself will never change in position, as they are static points on the map. This provides persistent reference in relation to anomaly and transmitted base station, and helps end users visually observing the distance between anomaly cluster and base station, leading to visual feedback on the spatial relationship between anomalies and base stations.
+
+
+\subsection{Anomaly Group Visualization}
+anomaly group visualization is created as shown in figure \ref{fig:anomaly_group_result_image}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth,height=0.6\textheight,keepaspectratio]{Figures/anomaly-group-layer-result.png}
+    \caption[anomaly group result image]{Anomaly group layer}
+    \label{fig:anomaly_group_result_image}
+\end{figure}
+
+The layer shows an info component for the current group, with coordinates and start date, with type of anomaly. Signal strength is visualized through lines, connecting the individual anomalies inside the group to the base stations shown in the picture as blue symbols. The info component allows for users to show anomalies inside the group, through button press on the component, leading to the visualization being changed to the individual anomaly visualization. 
+
+
+\subsection{Individual Anomaly Visualization}
+Individual anomalies, are shown as a scatterplot, section \ref{sec:scatter_plot}. The visualization shows the points colored based on signal strength, from red to green. This is done through the signal strength value being normalized from 0 to 1, in the database. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/individual_anomaly_layer_result.png}
+    \caption[individual anomaly result image]{Individual anomaly layer}
+    \label{fig:individual_anomaly_result_image}
+\end{figure}
+Figure \ref{fig:individual_anomaly_result_image}, shows the completed layer. anomalies are correctly colored through the signal strength variable, with an info component being shown for an anomaly, through clicking on it. The info component illustrates features of the anomaly, like its direction, name, and MMSI. 
+
+\subsection{Maplibre}
+
+Maplibre initializes itself upon application boot, in a bright style used for readability for users. After its initialization, it is responsible for interaction, in dragging and zooming the map. Interaction leads to states being updated that other parts of the program can use, such as clusters being updated through zooming, and map location. Visualization functionality is something maplibre has, being able to natively visualize scatterplots and other layers. This was not chosen as a valid approach of visualization in the project, due to the high amount of data required to be visualized, which deck.gl is specialized for. 
+
 %=====================================================================
-\section{Performance Observations}
+% TODO — 4.7 FILTER AND INTERACTION RESULTS  (mirrors Method 3.6) — MISSING, MUST ADD
+%  - This section does NOT exist yet and is the biggest red-thread GAP.
+%  - Method 3.6 describes Filter System, Temporal Filtering, Satellite, Interactive
+%    Features. Results has no counterpart, so four methods have no result.
+%  - ADD this section with: a screenshot of the filter UI; what parameters are
+%    available (type, MMSI, date range); a before/after showing the filter changing
+%    the rendered dataset; the date picker; the satellite layer appearing on click.
+%  - Keep it descriptive (what was built). Evaluation goes to Discussion.
+%  - Place this section BETWEEN Visualization Results (4.6) and Testing (4.8).
+% =====================================================================
+\section{Filter and Interaction}
+
+
+%=====================================================================
+% TODO — 4.8 TESTING AND PERFORMANCE  (mirrors Method 3.7)
+%  - Testing section is two sentences and just repeats Method. ADD FINDINGS:
+%    what was tested, what passed, what bugs were found and fixed. Even for manual
+%    testing you can list validated features and discovered issues.
+%  - Performance Observations: remove subjective words ("rigorous", "profound",
+%    "satisfactory"). Replace with observed behavior; add numbers where possible
+%    (point counts with/without clustering, approximate wait on layer switch).
+%  - MOVE EVALUATION TO DISCUSSION: "leading to no considerable performance gains
+%    to be doable" in System Responsiveness is a judgment, not an observation.
+%  - ADD bridge: "as described in Section~\ref{sec:testing_method}" (already partly there).
+%  - Combine Testing + Performance under one section to match Method 3.7.
+% =====================================================================
+\section{Testing and Performance}
+
+Testing was done manually, as mentioned in section \ref{sec:testing_method}. Console logging and observation based testing was used, to ensure all features work, with performance testing being done through use of the application. 
+
+%\section{Performance Observations}
 
 The performance of the system has been observed through rigorous use of the application itself and logging individual parts. Each visualization type was observed at different zoom levels and areas of the map.  
 
@@ -255,21 +331,80 @@ The rendering performance is responsive, but will vary based on graphics process
 \subsection{Effect of Clustering on Performance}
 \label{sec:effect_of_clustering_results}
 
-Clustering had a profound effect on the speed of the application, where rendering a scatterplot natively, with over one hundred thousand data points, proved very inefficient. Clustering renders less data points, while the same data remains on the actual map. Due to data points being rendered as they are in view, clustering leads to fewer data points being shown while zoomed out, with zooming in showing more data points, while still not being cluttered as a normal scatterplot would be. 
+Clustering had a profound effect on the speed of the application, where rendering a scatterplot natively, with over one hundred thousand data points, proved very inefficient. Clustering renders fewer data points, while the same data remains on the actual map. Due to data points being rendered as they are in view, clustering leads to fewer data points being shown while zoomed out, with zooming in showing more data points, while still not being cluttered as a normal scatterplot would be. 
 
 \subsection{System Responsiveness}
 
 Responsiveness of the system is observed to be at a satisfactory level, although some operations cost more than others, such as going from a clustered view to an anomaly group view, with signal strength lines being computed, causes some slowdown, but remains responsive after the layer is changed. Other parts of the system like filtering and changing of layers are responsive, and change as soon as input is submitted. The slowest layer is heat maps, as changing zoom or moving around the map, causes it to recalculate the weight of each area. The heat map itself is as responsive as deck.gl implemented it, leading to no considerable performance gains to be doable, outside of trying to implement a clustered heat map in some way. 
 
 %=====================================================================
-\section{Testing}
+% TODO — 4.9 CUSTOMER FEEDBACK  (mirrors Method 3.8)
+%  - This section should move DOWN to sit near the end (after Testing/Performance),
+%    matching Method order where User Feedback is 3.8 (last before outcome).
+%  - STRONGEST section in the chapter — keep the content. Mostly needs spelling.
+%  - The many \subsection headings (Clustering, Signal Strength, Heat Map, General
+%    Solution) under Product Owner could be \subsubsection so they nest under
+%    "Product owner evaluation" properly.
+%  - "Our solution" → passive ("The delivered solution"). One first-person slip.
+% =====================================================================
+\section{Customer feedback}
+\label{sec:customer_feedback}
 
-Testing was done manually, as mentioned in section \ref{sec:testing_method}. Console logging and observation based testing was used, to ensure all features work, with performance testing being done through use of the application. 
+Feedback was collected from two sources through the process described in Section~\ref{sec:user_feedback}: the product owner at Kystverket, and an internal user who works with the AIS analysis system that is closely related to this project.
+
+\subsection{Product owner evaluation}
+
+The product owner evaluated the delivered features across four areas: clustering, signal strength visualization, heat map, and the solution as a whole.
+
+\subsection{Clustering}
+
+The clustering visualization was assessed positively because it helped provide a proper overview over a large amount of data without the visual clutter. The product owner also noted that clustering is already utilized by other large data systems at Kystverket, however it has not yet been applied to the AIS anomaly monitoring. A suggestion that was given for further development was to be able to display the types and counts of anomalies within each cluster. This would allow operators to assess if further exploring a cluster is worthwhile quickly.
+
+\subsection{Signal Strength}
+
+The signal strength visualization was described as a concept they were very interested in. The product owner noted that low signal strength between a vessel and a base station is an error in AIS messages that causes the creation of anomaly messages. Other systems they utilise for signal strength take longer to find the data and does not visualise it properly. Increasing the time to analyse anomaly groups and increasing time complexity for the operator. The delivered solution was assessed as effective both at macro level, where lines from anomaly groups to base stations are visible while zoomed out. While also being effective at the micro level, where individual signal strength values are visible when zoomed in. A suggestion was given to extend the visualization to include additional data like signal strength before and after an anomaly occurs, however this would require additional data from Kystverket.
+
+\subsection{Heat Map}
+
+The heat map was assessed to be a useful tool that complements clustering. This was because clustering only shows volume through numbers for large areas and requires zooming in to find areas with large amounts of points, while the heat map is valuable since it allows identification of all the hot spots on a large map at a zoomed-out level without requiring additional work from the user.
+
+\subsection{General Solution}
+
+The overall solution was evaluated positively for its features like toggling between visualization types, filtering by anomaly type, and the ability to drill down to the individual anomaly level. The product owner also noted that reimplementing anomaly group and base station views was necessary for the signal strength concept to provide value, even though those views already exist in Kystverket's current system.
+
+\subsection{Internal user feedback}
+
+An internal user of Kystverket's existing AIS analysis system provided additional suggestions for further development.
+
+\begin{itemize}
+  \item Normalizing the heat map against vessel traffic density in
+    each area, so that the visualization reflects where anomalies are
+    overrepresented rather than where traffic volume is highest.
+  \item Extending signal strength visualization to cover all position
+    reports from a vessel, not only those linked to anomalies, to
+    provide a more complete picture of signal quality over time.
+  \item Disabling clustering at low data densities where
+    consolidation removes useful detail from the view.
+  \item Adding aggregated per-vessel statistics to support long-term
+    credibility assessment of individual ships.
+  \item Displaying anomaly frequency graphs over time to reveal how
+    the situation develops hourly or daily.
+\end{itemize}
 
 %=====================================================================
+% TODO — 4.10 PROJECT OUTCOME
+%  - Scope Changes During Development: move the EVALUATION ("scope never being
+%    locked down") to Discussion. Keep only WHAT changed (features added/removed).
+%  - Delivered vs Planned Features: REPLACE the prose with a TABLE:
+%    Feature | Status (Implemented / Partial / Not implemented) | Notes.
+%    Far stronger for NRT criterion 5 and easier for the sensor to read.
+%  - "Comparison to Customer's Tools": MOVE THE WHOLE SUBSECTION TO DISCUSSION.
+%    It is comparative evaluation, not a result. Heading also needs capitalization.
+%  - "While...but have different features" — contradictory construction; pick one.
+% =====================================================================
 \section{Project Outcome}
 
-The final project outcome was influenced both by the original project outline and by scope changes introduced throughout development. While the implemented system follows the main goals of the original project outline, but have different features implemented, by the change of scope. 
+The final project outcome was influenced both by the original project outline and by scope changes introduced throughout development. The implemented system follows the main goals of the original project outline, but has different features implemented, by the change of scope. 
 
 \subsection{Scope Changes During Development}
 
@@ -281,6 +416,6 @@ Almost all planned features from the project outline and through meetings were i
 
 \section{comparison to customers tools}
 
-As the resulting application is testing concepts for the customer, a direct comparison yields little value, as the customer themselves mentioned that the currently in use tools are superior in their core functionality. However as the currently implemented application is testing new visualization methods and features, this then bring value to the customer to test if their already in use software, or software they are to make themselves, should have these features. As a result the software created for the project is better in the specifics of testing new concepts.
+As the resulting application is testing concepts for the customer, a direct comparison yields little value, as the customer themselves mentioned that the currently in use tools are superior in their core functionality. However as the currently implemented application is testing new visualization methods and features, this then brings value to the customer to test if their already in use software, or software they are to make themselves, should have these features. As a result the software created for the project is better in the specifics of testing new concepts.
 
 %=====================================================================
