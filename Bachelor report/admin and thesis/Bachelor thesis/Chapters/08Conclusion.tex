@@ -1,9 +1,19 @@
 
-\textit{This chapter summarizes and reflects on the project.}
+\textit{This chapter summarizes the project, revisits the objectives, and reflects on the overall outcome of the developed system}
 
 
-The goal of the project was to evaluate if new visualization methods and features that are currently not in use at the norwegian coastal administration could bring value to them if implemented. The final software allows for multiple visualization modes to be filtered and interacted with. 
+The goal of the project was to evaluate whether alternative visualization methods and features could provide new value to the Norwegian Coastal Administration, in analyzing AIS anomaly data. The focus was on developing a prototype application that enables analysis of large-scale anomaly data sets through interactive filtering and multiple new visualization approaches. 
 
-Work on the project was done in iterations, following agile methodology. Weekly sprints were completed, with constant customer communication throughout the project through slack. React and choice of libraries like deck.gl, lead to a modular design of components for user interface, with deck.gl and maplibre providing hardware accelerated performance for visualization and map interaction. 
 
-The project demonstrates that third party tools can be used to test out new concepts, before full production is done on features that might not bring value to the customer, eliminating more risk than without evaluating if such features are to be created. Extensions to the current software can be adding actual data of AIS messages and vessels, or adding new data types and visualization methods.
+The final system demonstrates a locally hosted prototype allowing for analysis of AIS anomaly data. It allows users to view anomaly patterns through clustering, heatmap visualizations and detailed inspection of anomaly groups and individual anomalies. In addition, filtering based on MMSI, anomaly type and date range were added to enable a targeted analysis of anomalies and their connection to base station and satellites. Together, these features support a high level view of where anomalies aggregate, and their signal connection to base stations on the coast alongside satellite representation. 
+
+The project demonstrates that it is possible for third party tools and modern web technologies to prototype new features and methods in data analysis. This approach enables early evaluation of visualization concepts without requiring full scale development on these systems, allowing verification of the concepts value and reducing development risk, and unnecessary time usage. 
+
+The project objectives were in large part achieved, fully implement the core visualization and interaction features requested, including clustering, heatmaps, filtering and information components, alongside signal strength and individual anomaly layers. However, some planned features, such as hexagonal binning, and more complex visualization of satellite orbit, with report generation were not implemented due to time constraints and scope cut causing focus on the implemented system. 
+
+Further improvement could be implemented, such as integration with the customers real-time AIS data stream, to enable monitoring of live data. More advanced temporal analysis or implementation of cut features such as hexagonal binning, can add new value to the system. The system can also be further worked on to visualize more than AIS data, and can be used to test concepts related to other fields and visualization methods. 
+
+Overall, the implemented system meets the main objective of creating a simple, readable visualization program for AIS anomaly data, while remaining open for further work. 
+
+
+
