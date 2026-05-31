@@ -118,7 +118,7 @@ GitHub branching was used to isolate development between developers. Each member
 % A simple box diagram: Database <-> Backend (Go/Docker) <-> REST API <-> Frontend (React/MapLibre)
 
 % Needs better section intro with linguistic bridge to theory does it mostly but talks about system isntead of section
-The architecture follows a client-server model (Section~\ref{sec:client_server}). The backend is implemented in Go and running inside a Docker container exposing a REST API (Section~\ref{sec: rest api}). Swagger is used for API documentation, and the frontend is built with React and TypeScript retrieving the data it needs through API calls to the backend.
+The architecture follows a client-server model (Section~\ref{sec:client_server_theory}). The backend is implemented in Go and running inside a Docker container exposing a REST API (Section~\ref{sec: rest api}). Swagger is used for API documentation, and the frontend is built with React and TypeScript retrieving the data it needs through API calls to the backend.
 
 
 \subsection{Architecture Overview}
@@ -158,7 +158,7 @@ The technology stack was primarily determined by the customer's existing infrast
 % TODO: Mention other things used in the backend making sure nothing is missing.
 \end{itemize}
 
-The backend was originally provided by the NCA as a working codebase, pre-populated with test data for development, since actual AIS anomaly data is confidential. The team forked this repository and updated it throughout the project. The most notable addition was a master query endpoint described in Section \ref{sec:backend_and_data_flow_method}. The test dataset consists of three anomaly types: speed, maneuver, and jumping anomalies. Anomalies are grouped by type and proximty, ranging from thousands to a single anomaly entry per group. 
+The backend was originally provided by the NCA as a working codebase, pre-populated with test data for development, since actual AIS anomaly data is confidential. The team forked this repository and updated it throughout the project. The most notable addition was a master query endpoint described in Section \ref{sec:backend_and_data_flow_method}. The test dataset consists of three anomaly types: speed, maneuver, and jumping anomalies. Anomalies are grouped by type and proximity, ranging from thousands to a single anomaly entry per group. 
 % TODO: Describe the test dataset briefly (rough size, time range, types of anomalies if known).
 
 
@@ -200,7 +200,7 @@ Deck.gl is responsible for rendering anomaly data as visualization layers above 
 % - What are the main pages/views? (Map view, filter panel, detail cards, etc.)
 % - How does state management work for filters and map state?
 
-This section describes the frontend architecture, the design process that shaped it, and the communication patterns between frontend and backend. The resulting implementation is presented in Section 4.3.
+This section describes the frontend architecture, the design process that shaped it, and the communication patterns between frontend and backend. The resulting implementation is presented in Section~\ref{sec:results_frontend}.
 % Use proper ref but shows the red string connecting 3.3 to 4.3
 
 \subsection{Frontend Architecture}
@@ -322,7 +322,7 @@ The visualization methods implemented in this project were selected based on req
 % Some sentences need to be split for a cleaner structure.
 Clustering was implemented at the request of the customer as a way to reduce visual clutter and improve human readability when visualizing large datasets. It follows general clustering theory from (Section~\ref{sec:clustering}). As mentioned in Section \ref{sec:supercluster}, Supercluster.js is used for calculating clusters based on zoom level and the current map bounds. Supercluster calculates clusters based on the base dataset acquired from the API. The clustering behavior is controlled through a fixed radius parameter, where anomalies close together in the predefined radius are put in a cluster. Map interactions such as zooming and dragging result in clusters being retrieved for the current zoom level and map bounds. Supercluster itself was chosen for its ease of use with geoJSON, while being designed for fast calculations, through the use of hierarchical greedy clustering, while reusing previous calculations (Section~\ref{sec:supercluster}). 
 
-The clustering data itself is used with deck.gl (Section~\ref{sec:deckgl}). Visualization through deck.gl is accomplished through creating a custom layer, consisting of a label-layer, used to display the amount of anomalies within each cluster, placed above a scatterplot-layer section \ref{sec:scattermap}. This combines to create the clustering layer. This layer is re-rendered whenever the clustering output changes due to updates in zoom level or map bounds. Additionally, cluster visualization includes dynamic sizing based on amount of anomalies inside a cluster, leading to clusters being scaled in size proportional to their anomaly count. 
+The clustering data itself is used with deck.gl (Section~\ref{sec:deckgl}). Visualization through deck.gl is accomplished through creating a custom layer, consisting of a label-layer, used to display the amount of anomalies within each cluster, placed above a scatterplot layer (Section~\ref{sec:scatter_plot}). This combines to create the clustering layer. This layer is re-rendered whenever the clustering output changes due to updates in zoom level or map bounds. Additionally, cluster visualization includes dynamic sizing based on amount of anomalies inside a cluster, leading to clusters being scaled in size proportional to their anomaly count. 
 
 % TODO: Add technical details:
 % - What clustering radius/parameters did you use?

@@ -6,7 +6,7 @@
 
 The finished product meets the main requirement the customer requested, with few features from the original project description being omitted. The quality of the finished project as a concept test for new visualization methods was noted in the customer feedback presented in Section~\ref{sec:customer_feedback}.
 
-The overall solution was assessed as satisfactory by the customer, as it allowed them to test concepts of new visualization modes like signal strength, clustering, and heat map layers. Collaboration with the customer was effective troughout the project, with frequent communication supporting the addition of new features and the resolution of technical questions as they arose.
+The overall solution was assessed as satisfactory by the customer, as it allowed them to test concepts of new visualization modes like signal strength, clustering, and heat map layers. Collaboration with the customer was effective throughout the project, with frequent communication supporting the addition of new features and the resolution of technical questions as they arose.
 
 The project demonstrates that visualization of large datasets through methods not currently in use by the customer can provide concrete value. This is reflected in the customer's stated intention to incorporate several of these features into their existing software.
 
@@ -19,13 +19,13 @@ The technical solution, described in Section~\ref{sec:system_architecture}, is d
 
 The system architecture, with Deck.gl overlaid on MapLibre as the base map and a Docker-based backend providing data, worked well throughout development. The modular approach led to MapLibre being separated from the Deck.gl implementation (Section~\ref{sec:deckgl}), with the map itself responsible only for  map-related functionality such as zooming and movement. This separation simplified the overall complexity and produced cleaner code with a clear separation of concerns. Achieving this required a period of refactoring tightly coupled code, particularly where the map itself contained functionality unrelated to its task. 
 
-The architecture choice was partially guided by the customer, whose request to use React and other technologies already in use within their infrastructure shaped the group's decisions, alongside with the customer providing the backend. Maplibre was suggested in the project document and was ultimately selected as the map provider, supported by its open-source nature and use of vector tiles (Section~\ref{sec:vector tiles}).
+The architecture choice was partially guided by the customer, whose request to use React and other technologies already in use within their infrastructure shaped the group's decisions, alongside with the customer providing the backend. Maplibre was suggested in the project document and was ultimately selected as the map provider, supported by its open-source nature and use of vector tiles (Section~\ref{sec:vector_tiles}).
 
 \subsection{Frontend}
 
 The frontend implementation successfully followed the wireframes established at the beginning of the project (Section~\ref{sec:design_process}). The design is minimalist by comparison to other applications, prioritizing the map and visualization components over additional interface elements. 
 
-The choice of map provider had both advantages and disadvantages. Maplibre is a fork of the now closed-source Mapbox, which meant that documentation was less comprehensive than required, and that more detailed information for equivalent code often had to be retrived from the Mapbox website. As a result working with MapLibre required more time spent understanding the library than was originally anticipated, delaying implementation beyond what had been planned.
+The choice of map provider had both advantages and disadvantages. MapLibre is a fork of the now closed-source Mapbox, which meant that documentation was less comprehensive than required, and that more detailed information for equivalent code often had to be retrieved from the Mapbox website. As a result working with MapLibre required more time spent understanding the library than was originally anticipated, delaying implementation beyond what had been planned.
 
 Deck.gl (Section~\ref{sec:deckgl}) proved to be an effective choice for visualization, providing all functionality needed to implement the customer's requested features. Layering through Deck.gl allowed straightforward integration with MapLibre by utilizing a MapBox-style overlay. Since MapLibre is a fork of MapBox, no additional integration code was required beyond what would have been needed for MapBox itself. 
 
@@ -70,7 +70,7 @@ Most user interaction centers on zoom level and camera position within the map. 
 The backend was provided by the customer with most of the endpoints required by the project already implemented, supported by comprehensive Swagger documentation. Docker simplified the process of running the backend, requiring only a few commands to start and fill the database with test data. 
 
 The group's main contribution to the backend was a master query endpoint ((Section~\ref{sec:backend_and_data_flow_method}), which combines all filter parameters into a single backend query and returns only the matching dataset.
-Client-side filtering on top of an already-filtered dataset would have been possible, however that solution would have required keeping the original dataset in memory and rerunning the filter logic on the frontend to further filter the data the group allready has. However that would be inefficient at the dataset sizes used in this project, because the containerized backend responds in the millisecond range and routing filter operations to the backend to then be handled by the query proved faster than client-side re-filtering. Because of this the rendered dataset always reflects the currently active filters directly, without the need to keep a seperate "full dataset" on the frontend. When users need to drill down further within the active dataset, the sidebar search component provides this functionality locally without requiring an additional backend request.
+Client-side filtering on top of an already-filtered dataset would have been possible, however that solution would have required keeping the original dataset in memory and rerunning the filter logic on the frontend to further filter the data the group already has. However that would be inefficient at the dataset sizes used in this project, because the containerized backend responds in the millisecond range and routing filter operations to the backend to then be handled by the query proved faster than client-side re-filtering. Because of this the rendered dataset always reflects the currently active filters directly, without the need to keep a separate "full dataset" on the frontend. When users need to drill down further within the active dataset, the sidebar search component provides this functionality locally without requiring an additional backend request.
 
 Observation of the backend showed no critical performance or data errors. However, working with the delivered backend introduced limitations, on being constrained to the predefined API structure, with extensions being more complicated for the group to implement themselves, due to lack of experience with the programming language GO. Although the observed performance was satisfactory, testing of the performance was not controlled by the group itself, with core negatives of the backend implementation being wait time for customer to implement required features, a less often occurrence. As a result the backend was well implemented, but not controlled solely by the group, this being a tradeoff.
 
@@ -80,7 +80,7 @@ Data handling through GeoJSON, proved a good choice for both the backend and fro
 
 \section{Performance and Scalability Discussion}
 
-The performance of the system is highly dependent on hardware specifications, with the GPU having a particularly strong. WebGL benefits significantly from more capable GPUs \ref{sec:hardware_acceleration}), meaning that performance is bottlenecked on weaker systems. 
+The performance of the system is highly dependent on hardware specifications, with the GPU having a particularly strong influence. WebGL benefits significantly from more capable GPUs (Section~\ref{sec:hardware_acceleration}), meaning that performance is bottlenecked on weaker systems. 
 
 
 \subsection{Rendering Performance}

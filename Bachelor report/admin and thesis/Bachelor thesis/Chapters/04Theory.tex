@@ -12,7 +12,7 @@ This chapter gives the theoretical background for the bachelor project, explaini
 \section{Automatic Identification System (AIS)}
 \label{sec:AIS}
 % source: Kystverket AIS‑Norway description (project brief)
-The Automatic Identification System (AIS) is a system used to transfer information about a ship, including its location and heading, to base stations, satellites and other ships, on coasts around the world. The system is prone to errors due to incorrect configurations, area jamming, or message spoofing. The NCA processes this data to detect errors in AIS messages. In practice, this pipeline identifies millions of anomalous messages per day.
+The Automatic Identification System (AIS) is a system used to transfer information about a ship, including its location and heading, to base stations, satellites and other ships, on coasts around the world. The system is prone to errors due to incorrect configurations, area jamming, or message spoofing. The NCA processes this data to detect errors in AIS messages. In practice, this pipeline identifies millions of anomalous messages per day, as illustrated in Figure~\ref{fig:ais_image}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth,height=0.70\textheight,keepaspectratio]{Figures/ais-message-example.jpg}
@@ -57,7 +57,7 @@ Anomalies refer to detected irregularities from AIS messages. Anomalous messages
 \label{sec:heatmap}
 
 
-Heatmaps are used for data visualization, to show relationship between variables, such as the distribution of data points per type, the quantity of data is represented through color, where higher concentrations have a darker color than less concentrated areas of points. This leads to intuitive visualization of datasets.\parencite{HeatMaps}
+Heatmaps are used for data visualization, to show relationship between variables, such as the distribution of data points per type, the quantity of data is represented through color, where higher concentrations have a darker color than less concentrated areas of points. This leads to intuitive visualization of datasets, as shown in Figure~\ref{fig:heatmap_image} \parencite{HeatMaps}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth,height=0.3\textheight,keepaspectratio]{Figures/London-heat-map.png}
@@ -69,7 +69,7 @@ Heatmaps are used for data visualization, to show relationship between variables
 \section{Clustering}
 \label{sec:clustering}
 
-Clustering pertains to a method of aggregating data points into groups or clusters. Clusters can be created based on various factors such as movie genre, user details or anomaly type. There are multiple different clustering algorithms that serve different purposes, such as density or proximity-based methods. \parencite{ibm_clustering}
+Clustering pertains to a method of aggregating data points into groups or clusters. Clusters can be created based on various factors such as movie genre, user details or anomaly type. There are multiple different clustering algorithms that serve different purposes, such as density or proximity-based methods, as illustrated in Figure~\ref{fig:clustering_visualization} \parencite{ibm_clustering}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth,height=0.3\textheight,keepaspectratio]{Figures/clustering-example.png}
@@ -94,9 +94,9 @@ A scatter plot is a visualization method used to show correlation between variab
 Web maps are used for geographic visualization on the internet. Modern web maps allow users to interact with maps on websites in an intuitive way, making geographic data easier to explore and understand. Web maps are created by having a basemap which is the first layer showing the map itself, without additional data layers. On top of the basemap, additional layers can be added, that are shown above it. These layers can be, data points of incidents happening in a geographic area, charting of train tracks in a country, and other spatial data depending on the application.\parencite{web_maps}
 
 \subsection{Vector Tiles}
-\label{sec:vector tiles}
+\label{sec:vector_tiles}
 
-Vector tiles are what is currently used by most web map providers. Vector tiles store geographic data in vector format to show the contents of the map itself, instead of PNG images that were used in the past. Vector tiles allow for more styling and customization than PNG image tiles, and have led to smoother interaction with web maps, at the cost of requiring more processing power\parencite{vector_tiles_introduction}.
+Vector tiles are what is currently used by most web map providers. Vector tiles store geographic data in vector format to show the contents of the map itself, instead of PNG images that were used in the past. Vector tiles allow for more styling and customization than PNG image tiles, and have led to smoother interaction with web maps, at the cost of requiring more processing power \parencite{vector_tiles_introduction}, as illustrated in Figure~\ref{fig:vector_tile_image}.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{Figures/vector-tile-example.png}
@@ -166,7 +166,7 @@ Coupling and cohesion refer to design principles for creating sustainable and sc
 
 Separation of concerns is a software design principle, aimed at separating system functionality into cohesive units that address specific concerns. This leads to independent components of the system with specific responsibilities, resulting in a more modular design \parencite{separation_of_concerns}.
 
-\subsection{single responsibility principle}
+\subsection{Single Responsibility Principle}
 \label{sec:single_responsibility_theory}
 
 The single responsibility principle dictates that a part of software, should only have have one responsibility, such that code is modular and reusable. As a result of following this principle, code becomes easier to extend and maintain \parencite{single_responsibility}.
@@ -225,7 +225,7 @@ The work in a scrum project is represented through scrum artifacts, divided into
 
 Sprints are executed as time-boxed iterations where the development team works on selected backlog items. A sprint itself is planned beforehand, defining the goals to be achieved. After a sprint is completed, a sprint review and retrospective is held. The review is an informal showcase of the work done, while the retrospective evaluates the sprint itself, reflecting on strengths and weaknesses the sprint had. Sprints are typically conducted in a weekly or biweekly cycle, with frequent feedback from the product owner. 
 
-A system that is utilized by developers is a daily Scrum or as a more general term a daily stand-up. This is a daily meeting where developers discuss current work, and any issues they have encountered. The amount of time spent on a daily stand-up is around 15 minutes. The next day of work is then planned based on the outcome of the stand-up. Daily stand-ups facilitate communication between team members, with different areas of expertise, and allow for flexible changes to project planning.  \parencite{atlassian_scrum,agile_academy_daily_standup}.
+A system that is utilized by developers is a daily Scrum or as a more general term a daily stand-up. This is a daily meeting where developers discuss current work, and any issues they have encountered. The amount of time spent on a daily stand-up is around 15 minutes. The next day of work is then planned based on the outcome of the stand-up. Daily stand-ups facilitate communication between team members, with different areas of expertise, and allow for flexible changes to project planning \parencite{atlassian_scrum,agile_academy_daily_standup}. The Scrum lifecycle is illustrated in Figure~\ref{fig:scrum_framework}.
 
 \begin{figure}[H]
     \centering

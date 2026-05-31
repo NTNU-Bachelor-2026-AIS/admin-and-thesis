@@ -39,10 +39,10 @@ This chapter presents the resulting application, a locally hosted visualization 
 %    Discussion (you already have that in Project Execution).
 %  - ADD a linguistic bridge: "as described in Section~\ref{sec:dev_methodology}".
 % =====================================================================
-\section{Project management}
+\section{Project Management}
 
 %TODO Add number of sprints issues and such.
-The project followed the Scrum-based process described in Section ~\ref{sec:dev_methodology}, divided into approximately 16 weekly sprints, with occasional two-week exceptions over the project period. Each sprint included a sprint planning session, daily synchronization meetings, and a retrospective. Bi-weekly were held with both the supervisor and the customer at Kystverket, though scheduling occasionally extended the interval to three weeks. At the end of the project, the GitHub Projects contained 106 completed issues actross the frontend, backend and administrative repositories.
+The project followed the Scrum-based process described in Section ~\ref{sec:dev_methodology}, divided into approximately 16 weekly sprints, with occasional two-week exceptions over the project period. Each sprint included a sprint planning session, daily synchronization meetings, and a retrospective. Bi-weekly meetings were held with both the supervisor and the customer at Kystverket, though scheduling occasionally extended the interval to three weeks. At the end of the project, the GitHub Projects contained 106 completed issues across the frontend, backend and administrative repositories.
 %TODO add final number of sprints. might change.
 % Had some sprints which were exceptions were they were 2 weeks sometimes. 
 
@@ -73,7 +73,7 @@ The final system architecture consists of a React frontend communicating with a 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth,height=0.7\textheight,keepaspectratio]{Figures/Use_Case_Diagram.png}
-    \caption[Use Case Diagram]{Use Case}
+    \caption[Use Case Diagram]{Use case diagram showing the expected interactions between a maritime operator and the system's core features}
     \label{fig:Use_Case_image}
 \end{figure}
 
@@ -85,7 +85,7 @@ The use case diagram in Figure~\ref{fig:Use_Case_image} illustrates the expected
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth,height=0.7\textheight,keepaspectratio]{Figures/Package_Diagram.png}
-    \caption[Package Diagram]{Package}
+    \caption[Package Diagram]{Package diagram showing the modular directory structure of the frontend repository}
     \label{fig:Package_Diagram_image}
 \end{figure}
 
@@ -98,11 +98,11 @@ The package diagram in Figure~\ref{fig:Package_Diagram_image} outlines the modul
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth,height=0.7\textheight,keepaspectratio]{Figures/Sequence_Diagram.png}
-    \caption[Sequence Diagram]{Sequence}
+    \caption[Sequence Diagram]{Sequence diagram illustrating the data flow from a user filter action to an updated visualization layer}
     \label{fig:Sequence_Diagram_image}
 \end{figure}
 
-The sequence diagram in figure~\ref{fig:Sequence_Diagram_image}, maps the data flow from user interaction to visual state change. As illustrated in the image, if a user requests to apply a filter, an HTTP get request is sent to an endpoint, which then queries the database. This then returns a geoJSON featurecollection as a promise, and is then asynchronously accessed through react. This then creates the deck.gl layer requested, and overlays it on the map, leading to an updated visualization for the end user. 
+The sequence diagram in Figure~\ref{fig:Sequence_Diagram_image}, maps the data flow from user interaction to visual state change. As illustrated in the image, if a user requests to apply a filter, an HTTP get request is sent to an endpoint, which then queries the database. This then returns a geoJSON featurecollection as a promise, and is then asynchronously accessed through react. This then creates the deck.gl layer requested, and overlays it on the map, leading to an updated visualization for the end user. 
 
 %=====================================================================
 % TODO — 4.4 FRONTEND  (mirrors Method 3.3)
@@ -117,20 +117,21 @@ The sequence diagram in figure~\ref{fig:Sequence_Diagram_image}, maps the data f
 %  - "allowing for users to write change the dataset" — "write" looks accidental.
 % =====================================================================
 \section{Frontend}
-The resulting frontend of the project was created following the method in section \ref{sec:design_process}. Figure \ref{fig:frontend_result_image} shows the finished frontend. 
+\label{sec:results_frontend}
+The resulting frontend of the project was created following the method in Section~\ref{sec:design_process}. Figure \ref{fig:frontend_result_image} shows the finished frontend. 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.95\textwidth,height=0.7\textheight,keepaspectratio]{Figures/full_application_image.png}
-    \caption[frontend result image]{Frontend result}
+    \caption[Frontend application]{The completed single-page application showing the map view with visualization overlay, sidebar, and filter component}
     \label{fig:frontend_result_image}
 \end{figure}
 
-A singular page was created for the application, being the only page needed for all functionality. As shown in figure \ref{fig:frontend_result_image}, the user interface is made up of multiple parts. The base map takes up the center of the application, with visualization overlaid on top of the map.
+A singular page was created for the application, being the only page needed for all functionality. As shown in Figure~\ref{fig:frontend_result_image}, the user interface is made up of multiple parts. The base map takes up the center of the application, with visualization overlaid on top of the map.
 
-Components such as a sidebar on the top right contain the entire dataset, allowing for searching of anomalies based on type or mmsi. 
-A visualization dropdown menu allows to change between the two main visualization modes, changing when the mode is selected. 
-on the top middle of the page, is a filtering component, allowing for users to change the dataset currently rendered, between different anomaly types, date range and mmsi of the anomaly itself. 
+Components such as a sidebar on the top right contain the entire dataset, allowing for searching of anomalies based on type or MMSI. 
+A visualization dropdown menu allows switching between the two main visualization modes. 
+On the top middle of the page is a filtering component, allowing users to change the displayed dataset by filtering on anomaly type, date range, and MMSI. 
 
 %=====================================================================
 % TODO — 4.5 BACKEND AND DATA HANDLING  (mirrors Method 3.4)
@@ -146,23 +147,23 @@ on the top middle of the page, is a filtering component, allowing for users to c
 %  - ADD bridge to Method: "The backend described in Section~\ref{sec:backend_and_data_flow_method}...".
 % =====================================================================
 
-\section{Backend and Data handling}
-The backend system was developed by the customer and provided as part of the project infrastructure. It exposes a REST API used by the frontend to retrieve anomaly data. anomaly data is created as a geoJSON feature collection, with features indicating a single anomaly group. 
+\section{Backend and Data Handling}
+The backend system was developed by the customer and provided as part of the project infrastructure. It exposes a REST API used by the frontend to retrieve anomaly data. Anomaly data is stored as a GeoJSON FeatureCollection, with each feature representing a single anomaly group. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/db_models.png}
-    \caption[db model diagram]{database model diagram}
+    \caption[Database model diagram]{Database model diagram showing the relationship between anomaly groups and individual anomalies}
     \label{fig:databse_model_diagram_image}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/db_result.png}
-    \caption[db result image]{database schema}
+    \caption[Database schema]{Database schema showing table structure, field definitions, and data types}
     \label{fig:database_schema_image}
 \end{figure}
 
-The above figures show the backend database structure. An anomaly group contains anomalies, where the anomaly group itself has the start time and last activity time of the group itself, sourced from the first instance of an anomaly being created in a group. Anomalies themselves have signal strength and their own data, with the group containing general data related to the group such as the general area of the anomalies, represented as location. 
+Figures~\ref{fig:databse_model_diagram_image} and~\ref{fig:database_schema_image} show the backend database structure. An anomaly group contains anomalies, where the anomaly group itself has the start time and last activity time of the group itself, sourced from the first instance of an anomaly being created in a group. Anomalies themselves have signal strength and their own data, with the group containing general data related to the group such as the general area of the anomalies, represented as location. 
 
 The anomalies and anomaly groups are generated by the docker backend, with amount of anomalies set through a configuration file. specific commands to generate anomalies and build the database are used, leading to a database filled with an amount of points set by the developer. The docker backend running allows for the frontend to send requests to API endpoints to request data, while the frontend itself runs through localhost. 
 
@@ -182,14 +183,14 @@ The anomalies and anomaly groups are generated by the docker backend, with amoun
 
 \subsection{GeoJSON Data Structure}
 
-The final GeoJSON structure is shown in figure \ref{fig:geoJSON-result_image}
+The final GeoJSON structure is shown in Figure~\ref{fig:geoJSON-result_image}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/geoJSON-result.png}
-    \caption[geoJSON result]{geoJSON message}
+    \caption[GeoJSON FeatureCollection structure]{Example GeoJSON FeatureCollection returned by the backend API, with anomaly groups as individual features}
     \label{fig:geoJSON-result_image}
 \end{figure}
-Anomaly data is completely integrated in a featurecollection, with the individual features being anomaly groups. These features are individually processed in the frontend, as a dataset, through deck.gl. 
+Anomaly data is completely integrated in a FeatureCollection, with the individual features being anomaly groups. These features are individually processed in the frontend, as a dataset, through deck.gl. 
 
 % TODO: Talk more about the master query
 \subsection{Backend Query and Response Behaviour}
@@ -197,7 +198,7 @@ Figure \ref{fig:swagger-result_image} showcases an API endpoint, created as a ma
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/swagger_api.png}
-    \caption[swagger result]{swagger endpoint}
+    \caption[Swagger API endpoint]{Swagger UI showing the master query endpoint with all available filter parameters}
     \label{fig:swagger-result_image}
 \end{figure}
 General endpoints for retrieving all anomaly data, as well as filtered datasets, are implemented. requesting filtered data leads to the base data set changing to contain the new data, while in other cases such as the sidebar having its own data variable to not change the main map data through search. 
@@ -227,41 +228,40 @@ As described in section \ref{sec:clustering_method}. The clustering approach is 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth,height=0.35\textheight,keepaspectratio]{Figures/clustering-result.png}
-    \caption[Clustering result image]{Result clustering visualization}
+    \caption[Clustering visualization result]{Clustering visualization showing anomaly groups aggregated by proximity, with numeric labels indicating the group count per cluster}
     \label{fig:clustering_result_image}
 \end{figure}
 Clusters are calculated through the use of a radius that computes the amount of points inside a circle of a defined radius, in the case of the project being 40 pixels. points inside the pixel radius are aggregated, and shown as a single point. A higher density of points in a cluster leads to that cluster being shown as larger on the map. Recalculation of clusters happens when zooming and dragging is done in the application, where clusters are divided into smaller parts due to points increasing in distance, moving outside of the defined radius. 
 
 
 \subsection{Heat Map Visualization}
-The system includes a heat map visualization layer. The heat map is implemented as in section \ref{sec:Heat_Map_method}. An example of the implemented heat map visualization is shown in figure
-\ref{fig:heatmap_result_image}.
+The system includes a heat map visualization layer. The heat map is implemented as in section \ref{sec:Heat_Map_method}. An example of the implemented heat map visualization is shown in Figure~\ref{fig:heatmap_result_image}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.54\textwidth,height=0.35\textheight,keepaspectratio]{Figures/heatmap-result.png}
-    \caption[heatmap result image]{Heat map result }
+    \caption[Heat map visualization result]{Heat map visualization showing anomaly density across the dataset, with warmer colors indicating higher concentrations}
     \label{fig:heatmap_result_image}
 \end{figure}
-Color is generated through calculating the sum of points inside a radius of 40 pixels, meaning points inside a circle are calculated as a sum, leading to higher density of points being weighted more.\url{https://deck.gl/docs/api-reference/aggregation-layers/heatmap-layer}. 
+Color is generated through calculating the sum of points inside a radius of 40 pixels, meaning points inside a circle are calculated as a sum, leading to higher density of points being weighted more \parencite{deckgl_official_site}. 
 The resulting heat map layer allows for zoom and drag operations to change the heat map view dynamically, with zoomed in levels having less dense representation, while zoomed out levels lead to higher aggregates per pixel radius, and denser representation overall. 
 
 \subsection{Base Station Visualization}
-A base station layer is part of the application, implemented as mentioned in section \ref{sec:base_station}. The base station layer is visualized through blue icons in figure \ref{fig:base_station_result_image}. The base station layer itself is persistent, meaning that it is a visualization layer that will always be present in the app, even if other methods of visualizing the data points are changed. 
+A base station layer is part of the application, implemented as mentioned in section \ref{sec:base_station}. The base station layer is visualized through blue icons in Figure~\ref{fig:base_station_result_image}. The base station layer itself is persistent, meaning that it is a visualization layer that will always be present in the app, even if other methods of visualizing the data points are changed. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth,height=0.2\textheight,keepaspectratio]{Figures/Base-station-view.png}
-    \caption[base station view]{Base station layer}
+    \caption[Base station layer]{Base station layer showing fixed AIS receiver locations as blue icons, providing persistent geographic reference points on the map}
     \label{fig:base_station_result_image}
 \end{figure}
 Base stations are linked to anomalies through backend data representing transmissions from individual anomalies. This is then used in other layers to connect base stations to anomalies through signal strength. The base stations data itself will never change in position, as they are static points on the map. This provides persistent reference in relation to anomaly and transmitted base station, and helps end users visually observing the distance between anomaly cluster and base station, leading to visual feedback on the spatial relationship between anomalies and base stations.
 
 
 \subsection{Anomaly Group Visualization}
-anomaly group visualization is created as shown in figure \ref{fig:anomaly_group_result_image}.
+The anomaly group visualization is shown in Figure~\ref{fig:anomaly_group_result_image}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth,height=0.6\textheight,keepaspectratio]{Figures/anomaly-group-layer-result.png}
-    \caption[anomaly group result image]{Anomaly group layer}
+    \caption[Anomaly group layer]{Anomaly group layer showing signal strength lines connecting individual anomalies to nearby base stations and satellites}
     \label{fig:anomaly_group_result_image}
 \end{figure}
 
@@ -269,11 +269,11 @@ The layer shows an info component for the current group, with coordinates and st
 
 
 \subsection{Individual Anomaly Visualization}
-Individual anomalies, are shown as a scatterplot, section \ref{sec:scatter_plot}. The visualization shows the points colored based on signal strength, from red to green. This is done through the signal strength value being normalized from 0 to 1, in the database. 
+Individual anomalies are shown as a scatter plot (Section~\ref{sec:scatter_plot}). The visualization shows the points colored based on signal strength, from red to green. This is done through the signal strength value being normalized from 0 to 1, in the database. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/individual_anomaly_layer_result.png}
-    \caption[individual anomaly result image]{Individual anomaly layer}
+    \caption[Individual anomaly layer]{Individual anomaly layer displaying anomalies as a scatter plot, colored from red to green based on signal strength}
     \label{fig:individual_anomaly_result_image}
 \end{figure}
 Figure \ref{fig:individual_anomaly_result_image}, shows the completed layer. anomalies are correctly colored through the signal strength variable, with an info component being shown for an anomaly, through clicking on it. The info component illustrates features of the anomaly, like its direction, name, and MMSI. 
@@ -407,7 +407,7 @@ During development, and from the start of the project, the project differed in s
 
 Almost all planned features from the project outline and through meetings were implemented, some being seen as extra features later in development by the customer. A report generating system and satellite orbit visualization feature were not delivered. However satellites themselves were implemented and shown as connected to anomalies through a signal strength line in the anomaly group layer, showing its position at the time of data transmission. The overall delivered features implement majority of the project outlines', while overall implementing the requested features from the customer. 
 
-\section{comparison to customers tools}
+\section{Comparison to Customer's Tools}
 
 As the resulting application is testing concepts for the customer, a direct comparison yields little value, as the customer themselves mentioned that the currently in use tools are superior in their core functionality. However as the currently implemented application is testing new visualization methods and features, this then brings value to the customer to test if their already in use software, or software they are to make themselves, should have these features. As a result the software created for the project is better in the specifics of testing new concepts.
 
