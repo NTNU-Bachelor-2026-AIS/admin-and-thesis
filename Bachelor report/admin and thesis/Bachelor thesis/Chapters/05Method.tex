@@ -55,7 +55,7 @@ In a two-person team, the risk of one member being stuck on a problem without th
 The project was conducted by a two-member team, with responsibilities divided to ensure that core Scrum artifacts were maintained consistently throughout the project. One member served as a Scrum master, taking control of sprint documentation, backlog maintenance, and handling of sprint meetings and stand-ups. The other member was responsible for handling meeting notes. All remaining responsibilities, including development, testing and design, were shared equally. 
 
 \subsection{Meeting Structure}
-\label{sec: meeting structure}
+\label{sec: meeting_structure}
 %The project spanned from January 2026, with delivery on the 20th of May. 
 % TODO: Add about issues with workload and how we handled it.
 
@@ -406,32 +406,33 @@ The filtering controls are designed for simple, interactive operation. A pop-up 
 \label{sec:testing_method}
 % Needs section intro with forward reference
 
-Testing of the system was conducted through manual testing of the application, based on the testing theory described in (section~\ref{sec:testing_theory} and (section~\ref{sec:manual_testing_theory}). 
+Testing of the system was employed through manual evaluation of the application in accordance with the testing theory described section~\ref{sec:testing_theory} and (section~\ref{sec:manual_testing_theory}. 
 
 % FOCUS: What you tested, how, and why certain approaches were chosen.
 
 \subsection{Backend API Testing}
 
-As the backend was primarily created by the customer, leading to actual tests not being created by the group. However manual testing of results were done through a swagger api, to check the result of request, while also being tested in the application itself.
 
-Additional testing was performed on the backend, through logging of retrieved data on the console in the browser, observing correctness by analysing the data that was received. 
+Testing of the backend was limited due to the fact that it was primarily created by the customer, meaning that formal tests were not created by the group. However manual testing of API endpoints was performed through a Swagger UI, to verify the validity of requests, while also being tested in the application itself.
 
-The swagger API allowed for testing of endpoints, as long as the backend was running. This was done through giving different variables such as an anomaly id, then observing the API response 
+Additional testing was performed through logging of retrieved data on the browser console, allowing correctness to be verified by inspecting the returned responses.
+
+The Swagger UI was also used for endpoint testing while the backend was running. This was done by providing different parameters such as an anomaly ID, and observing the corresponding API responses.
 
 
 \subsection{Frontend Testing}
 
-Frontend testing was done manually through direct interaction with the application. This included testing the core functionality.
+Frontend testing was performed manually through direct interaction with the application. This included testing the core functionality.
 
-The components were tested to ensure that correct information is displayed, this in turn tested with console logging to see what information is being accessed, while also testing the swagger API to see if the data at that specific endpoint is what is shown in the components. 
+The components were tested to ensure that correct information was displayed, this was verified through console logging and observing the received data, while also using the Swagger API to observe whether the data returned from the endpoint matched what was shown in the components.
 
-Testing of specific methods in the code was done through console logging, to find errors and to see if correct methods were called. In addition to this testing of all filtering and search functionality was done through the application itself, while ensuring that correct data was observed to be returned. 
+Testing of specific methods in the code was performed through console logging to identify errors and verify if the correct methods were being called. In addition, all filtering and search functionality was tested directly in the application, ensuring correctness of data. 
 
 \subsection{Performance Observation Methodology}
 
-Performance was evaluated through manual observation of the application during use. No automated performance testing was implemented. The system was tested using datasets ranging from 10,000 anomalies to over 100,000 anomaly groups. The focus of any performance testing was to ensure that the application was responsive for end users, and that rendering behaviour was exempt from major performance issues. 
+Performance was evaluated through manual observation of the application during use. No automated performance testing was implemented. The system was tested using anomaly datasets ranging from 10,000 anomalies to over 100,000 anomaly groups. The focus of the performance testing was to ensure that the application remained responsive for end users and that rendering behaviour did not exhibit major performance issues.
 
-To ensure performance of the system, certain implementations were made, such as reducing the frequency of recalculations of clusters on drag and zoom operations, and using virtualization in the sidebar such that the entire data set was not rendered at all times in the list. 
+To ensure performance, certain optimisations were implemented, such as reducing the frequency of recalculations of clusters during drag and zoom operations, and using virtualization in the sidebar so that the full dataset was not rendered in the list at all times.
 %=====================================================================
 % 3.8  User Feedback
 % CHANGED: Renumbered to match Results 4.8 Customer Feedback.
@@ -440,11 +441,11 @@ To ensure performance of the system, certain implementations were made, such as 
 \label{sec:user_feedback}
 % Section intro with bridge
 
-User feedback was gathered primarily through the biweekly customer meetings as described in \ref{sec: meeting structure}. These were used to gain feedback on design mostly using the customers opinion to further reduce complexity and scope while making sure the product was developed how they wanted.
+User feedback was gathered primarily through the biweekly customer meetings as described in \ref{sec: meeting_structure}. These were used to gain feedback on design, primarily based on the customer's perspective, in order to reduce complexity and adjust scope while ensuring that the product was developed according to their requirements.
 
-The Feedback was used to iteratively change the development with the project, where features were scrapped and added as requests during the project through communication. This was done to ensure wasted work on unwanted features were minimized, while allowing for changes to be made early in development. 
+The Feedback was used to iteratively guide development through the project, features were both scrapped and added as requests during the project based on ongoing communication. This helped minimize wasted work on unwanted features, while allowing changes to be incorporated early in the development process.
 
-At the end of the project, a video of the application, with questions to employees at the NCA, was sent to the customer representative. This allowed to get feedback from actual operators currently using the NCA's internal system, to see if the implemented functionality would bring value to them.
+At the end of the project, a video of the application, along with questions to employees at the NCA, was sent to the customer representative. This allowed the group to receive feedback from actual operators currently using the NCA's internal system, in order to assess whether the implemented functionality would provide value to them.
 % 
 %=====================================================================
 % End of Methods chapter
