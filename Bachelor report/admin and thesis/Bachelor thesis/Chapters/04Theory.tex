@@ -16,7 +16,7 @@ The Automatic Identification System (AIS) is a system used to transfer informati
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth,height=0.70\textheight,keepaspectratio]{Figures/ais-message-example.jpg}
-    \caption[AIS message example]{Example of ais message flow: \parencite{nato_ais_overview}.}
+    \caption[AIS message example]{Example of AIS message flow \parencite{nato_ais_overview}.}
     \label{fig:ais_image}
 \end{figure}
 
@@ -36,7 +36,7 @@ A digital twin is a digital representation of a physical object or system. An AI
 \label{sec:anomalies and anomaly groups}
 
 
-Anomalies refer to detected irregularities from AIS messages. Anomalous messages are of differing types, including speed, unexpected maneuver, and jumping anomalies, where these pertain to if a ship's message shows impossible speed or distance covered. Anomaly groups are collections of anomalies of similar type. These groupings are created through proximity between anomalies. Anomaly groups themselves are in the geoJSON data format as features within a FeatureCollection. See section \ref{sec:geoJSON}.
+Anomalies refer to detected irregularities from AIS messages. Anomalous messages are of differing types, including speed, unexpected maneuver, and jumping anomalies, where these pertain to if a ship's message shows impossible speed or distance covered. Anomaly groups are collections of anomalies of similar type. These groupings are created through proximity between anomalies. Anomaly groups themselves are in the GeoJSON data format as Features within a FeatureCollection. See Section~\ref{sec:geoJSON}.
  
 %=====================================================================
 % 2.3  Human‑Centric Data Visualisation
@@ -73,7 +73,7 @@ Clustering pertains to a method of aggregating data points into groups or cluste
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\textwidth,height=0.3\textheight,keepaspectratio]{Figures/clustering-example.png}
-    \caption[Clustering visualization]{Example of clustered data points using the k-means clustering method\parencite{datanovia_kmeans_visualization}.}
+    \caption[Clustering visualization]{Example of clustered data points using the k-means clustering method \parencite{datanovia_kmeans_visualization}.}
     \label{fig:clustering_visualization}
 \end{figure}
 
@@ -100,14 +100,14 @@ Vector tiles are what is currently used by most web map providers. Vector tiles 
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{Figures/vector-tile-example.png}
-  \caption[Illustration of vector tiles ]{Illustration of vector tile zoom levels\parencite{Qgis_vector_tiles}.}
+  \caption[Illustration of vector tiles]{Illustration of vector tile zoom levels \parencite{Qgis_vector_tiles}.}
   \label{fig:vector_tile_image}
 \end{figure}
 
 \subsection{MapLibre}
 \label{sec:maplibre}
 
-MapLibre is an open source web mapping library, built around vector tile rendering. It started as a fork of mapbox-gl-js. It utilizes vector tile rendering with WebGL for efficient map rendering and interaction. MapLibre is used for rendering geospatial data into human-readable visualizations\parencite{maplibre_about,maplibre_github}.
+MapLibre is an open source web mapping library, built around vector tile rendering. It started as a fork of mapbox-gl-js. It utilizes vector tile rendering with WebGL for efficient map rendering and interaction. MapLibre is used for rendering geospatial data into human-readable visualizations \parencite{maplibre_about,maplibre_github}.
 
 \section{API}
 \label{sec:api_theory}
@@ -123,15 +123,14 @@ The client-server architecture is structured around server computers, processing
 \subsection{REST Architecture}
 \label{sec:rest_theory}
 \noindent 
-Representational State Transfer(REST) is a software architecture designed around constraints concerning the client-server model. REST is stateless, meaning the entire context of the communication is stored on the client, and the client sends the entire information related to the request to the server. This means that the server does not maintains state, while additionally REST is designed around a uniform interface, denoting that data transfer is optimized for the standard web communication, rather than to individual applications \parencite{Fielding_REST}.
+Representational State Transfer (REST) is a software architecture designed around constraints concerning the client-server model. REST is stateless, meaning the entire context of the communication is stored on the client, and the client sends the entire information related to the request to the server. This means that the server does not maintain state, while additionally REST is designed around a uniform interface, denoting that data transfer is optimized for the standard web communication, rather than to individual applications \parencite{Fielding_REST}.
 
 
 
 \subsection{REST API}
 \label{sec: rest api}
 % source: https://www.redhat.com/en/topics/api/what-is-a-rest-api
-a 
-REST API (Representational State Transfer Application Programming Interface) is an API designed around the constraints of the REST Architecture. REST APIs are designed around creating, reading, updating, and deleting data(CRUD). These operations are done through HTTP request, with an example being GET used as a request to access data on a server. REST APIs are commonly used for web APIs, chosen for their scalability and handling of different data formats \parencite{ibm_rest_api}.
+A REST API (Representational State Transfer Application Programming Interface) is an API designed around the constraints of the REST Architecture. REST APIs are designed around creating, reading, updating, and deleting data(CRUD). These operations are done through HTTP request, with an example being GET used as a request to access data on a server. REST APIs are commonly used for web APIs, chosen for their scalability and handling of different data formats \parencite{ibm_rest_api}.
 
 %=====================================================================
 % 2.5  Rendering Acceleration
@@ -140,14 +139,14 @@ REST API (Representational State Transfer Application Programming Interface) is 
 \label{sec:hardware_acceleration}
 
 
-Hardware acceleration is a method of increasing performance in tasks predominantly handled by the CPU (central processing unit). This is done by offloading work done by the CPU to other hardware in the computer such as the GPU (Graphics processing unit), which has significantly more parallel processing capability than the CPU. This frees up the CPU to perform other tasks, while providing a general performance increase on tasks that use hardware acceleration\parencite{hardware_acceleration_wonderfulpcb}.
+Hardware acceleration is a method of increasing performance in tasks predominantly handled by the CPU (central processing unit). This is done by offloading work done by the CPU to other hardware in the computer such as the GPU (Graphics processing unit), which has significantly more parallel processing capability than the CPU. This frees up the CPU to perform other tasks, while providing a general performance increase on tasks that use hardware acceleration \parencite{hardware_acceleration_wonderfulpcb}.
  
 
 
 \subsection{WebGL}
 \label{sec:webgl_theory}
 
-WebGL is a graphics API that is used in both 2d and 3d graphics rendering in compatible web browsers. WebGL allows for hardware acceleration, leading to more efficient rendering performance. WebGL is supported by most modern browsers, in addition to not requiring browser plugins, leading to ease of use. WebGL is highly used in fields like data visualization applications and general graphics rendering in the browser\parencite{mozilla_webgl,sitepoint_webgl}.
+WebGL is a graphics API that is used in both 2d and 3d graphics rendering in compatible web browsers. WebGL allows for hardware acceleration, leading to more efficient rendering performance. WebGL is supported by most modern browsers, in addition to not requiring browser plugins, leading to ease of use. WebGL is highly used in fields like data visualization applications and general graphics rendering in the browser \parencite{mozilla_webgl,sitepoint_webgl}.
 %=====================================================================
 % 2.6  Software‑Engineering Principles Might be in method unsure though.
 %=====================================================================
@@ -159,7 +158,7 @@ Software systems are frequently based on established software engineering princi
 \subsection{Cohesion and Coupling}
 \label{sec:cohesion_coupling_theory}
 
-Coupling and cohesion refer to design principles for creating sustainable and scalable code. Coupling refers to how tightly different parts of a software system depend on each other. If parts of the software have high coupling, then it will be harder to add or change the project without it breaking. Cohesion describes whether parts of the software are designed to complete a singular task, rather than being unfocused and serving multiple unrelated purposes. The goal for coupling and cohesion is to have high cohesion and low coupling, which in turn leads to better-designed software\parencite{geeksforgeeks_cohesion_coupling}.
+Coupling and cohesion refer to design principles for creating sustainable and scalable code. Coupling refers to how tightly different parts of a software system depend on each other. If parts of the software have high coupling, then it will be harder to add or change the project without it breaking. Cohesion describes whether parts of the software are designed to complete a singular task, rather than being unfocused and serving multiple unrelated purposes. The goal for coupling and cohesion is to have high cohesion and low coupling, which in turn leads to better-designed software \parencite{geeksforgeeks_cohesion_coupling}.
 
 \subsection{Separation of Concerns}
 \label{sec:SOC_theory}
@@ -169,7 +168,7 @@ Separation of concerns is a software design principle, aimed at separating syste
 \subsection{Single Responsibility Principle}
 \label{sec:single_responsibility_theory}
 
-The single responsibility principle dictates that a part of software, should only have have one responsibility, such that code is modular and reusable. As a result of following this principle, code becomes easier to extend and maintain \parencite{single_responsibility}.
+The single responsibility principle dictates that a part of software should only have one responsibility, such that code is modular and reusable. As a result of following this principle, code becomes easier to extend and maintain \parencite{single_responsibility}.
 
 \subsection{Documentation}
 \label{sec:documentation_theory}
@@ -185,7 +184,7 @@ Refactoring is an essential part of maintaining and creating high-quality code. 
 \section{Design}
 \label{sec:design_theory}
 
-Design is a central component of software development, defining the appearance and functionality of the final product. In the context of data visualisation, design also affects the insights gained from the visualised data and how effectively an analyst can work with the system\parencite{nngroup_usability,appnovation_data_visualization_principles}
+Design is a central component of software development, defining the appearance and functionality of the final product. In the context of data visualisation, design also affects the insights gained from the visualised data and how effectively an analyst can work with the system \parencite{nngroup_usability,appnovation_data_visualization_principles}.
 
 
 \subsection{Wireframes}
@@ -219,9 +218,9 @@ Agile Development relates to software development approaches emphasizing increme
 \subsection{Scrum Framework}
 \label{sec:scrum_framework_theory}
 
-Scrum is a project management framework designed after agile principles. Scrum emphasizes iterative development by segregating work into an iterable time-period called a sprint cycle. Following the scrum framework requires creating specific roles in the team, including scrum master, who coaches and monitors the scrum process. The product owners represent the stakeholders whom the product is created for and who are responsible for providing feedback during development. The development team is the last role, consisting of a small amount of members, responsible for the implementation of the project.
+Scrum is a project management framework designed after agile principles. Scrum emphasizes iterative development by segregating work into an iterable time-period called a sprint cycle. Following the Scrum framework requires creating specific roles in the team, including the Scrum Master, who coaches and monitors the Scrum process. The product owners represent the stakeholders whom the product is created for and who are responsible for providing feedback during development. The development team is the last role, consisting of a small amount of members, responsible for the implementation of the project.
 
-The work in a scrum project is represented through scrum artifacts, divided into three distinct parts. The product backlog is a list of features and requirements defined by the product owner. The sprint backlog contains features, bugs and implementations being worked on for a team's current sprint cycle, that is intended to be complete by the end of a cycle, while an increment is an end goal of a sprint. 
+The work in a Scrum project is represented through Scrum artifacts, divided into three distinct parts. The product backlog is a list of features and requirements defined by the product owner. The sprint backlog contains features, bugs and implementations being worked on for a team's current sprint cycle, that is intended to be complete by the end of a cycle, while an increment is an end goal of a sprint. 
 
 Sprints are executed as time-boxed iterations where the development team works on selected backlog items. A sprint itself is planned beforehand, defining the goals to be achieved. After a sprint is completed, a sprint review and retrospective is held. The review is an informal showcase of the work done, while the retrospective evaluates the sprint itself, reflecting on strengths and weaknesses the sprint had. Sprints are typically conducted in a weekly or biweekly cycle, with frequent feedback from the product owner. 
 
