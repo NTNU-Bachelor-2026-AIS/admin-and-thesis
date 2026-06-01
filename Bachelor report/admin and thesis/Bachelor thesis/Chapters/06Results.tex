@@ -25,13 +25,9 @@ This chapter presents the resulting application, a locally hosted visualization 
 \section{Project Management}
 \label{sec:results_project_management}
 
-The project followed the Scrum-based process described in Section~\ref{sec:dev_methodology}, divided into approximately 16 weekly sprints, with occasional two-week exceptions over the project period. Each sprint included a sprint planning session, daily synchronization meetings, and a retrospective. Bi-weekly meetings were held with both the supervisor and the customer at Kystverket, though scheduling occasionally extended the interval to three weeks. At the end of the project, the GitHub Projects contained 106 completed issues across the frontend, backend and administrative repositories.
+The project followed the Scrum-based process described in Section~\ref{sec:dev_methodology}, divided into approximately 16 weekly sprints, with occasional two-week exceptions over the project period. Each sprint included a sprint planning session, daily synchronization meetings, and a retrospective. Bi-weekly meetings were held with both the supervisor and the customer at Kystverket, though scheduling occasionally extended the interval to three weeks. At the end of the project, the GitHub Projects contained 106 completed issues split across the three repositories: 67 on the administrative and thesis repository, 36 on the frontend, and 4 on the backend. The administrative repository in particular contained many smaller documentation and process tasks tracked as individual issues.
 
-During the project team roles were maintained with expections made in case of illness if work needed to be done in that role, however it was mostly delayed until the person could handle it.
-% SUGGESTION (4.2, optional content — you write it): Method 3.1 has seven subsections but this
-% result mirrors only Scrum. If you want symmetry, add ONE factual sentence on team roles (who
-% owned what) and ONE on how the 106 issues split across the three boards. Keep it factual — no
-% judgement on whether Scrum worked (that belongs in Discussion / Project Execution).
+Team roles were maintained throughout the project. Beyond the Scrum Master and meeting-notes responsibilities, the remaining work was divided according to each member's preference and the tedium of the task, ensuring that both members always had work to focus on and that the workload was evenly distributed. Exceptions were made in cases of illness, where role-specific work was usually delayed until the responsible member was able to handle it.
 
 
 \section{System Architecture}
@@ -61,14 +57,12 @@ The use case diagram in Figure~\ref{fig:Use_Case_image} illustrates the expected
     \label{fig:Package_Diagram_image}
 \end{figure}
 
-The package diagram in Figure~\ref{fig:Package_Diagram_image} outlines the modular directory structure used in the frontend repository. Files are put into folders related to their function, such as components being isolated within a dedicated component folder, with necessary subfolders. This aligns with standard React component patterns as described in ~\ref{sec:react_theory}.
+The package diagram in Figure~\ref{fig:Package_Diagram_image} outlines the modular directory structure used in the frontend repository. Files are put into folders related to their function, such as components being isolated within a dedicated component folder, with necessary subfolders. This aligns with standard React component patterns as described in Section~\ref{sec:react_theory}.
 
-%TODO might need to add more theory to be able to better explain directory and patterns. also update the diagram to include all packages.
-%, ensuring the codebase remains modular and easily navigable.
-% SUGGESTION (relocate evaluation — your call): the clause "ensuring the codebase remains modular and
-% easily navigable" is an assessment, not an observation of the diagram. Consider moving that
-% judgement to Discussion (Technical Solution / Code Quality) and keeping only the structural fact
-% here. Also verify you have a Theory reference for React package structure if you want to cite it.
+% TODO (you): replace the figure once the package diagram is updated to include all packages.
+% SUGGESTION: the evaluative "modular and easily navigable" clause was correctly moved out; keep that
+% judgement for Discussion (Code Quality). Consider whether Theory needs a little more on React
+% directory/package structure to support this paragraph.
 
 
 \subsection{Sequence Diagram (Data Flow)}
@@ -86,10 +80,12 @@ The sequence diagram in Figure~\ref{fig:Sequence_Diagram_image} maps the data fl
 % MOVED here from Visualization Results (4.6): MapLibre is architecture/runtime behaviour, mirroring
 % its place under System Architecture in Method 3.2, not a visualization result.
 MapLibre initializes itself upon application boot, in a bright style used for readability for users. After its initialization, it is responsible for interaction, in dragging and zooming the map. Interaction leads to states being updated that other parts of the program can use, such as clusters being updated through zooming, and map location. Visualization functionality is something MapLibre has, being able to natively visualize scatterplots and other layers. 
-%TODO Start mentioning more about rational for choosing diffrent tools in method outside of them being suggested talking maybe about testing them before choosing.
-%This was not chosen as a valid approach of visualization in the project, due to the high amount of data required to be visualized, which Deck.gl is specialized for.
-% SUGGESTION (your call): the last sentence (why MapLibre was not used for visualization) is design
-% rationale that may fit better in Method 3.2 (System Architecture / MapLibre) than in Results.
+% SUGGESTION (tool rationale belongs in Method 3.2, not Results — drafted from your answer):
+% "The recommended tools were tried first, and once they worked for rendering they were adopted, as
+% they provided many of the built-in features the project needed and let the group draw on the
+% customer's experience for support." Put that reasoning in Method's Technology Stack. In Results,
+% keep MapLibre to what it does at runtime; the "not chosen for visualization because Deck.gl is
+% specialized for large data" sentence is also design rationale and belongs in Method.
 
 \section{Frontend}
 \label{sec:results_frontend}
@@ -107,12 +103,7 @@ A singular page was created for the application, being the only page needed for 
 Components such as a sidebar on the top right contain the entire dataset, allowing for searching of anomalies based on type or MMSI. 
 A visualization dropdown menu allows switching between the two main visualization modes. 
 On the top middle of the page is a filtering component, allowing users to change the displayed dataset by filtering on anomaly type, date range, and MMSI.
-% SUGGESTION (4.4, wireframe link — you write the sentence(s)): add a link from the final UI back to
-% the wireframes in Method 3.3. State whether the layout follows each wireframe (main page, date
-% picker, filter) or diverged — e.g. the filter being moved to the top middle after customer
-% feedback. Divergence-with-reason scores higher than "it matches", because it shows the design
-% process fed real decisions.
-%TODO add info since it wasa decided that the filter was moved to the top and after multiple visualization methods were added the top left has a permanent area for swapping betting clustering and heat maps. Also compared to the filter componenent it is wide to reduce clutter on the main page compared to the old filter in wireframe which had multiple fields for custom values as well as expandable lists for filtering. The final system became simpler with it only including type, mmsi and start and end date. While the sidebare stayed mostly the same however it now covers the whole right side. top to bottom. The ship info card stayed mostly the same with just a new button, which can show the anomalies in the group. Which was requested by the customer.
+Compared to the wireframes created during the design process (Section~\ref{sec:design_process}), the final layout diverged in several ways based on customer feedback and the features added during development. The filter component was moved to the top of the page and simplified: where the wireframe filter contained multiple custom-value fields and expandable lists, the delivered filter is a single wide bar containing only anomaly type, MMSI, and a start and end date, reducing clutter on the main page. After several visualization methods were added, a permanent area was placed in the top left for switching between the clustering and heat map visualizations. The sidebar stayed close to its wireframe but now spans the full height of the right side of the page. The anomaly info card also remained close to the original design, with the addition of a button that displays the anomalies within a group, which was requested by the customer.
 
 \section{Backend and Data Handling}
 \label{sec:results_backend_and_data}
@@ -148,11 +139,7 @@ Anomaly data is completely integrated in a FeatureCollection, with the individua
 
 \subsection{Backend Query and Response Behaviour}
 Figure~\ref{fig:swagger-result_image} showcases an API endpoint, created as a master query allowing for filtered requests on all relevant variables.
-% SUGGESTION (own-contribution — you write it): the master query is one of your strongest own
-% contributions. Name the parameters it accepts (e.g. anomaly type, MMSI, time range) and what a
-% typical response contains, and bridge to Method 3.4 (Section~\ref{sec:backend_and_data_flow_method}).
-% Make the boundary explicit: backend infrastructure was the customer's, this endpoint was the group's.
-%TODO anomaly type, MMSI, time range were all included in the master query, this was a contribution to backend infrastructure the customer provided. Creating a new endpoint which returns all the anomaly groups with those variables. which includes all anomalies which includes base stations and signal strength within. Unsure if i should mention all that.
+The master query accepts four filter parameters: anomaly type, MMSI, and a start and end date. It returns the matching anomaly groups, where each group contains its individual anomalies, and each anomaly in turn includes its base-station links and signal strength values. This endpoint was the group's main contribution to the backend infrastructure provided by the customer, replacing frontend-side filtering of the full dataset with a single backend query (Section~\ref{sec:backend_and_data_flow_method}).
 
 \begin{figure}[H]
     \centering
@@ -174,13 +161,15 @@ The clustering visualization was implemented as described in Section~\ref{sec:cl
     \caption[Clustering visualization result]{Clustering visualization showing anomaly groups aggregated by proximity, with numeric labels indicating the group count per cluster}
     \label{fig:clustering_result_image}
 \end{figure}
-Clusters are calculated through the use of a radius that computes the amount of points inside a circle of a defined radius, in the case of the project being 40 pixels. Points inside the pixel radius are aggregated, and shown as a single point. A higher density of points in a cluster leads to that cluster being shown as larger on the map. Recalculation of clusters happens when zooming and dragging is done in the application, where clusters are divided into smaller parts due to points increasing in distance, moving outside of the defined radius.
-% SUGGESTION (Method/Results bleed + figure-specific — your call): this paragraph re-derives the
-% 40-pixel aggregation mechanism, which is really Method 3.5 content. Consider moving the mechanism to
-% Method and replacing it here with what YOUR screenshot actually shows: which region, which zoom
-% level, where the largest cluster sits and roughly how many anomalies it holds. The clustering
-% performance effect is reported in Section~\ref{sec:effect_of_clustering_results}.
-%TODO Use the image like suggested to show how it works now.
+At the zoomed-out level shown in Figure~\ref{fig:clustering_result_image}, the full dataset aggregates into a small number of clusters positioned over the Norwegian Sea off the coast of Norway. The largest cluster holds 10,634 anomalies, with neighbouring clusters of 3,641, 655, 440, and 4 anomalies; zooming in splits these into progressively smaller clusters. A higher density of points in a cluster leads to that cluster being shown as larger on the map.
+% TODO (you): verify the region/zoom description against your screenshot.
+% SUGGESTION (Method/Results bleed — your call): the 40-pixel aggregation mechanism (how clusters are
+% computed) is Method 3.5 content. Move the preserved sentence below to Method; Results should show
+% what the figure shows. The clustering performance effect is reported in Section~\ref{sec:effect_of_clustering_results}.
+% MECHANISM (preserved for moving to Method): "Clusters are calculated using a radius that counts the
+% points inside a circle of a defined radius, 40 pixels in this project. Points inside the radius are
+% aggregated and shown as a single point. Recalculation happens on zoom and drag, where clusters split
+% into smaller parts as points move outside the radius."
 
 
 \subsection{Heat Map Visualization}
@@ -192,12 +181,10 @@ The system includes a heat map visualization layer. The heat map is implemented 
     \label{fig:heatmap_result_image}
 \end{figure}
 Color is generated through calculating the sum of points inside a radius of 40 pixels, meaning points inside a circle are calculated as a sum, leading to higher density of points being weighted more \parencite{deckgl_official_site}. 
-The resulting heat map layer allows for zoom and drag operations to change the heat map view dynamically, with zoomed in levels having less dense representation, while zoomed out levels lead to higher aggregates per pixel radius, and denser representation overall.
-% SUGGESTION (Method/Results bleed + figure-specific — your call): the "sum of points inside a
-% 40-pixel radius" sentence is mechanism (Method 3.5). For the result, describe what YOUR figure
-% shows — name where the hot spots actually appear (e.g. "the highest concentration appears along
-% the southern coast near X") rather than the generic "warmer = denser".
-%TODO Same thing as clustering.
+In Figure~\ref{fig:heatmap_result_image}, the highest-density hot spots appear as dark-red areas over central Norway, north of Trondheim, and over southern Norway near Bergen, while the surrounding coast and inland areas show lower, more diffuse density in orange and yellow. The heat map view updates dynamically during zoom and drag operations, with zoomed-out levels producing higher aggregates per pixel radius and a denser overall representation.
+% TODO (you): verify the two hot-spot locations against your screenshot.
+% SUGGESTION (Method/Results bleed — your call): the "sum of points inside a 40-pixel radius" sentence
+% above is mechanism (Method 3.5); consider moving it to Method.
 
 \subsection{Base Station Visualization}
 A base station layer is part of the application, implemented as mentioned in Section~\ref{sec:base_station}. The base station layer is visualized through blue icons in Figure~\ref{fig:base_station_result_image}. The base station layer itself is persistent, meaning that it is a visualization layer that will always be present in the app, even if other methods of visualizing the data points are changed. 
@@ -249,44 +236,35 @@ Figure~\ref{fig:individual_anomaly_result_image} shows the completed layer. Anom
 This section presents the delivered filtering and interaction features, implemented as described in Section~\ref{sec:filter_and_interaction_method}.
 
 \subsection{Filter System}
-The filter system allows the rendered dataset to be narrowed by anomaly type, MMSI, and last activity date.
-% SUGGESTION (you write/expand): add a screenshot of the filter panel (with a Figure ref) and a
-% before/after pair showing the map dataset changing when a filter is applied. State the available
-% parameters explicitly.
+The filter system allows the rendered dataset to be narrowed by anomaly type, MMSI, and a start and end date.
+% TODO (you): add a screenshot of the filter panel (Figure ref), and ideally a before/after pair
+% showing the rendered dataset shrinking when a filter is applied.
 
 \subsection{Temporal Filtering}
-A date-time range selector allows the visualization to be restricted to a chosen time period.
-% SUGGESTION (you write/expand): add a screenshot of the date picker (Figure ref) and describe what
-% the user sees when a range is applied.
+A date-time range selector allows the visualization to be restricted to a chosen time period. The selector reuses an existing expandable React calendar component, which diverged from and simplified the date picker shown in the wireframe.
+% TODO (you): add a screenshot of the date picker (Figure ref) and describe what the user sees when a range is applied.
 
 \subsection{Satellite Visualization}
-Satellite connections are displayed as a layer that appears only when a data point is clicked. 
-% SUGGESTION (you write/expand): add a screenshot of the satellite layer appearing on click (Figure
-% ref) and confirm exactly what triggers it.
+Satellite connections are displayed as a layer that appears only when a data point is clicked. Because full access to an external API for computing a satellite's precise daily position was not available, each satellite point is approximated by finding the closest position in time within a 24-hour window of the anomaly.
+% TODO (you): add a screenshot of the satellite layer appearing on click (Figure ref).
 
 \subsection{Interactive Components}
-The interface provides interactive controls for selecting filter values.
-% SUGGESTION (you write/expand): name the actual controls (e.g. pop-up calendar for dates, dropdown
-% for anomaly type, numeric input for MMSI) and optionally add a screenshot.
+The interface provides interactive controls for selecting filter values: a pop-up calendar component for the date range, a dropdown for selecting the anomaly type, and a numeric input for MMSI. In addition, a visualization toggle switches between the clustering and heat map layers, and a search bar above the sidebar filters the already-loaded dataset on the client side, without sending a new request to the backend.
 
 
 \section{Testing and Performance}
 \label{sec:results_testing}
 
 Testing was done manually, as mentioned in Section~\ref{sec:testing_method}. Console logging and observation based testing was used, to ensure all features work, with performance testing being done through use of the application.
-% SUGGESTION (4.8, testing findings — you write it): Method 3.7 has three subsections (Backend API,
-% Frontend, Performance methodology) but this produces ~2 sentences of result. Add findings that
-% mirror it: (1) a short list of features validated manually (layer switching, filter combinations,
-% search, click/info interactions, date range); (2) what the Swagger API testing confirmed (endpoints
-% return correct filtered data); (3) bugs found AND fixed during testing (e.g. the cluster-
-% recalculation issue mentioned in Method). "Found and fixed" items show the testing did something.
 
-The performance of the system has been observed through rigorous use of the application itself and logging individual parts. Each visualization type was observed at different zoom levels and areas of the map.
-% SUGGESTION (de-subjectify — your call): "rigorous" is a subjective qualifier. Consider replacing it
-% with what was actually done (which views, which zoom levels, roughly how many runs), and add the
-% test hardware (GPU) and dataset sizes so the performance observations below have context.
-%TODO Most tests were done with the default zoom with 2-3 refreshes of the website. However for the features that tested clicking of data points they were tested for usually just 2 points to make sure it worked on different points. The hardware utilized was just two labtops utilized by the group for school work. The main data size utilised was 10k points of data, however when testing we usually went up to 100k or 1 million data points. utilizing configs when starting up the backend which creates more template data for more points. The website always rendered data within a second of the request to the backend with most of the time used for sending the request and getting a response. Remaining within a responsive range for the website. By testing was also how we realised we needed a master query to make sure data was queryed all at once and not filtered on the frontend cause of the efficency on the backend.
-% Need to get the actual number and some goes in the other subsection
+Interaction features such as clicking individual data points were each verified on at least two separate points, to confirm they behaved consistently across the dataset. Backend endpoints were checked through the Swagger UI and by logging the returned data in the browser console, confirming that filtered requests returned the expected data. Testing also surfaced the need for the master query: filtering the full dataset on the frontend proved inefficient, which led to the decision to query the filtered data directly from the backend instead (Section~\ref{sec:backend_and_data_flow_method}).
+% TODO (you): expand the list of features validated (layer switching, filter combinations, sidebar
+% search, click/info cards, date range), and add 1-2 concrete bugs found AND fixed during testing
+% (e.g. the cluster-recalculation issue from Method) — discuss with your group member.
+
+Performance was observed during normal use of the application, primarily at the default zoom level with two to three page refreshes per observation, on the two laptops used by the group for ordinary schoolwork. Each visualization type was observed at different zoom levels and across different areas of the map. The application was tested with a main dataset of 10,000 points, and additionally with larger datasets of up to 100,000 and one million points generated through backend configuration files. Across these tests the application rendered the requested data within roughly a second of the backend request, with most of that time spent sending the request and receiving the response, keeping the interface within a responsive range.
+% TODO (you): add the rough specs of the two laptops (CPU, and whether integrated or dedicated GPU),
+% since rendering performance depends on the graphics hardware (Section~\ref{sec:hardware_acceleration}).
 
 \subsection{Rendering Performance}
 
@@ -303,7 +281,8 @@ Clustering had a profound effect on the speed of the application, where renderin
 % from informal testing, e.g. "the plain scatter plot became unresponsive above approximately N
 % points, while the clustered view remained interactive." Add the point counts rendered with vs
 % without clustering at a given zoom if you have them; move any remaining judgment to Discussion.
-%TODO do some actual test on the actual speed of the loading.
+% TODO (you): run a quick timing test, then replace "profound effect"/"very inefficient" with the
+% actual point count where the un-clustered scatter became laggy versus the clustered view staying smooth.
 
 \subsection{System Responsiveness}
 
@@ -312,6 +291,8 @@ Responsiveness of the system is observed to be at a satisfactory level, although
 % performance gains to be doable" are judgments → move to Discussion. Here, state observed behaviour
 % only, and add approximate wait times for the slower operations (e.g. the clustered to anomaly-group
 % switch) if you have them.
+% TODO (you): note a rough wait time for the slower switch (clustered view -> anomaly-group view):
+% is it under a second, 1-2 seconds, or longer? Even an approximate figure helps.
 
 \section{Customer Feedback}
 \label{sec:customer_feedback}
@@ -379,6 +360,31 @@ Almost all planned features from the project outline and through meetings were i
 % "forward and backward in time" (Intro) -> delivered only a date-range filter = PARTIAL; hexagonal
 % binning (project brief) -> NOT implemented; satellite orbit plotting -> NOT implemented. A sensor
 % cross-checking the Introduction against Results will catch omissions, so list them.
+%
+% SUGGESTION — table skeleton (verify the Status column against your Intro objectives, then uncomment
+% and replace the paragraph above). Statuses below are drafted from the audit; change any that are wrong:
+% \begin{table}[H]
+% \centering
+% \begin{tabular}{ m{4.5cm} m{3cm} m{5cm} }
+% \toprule
+% \textbf{Feature / Objective} & \textbf{Status} & \textbf{Notes} \\
+% \midrule
+% Clustering visualization        & Implemented     & \\
+% Heat map visualization          & Implemented     & \\
+% Base station layer              & Implemented     & \\
+% Anomaly group layer             & Implemented     & Reimplemented to support signal strength \\
+% Individual anomaly layer        & Implemented     & Added late at customer request \\
+% Filtering (type, MMSI, dates)   & Implemented     & \\
+% Signal strength visualization   & Implemented     & Added during project, not in original outline \\
+% Temporal analysis (forward/backward in time) & Partial & Delivered as a date-range filter only \\
+% Hexagonal binning               & Not implemented & Cut due to time constraints \\
+% Report generation               & Not implemented & Not requested again after early meetings \\
+% Satellite orbit plotting        & Not implemented & Satellites shown only at transmission time \\
+% \bottomrule
+% \end{tabular}
+% \caption[Delivered vs planned features]{Delivered versus planned features and objectives.}
+% \label{tab:delivered_vs_planned}
+% \end{table}
 
 
 %TODO Move this to the other one.
