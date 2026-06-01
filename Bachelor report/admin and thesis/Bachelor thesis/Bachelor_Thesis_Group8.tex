@@ -52,12 +52,21 @@
 \usepackage[colorlinks=true,linkcolor=black, citecolor=black]{hyperref} % For clickable links
 \usepackage[acronym, toc]{glossaries} % For glossary and abbreviations
 
-\makeglossaries
+\makenoidxglossaries % noidx mode: builds the Abbreviations/Terms lists from the normal xelatex passes
+                     % (matches \printnoidxglossary in 02Abbreviations.tex / Terms.tex; no makeglossaries step needed)
 
 \loadglsentries{glossary}
 
 
 
+
+% --- Fix List of Figures / List of Tables number width. Figures and tables are section-numbered
+% (e.g. 2.15.1), which overflows the default number box and makes the number overlap the caption text.
+% Widen the number box. Placed at the end of the preamble so subfig/hyperref do not override it. ---
+\makeatletter
+\renewcommand*\l@figure{\@dottedtocline{1}{1.5em}{3.8em}}
+\renewcommand*\l@table{\@dottedtocline{1}{1.5em}{3.8em}}
+\makeatother
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
