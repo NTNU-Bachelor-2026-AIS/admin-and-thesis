@@ -339,7 +339,7 @@ The clustering data itself is used with Deck.gl (Section~\ref{sec:deckgl}). Visu
 A heat map layer was implemented for visualization of the full dataset (Section~\ref{sec:heatmap}, Figure~\ref{fig:heatmap_image}). Heat map visualization is done through the Deck.gl HeatMapLayer. Each data point contributes equally to the weighted visualization, where radius based proximity is used to calculate the color shown, 
 correlating to density of points. 
 
-The visual representation of density is accomplished through densities being given weight, which then is translated to a color scale. Lower densities correlate to a yellow color while higher densities show a redder color. 
+The visual representation of density is accomplished through densities being given weight, each data point contributes equally to the weighted visualization which then is translated to a color scale. Lower densities correlate to a yellow color while higher densities show a redder color. 
 
 The heatmap updates when the zoom level or view changes, leading to recalculation of density, as points are further apart on zoom-in. 
 % SUGGESTION (base to fill in): state the config concretely, e.g. "The HeatMapLayer uses a <yellow->red>
@@ -391,11 +391,12 @@ The filter system was scoped early in the project. Group-level filtering was cho
 
 \subsection{Temporal Filtering}
 
-A simple date-time range selector was selected for temporal filtering. The design goal is to let operators restrict the visualisation to a chosen time period and then use other tools to further identify special factors of points in that period. However it was still focused on being within the scope while being feasible to develop so it focused on simplicity.
+A simple date-time range selector was selected for temporal filtering. The design goal was to let operators restrict the visualisation to a chosen time period and then use other tools to further identify special factors of points in that period. The filter was constrained to remain within the scope of the project while providing simplicity and feasibility of implementation.
 
 \subsection{Satellite Implementation}
 
 Satellite connections were implemented as a layer that would only be visualised when a point is clicked to follow the project scope and make sure that complexity stayed low. This decision made sure that operators could not clutter the screen with satellites and allows them to see the points and connections easily.
+
 
 \subsection{Interactive Features}
 
