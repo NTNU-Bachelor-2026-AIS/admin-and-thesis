@@ -36,8 +36,13 @@ A digital twin is a digital representation of a physical object or system. An AI
 \label{sec:anomalies and anomaly groups}
 
 
-Anomalies refer to detected irregularities from AIS messages. Anomalous messages are of differing types, including speed, unexpected maneuver, and jumping anomalies, where these pertain to if a ship's message shows impossible speed or distance covered. Anomaly groups are collections of anomalies of similar type. These groupings are created through proximity between anomalies. Anomaly groups themselves are in the GeoJSON data format as Features within a FeatureCollection. See Section~\ref{sec:geoJSON}.
+Anomalies refer to detected irregularities from AIS messages. Anomalous messages are of differing types, including speed, unexpected maneuver, and jumping anomalies, where these pertain to if a ship's message shows impossible speed or distance covered. Anomalies also contain an MMSI, being a ship's unique identification number. Anomaly groups are collections of anomalies of similar type. These groupings are created through proximity between anomalies. Anomaly groups themselves are in the GeoJSON data format as Features within a FeatureCollection. See Section~\ref{sec:geoJSON}.
  
+ 
+\section{Signal Strength}
+\label{sec:signal_strength}
+
+Signal strength measures the received power of an electric signal over distance, measured in decibels. Weak signal strength leads to loss of data and clarity, with strong signals mitigating these factors. Signals travel through the air and other materials, distance affects the strength of the received signal, with long distances requiring more time to reach its recipient \parencite{tarmac_signal_strength}. For AIS, signal strength can be used to observe errors in anomaly messages. AIS messages should in theory transmit their message to the nearest basestation or satellite. If a message is received with a signal strength that is inconsistent with the expected reception distance traveled. 
 %=====================================================================
 % 2.3  Human‑Centric Data Visualisation
 %=====================================================================
