@@ -13,12 +13,14 @@
 %\cleardoublepage
 
 %Inspired by another Report
-\textit{This chapter presents the background of the project, outlines the objective and defines the requirements}
+\textit{This chapter presents the background of the project, outlines the objective and defines the requirements.}
 % Refrences are important in this area of the thesis.
 %https://www.kystverket.no/en/sea-transport-and-ports/ais/ais-norge/
 %https://www.barentswatch.no/en/articles/ais-displays-status-report-at-sea/
 %https://www.kystverket.no/en/sea-transport-and-ports/ais/
 %https://www.kystverket.no/en/about-us/what-is-the-role-of-the-nca/
+
+%TODO Maybe add hexonagal binning since its mentioned later and was talked about early in scope.
 \section{Background}
 Norway manages one of the world's most extensive coastlines, and the \gls{nca} is the national agency responsible for coastal management, maritime safety, and emergency preparedness \parencite{kystverket_nca_role}.
 A central part of this is monitoring of sea-faring vessels. This is done through the use of AIS (Automatic Identification System), a messaging system that transmits information about a vessel, including its heading and location. 
@@ -56,6 +58,7 @@ The objective of this project is to develop a web-based program that can visuali
 % Need to have meeting to discuss both our motivations. Also see if it means our motivation for picking the project or for the problem existing.
 \section{Motivation}
 
+%TODO unsure if the sentence is a bit weak
 During a normal day the \acrshort{nca} gets around 80 million \acrshort{ais} messages. From these messages millions can potentially be flagged as anomalies. 
 
 The team chose to work on Visualization of \acrshort{ais} Anomaly Detection because it addresses a critical real-world problem while using modern technical approaches. Maritime security is a field of immense societal importance in Norway. Therefore we believe that contributing a prototype to the \acrshort{nca} is a very meaningful purpose for our work.
@@ -81,7 +84,7 @@ The solution will be implemented as a local database and a website that can quer
 \item \textbf{Map Engine:} Must utilize MapLibre or an equivalent library used by the \acrshort{nca}.
 \item \textbf{Data Querying:} The application must be able to query a database to handle the large amounts of data.
 \end{itemize}
-
+%TODO Need to add more of the tools and technologies we used making sure nothing is missing.
 % Will probably change over time make sure its up to date.
 \section{Software and Technology Stack}
 The following technologies were used throughout the development of the project:
@@ -107,7 +110,7 @@ The following technologies were used throughout the development of the project:
 
 % Needs to be redone as well following what each chapter will be about however that easily changes over time and will need to be changed a lot.
 \section{Thesis structure}
-
+%TODO Check compared to other chapters to see if changes are needed. Since it seems close to their intros.
 \begin{itemize}
 
 \item \textbf{Chapter 2 – Theory:} This chapter presents the theoretical background of the project. This will give the underlying theory on how mapping visualization works, how previous research in visualization of in browser map systems, and how clustering and visualization of data is achieved. \\

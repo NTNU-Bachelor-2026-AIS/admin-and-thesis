@@ -35,9 +35,10 @@ This section describes how the project was organized, including the development 
 \subsection{Scrum Framework}
 \label{sec:dev_methodology}
 
+%TODO Unsure if this reduced is an evaluation of if it fits here.
 The Scrum framework, described in Section~\ref{sec:scrum_framework_theory} and illustrated in Figure~\ref{fig:scrum_framework}, was employed to structure the development process. It was introduced by the supervising lecturer, who provided pre-filled sprint templates and documentation to support its use in group-based projects. Scrum was chosen for its suitability with iterative development and its continuous feedback loop, which allows for early changes in direction. This reduced the time investment of adopting the framework, while ensuring that sprint artefacts such as the backlog and retrospectives were consistently maintained throughout the project.
 
-
+%TODO Fix abbreviations, also something towards the end feels like result, even though it is what was planned from the start.
 Scrum was also well suitable due to the project's biweekly meetings with both the supervisor and the customer at the NCA. Each sprint provided opportunities to present and discuss ongoing development, allowing scope adjustments to be made based on feedback. This helped the group particularly when dealing with technical constraints, such as limitations or issues with the AIS dataset or uncertainty around feasibility or scope for specific visualisation features. The iterative structure allowed focus on the backlog until discussions about scope or features with the customer at the NCA rather than following a fixed plan. The project's internal sprint structure was organized into weekly sprints, which followed issues created on GitHub related to each week's iteration. At the end of each sprint, a short retrospective meeting was conducted to evaluate the progress of the group, planning what to focus on the next sprint. This informed prioritisation of backlog items, if any issues were not completed during the sprint. This was used when planning the following sprint.
 
 \subsection{Daily Stand-Ups}
@@ -68,13 +69,13 @@ Biweekly meetings were held with the supervisor to review academic progress and 
 % NCA)" and then use one form consistently across all chapters.
 
 \subsection{Communication}
-
+%TODO feel some overlap with result since it talks about its usuage however unsure.
 The main communication platform the team utilized was Discord. Discord was selected due to its support of persistent text channels and voice communication. The platform was used for planning meetings, task coordination and general communication. It primarily served as a channel for communication and storing information. Outlook was also utilized to contact the supervisor and plan meetings. The customer at the NCA used Slack to communicate, primarily to plan meetings, ask for progress updates, and answer technical questions.
 
 \subsection{Task Management}
 \label{sec:task_management}
 
-
+%TODO Jump between the two paragraphs
 Task tracking was handled using GitHub Projects, which provided a shared Kanban-style board across the team's three repositories: one for the frontend, one for the backend, and one for administrative documents such as meeting notes and sprint documentation. The tool was selected as the task management tool, as the team was already using GitHub for version control. Issues were created and tracked through workflow stages to ensure workload transparency and motivation. These workflow stages were: To Do, In Progress, In Review, and Done. These stages ensured that team members could easily see work progress through a sprint and pick up extra tasks in the backlog when tasks were completed without requiring communication with the other team member. Combined with the three-repository structure, this ensured issues were separated based on the repository it was on, while keeping issues at their relevant repository.
 
 
@@ -87,6 +88,7 @@ GitHub branching was used to isolate development between developers. Each member
 % These are process tools — they belong with the process description.
 % Communication Tools subsection removed since 3.1.5 already covers it.
 
+%TODO Need more tools here.
 \subsection{Tools and Platforms}
 % SUGGESTION (exemplar pattern — every tool = what it was used for + WHY chosen): most bullets below
 % already follow this. The subsubsection nesting for a tool list is fine. Just ensure no bullet is a
@@ -125,6 +127,7 @@ The architecture follows a client-server model (Section~\ref{sec:client_server_t
 
 \subsection{Architecture Overview}
  
+%TODO might be hard to understand for someone who doesnt properly known.
 The system is based on a client-server architecture consisting of a React frontend, Docker backend, and database. The React frontend communicates with the backend through \acrshort{rest}~\acrshort{api} calls using Axios, which results in the backend sending a dataset based on request parameters. This dataset is then visualized through Deck.gl in the frontend, layered over a MapLibre map.
 
 
