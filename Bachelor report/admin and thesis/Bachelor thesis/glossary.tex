@@ -1,21 +1,74 @@
-% --- ABBREVIATIONS ---
+% =====================================================================
+% GLOSSARY SOURCE FILE
+% Defines every acronym (\newacronym) and term (\newglossaryentry) used in the
+% thesis. Acronyms are printed in the Abbreviations list (with page numbers);
+% terms are printed in the Terms list.
+%
+% How to use these in the text:
+%   \acrshort{ais}   -> AIS                                   (short form, records the page)
+%   \acrlong{ais}    -> Automatic Identification System       (long form)
+%   \acrfull{ais}    -> Automatic Identification System (AIS) (long + short)
+%   \gls{ais}        -> long form on first use, short form afterwards
+%   \acrshortpl{api} -> APIs                                  (plural short form)
+%   \glspl{anomaly}  -> anomalies                             (plural of a term)
+%
+% NOTE: run "makeglossaries" (or makeglossaries-lite) between LaTeX passes,
+% otherwise the Abbreviations/Terms lists will not be generated.
+% =====================================================================
+
+% --- ABBREVIATIONS (acronyms) ---
 \newacronym{ais}{AIS}{Automatic Identification System}
+\newacronym{api}{API}{Application Programming Interface}
+\newacronym{cpu}{CPU}{Central Processing Unit}
+\newacronym{geojson}{GeoJSON}{Geographic JavaScript Object Notation}
+\newacronym{gpu}{GPU}{Graphics Processing Unit}
+\newacronym{http}{HTTP}{Hypertext Transfer Protocol}
+\newacronym{json}{JSON}{JavaScript Object Notation}
+\newacronym{mmsi}{MMSI}{Maritime Mobile Service Identity}
 \newacronym{nca}{NCA}{Norwegian Coastal Administration}
 \newacronym{ntnu}{NTNU}{Norwegian University of Science and Technology}
+\newacronym{rest}{REST}{Representational State Transfer}
+\newacronym{ui}{UI}{User Interface}
 \newacronym{vts}{VTS}{Vessel Traffic Services}
+\newacronym{webgl}{WebGL}{Web Graphics Library}
 
-% --- GLOSSARY ENTRIES ---
-\newglossaryentry{webgl}{
-    name=WebGL,
-    description={Web Graphics Library, a JavaScript API that allows GPU-Accelerated rendering of websites in the browser}
+% --- TERMS (glossary entries) ---
+\newglossaryentry{anomaly}{
+    name={Anomaly},
+    description={An AIS message flagged as anomalous for reasons such as an impossible speed, a position jump, or an unexpected maneuver}
 }
 
-\newglossaryentry{vectortiles}{
-    name={Vector tiles},
-    description={Geographic data passed into tile shapes, used to show maps rendered directly in the browser}
+\newglossaryentry{anomalygroup}{
+    name={Anomaly group},
+    description={A collection of anomalies grouped together based on shared type and geographic proximity}
 }
 
-\newglossaryentry{json}{
-    name=JSON,
-    description={JavaScript Object Notation, a lightweight data-interchange format}
+\newglossaryentry{individualanomaly}{
+    name={Individual anomaly},
+    description={A single anomaly belonging to an anomaly group, associated with one vessel}
+}
+
+\newglossaryentry{basestation}{
+    name={Base station},
+    description={A shore-based station that receives AIS messages from vessels}
+}
+
+\newglossaryentry{clusteringterm}{
+    name={Clustering},
+    description={The process of grouping nearby data points based on proximity to reduce visual clutter and improve readability}
+}
+
+\newglossaryentry{heatmapterm}{
+    name={Heat map},
+    description={A visualization method that represents data density through color}
+}
+
+\newglossaryentry{signalstrength}{
+    name={Signal strength},
+    description={A value representing the strength of the signal of a message between a vessel and a receiver}
+}
+
+\newglossaryentry{webmap}{
+    name={Web map},
+    description={An interactive map displayed in a web browser}
 }

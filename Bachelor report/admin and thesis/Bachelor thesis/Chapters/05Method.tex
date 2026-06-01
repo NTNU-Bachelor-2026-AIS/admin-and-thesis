@@ -96,12 +96,12 @@ GitHub branching was used to isolate development between developers. Each member
 \item \textbf{Visual Studio Code:} Primary development environment used by all team members and was selected for its extensive extension system and integrated terminal.
 \item \textbf{Git \& GitHub:} Used for version control, branching, pull requests, and task management via GitHub Projects. GitHub was adopted due to the groups prior knowledge with the tool, while task management and sprint being handled through it due to recommendation from the supervisor.
 \item \textbf{Docker:} The backend was containerised using Docker to ensure a consistent and reproducible runtime environment. This was preferred by the customer due to ease of use of Docker containers.
-\item \textbf{Swagger:} Used for API documentation and testing of backend endpoints, originally set up by the customer. This was selected by the customer for comprehensive API testing and documentation. 
+\item \textbf{Swagger:} Used for \acrshort{api} documentation and testing of backend endpoints, originally set up by the customer. This was selected by the customer for comprehensive \acrshort{api} testing and documentation.
 \end{itemize}
 
 \subsubsection{Design Tools}
 \begin{itemize}
-\item \textbf{Figma:} Used for designing wireframes and UI mockups for the web application. This was used due to its support for collaboration between members, while being a free tool that came recommended by the customer. 
+\item \textbf{Figma:} Used for designing wireframes and \acrshort{ui} mockups for the web application. This was used due to its support for collaboration between members, while being a free tool that came recommended by the customer. 
 \end{itemize}
 
 % TODO: Talk with other group member about their ai usage to make sure nothing is missing
@@ -120,17 +120,17 @@ GitHub branching was used to isolate development between developers. Each member
 % diagrams (use case, package, sequence) live in Results 4.2.
 
 % Needs better section intro with linguistic bridge to theory does it mostly but talks about system isntead of section
-The architecture follows a client-server model (Section~\ref{sec:client_server_theory}). The backend is implemented in Go and running inside a Docker container exposing a REST API (Section~\ref{sec: rest api}). Swagger is used for API documentation, and the frontend is built with React and TypeScript retrieving the data it needs through API calls to the backend.
+The architecture follows a client-server model (Section~\ref{sec:client_server_theory}). The backend is implemented in Go and running inside a Docker container exposing a \acrshort{rest}~\acrshort{api} (Section~\ref{sec: rest api}). Swagger is used for \acrshort{api} documentation, and the frontend is built with React and TypeScript retrieving the data it needs through \acrshort{api} calls to the backend.
 
 
 \subsection{Architecture Overview}
  
-The system is based on a client-server architecture consisting of a React frontend, Docker backend, and database. The React frontend communicates with the backend through REST API calls using Axios, which results in the backend sending a dataset based on request parameters. This dataset is then visualized through Deck.gl in the frontend, layered over a MapLibre map.
+The system is based on a client-server architecture consisting of a React frontend, Docker backend, and database. The React frontend communicates with the backend through \acrshort{rest}~\acrshort{api} calls using Axios, which results in the backend sending a dataset based on request parameters. This dataset is then visualized through Deck.gl in the frontend, layered over a MapLibre map.
 
 
 \subsection{Technology Stack}
 
-The technology stack was primarily determined by the customer's existing infrastructure. Since the prototype is intended to work with the NCA's systems, using their technology choices ensures compatibility. It also allows the team to leverage the customer's expertise if questions arise. Tools for which the customer has no preference, such as the map provider and visualization libraries, were decided by the group based on research and project requirements. 
+The technology stack was primarily determined by the customer's existing infrastructure. Since the prototype is intended to work with the \acrshort{nca}'s systems, using their technology choices ensures compatibility. It also allows the team to leverage the customer's expertise if questions arise. Tools for which the customer has no preference, such as the map provider and visualization libraries, were decided by the group based on research and project requirements. 
 
 % SUGGESTION (tighten the thin "why"s): JavaScript — say WHY it was required (the customer's stack /
 % React runs on it). react-window — a stronger reason than "simplicity" (e.g. avoids rendering the
@@ -141,12 +141,12 @@ The technology stack was primarily determined by the customer's existing infrast
 \item \textbf{JavaScript:} Programming language used by React. This was chosen due to customer requirement, and that it allows for comprehensive interaction implementation to the project. 
 \item \textbf{React:} React was used as a JavaScript library, due to its reusable component-based architecture and props.
 \item \textbf{TypeScript:} TypeScript was used with React to implement more type safety to the project.
-\item \textbf{MapLibre GL JS:} Mapping engine used for rendering interactive, high-performance maps with WebGL acceleration. This was chosen due to being recommended by the customer, and being open-source. 
-\item \textbf{Deck.gl:} This is the library used for visualization of anomaly data, and was chosen due to being widely used in the industry, being GPU-accelerated and designed to handle large-scale datasets. In addition to providing a large suite of visualization methods. 
-\item \textbf{Axios:} Library used for REST API communication. This was used due to simplifying data retrieval from the backend API. 
+\item \textbf{MapLibre GL JS:} Mapping engine used for rendering interactive, high-performance maps with \acrshort{webgl} acceleration. This was chosen due to being recommended by the customer, and being open-source. 
+\item \textbf{Deck.gl:} This is the library used for visualization of anomaly data, and was chosen due to being widely used in the industry, being \acrshort{gpu}-accelerated and designed to handle large-scale datasets. In addition to providing a large suite of visualization methods. 
+\item \textbf{Axios:} Library used for \acrshort{rest}~\acrshort{api} communication. This was used due to simplifying data retrieval from the backend \acrshort{api}.
 %\item \textbf{Vite:}
 \item \textbf{React-window:} Library used for virtualization of lists. This was chosen due to simplicity of implementation.
-\item \textbf{SuperCluster:} Library used for calculation of clusters based on anomaly data, used for visualizing clusters. This was chosen due to using hierarchical greedy clustering (Section~\ref{sec:supercluster}), and being designed to calculate on GeoJSON datasets.
+\item \textbf{SuperCluster:} Library used for calculation of clusters based on anomaly data, used for visualizing clusters. This was chosen due to using hierarchical greedy clustering (Section~\ref{sec:supercluster}), and being designed to calculate on \acrshort{geojson} datasets.
 % SUGGESTION: cross-check this list against package.json so no dependency is missing (e.g. Vite if used).
 
 \end{itemize}
@@ -156,8 +156,8 @@ The technology stack was primarily determined by the customer's existing infrast
 % customer's deployment), not just "used for containerizing". Swagger is fine as-is.
 \subsubsection{Backend Technologies}
 \begin{itemize}
-\item \textbf{PostgreSQL:} The database storing the AIS anomaly test data, supplied by the customer.
-\item \textbf{Swagger:} Swagger generates API documentation through annotations in the Go backend. A Swagger UI endpoint is available locally for exploring and testing the API.
+\item \textbf{PostgreSQL:} The database storing the \acrshort{ais} anomaly test data, supplied by the customer.
+\item \textbf{Swagger:} Swagger generates \acrshort{api} documentation through annotations in the Go backend. A Swagger \acrshort{ui} endpoint is available locally for exploring and testing the \acrshort{api}.
 \item \textbf{Docker:} Used for containerizing the backend services.
 % SUGGESTION: confirm the backend list is complete against the repo (e.g. Go modules, any ORM used).
 \end{itemize}
@@ -239,13 +239,13 @@ REST communication between frontend and backend was handled using Axios. This wa
 \label{sec:GeoJSON Data Handling}
 
 
-GeoJSON serves as the container for all geographic data for anomalies in the project. This file format was chosen in discussion with the customer, based on GeoJSON's strengths such as human readability and simplicity in use and parsing (Section~\ref{sec:geoJSON}). 
+GeoJSON serves as the container for all geographic data for anomalies in the project. This file format was chosen in discussion with the customer, based on \acrshort{geojson}'s strengths such as human readability and simplicity in use and parsing (Section~\ref{sec:geoJSON}). 
 
 % Need to use a standard capitalization of featurecollection might be added to abbreviations.
 The frontend retrieves and interprets FeatureCollection data sent from the backend, for rendering purposes. Each Feature represents an anomaly group or anomaly, with metadata containing information about type and geographic location. 
 
 %Split into shorten sentences.
-The design of the application processes the anomaly groups themselves, while allowing for individual anomalies from a group to be rendered in its own layer. This is done through first retrieving an individual anomaly group through an API request. The returned group provides access to its ID, which identifies the associated anomalies. An API request is sent related to these anomalies, wherein a new layer is created visualizing them \parencite{medium_feature_featurecollection}.
+The design of the application processes the anomaly groups themselves, while allowing for individual anomalies from a group to be rendered in its own layer. This is done through first retrieving an individual anomaly group through an \acrshort{api} request. The returned group provides access to its ID, which identifies the associated anomalies. An \acrshort{api} request is sent related to these anomalies, wherein a new layer is created visualizing them \parencite{medium_feature_featurecollection}.
 
 
 \subsection{Design Process}
@@ -324,7 +324,7 @@ The visualization methods implemented in this project were selected based on req
 \label{sec:clustering_method}
 
 % Some sentences need to be split for a cleaner structure.
-Clustering was implemented at the request of the customer as a way to reduce visual clutter and improve human readability when visualizing large datasets. It follows the general clustering theory described in Section~\ref{sec:clustering} (Figure~\ref{fig:clustering_visualization}). As mentioned in Section~\ref{sec:supercluster}, Supercluster.js is used for calculating clusters based on zoom level and the current map bounds. Supercluster calculates clusters based on the base dataset acquired from the API. The clustering behavior is controlled through a fixed radius parameter, where anomalies close together in the predefined radius are put in a cluster. Map interactions such as zooming and dragging result in clusters being retrieved for the current zoom level and map bounds. Supercluster itself was chosen for its ease of use with GeoJSON, while being designed for fast calculations, through the use of hierarchical greedy clustering, while reusing previous calculations (Section~\ref{sec:supercluster}). 
+Clustering was implemented at the request of the customer as a way to reduce visual clutter and improve human readability when visualizing large datasets. It follows the general clustering theory described in Section~\ref{sec:clustering} (Figure~\ref{fig:clustering_visualization}). As mentioned in Section~\ref{sec:supercluster}, Supercluster.js is used for calculating clusters based on zoom level and the current map bounds. Supercluster calculates clusters based on the base dataset acquired from the API. The clustering behavior is controlled through a fixed radius parameter of 40 pixels, where anomalies within this pixel radius are aggregated and shown as a single point on the map. Recalculation happens on zoom and drag operations, where clusters split into smaller parts as points move outside the radius. Map interactions such as zooming and dragging result in clusters being retrieved for the current zoom level and map bounds. Supercluster itself was chosen for its ease of use with GeoJSON, while being designed for fast calculations, through the use of hierarchical greedy clustering, while reusing previous calculations (Section~\ref{sec:supercluster}). 
 
 The clustering data itself is used with Deck.gl (Section~\ref{sec:deckgl}). Visualization through Deck.gl is accomplished through creating a custom layer, consisting of a label-layer, used to display the amount of anomalies within each cluster, placed above a scatterplot layer (Section~\ref{sec:scatter_plot}). This combines to create the clustering layer. This layer is re-rendered whenever the clustering output changes due to updates in zoom level or map bounds. Additionally, cluster visualization includes dynamic sizing based on amount of anomalies inside a cluster, leading to clusters being scaled in size proportional to their anomaly count. 
 
@@ -336,10 +336,10 @@ The clustering data itself is used with Deck.gl (Section~\ref{sec:deckgl}). Visu
 \subsection{Heat Map}
 \label{sec:Heat_Map_method}
 
-A heat map layer was implemented for visualization of the full dataset (Section~\ref{sec:heatmap}, Figure~\ref{fig:heatmap_image}). Heat map visualization is done through the Deck.gl HeatMapLayer. Each data point contributes equally to the weighted visualization, where radius based proximity is used to calculate the color shown, 
+A heat map layer was implemented for visualization of the full dataset (Section~\ref{sec:heatmap}, Figure~\ref{fig:heatmap_image}). Heat map visualization is done through the Deck.gl HeatMapLayer. Each data point contributes equally to the weighted visualization, where the sum of points within a fixed 40-pixel radius is used to calculate the color shown \parencite{deckgl_official_site},
 correlating to density of points. 
 
-The visual representation of density is accomplished through densities being given weight, each data point contributes equally to the weighted visualization which then is translated to a color scale. Lower densities correlate to a yellow color while higher densities show a redder color. 
+The visual representation of density is accomplished through densities being given weight, which then is translated to a color scale. Lower densities correlate to a yellow color while higher densities show a redder color. 
 
 The heatmap updates when the zoom level or view changes, leading to recalculation of density, as points are further apart on zoom-in. 
 % SUGGESTION (base to fill in): state the config concretely, e.g. "The HeatMapLayer uses a <yellow->red>
@@ -359,7 +359,7 @@ The anomaly group layer is a visualization layer that gives a detailed represent
 
 \subsection{Individual Anomaly Layer}
 
-An individual anomaly visualization layer was requested by the customer during the later stages of development. This layer was implemented as a scatter plot, with each point representing a singular ship, from the anomaly group. The individual points are colored from red to green, based on signal strength, with green being considered a strong signal, and red a weak one.
+An individual anomaly visualization layer was requested by the customer during the later stages of development. This layer was implemented as a scatter plot, with each point representing a singular ship, from the anomaly group. The individual points are colored from red to green based on signal strength, with green considered a strong signal and red a weak one. The signal strength value is normalized from 0 to 1 in the database, and this normalized value determines the point's color.
 % SUGGESTION (optional depth — the exemplar describes each technique's data + render + key parameter):
 % the base station, anomaly group, and individual layers are described but briefly. If time allows, add
 % one sentence each on: which backend data drives the layer, which Deck.gl layer type renders it, and
@@ -397,10 +397,9 @@ A simple date-time range selector was selected for temporal filtering. The desig
 
 Satellite connections were implemented as a layer that would only be visualised when a point is clicked to follow the project scope and make sure that complexity stayed low. This decision made sure that operators could not clutter the screen with satellites and allows them to see the points and connections easily.
 
-
 \subsection{Interactive Features}
 
-The filtering controls are designed for simple, interactive operation. A pop-up calendar component was implemented for date selection, and a drop-down listing the available types was implemented for anomaly type selection. A third component was for inputting numbers which was implemented for MMSI selection. These standard interfaces were chosen to keep the filtering workflow familiar to other systems while also allowing operators without prior training to use the prototype.
+The filtering controls are designed for simple, interactive operation. A pop-up calendar component was implemented for date selection, and a drop-down listing the available types was implemented for anomaly type selection. A third component was for inputting numbers which was implemented for \acrshort{mmsi} selection. These standard interfaces were chosen to keep the filtering workflow familiar to other systems while also allowing operators without prior training to use the prototype.
 
 
 %=====================================================================
@@ -416,7 +415,7 @@ Testing of the system was employed through manual evaluation of the application 
 \subsection{Backend API Testing}
 
 
-Testing of the backend was limited due to the fact that it was primarily created by the customer, meaning that formal tests were not created by the group. However manual testing of API endpoints was performed through a Swagger UI, to verify the validity of requests, while also being tested in the application itself.
+Testing of the backend was limited due to the fact that it was primarily created by the customer, meaning that formal tests were not created by the group. However manual testing of \acrshort{api} endpoints was performed through a Swagger \acrshort{ui}, to verify the validity of requests, while also being tested in the application itself.
 
 Additional testing was performed through logging of retrieved data on the browser console, allowing correctness to be verified by inspecting the returned responses.
 
@@ -446,7 +445,7 @@ User feedback was gathered primarily through the biweekly customer meetings as d
 
 The feedback was used to iteratively guide development throughout the project. Features were both scrapped and added as requests based on ongoing communication. This helped minimize wasted work on unwanted features, while allowing changes to be incorporated early in the development process.
 
-At the end of the project, a video of the application, along with questions to employees at the NCA, was sent to the customer representative. This allowed the group to receive feedback from actual operators currently using the NCA's internal system, in order to assess whether the implemented functionality would provide value to them.
+At the end of the project, a video of the application, along with questions to employees at the \acrshort{nca}, was sent to the customer representative. This allowed the group to receive feedback from actual operators currently using the \acrshort{nca}'s internal system, in order to assess whether the implemented functionality would provide value to them.
 % 
 %=====================================================================
 % End of Methods chapter

@@ -1,18 +1,12 @@
-% Put in your abbreviations here
-
-\begin{itemize}
-    \item AIS — Automatic Identification System
-    \item API — Application Programming Interface
-    \item CPU — Central Processing Unit
-    \item GeoJSON — Geographic JavaScript Object Notation
-    \item GPU — Graphics Processing Unit
-    \item HTTP — Hypertext Transfer Protocol
-    \item JSON — JavaScript Object Notation
-    \item MMSI — Maritime Mobile Service Identity
-    \item NCA — Norwegian Coastal Administration
-    \item REST — Representational State Transfer
-    \item UI — User Interface
-    \item WebGL — Web Graphics Library
-\end{itemize}
-
-\printglossary[type=\acronymtype, title=ABBREVIATIONS]
+% =====================================================================
+% Abbreviations
+% Acronyms are defined in glossary.tex with \newacronym and used in the text with
+% \acrshort / \gls / \acrfull. The list below is generated automatically and shows,
+% for each abbreviation, the long form and the pages where it is used.
+%
+% The chapter heading and table-of-contents entry come from \chapter*{Abbreviations}
+% in the main file, so the glossary's own section heading is suppressed here to
+% avoid printing the title twice.
+% =====================================================================
+{\renewcommand{\glossarysection}[2][]{}%
+ \printnoidxglossary[type=\acronymtype]}
