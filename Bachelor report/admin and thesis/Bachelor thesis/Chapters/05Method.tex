@@ -146,6 +146,9 @@ The technology stack was primarily determined by the customer's existing infrast
 \item \textbf{Axios:} Library used for \acrshort{rest}~\acrshort{api} communication. This was used due to simplifying data retrieval from the backend \acrshort{api}.
 %\item \textbf{Vite:}
 \item \textbf{React-window:} Library used for virtualization of lists. This was chosen due to simplicity of implementation.
+% DRAFT rationale (paste/adapt into the bullets above):
+% JavaScript: the language React runs on and part of the customer's existing stack, so it was a requirement rather than a free choice.
+% React-window: virtualizes the sidebar list so only the visible rows are rendered, avoiding the cost of rendering the full dataset (100k+ entries) at once.
 \item \textbf{SuperCluster:} Library used for calculation of clusters based on anomaly data, used for visualizing clusters. This was chosen due to using hierarchical greedy clustering (Section~\ref{sec:supercluster}), and being designed to calculate on \acrshort{geojson} datasets.
 % SUGGESTION: cross-check this list against package.json so no dependency is missing (e.g. Vite if used).
 
@@ -159,6 +162,9 @@ The technology stack was primarily determined by the customer's existing infrast
 \item \textbf{PostgreSQL:} The database storing the \acrshort{ais} anomaly test data, supplied by the customer.
 \item \textbf{Swagger:} Swagger generates \acrshort{api} documentation through annotations in the Go backend. A Swagger \acrshort{ui} endpoint is available locally for exploring and testing the \acrshort{api}.
 \item \textbf{Docker:} Used for containerizing the backend services.
+% DRAFT rationale (paste/adapt into the bullets above):
+% PostgreSQL: provided by the customer and suited to the relational structure of anomaly groups and their anomalies.
+% Docker: gives the backend a reproducible runtime that matches the customer's deployment, runnable in a few commands across machines.
 % SUGGESTION: confirm the backend list is complete against the repo (e.g. Go modules, any ORM used).
 \end{itemize}
 
@@ -174,7 +180,13 @@ The backend was originally provided by the NCA as a working codebase, pre-popula
 \subsection{Anomaly Group And Anomalies}
 
 % Capitalization issues need to be fixed with standards like abbreviations or terminologies.
-As mentioned in Section~\ref{sec:anomalies and anomaly groups}, anomalies and anomaly groups are represented as GeoJSON FeatureCollections. Anomaly groups and anomalies are implemented as features in a FeatureCollection, containing properties and geometry. Geometry defines the geographic location of an anomaly, with properties containing specific data such as anomaly type, of which there are three types: unexpected maneuver, speed and jumping anomalies. This includes other data such as the ID of the anomaly, its heading or last activity date.
+% Might need to set up the abbreiviations and terms here.
+As mentioned in Section~\ref{sec:anomalies and anomaly groups}, anomalies and anomaly groups are represented as GeoJSON FeatureCollections. Anomaly groups and anomalies are implemented as features in a FeatureCollection, containing properties and geometry. Geometry defines the geographic location of an anomaly, with properties containing specific data such as anomaly type, of which there are three types: unexpected maneuver, speed and jumping anomalies. This includes other data such as the \acrshort{id} of the anomaly, its heading or last activity date.
+
+% AI suggested content based on my content.
+%The individual fields named above are defined in the Terms list. The test dataset itself is supplied by the customer as synthetic data, since real AIS anomaly data is confidential. It is stored as a single GeoJSON FeatureCollection in which each Feature is an anomaly group containing its individual anomalies. The three anomaly types present are speed, jumping, and unexpected maneuver anomalies, and group sizes range from a single anomaly to several thousand anomalies per group. The dataset size is configurable through the Docker backend; during development the system was populated with approximately <NUMBER> anomaly groups and <NUMBER> individual anomalies, covering <TIME PERIOD>.
+% TODO (fill in): replace <NUMBER> / <TIME PERIOD> above with the real figures from your test database.
+% If you do not track an exact time span, drop ", covering <TIME PERIOD>".
 
 
 

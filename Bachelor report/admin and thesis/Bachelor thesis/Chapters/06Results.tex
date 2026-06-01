@@ -137,6 +137,10 @@ The final \acrshort{geojson} structure is shown in Figure~\ref{fig:geoJSON-resul
 \end{figure}
 Anomaly data is completely integrated in a FeatureCollection, with the individual features being anomaly groups. These features are individually processed in the frontend, as a dataset, through Deck.gl.
 
+Each Feature carries the properties defined in the Terms list and are ID, MMSI, anomaly type, signal strength, heading, last activity, and location, which the frontend reads to drive the visualization layers.
+% TODO (optional, quick): add one example record (a single Feature with real values) beside the figure
+% to make the structure concrete. Definitions live in Terms, so only the example values are needed.
+
 \subsection{Backend Query and Response Behaviour}
 Figure~\ref{fig:swagger-result_image} showcases an \acrshort{api} endpoint, created as a master query allowing for filtered requests on all relevant variables.
 The master query accepts four filter parameters: anomaly type, MMSI, and a start and end date. It returns the matching anomaly groups, where each group contains its individual anomalies, and each anomaly in turn includes its base-station links and signal strength values. This endpoint was the group's main contribution to the backend infrastructure provided by the customer, replacing frontend-side filtering of the full dataset with a single backend query (Section~\ref{sec:backend_and_data_flow_method}).
@@ -336,6 +340,31 @@ During development, and from the start of the project, the project differed in s
 \subsection{Delivered vs Planned Features}
 
 Almost all planned features from the project outline and through meetings were implemented, some being seen as extra features later in development by the customer. A report generating system and satellite orbit visualization feature were not delivered. However satellites themselves were implemented and shown as connected to anomalies through a signal strength line in the anomaly group layer, showing its position at the time of data transmission. The overall delivered features implement the majority of the project outline's features, while also implementing the requested features from the customer.
+
+% Delivered vs planned features (verify each Status against your final build and Introduction objectives).
+% NOTE: the commented table skeleton further below is now superseded by this table and can be deleted.
+\begin{table}[H]
+\centering
+\begin{tabular}{ m{4.5cm} m{2.6cm} m{5.4cm} }
+\toprule
+\textbf{Feature / Objective} & \textbf{Status} & \textbf{Notes} \\
+\midrule
+Clustering visualization & Implemented & \\
+Heat map visualization & Implemented & \\
+Base station layer & Implemented & \\
+Anomaly group layer & Implemented & Reimplemented to support signal strength \\
+Individual anomaly layer & Implemented & Added late at customer request \\
+Filtering (type, MMSI, dates) & Implemented & \\
+Signal strength visualization & Implemented & Added during the project; not in the original outline \\
+Temporal analysis (forward/backward in time) & Partial & Delivered as a date-range filter only \\
+Hexagonal binning & Not implemented & Cut due to time constraints \\
+Report generation & Not implemented & Not requested again after early meetings \\
+Satellite orbit plotting & Not implemented & Satellites shown only at transmission time \\
+\bottomrule
+\end{tabular}
+\caption[Delivered versus planned features]{Delivered versus planned features and objectives, including features added during development and shortfalls against the original Introduction objectives.}
+\label{tab:delivered_vs_planned}
+\end{table}
 % SUGGESTION (table + måloppnåelse honesty — you write it): replace this paragraph with a table —
 % Feature | Status (Implemented / Partial / Not implemented) | Notes — listing EVERY objective from
 % the Introduction, including shortfalls. The audit flags three to list honestly: Temporal Analysis
