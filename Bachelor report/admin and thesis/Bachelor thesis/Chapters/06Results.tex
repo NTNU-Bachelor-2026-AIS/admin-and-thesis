@@ -163,13 +163,7 @@ The clustering visualization was implemented as described in Section~\ref{sec:cl
 \end{figure}
 At the zoomed-out level shown in Figure~\ref{fig:clustering_result_image}, the full dataset aggregates into a small number of clusters positioned over the Norwegian Sea off the coast of Norway. The largest cluster holds 10,634 anomalies, with neighbouring clusters of 3,641, 655, 440, and 4 anomalies; zooming in splits these into progressively smaller clusters. A higher density of points in a cluster leads to that cluster being shown as larger on the map.
 % TODO (you): verify the region/zoom description against your screenshot.
-% SUGGESTION (Method/Results bleed — your call): the 40-pixel aggregation mechanism (how clusters are
-% computed) is Method 3.5 content. Move the preserved sentence below to Method; Results should show
-% what the figure shows. The clustering performance effect is reported in Section~\ref{sec:effect_of_clustering_results}.
-% MECHANISM (preserved for moving to Method): "Clusters are calculated using a radius that counts the
-% points inside a circle of a defined radius, 40 pixels in this project. Points inside the radius are
-% aggregated and shown as a single point. Recalculation happens on zoom and drag, where clusters split
-% into smaller parts as points move outside the radius."
+% The clustering performance effect is reported in Section~\ref{sec:effect_of_clustering_results}.
 
 
 \subsection{Heat Map Visualization}
@@ -180,11 +174,9 @@ The system includes a heat map visualization layer. The heat map is implemented 
     \caption[Heat map visualization result]{Heat map visualization showing anomaly density across the dataset, with warmer colors indicating higher concentrations}
     \label{fig:heatmap_result_image}
 \end{figure}
-Color is generated through calculating the sum of points inside a radius of 40 pixels, meaning points inside a circle are calculated as a sum, leading to higher density of points being weighted more \parencite{deckgl_official_site}. 
 In Figure~\ref{fig:heatmap_result_image}, the highest-density hot spots appear as dark-red areas over central Norway, north of Trondheim, and over southern Norway near Bergen, while the surrounding coast and inland areas show lower, more diffuse density in orange and yellow. The heat map view updates dynamically during zoom and drag operations, with zoomed-out levels producing higher aggregates per pixel radius and a denser overall representation.
 % TODO (you): verify the two hot-spot locations against your screenshot.
-% SUGGESTION (Method/Results bleed — your call): the "sum of points inside a 40-pixel radius" sentence
-% above is mechanism (Method 3.5); consider moving it to Method.
+
 
 \subsection{Base Station Visualization}
 A base station layer is part of the application, implemented as mentioned in Section~\ref{sec:base_station}. The base station layer is visualized through blue icons in Figure~\ref{fig:base_station_result_image}. The base station layer itself is persistent, meaning that it is a visualization layer that will always be present in the app, even if other methods of visualizing the data points are changed. 
@@ -194,12 +186,8 @@ A base station layer is part of the application, implemented as mentioned in Sec
     \caption[Base station layer]{Base station layer showing fixed AIS receiver locations as blue icons, providing persistent geographic reference points on the map}
     \label{fig:base_station_result_image}
 \end{figure}
-Base stations are linked to anomalies through backend data representing transmissions from individual anomalies. This is then used in other layers to connect base stations to anomalies through signal strength. The base station data itself will never change in position, as they are static points on the map. This provides persistent reference in relation to anomaly and transmitted base station, and helps end users visually observing the distance between anomaly cluster and base station, leading to visual feedback on the spatial relationship between anomalies and base stations.
-% SUGGESTION (relocate evaluation — your call): "helps end users visually observing the distance...
-% leading to visual feedback on the spatial relationship" is an assessment of usefulness, not an
-% observation of the layer. Consider keeping the factual link (base stations are static reference
-% points) here and moving the usefulness claim to Discussion.
-%TODO Evaluations need to be moved
+Base stations are linked to anomalies through backend data representing transmissions from individual anomalies. This is then used in other layers to connect base stations to anomalies through signal strength. The base station data itself will never change in position, as they are static points on the map, providing a persistent geographic reference between an anomaly and its transmitting base station.
+% feedback on the spatial relationship between anomalies and base stations now lives there.
 
 
 \subsection{Anomaly Group Visualization}
@@ -215,11 +203,7 @@ The layer shows an info component for the current group, with coordinates, start
 
 
 \subsection{Individual Anomaly Visualization}
-Individual anomalies are shown as a scatter plot (Section~\ref{sec:scatter_plot}). The visualization shows the points colored based on signal strength, from red to green. This is done through the signal strength value being normalized from 0 to 1, in the database.
-% SUGGESTION (Method/Results bleed — your call): "normalized from 0 to 1 in the database" is an
-% implementation detail that fits better in Method 3.5. Results can simply state that points are
-% coloured from red to green by signal strength.
-%TODO Fix this
+Individual anomalies are shown as a scatter plot (Section~\ref{sec:scatter_plot}). The visualization shows the points colored based on signal strength, from red to green.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/individual_anomaly_layer_result.png}
@@ -344,10 +328,8 @@ The final project outcome was influenced both by the original project outline an
 
 \subsection{Scope Changes During Development}
 
-During development, and from the start of the project, the project differed in scope from the project outline in subtle ways. All visualization methods that the group worked on were in the project outline, but during the project itself the focus of the application became testing new concepts, such as signal strength visualization, through lines going from anomaly to base station/satellite came later during the project lifecycle. Features such as report generation were not mentioned later in meetings or as a feature request, rather other features were chosen for concept testing. As a result of the scope never being locked down during the project, the customer gave requests on what at a certain point in time would be good to implement to see if value could be gotten in a full implementation in their own software.
-% SUGGESTION (relocate evaluation — your call): "As a result of the scope never being locked down..."
-% is a judgment that Discussion (Project Execution) already covers. Consider keeping only WHAT changed
-% here (features added/removed) and moving the assessment to Discussion.
+During development, and from the start of the project, the project differed in scope from the project outline in subtle ways. All visualization methods that the group worked on were in the project outline, but during the project itself the focus of the application became testing new concepts, such as signal strength visualization, through lines going from anomaly to base station/satellite came later during the project lifecycle. Features such as report generation were not mentioned later in meetings or as a feature request, rather other features were chosen for concept testing. Throughout the project, the customer gave requests on what would be good to implement at a given point in time, to test whether value could be gained from a full implementation in their own software.
+% NOTE: the "scope never locked down" assessment is covered in Discussion (Project Execution -> Scope Management).
 
 % Probably create a table for scope here and then for deliverd vs planned
 
@@ -385,14 +367,5 @@ Almost all planned features from the project outline and through meetings were i
 % \caption[Delivered vs planned features]{Delivered versus planned features and objectives.}
 % \label{tab:delivered_vs_planned}
 % \end{table}
-
-
-%TODO Move this to the other one.
-% SUGGESTION (relocate whole section to Discussion — your call; Discussion lives in 07Discussion.tex,
-% out of my current scope): this entire section is comparative EVALUATION, not a result. Consider
-% moving it wholesale into Discussion. If it stays here, it caps how factual the Results chapter reads.
-\section{Comparison to Customer's Tools}
-
-As the resulting application is testing concepts for the customer, a direct comparison yields little value, as the customer themselves mentioned that the currently in use tools are superior in their core functionality. However as the currently implemented application is testing new visualization methods and features, this then brings value to the customer to test if their already in use software, or software they are to make themselves, should have these features. As a result the software created for the project is better in the specifics of testing new concepts.
 
 %=====================================================================
