@@ -12,7 +12,7 @@
 %   Method 3.8 → Results 4.8  (Customer Feedback)
 % =====================================================================
 % This chapter describes the methodology, tools, and implementation choices
-% used during the development of the AIS anomaly visualisation prototype.
+% used during the development of the AIS anomaly visualization prototype.
 
 % Might need to be expanded based on presentation about writing.
 \textit{This chapter outlines the development process, tools, frameworks, system architecture, and testing strategies employed throughout the project.}
@@ -24,11 +24,11 @@
 %=====================================================================
 \section{Project Management and Process}
 
-% FOCUS: Describe HOW you organised the project. Sprint structure,
+% FOCUS: Describe HOW you organized the project. Sprint structure,
 % meeting routines, roles, and task tracking.
 % Mirror the chess thesis Section 3.3 for level of detail.
 
-%The team used an Agile approach with the Scrum framework to organise the project. Work was divided into sprints of one to two weeks, where sprint length was adjusted depending on workload from other courses.
+%The team used an Agile approach with the Scrum framework to organize the project. Work was divided into sprints of one to two weeks, where sprint length was adjusted depending on workload from other courses.
 
 This section describes how the project was organized, including the development methodology, team structure, meeting routines, communication, and task management tools used throughout the project.
 
@@ -39,7 +39,7 @@ This section describes how the project was organized, including the development 
 The Scrum framework, described in Section~\ref{sec:scrum_framework_theory} and illustrated in Figure~\ref{fig:scrum_framework}, was employed to structure the development process. It was introduced by the supervising lecturer, who provided pre-filled sprint templates and documentation to support its use in group-based projects. Scrum was chosen for its suitability with iterative development and its continuous feedback loop, which allows for early changes in direction. This reduced the time investment of adopting the framework, while ensuring that sprint artefacts such as the backlog and retrospectives were consistently maintained throughout the project.
 
 %TODO Fix abbreviations, also something towards the end feels like result, even though it is what was planned from the start.
-Scrum was also well suitable due to the project's biweekly meetings with both the supervisor and the customer at the \acrshort{nca}. Each sprint provided opportunities to present and discuss ongoing development, allowing scope adjustments to be made based on feedback. This helped the group particularly when dealing with technical constraints, such as limitations or issues with the \acrshort{ais} dataset or uncertainty around feasibility or scope for specific visualisation features. The iterative structure allowed focus on the backlog until discussions about scope or features with the customer at the \acrshort{nca} rather than following a fixed plan. The project's internal sprint structure was organized into weekly sprints, which followed issues created on GitHub related to each week's iteration. At the end of each sprint, a short retrospective meeting was conducted to evaluate the progress of the group, planning what to focus on the next sprint. This informed prioritisation of backlog items, if any issues were not completed during the sprint. This was used when planning the following sprint.
+Scrum was also well suitable due to the project's biweekly meetings with both the supervisor and the customer at the \acrshort{nca}. Each sprint provided opportunities to present and discuss ongoing development, allowing scope adjustments to be made based on feedback. This helped the group particularly when dealing with technical constraints, such as limitations or issues with the \acrshort{ais} dataset or uncertainty around feasibility or scope for specific visualization features. The iterative structure allowed focus on the backlog until discussions about scope or features with the customer at the \acrshort{nca} rather than following a fixed plan. The project's internal sprint structure was organized into weekly sprints, which followed issues created on GitHub related to each week's iteration. At the end of each sprint, a short retrospective meeting was conducted to evaluate the progress of the group, planning what to focus on the next sprint. This informed prioritization of backlog items, if any issues were not completed during the sprint. This was used when planning the following sprint.
 
 \subsection{Daily Stand-Ups}
 
@@ -60,12 +60,12 @@ The project was conducted by a two-member team, with responsibilities divided to
 %The project spanned from January 2026, with delivery on the 20th of May. 
 % SUGGESTION (optional base): if relevant, add 1-2 factual sentences on workload handling, e.g.
 % "Sprint length was occasionally extended to two weeks when workload from other courses was high,
-% and backlog items were re-prioritised with the customer accordingly." Keep it factual, no venting.
+% and backlog items were re-prioritized with the customer accordingly." Keep it factual, no venting.
 
 Biweekly meetings were held with the supervisor to review academic progress and discuss the project's technical direction. Customer meetings with the \acrshort{nca} were arranged biweekly and focused on presenting completed work and gathering feedback while clarifying the scope of the project. The outcomes from both meetings were recorded in meeting notes and were stored in a dedicated Discord document channel, ensuring that decisions remained accessible to both team members throughout the project and that the project scope remained stable. Occasionally, biweekly meetings were rescheduled in agreement with the supervisor or customer due to scheduling conflicts. These conflicts were resolved through communication with the relevant party. No formal meeting invitation documents were used, as scheduling was handled directly through email or Slack communication, with meeting notes being written for each scheduled meeting. 
 
 % SUGGESTION (consistency — pick one term): the thesis mixes "the NCA" (Method) and "Kystverket"
-% (Results). Standardise: introduce it once as "Kystverket (the Norwegian Coastal Administration,
+% (Results). Standardize: introduce it once as "Kystverket (the Norwegian Coastal Administration,
 % NCA)" and then use one form consistently across all chapters.
 
 \subsection{Communication}
@@ -171,7 +171,7 @@ The technology stack was primarily determined by the customer's existing infrast
 % SUGGESTION: confirm the backend list is complete against the repo (e.g. Go modules, any ORM used).
 \end{itemize}
 
-The backend was originally provided by the \acrshort{nca} as a working codebase, pre-populated with test data for development, since actual \acrshort{ais} anomaly data is confidential. The team forked this repository and updated it throughout the project. The most notable addition was a master query endpoint described in Section~\ref{sec:backend_and_data_flow_method}. The test dataset consists of three anomaly types: speed, maneuver, and jumping anomalies. Anomalies are grouped by type and proximity, ranging from thousands to a single anomaly entry per group. 
+The backend was originally provided by the \acrshort{nca} as a working codebase, pre-populated with test data for development, since actual \acrshort{ais} anomaly data is confidential. The customer supplied a Go-based starter backend, distinct from their primary .NET/C\# stack. The team forked this repository and updated it throughout the project. The most notable addition was a master query endpoint described in Section~\ref{sec:backend_and_data_flow_method}. The test dataset consists of three anomaly types: speed, maneuver, and jumping anomalies. Anomalies are grouped by type and proximity, ranging from thousands to a single anomaly entry per group. 
 % SUGGESTION (base to fill in — the exemplar gives concrete dataset numbers): add 1-2 sentences with
 % the real figures, e.g.: "The test dataset used during development contained approximately <N> anomaly
 % groups and <M> individual anomalies across the three types (speed, maneuver, jumping). Dataset size
@@ -206,7 +206,7 @@ MapLibre serves as the foundational map layer for the application. While MapLibr
 Deck.gl is the visualization library used as a layer on top of MapLibre.
 The decision to use the library came from the requirement to visualize hundreds of thousands of points concurrently on the map. Performance is one of the main factors driving the choice, as Deck.gl is created specifically for the task of visualizing large datasets.
 
-% SUGGESTION: the "Deck.gl is responsible for rendering..." sentence is runtime behaviour that leans
+% SUGGESTION: the "Deck.gl is responsible for rendering..." sentence is runtime behavior that leans
 % toward Results. Keep the design decision (why Deck.gl was chosen) here; let Results state what it renders.
 Deck.gl is responsible for rendering anomaly data as visualization layers above the base map. The layers are defined through functions that generate layer objects based on the dataset received from the backend.
 
@@ -231,7 +231,7 @@ This section describes the frontend architecture, the design process that shaped
 
 \subsection{Frontend Architecture}
 
-The frontend architecture follows a client-driven data flow where data is retrieved from the backend through \acrshort{rest} \acrshort{api} calls using Axios (Section~\ref{sec: rest api}). The received data is stored in React state as a \acrshort{geojson} FeatureCollection, which is passed to individual Deck.gl layers responsible for rendering the visualisations. This is done after a map instance is created through a map container class using MapLibre. Deck.gl is subsequently used for rendering data points overlaid on the map. Interactivity is handled through React components, where state changes control filtering and updating of the rendered layers. Individual Deck.gl layers also implement click event handlers, which update application state and trigger the rendering of additional information components or different visualization layers (Section~\ref{sec:deckgl}).
+The frontend architecture follows a client-driven data flow where data is retrieved from the backend through \acrshort{rest} \acrshort{api} calls using Axios (Section~\ref{sec: rest api}). The received data is stored in React state as a \acrshort{geojson} FeatureCollection, which is passed to individual Deck.gl layers responsible for rendering the visualizations. This is done after a map instance is created through a map container class using MapLibre. Deck.gl is subsequently used for rendering data points overlaid on the map. Interactivity is handled through React components, where state changes control filtering and updating of the rendered layers. Individual Deck.gl layers also implement click event handlers, which update application state and trigger the rendering of additional information components or different visualization layers (Section~\ref{sec:deckgl}).
 
 \subsection{Frontend component structure}
 
@@ -272,7 +272,7 @@ The design process was guided by the design and wireframing theories described i
 
 \subsubsection{Design Approach}
 
-The design of the user interface followed a three-stage approach. First, existing visualisation systems within geographic and maritime sectors were reviewed to identify common interaction patterns and layout conventions used in this domain. Second, the design principles introduced in Section \ref{sec:design_theory} were applied to the interface. This ensured the system followed principles like simplicity and consistency, helping reduce the risk of operators becoming overwhelmed working with large amounts of data. Third, the project was adapted to fit the specific project requirements. The design of the application changed throughout the project due to customer feedback, although the main UI design followed the wireframes created at the start of the project. 
+The design of the user interface followed a three-stage approach. First, existing visualization systems within geographic and maritime sectors were reviewed to identify common interaction patterns and layout conventions used in this domain. Second, the design principles introduced in Section \ref{sec:design_theory} were applied to the interface. This ensured the system followed principles like simplicity and consistency, helping reduce the risk of operators becoming overwhelmed working with large amounts of data. Third, the project was adapted to fit the specific project requirements. The design of the application changed throughout the project due to customer feedback, although the main UI design followed the wireframes created at the start of the project. 
 % FOCUS: Wireframes, UI/UX decisions, user feedback.
 
 \subsection{Wireframes}
@@ -322,10 +322,10 @@ When a request is made, the backend first retrieves the relevant anomaly groups,
 % SUGGESTION (optional): the GeoJSON return is described above; if you want more, add one line on how
 % the frontend consumes it (FeatureCollection parsed into Deck.gl layers).
 %=====================================================================
-% 3.5  Visualisation Implementation
+% 3.5  Visualization Implementation
 % CHANGED: Was 3.6. Renumbered to match Results 4.5.
 %=====================================================================
-\section{Visualisation Implementation}
+\section{Visualization Implementation}
 \label{sec:visualization_implementation}
 
 The visualization methods implemented in this project were selected based on requirements from the customer and refined throughout the development process. This section describes the set of visualization techniques used in the system and how they were implemented.
@@ -345,7 +345,7 @@ The clustering data itself is used with Deck.gl (Section~\ref{sec:deckgl}). Visu
 
 % SUGGESTION (base to fill in — the exemplar states concrete parameters): give the actual numbers,
 % e.g. "A cluster radius of 40 pixels was used. Cluster marker size scales with anomaly count, and the
-% count is rendered as a text label above each cluster." Add how colour/size are derived (fixed colour?
+% count is rendered as a text label above each cluster." Add how color/size are derived (fixed color?
 % size interpolation?). Concrete parameters are what lifts this from description to method.
 
 \subsection{Heat Map}
@@ -358,7 +358,7 @@ The visual representation of density is accomplished through densities being giv
 
 The heatmap updates when the zoom level or view changes, leading to recalculation of density, as points are further apart on zoom-in. 
 % SUGGESTION (base to fill in): state the config concretely, e.g. "The HeatMapLayer uses a <yellow->red>
-% colour ramp with radius/intensity <value>, weighting all points equally (no per-point weighting)."
+% color ramp with radius/intensity <value>, weighting all points equally (no per-point weighting)."
 % If a property such as signal strength was used for weighting, name it.
 
 
@@ -378,11 +378,11 @@ An individual anomaly visualization layer was requested by the customer during t
 % SUGGESTION (optional depth — the exemplar describes each technique's data + render + key parameter):
 % the base station, anomaly group, and individual layers are described but briefly. If time allows, add
 % one sentence each on: which backend data drives the layer, which Deck.gl layer type renders it, and
-% the key parameter (e.g. signal-strength value normalised 0..1 -> red..green). Keep it factual.
+% the key parameter (e.g. signal-strength value normalized 0..1 -> red..green). Keep it factual.
 
-\subsection{Scope and Feature Prioritisation}
+\subsection{Scope and Feature Prioritization}
 
-The project scope was decided through ongoing discussions with the customer. Hexagonal binning was initially identified as a desired feature in the project brief. However due to time constraints it was not implemented in the final prototype. The scope of the project changed throughout development, leading to some new features being requested, some of which were cut. The team prioritized clustering, heat maps, and the filter system based on customer feedback since these provided the most immediate analytical value. 
+The project scope was decided through ongoing discussions with the customer. Hexagonal binning was discussed with the customer as a possible feature during a meeting, but it was not part of the written project brief. Due to time constraints it was not implemented in the final prototype. The scope of the project changed throughout development, leading to some new features being requested, some of which were cut. The team prioritized clustering, heat maps, and the filter system based on customer feedback since these provided the most immediate analytical value.
 % SUGGESTION (måloppnåelse — high grade value, do this): list the cut features factually here
 % (hexagonal binning, report generation, satellite orbit plotting, full forward/backward temporal
 % analysis). Then EITHER soften the Introduction objective wording ("investigate" rather than
@@ -402,15 +402,15 @@ The filtering and interaction system builds on the visualization layer described
 
 \subsection{Filter System}
 
-The filter system was scoped early in the project. Group-level filtering was chosen over per-anomaly filtering, because filtering per-anomaly would include more data fields such as source ID, signal strength and more which was concluded to be too computationally expensive for interactive use on a large database. Since the main scope of the project was focused on anomaly groups, this scope made sure that the filter would be focused on performance while aligning with the visualisation goals of the project. For this four filterable fields were selected: \acrshort{id}, \acrshort{mmsi}, anomaly type and last activity. These were chosen to support the operators' workflows since they were the information most likely to be investigated in practice. Things such as isolating anomalies by time period, type, or \acrshort{mmsi}. Then using that filtered data to find specific areas of elevated anomaly density.
+The filter system was scoped early in the project. Group-level filtering was chosen over per-anomaly filtering, because filtering per-anomaly would include more data fields such as source ID, signal strength and more which was concluded to be too computationally expensive for interactive use on a large database. Since the main scope of the project was focused on anomaly groups, this scope made sure that the filter would be focused on performance while aligning with the visualization goals of the project. For this four filterable fields were selected: \acrshort{id}, \acrshort{mmsi}, anomaly type and last activity. These were chosen to support the operators' workflows since they were the information most likely to be investigated in practice. Things such as isolating anomalies by time period, type, or \acrshort{mmsi}. Then using that filtered data to find specific areas of elevated anomaly density.
 
 \subsection{Temporal Filtering}
 
-A simple date-time range selector was selected for temporal filtering. The design goal was to let operators restrict the visualisation to a chosen time period and then use other tools to further identify special factors of points in that period. The filter was constrained to remain within the scope of the project while providing simplicity and feasibility of implementation.
+A simple date-time range selector was selected for temporal filtering. The design goal was to let operators restrict the visualization to a chosen time period and then use other tools to further identify special factors of points in that period. The filter was constrained to remain within the scope of the project while providing simplicity and feasibility of implementation.
 
 \subsection{Satellite Implementation}
 
-Satellite connections were implemented as a layer that would only be visualised when a point is clicked to follow the project scope and make sure that complexity stayed low. This decision made sure that operators could not clutter the screen with satellites and allows them to see the points and connections easily.
+Satellite connections were implemented as a layer that would only be visualized when a point is clicked to follow the project scope and make sure that complexity stayed low. This decision made sure that operators could not clutter the screen with satellites and allows them to see the points and connections easily.
 
 \subsection{Interactive Features}
 
@@ -447,7 +447,7 @@ Testing of specific methods in the code was performed through console logging to
 
 \subsection{Performance Observation Methodology}
 
-Performance was evaluated through manual observation of the application during use. No automated performance testing was implemented. The system was tested using anomaly datasets ranging from 10,000 anomalies to over 100,000 anomaly groups. The focus of the performance testing was to ensure that the application remained responsive for end users and that rendering behaviour did not exhibit major performance issues.
+Performance was evaluated through manual observation of the application during use. No automated performance testing was implemented. The system was tested using anomaly datasets ranging from 10,000 anomalies to over 100,000 anomaly groups. The focus of the performance testing was to ensure that the application remained responsive for end users and that rendering behavior did not exhibit major performance issues.
 
 To ensure performance, certain optimisations were implemented, such as reducing the frequency of recalculations of clusters during drag and zoom operations, and using virtualization in the sidebar so that the full dataset was not rendered in the list at all times.
 %=====================================================================

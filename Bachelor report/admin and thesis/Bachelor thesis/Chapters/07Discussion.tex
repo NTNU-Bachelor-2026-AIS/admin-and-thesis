@@ -56,7 +56,7 @@ The zoom function with layer recalculation was observed to remain responsive dur
 % Might need to be rewritten cause it is easily misunderstood.
 a single individual anomaly group cluster leading to the anomaly group layer, this is performant through \acrshort{api} call to the backend, instead of acquiring the information through frontend filtering. The main drawback with clustering is the lack of specific details of each anomaly group, requiring multiple layer changes to go into an anomaly group and then into the individual anomalies, it gives a generally simpler overview of where anomalies are grouped, and how numerous they are, but no specific details on the anomalies inside. Although this is worth the tradeoff versus having a normal scatterplot with a chaotic amount of points shown at once. 
 
-The Heat map visualization, implemented as described in Section~\ref{sec:Heat_Map_method}, provides value by representing the entire dataset, rather than the aggregated form used by clustering. This produces a overview of all data points based on proximity, in contrast to clustering visualization, it utilizes color intensity to represent hot spots more precisely. Color based encoding is more visually intuitive for identifying hot spots compared to visually identifying density based on size and numeric labels. This benefit also justifies higher rendering costs utilized by heat map's. This means the visualisation method is slower than other methods while it offers a more comprehensive overview of the dataset. % TODO: add data here or in results for rendering times like for clustering and induvidual scatter plot.
+The Heat map visualization, implemented as described in Section~\ref{sec:Heat_Map_method}, provides value by representing the entire dataset, rather than the aggregated form used by clustering. This produces a overview of all data points based on proximity, in contrast to clustering visualization, it utilizes color intensity to represent hot spots more precisely. Color based encoding is more visually intuitive for identifying hot spots compared to visually identifying density based on size and numeric labels. This benefit also justifies higher rendering costs utilized by heat map's. This means the visualization method is slower than other methods while it offers a more comprehensive overview of the dataset. % TODO: add data here or in results for rendering times like for clustering and induvidual scatter plot.
 
 The anomaly group layer, described in Section~\ref{sec:anomalies and anomaly groups}, provides detailed information about each individual group. The signal strength visualization is central to this layer, and the implementation received positive feedback from the customer (Section~\ref{sec:customer_feedback}). The combination of location, anomaly type, and connections to base stations and satellites in the information component,provides a clear overview of how an anomaly group relates to the receivers of \acrshort{ais} messages. 
 
@@ -66,7 +66,7 @@ The remaining visualizations, including the base station layer (Section~\ref{sec
 
 User interaction is a core element of the application, and users should be able to navigate and retrieve information without noticeable slowdown or errors. Based on manual testing during development, user interaction was observed to remain responsive, even though performance remains heavily dependant on hardware used, with the available \acrshort{gpu} acting as the main limiting factor for rendering performance (Section~\ref{sec:hardware_acceleration}).% TODO: Add measured data for interaction latency
 % Combine both into one maybe
-Most user interaction centers on zoom level and camera position within the map. Although this map interaction has performance costs, it enables access to anomaly information, filtering and searching. As interactivity is a core feature of the application, this trade off is acceptable, since dynamic datasets are far easier to analyse interactively than statically.
+Most user interaction centers on zoom level and camera position within the map. Although this map interaction has performance costs, it enables access to anomaly information, filtering and searching. As interactivity is a core feature of the application, this trade off is acceptable, since dynamic datasets are far easier to analyze interactively than statically.
 
 
 \subsection{Backend and Data Handling}
@@ -109,6 +109,13 @@ This subsection evaluates the responsiveness observed during manual testing.
 This section evaluates the project management process described in Section \ref{sec:dev_methodology}, focusing on how the chosen methodology, team structure, and communication practices influenced the development outcome.
 
 Although the adopted methods ensured a structured development process, several of them introduced weekly overhead that proved disproportionate for a two-person team operating under a fixed deadline. The following subsections evaluate each aspect individually.
+% SUGGESTION (self-reflection / lessons learned — high value for criterion 5; write in your own words):
+% consider adding a short reflective paragraph acknowledging that, in retrospect, the team should have
+% engaged more carefully with the project requirements and the grading criteria earlier, and used them
+% to focus the work. Frame it as a lesson learned rather than self-criticism: clearer early alignment on
+% requirements and assessment criteria would have improved prioritization and reduced time spent on work
+% that was later descoped. This pairs naturally with the team-capacity change and the reactive scope
+% management discussed below, and honest reflection of this kind tends to raise the assessment score.
 
 \subsection{Scrum Framework and Sprint Structure}
 
@@ -118,14 +125,31 @@ However, several Scrum artifacts introduced documentation overhead that provided
  % Maybe ref or  section
 
 In relation to sprint documentation, the sprint artefacts provided traceable project documentation, which served as a reference when writing the report while ensuring important information was not lost in miscommunication.
+% SUGGESTION (reconcile with the real sprint structure in Results 4.1; write in your own words):
+%  - The cadence was weekly EXCEPT the final two sprints, which each ran two weeks (15-16 and 17-18) as
+%    the team moved toward the report period. Adjust "the group used weekly sprints" to reflect this.
+%  - Small lessons-learned tie-in: the first two sprints were documented informally before the team
+%    found and adopted the official sprint templates, after which documentation was consistent. This
+%    supports the earlier reflection that engaging with the expected process/criteria sooner would have
+%    helped.
 
 \subsection{Team Composition and Workload Distribution}
 
-In a group of two where both members had mostly the same knowledge and expertise, workload was distributed based on member preference and the nature of each task, which made documentation responsibilities formally split where one member handled the sprint documentation while the other handled meeting documentation while development tasks were shared. In practice however, more demanding tasks were rotated between members to maintain motivation. This type of informal balancing worked well for a group of 2 but would not scale to a larger team, where responsibilities would be split more evenly with explicit role definitions. 
+In a group of two where both members had mostly the same knowledge and expertise, workload was distributed based on member preference and the nature of each task, which made documentation responsibilities formally split where one member handled the sprint documentation while the other handled meeting documentation while development tasks were shared. In practice however, more demanding tasks were rotated between members to maintain motivation. This type of informal balancing worked well for a group of 2 but would not scale to a larger team, where responsibilities would be split more evenly with explicit role definitions.
+% SUGGESTION (reflect on the 3->2 team change — high value for criterion 5; write in your own words):
+% the project started with three members and continued with two after one dropped out. Reflect on the
+% impact: reduced capacity raised the per-member workload and led to a deliberate scope reduction toward
+% the most useful prototype features (data visualization) and away from report generation and hexagonal
+% binning; the two-person daily stand-ups and shared responsibilities became more important for keeping
+% momentum. Tie this to the scope decisions made with the customer (see Scope Management below).
 
 \subsection{Communication and Meeting Structure}
 
-Slack provided an efficient channel for direct communication with the customer, enabling rapid resolution of short technical questions. The customer's domain expertise allowed complex questions to be resolved within short discussions rather than through a long discussion. While communication with the supervisor was handled primarily through email, with in person consultations used for urgent issues, because most work was conducted on campus.
+Slack provided an efficient channel for direct communication with the customer, enabling rapid resolution of short technical questions.
+% SUGGESTION (add the customer's quantified observation as evidence — your wording): the product owner's
+% written feedback records 250+ Slack messages exchanged by 11 May, and notes that the group took the
+% initiative to arrange progress meetings to show development. Citing this customer-sourced detail backs
+% up the "communication was effective" claim with a concrete number instead of an assertion. The customer's domain expertise allowed complex questions to be resolved within short discussions rather than through a long discussion. While communication with the supervisor was handled primarily through email, with in person consultations used for urgent issues, because most work was conducted on campus.
 
 For meetings, biweekly meetings were held with both the supervisor and the customer at Kystverket. Before these meetings, discussions were held to discuss which questions should be asked. However, most of these discussions happened through a small meeting before the actual meeting or through daily stand-ups within the group.
 
@@ -139,6 +163,11 @@ For version control, Git was utilized because it allows code to be reverted easi
 
 \subsection{Scope Management}
 
+% SUGGESTION (link scope reduction to the team change — write in your own words): note that the move
+% from three to two members directly drove the scope reduction. In agreement with the customer, the team
+% prioritized the data-visualization features that gave the most prototype value and dropped report
+% generation and hexagonal binning. Framing the cut features as a deliberate, capacity-based decision
+% (made with the customer) reads as sound engineering judgement rather than a shortfall.
 Scope management was handled reactively through customer meetings rather than through a formal change process, which had both benefits and drawbacks. The weekly sprint cycle allowed scope changes to be incorporated quickly, which was valuable given the short development period and limited team capacity. This approach kept development aligned with the customer's interests and prevented time from being spent on challenging features that were not needed. However, the absence of a formal scope freeze meant that new requests led to planned features being cut to accommodate them. The reactive approach worked well within the constrained timeline, although a longer project would have permitted more features to be properly developed and polished. For a project of similar length, a formal scope freeze date would improve predictability. Weighted prioritization could also help larger teams manage competing requests, but the small team size and direct communication with the customer made this less necessary in this project.
 
 % Should be in technical solution and discussion of that since 

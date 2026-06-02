@@ -1,6 +1,6 @@
 % Used AI to help me decide on the flow of the theory chapter.
 % This chapter gives the scientific background that justifies the design of the
-% AIS‑anomaly visualisation prototype.  The layout follows a “lab‑process”
+% AIS‑anomaly visualization prototype.  The layout follows a “lab‑process”
 % pattern: domain → digital‑twin → visual‑analysis concepts → web‑mapping stack
 % → rendering → software‑engineering foundations → agile development.
 
@@ -44,7 +44,7 @@ Anomalies refer to detected irregularities from \acrshort{ais} messages. Anomalo
 
 Signal strength measures the received power of an electric signal over distance, measured in decibels. Weak signal strength leads to loss of data and clarity, with strong signals mitigating these factors. Signals travel through the air and other materials, distance affects the strength of the received signal, with long distances requiring more time to reach its recipient \parencite{tarmac_signal_strength}. For \acrshort{ais}, signal strength can be used to observe errors in anomaly messages. \acrshort{ais} messages should in theory transmit their message to the nearest base station or satellite. By reading the signal strength of a message, it can be flagged as inconsistent with the expected value, indicating an error or anomaly in the data.
 %=====================================================================
-% 2.3  Human‑Centric Data Visualisation
+% 2.3  Human‑Centric Data Visualization
 %=====================================================================
 \section{Data Visualization}
 \label{sec:data_visualizatoin}
@@ -52,13 +52,13 @@ Signal strength measures the received power of an electric signal over distance,
 \parencite{what_is_data_visualization}.
 
 
-\section{Human-Centric Data Visualisation}
+\section{Human-Centric Data Visualization}
 \label{sec:human_centric_data_visualization}
 % source: https://ieeexplore.ieee.org/document/5599750
-\noindent Human visual perception excels at spotting patterns and extracting meaningful information. However, there are limits on the amount of information humans can parse. Therefore, visualisation techniques focus on presenting data in a way that better fits humans pattern recognition. This is accomplished in various ways, one of which being reducing visual clutter through removing or aggregating data. 
+\noindent Human visual perception excels at spotting patterns and extracting meaningful information. However, there are limits on the amount of information humans can parse. Therefore, visualization techniques focus on presenting data in a way that better fits humans pattern recognition. This is accomplished in various ways, one of which being reducing visual clutter through removing or aggregating data. 
 \parencite{human_data_visualization}
 
-\subsection{Heat-Map Visualisation}
+\subsection{Heat-Map Visualization}
 \label{sec:heatmap}
 
 
@@ -144,7 +144,7 @@ A REST API (Representational State Transfer Application Programming Interface) i
 \label{sec:hardware_acceleration}
 
 
-Hardware acceleration is a method of increasing performance in tasks predominantly handled by the \acrfull{cpu}. As defined by \textcite{sciencedirect_hardware_acceleration}, this is achieved by offloading highly parallelizable computing tasks from the general-purpose \acrshort{cpu} to other hardware in the computer such as the \acrfull{gpu}. Because the \acrshort{gpu} has significantly more parallel processing, this frees up the \acrshort{cpu} to perform other tasks, while providing a massive performance increase on heavy visual rendering tasks that use hardware acceleration \parencite{hardware_acceleration_wonderfulpcb}.
+Hardware acceleration is a method of increasing performance in tasks predominantly handled by the \acrfull{cpu}. As defined by \textcite{sciencedirect_hardware_acceleration}, this is achieved by offloading highly parallelizable computing tasks from the general-purpose \acrshort{cpu} to other hardware in the computer such as the \acrfull{gpu}. Because the \acrshort{gpu} has significantly more parallel processing, this frees up the \acrshort{cpu} to perform other tasks, while providing a massive performance increase on heavy visual rendering tasks that use hardware acceleration \parencite{sciencedirect_hardware_acceleration}.
 % SUGGESTION — ground this in the upgraded source (ScienceDirect Topics, "Hardware Acceleration"):
 %   READ: https://www.sciencedirect.com/topics/computer-science/hardware-acceleration
 %   (the top "Definition"/overview excerpts; the parts describing offloading from a general-purpose CPU
@@ -173,29 +173,33 @@ Software systems are frequently based on established software engineering princi
 \subsection{Cohesion and Coupling}
 \label{sec:cohesion_coupling_theory}
 
-Coupling and cohesion are foundational structured design principles originally introduced by \textcite{stevens_structured_design_1974}  for creating sustainable and scalable code. Coupling refers to how tightly different parts of a software system depend on each other. If parts of the software have high coupling, it creates a "ripple effect" where it becomes harder to make changes to the project without other parts of the project breaking \parencite{stevens_structured_design_1974}. Cohesion, originally defined as "module strength", describes whether parts of the software are closely related and designed to complete a singular task, rather than being unfocused and serving multiple unrelated purposes \parencite{stevens_structured_design_1974}. The goal for coupling and cohesion is to have high cohesion and low coupling, which in turn leads to better-designed, maintainable software \parencite{geeksforgeeks_cohesion_coupling}.
-% SUGGESTION — ground this in the upgraded PRIMARY source (Stevens, Myers & Constantine, 1974,
-%   "Structured Design", IBM Systems Journal 13(2):115-139):
-%   READ: https://doi.org/10.1147/sj.132.0115  (free reprint often on IEEE Xplore, or search
-%   "Structured Design 1974 Stevens PDF"). Read the "coupling" section and the "module strength"
-%   (= cohesion) section.
-%   DRAFT (rewrite in your words; keep your text above): "Coupling and cohesion are foundational
-%   structured-design principles introduced by Stevens, Myers and Constantine. Coupling is the degree
-%   of interdependence between modules; tightly coupled modules are harder to change in isolation,
-%   since a change in one can force changes in others. Cohesion (originally 'module strength') is how
-%   strongly the elements within one module belong together and serve a single well-defined purpose.
-%   Structured design aims for low coupling and high cohesion, producing software that is easier to
-%   understand, test, modify and extend." Citing the 1974 origin reads far stronger than a blog.
+Coupling and cohesion are foundational principles in structured software design \parencite{openlearn_coupling_cohesion}. Coupling refers to how tightly different parts of a software system depend on each other. If parts of the software have high coupling, it creates a "ripple effect" where it becomes harder to make changes to the project without other parts of the project breaking \parencite{openlearn_coupling_cohesion}. Cohesion describes whether parts of the software are closely related and designed to complete a singular task, rather than being unfocused and serving multiple unrelated purposes \parencite{openlearn_coupling_cohesion}. The goal for coupling and cohesion is to have high cohesion and low coupling, which in turn leads to better-designed, maintainable software \parencite{openlearn_coupling_cohesion}.
+% TODO: rewrite the Cohesion and Coupling subsection in your own words to match the new source below.
+% SOURCE: Open University OpenLearn, "Approaches to Software Development: Coupling and Cohesion"
+% (free, opens in a browser): https://www.open.edu/openlearn/science-maths-technology/approaches-software-development/content-section-1.5.4
+% REWRITE in your own words from that page (low coupling = changes don't propagate; high cohesion =
+% a module does one well-defined task; aim for low coupling + high cohesion). OPTIONAL prestige add:
+% you can also credit the origin -- Stevens, Myers & Constantine, "Structured Design" (IBM Systems
+% Journal, 1974, doi:10.1147/sj.132.0115), reachable for examiners via NTNU's library, if you want it.
 
 \subsection{Separation of Concerns}
 \label{sec:SOC_theory}
 
 Separation of concerns is a software design principle, aimed at separating system functionality into cohesive units that address specific concerns. This leads to independent components of the system with specific responsibilities, resulting in a more modular design \parencite{separation_of_concerns}.
+% SOURCE SWAPPED -> Dijkstra, "On the Role of Scientific Thought" (1982), the essay that originates the
+% term "separation of concerns". REWRITE this sentence so the claim is actually supported by Dijkstra's
+% essay (a high-level argument for separating concerns in reasoning), not the old GeeksforGeeks page.
+% Verify the wording against the source before keeping the citation.
 
 \subsection{Single Responsibility Principle}
 \label{sec:single_responsibility_theory}
 
 The single responsibility principle dictates that a part of software should only have one responsibility, such that code is modular and reusable. As a result of following this principle, code becomes easier to extend and maintain \parencite{single_responsibility}.
+% SOURCE SWAPPED -> Robert C. Martin, "The Single Responsibility Principle" (2014), his own article.
+% READ (free): https://blog.cleancoder.com/uncle-bob/2014/05/08/SingleReponsibilityPrinciple.html
+% Martin's definition: a module should have "one, and only one, reason to change" -> "gather together
+% the things that change for the same reasons; separate those that change for different reasons."
+% REWRITE this sentence to reflect that, rather than the old GeeksforGeeks SOLID page.
 
 \subsection{Documentation}
 \label{sec:documentation_theory}
@@ -211,7 +215,7 @@ Refactoring is an essential part of maintaining and creating high-quality code. 
 \section{Design}
 \label{sec:design_theory}
 
-Design is a central component of software development, defining the appearance and functionality of the final product. In the context of data visualisation, design also affects the insights gained from the visualised data and how effectively an analyst can work with the system \parencite{nngroup_usability,appnovation_data_visualization_principles}.
+Design is a central component of software development, defining the appearance and functionality of the final product. In the context of data visualization, design also affects the insights gained from the visualized data and how effectively an analyst can work with the system \parencite{nngroup_usability,appnovation_data_visualization_principles}.
 
 
 \subsection{Wireframes}
@@ -227,7 +231,12 @@ Testing of software allows developers to locate errors in code and design. It he
 \subsection{Manual Testing}
 \label{sec:manual_testing_theory}
 
-Manual testing is the process wherein the developer tests the software through various methods, including evaluating the end user experience or through direct interaction with the application or software. This allows bugs to be identified and user experience to be tested in a single process. Manual Testing is a flexible approach to where defects outside of automatic test scope can be identified and fixed \parencite{manual_testing_geeksforgeeks}.
+Manual testing is the process wherein the developer tests the software through various methods, including evaluating the end user experience or through direct interaction with the application or software. This allows bugs to be identified and user experience to be tested in a single process. Manual Testing is a flexible approach to where defects outside of automatic test scope can be identified and fixed \parencite{ibm_software_testing}.
+% TODO: rewrite the Manual Testing subsection in your own words to match the new source below.
+% SOURCE: IBM, "What is Software Testing?" (free, opens in a browser):
+% https://www.ibm.com/think/topics/software-testing  -- defines manual testing (testers execute tests
+% by hand / exploratory testing to catch what automation misses). REWRITE this paragraph to match IBM's
+% description. (Swapped from the Myers book, which needed an archive.org borrow to read.)
 
 
 \section{Project Management}
@@ -251,7 +260,12 @@ The work in a Scrum project is represented through Scrum artifacts, divided into
 
 Sprints are executed as time-boxed iterations where the development team works on selected backlog items. A sprint itself is planned beforehand, defining the goals to be achieved. After a sprint is completed, a sprint review and retrospective is held. The review is an informal showcase of the work done, while the retrospective evaluates the sprint itself, reflecting on strengths and weaknesses the sprint had. Sprints are typically conducted in a weekly or biweekly cycle, with frequent feedback from the product owner. 
 
-A system that is utilized by developers is a daily Scrum or as a more general term a daily stand-up. This is a daily meeting where developers discuss current work, and any issues they have encountered. The amount of time spent on a daily stand-up is around 15 minutes. The next day of work is then planned based on the outcome of the stand-up. Daily stand-ups facilitate communication between team members, with different areas of expertise, and allow for flexible changes to project planning \parencite{atlassian_scrum,agile_academy_daily_standup}. The Scrum lifecycle is illustrated in Figure~\ref{fig:scrum_framework}.
+A system that is utilized by developers is a daily Scrum or as a more general term a daily stand-up. This is a daily meeting where developers discuss current work, and any issues they have encountered. The amount of time spent on a daily stand-up is around 15 minutes. The next day of work is then planned based on the outcome of the stand-up. Daily stand-ups facilitate communication between team members, with different areas of expertise, and allow for flexible changes to project planning \parencite{atlassian_scrum,agile_academy_daily_standup}.
+% SOURCE SWAPPED (atlassian_scrum only) -> Schwaber & Sutherland, "The 2020 Scrum Guide". REWRITE the
+% Scrum descriptions in this section (roles, artifacts, sprint/review/retrospective) so they match the
+% official Scrum Guide's definitions rather than the old Atlassian article; the Guide is the canonical
+% source, so check terms like "Developers", "Sprint Goal", and the three artifacts against it.
+% (agile_academy_daily_standup is unchanged.) The Scrum lifecycle is illustrated in Figure~\ref{fig:scrum_framework}.
 
 \begin{figure}[H]
     \centering
@@ -265,12 +279,12 @@ A system that is utilized by developers is a daily Scrum or as a more general te
 \section{System Architecture}
 
 
-System architecture describes the structure and behaviour of a system. 
+System architecture describes the structure and behavior of a system. 
 
 \subsection{React}
 \label{sec:react_theory}
 
-React is a JavaScript library for building user interfaces through a component based architecture \parencite{stevens_structured_design_1974}. Following the official "Thinking in React" methodology, components are reusable pieces of code that receive data through "props" and combine to define the user interface to be rendered \parencite{react_docs}. React's approach provides scalability, modularity and reusability to projects that implement it. React is commonly paired with TypeScript, TypeScript is a strongly typed superset of JavaScript \parencite{typescript_handbook}. TypeScript adds static types to Javascript, enabling strongly typed React applications, catching errors at compile time, and improving overall type safety \parencite{typescript_handbook}.
+React is a JavaScript library for building user interfaces through a component based architecture \parencite{react_docs}. Following the official "Thinking in React" methodology, components are reusable pieces of code that receive data through "props" and combine to define the user interface to be rendered \parencite{react_docs}. React's approach provides scalability, modularity and reusability to projects that implement it. React is commonly paired with TypeScript, TypeScript is a strongly typed superset of JavaScript \parencite{typescript_handbook}. TypeScript adds static types to Javascript, enabling strongly typed React applications, catching errors at compile time, and improving overall type safety \parencite{typescript_handbook}.
 % SUGGESTION — ground this in the upgraded official sources:
 %   REACT — READ: https://react.dev/learn  ("Describing the UI" -> "Your First Component" for
 %     components; "Passing Props to a Component" for props; "Thinking in React" for composition).
@@ -324,14 +338,14 @@ Docker is a platform designed to separate the infrastructure used to build softw
 \begin{comment}
 
 \section{Data visualization}
-\noindent Processing massive datasets manually is inefficient, so data-visualisation techniques are required. Data visualization displays raw data in forms that leverage human perception to identify patterns, trends, and outliers. In the project we employ methods such as heatmaps and clusters, which intuitively display density with color gradients and aggregations of points.
+\noindent Processing massive datasets manually is inefficient, so data-visualization techniques are required. Data visualization displays raw data in forms that leverage human perception to identify patterns, trends, and outliers. In the project we employ methods such as heatmaps and clusters, which intuitively display density with color gradients and aggregations of points.
 https://www.ibm.com/think/topics/data-visualization
 https://www.tableau.com/learn/articles/data-visualization
 
 
 \subsection{Clustering}
 \label{sec:clustering}
-Clustering pertains to a method of aggregating data points into groups or clusters. While clustering can be done based on specific parameters(like media genres or user details), in a geographic context, algorithms typically group objects based on density and proximity. Visualising large geographic datasets can easily cause visual clutter if thousands of individual data points are rendered in close proximity. Clustering can mitigate this by aggregating nearby data points into a single point/group based on the current zoom level of the map. As the user zooms in, the clusters will dynamically break apart into smaller groups or individual points. 
+Clustering pertains to a method of aggregating data points into groups or clusters. While clustering can be done based on specific parameters(like media genres or user details), in a geographic context, algorithms typically group objects based on density and proximity. Visualizing large geographic datasets can easily cause visual clutter if thousands of individual data points are rendered in close proximity. Clustering can mitigate this by aggregating nearby data points into a single point/group based on the current zoom level of the map. As the user zooms in, the clusters will dynamically break apart into smaller groups or individual points. 
 https://www.ibm.com/think/topics/clustering
 https://developers.google.com/machine-learning/clustering/overview
 

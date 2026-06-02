@@ -25,7 +25,9 @@ This chapter presents the resulting application, a locally hosted visualization 
 \section{Project Management}
 \label{sec:results_project_management}
 
-The project followed the Scrum-based process described in Section~\ref{sec:dev_methodology}, divided into approximately 16 weekly sprints, with occasional two-week exceptions over the project period. Each sprint included a sprint planning session, daily synchronization meetings, and a retrospective. Bi-weekly meetings were held with both the supervisor and the customer at Kystverket, though scheduling occasionally extended the interval to three weeks. At the end of the project, the GitHub Projects contained 106 completed issues split across the three repositories: 67 on the administrative and thesis repository, 36 on the frontend, and 4 on the backend. The administrative repository in particular contained many smaller documentation and process tasks tracked as individual issues.
+The project followed the Scrum-based process described in Section~\ref{sec:dev_methodology}. 
+%The project began with three members and continued with two after one member left early in the project. The first weeks were spent on customer meetings to establish the project's requirements and scope. The team then ran weekly sprints from week 4 to week 18, with the final two sprints each spanning two weeks (weeks 15--16 and 17--18), for a total of 13 sprints. The first two sprints were documented informally before the provided sprint templates were adopted, after which planning, review, and retrospective documents were maintained for each sprint. Sprints were concluded after week 18 so that the team could focus fully on writing the report. 
+Each sprint included a sprint planning session, daily synchronization meetings, and a retrospective. Bi-weekly meetings were held with both the supervisor and the customer at Kystverket, though scheduling occasionally extended the interval to three weeks. At the end of the project, the GitHub Projects contained 106 completed issues split across the three repositories: 67 on the administrative and thesis repository, 36 on the frontend, and 4 on the backend. The administrative repository in particular contained many smaller documentation and process tasks tracked as individual issues.
 
 Team roles were maintained throughout the project. Beyond the Scrum Master and meeting-notes responsibilities, the remaining work was divided according to each member's preference and the tedium of the task, ensuring that both members always had work to focus on and that the workload was evenly distributed. Exceptions were made in cases of illness, where role-specific work was usually delayed until the responsible member was able to handle it.
 
@@ -77,7 +79,7 @@ The package diagram in Figure~\ref{fig:Package_Diagram_image} outlines the modul
 The sequence diagram in Figure~\ref{fig:Sequence_Diagram_image} maps the data flow from user interaction to visual state change. As illustrated in the image, if a user requests to apply a filter, an \acrshort{http} GET request is sent to an endpoint, which then queries the database. This then returns a \acrshort{geojson} FeatureCollection as a promise, and is then asynchronously accessed through React. This then creates the Deck.gl layer requested, and overlays it on the map, leading to an updated visualization for the end user.
 
 \subsection{MapLibre}
-% MOVED here from Visualization Results (4.6): MapLibre is architecture/runtime behaviour, mirroring
+% MOVED here from Visualization Results (4.6): MapLibre is architecture/runtime behavior, mirroring
 % its place under System Architecture in Method 3.2, not a visualization result.
 MapLibre initializes itself upon application boot, in a bright style used for readability for users. After its initialization, it is responsible for interaction, in dragging and zooming the map. Interaction leads to states being updated that other parts of the program can use, such as clusters being updated through zooming, and map location. Visualization functionality is something MapLibre has, being able to natively visualize scatterplots and other layers. 
 % SUGGESTION (tool rationale belongs in Method 3.2, not Results — drafted from your answer):
@@ -141,7 +143,7 @@ Each Feature carries the properties defined in the Terms list and are \acrshort{
 % TODO (optional, quick): add one example record (a single Feature with real values) beside the figure
 % to make the structure concrete. Definitions live in Terms, so only the example values are needed.
 
-\subsection{Backend Query and Response Behaviour}
+\subsection{Backend Query and Response Behavior}
 Figure~\ref{fig:swagger-result_image} showcases an \acrshort{api} endpoint, created as a master query allowing for filtered requests on all relevant variables.
 The master query accepts four filter parameters: anomaly type, \acrshort{mmsi}, and a start and end date. It returns the matching anomaly groups, where each group contains its individual anomalies, and each anomaly in turn includes its base-station links and signal strength values. This endpoint was the group's main contribution to the backend infrastructure provided by the customer, replacing frontend-side filtering of the full dataset with a single backend query (Section~\ref{sec:backend_and_data_flow_method}).
 
@@ -233,7 +235,10 @@ A date-time range selector allows the visualization to be restricted to a chosen
 % TODO (you): add a screenshot of the date picker (Figure ref) and describe what the user sees when a range is applied.
 
 \subsection{Satellite Visualization}
-Satellite connections are displayed as a layer that appears only when a data point is clicked. Because full access to an external \acrshort{api} for computing a satellite's precise daily position was not available, each satellite point is approximated by finding the closest position in time within a 24-hour window of the anomaly.
+Satellite connections are displayed as a layer that appears only when a data point is clicked. The satellite-orbit \acrshort{api} is access-restricted and requires credentials, so relying on it would prevent others from testing this public prototype. Each satellite point is therefore approximated by finding the closest position in time within a 24-hour window of the anomaly.
+% SUGGESTION (verify/rephrase in your own words): this now states the real reason (access-restricted API
+% for a public prototype) instead of "API not available", which contradicted the project brief
+% ("API ... er klart"). Confirm the wording matches what actually happened.
 % TODO (you): add a screenshot of the satellite layer appearing on click (Figure ref).
 
 \subsection{Interactive Components}
@@ -276,7 +281,7 @@ Clustering had a profound effect on the speed of the application, where renderin
 
 Responsiveness of the system is observed to be at a satisfactory level, although some operations cost more than others, such as going from a clustered view to an anomaly group view, with signal strength lines being computed, causes some slowdown, but remains responsive after the layer is changed. Other parts of the system like filtering and changing of layers are responsive, and change as soon as input is submitted. The slowest layer is heat maps, as changing zoom or moving around the map, causes it to recalculate the weight of each area. The heat map itself is as responsive as Deck.gl implemented it, leading to no considerable performance gains to be doable, outside of trying to implement a clustered heat map in some way.
 % SUGGESTION (relocate evaluation + quantify — your call): "satisfactory level" and "no considerable
-% performance gains to be doable" are judgments → move to Discussion. Here, state observed behaviour
+% performance gains to be doable" are judgments → move to Discussion. Here, state observed behavior
 % only, and add approximate wait times for the slower operations (e.g. the clustered to anomaly-group
 % switch) if you have them.
 % TODO (you): note a rough wait time for the slower switch (clustered view -> anomaly-group view):
@@ -297,7 +302,7 @@ The clustering visualization was assessed positively because it helped provide a
 
 \subsubsection{Signal Strength}
 
-The signal strength visualization was described as a concept they were very interested in. The product owner noted that low signal strength between a vessel and a base station is an error in \acrshort{ais} messages that causes the creation of anomaly messages. Other systems they utilise for signal strength take longer to find the data and do not visualise it properly, increasing the time to analyse anomaly groups and the time complexity for the operator. The delivered solution was assessed as effective both at the macro level, where lines from anomaly groups to base stations are visible while zoomed out, and at the micro level, where individual signal strength values are visible when zoomed in. A suggestion was given to extend the visualization to include additional data like signal strength before and after an anomaly occurs, however this would require additional data from Kystverket.
+The signal strength visualization was described as a concept they were very interested in. The product owner noted that low signal strength between a vessel and a base station is an error in \acrshort{ais} messages that causes the creation of anomaly messages. Other systems they utilize for signal strength take longer to find the data and do not visualize it properly, increasing the time to analyze anomaly groups and the time complexity for the operator. The delivered solution was assessed as effective both at the macro level, where lines from anomaly groups to base stations are visible while zoomed out, and at the micro level, where individual signal strength values are visible when zoomed in. A suggestion was given to extend the visualization to include additional data like signal strength before and after an anomaly occurs, however this would require additional data from Kystverket.
 
 \subsubsection{Heat Map}
 
