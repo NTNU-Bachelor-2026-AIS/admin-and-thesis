@@ -260,7 +260,7 @@ GeoJSON serves as the container for all geographic data for anomalies in the pro
 The frontend retrieves and interprets FeatureCollection data sent from the backend, for rendering purposes. Each Feature represents an anomaly group or anomaly, with metadata containing information about type and geographic location. 
 
 %Split into shorten sentences.
-The design of the application processes the anomaly groups themselves, while allowing for individual anomalies from a group to be rendered in its own layer. This is done through first retrieving an individual anomaly group through an \acrshort{api} request. The returned group provides access to its ID, which identifies the associated anomalies. An \acrshort{api} request is sent related to these anomalies, wherein a new layer is created visualizing them \parencite{medium_feature_featurecollection}.
+The design of the application processes the anomaly groups themselves, while allowing for individual anomalies from a group to be rendered in its own layer. This is done through first retrieving an individual anomaly group through an \acrshort{api} request. The returned group provides access to its \acrshort{id}, which identifies the associated anomalies. An \acrshort{api} request is sent related to these anomalies, wherein a new layer is created visualizing them \parencite{geojson_datatracker}.
 
 
 \subsection{Design Process}
