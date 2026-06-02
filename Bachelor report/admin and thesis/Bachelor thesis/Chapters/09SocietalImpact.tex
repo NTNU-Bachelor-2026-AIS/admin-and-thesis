@@ -45,9 +45,7 @@ The prototype the group created indicates that feature testing can be used to ev
 
 \section{Sustainability}
 
-The sustainability impact of a software development project is generally lower than other fields. This is because of software not requiring the same amount of physical components. However, there are core sustainability factors such as maintainable code and choice of technology.\footnote{\url{https://beetroot.co/greentech/best-practices-of-sustainable-software-development/}}
-% SUGGESTION (source quality, criterion 3): replace this bare-URL footnote with a proper \parencite to
-% a more academic/primary source on sustainable software; tertiary/blog sources cap the theory score.
+The sustainability impact of a software development project is generally lower than other fields. This is because of software not requiring the same amount of physical components. However, sustainability is increasingly treated as a property of software quality, where factors such as maintainability and the choice of technology influence a system's longevity, energy use and resource efficiency \parencite{lago_sustainability_software_quality, calero_green_software}.
 
 The group's project is a locally hosted, prototype. This suggests a relatively low environmental impact, as there is no material cost outside of personal computers. The prototype itself being used for evaluating the value of concepts, helps to make an informed decisions whether to implement said concepts in the customers current solution. This may contribute to a positive sustainability impact due to mitigating resource use on wasted features. The system itself is maintainable, while being able to be extended on functionality.
 % SUGGESTION — UN SDG paragraph (draft to rewrite in your own words; cite \parencite{un_sdg}, now in
@@ -59,6 +57,44 @@ The group's project is a locally hosted, prototype. This suggests a relatively l
 % anomalies are surfaced and analyzed, it can support more reliable detection of faulty or suspicious
 % vessel behavior, contributing to maritime safety and protection of the marine environment (Goal 14)."
 
+% =====================================================================================
+% SUGGESTIONS FOR EXPANDING SUSTAINABILITY (rewrite in your own words before using).
+% Rationale: criterion 2 "Ingeniørfaglig innsikt" (~25% of grade) rewards a systems /
+% life-cycle / environmental perspective. The points below add that depth and pull the
+% old "Environment" section into here. Every claim maps to a source already in the .bib:
+% lago_sustainability_software_quality, calero_green_software, belkhir_ict_emissions, un_sdg.
+%
+% --- Suggestion 1: distinguish direct vs. indirect footprint ---
+% The direct environmental footprint is small (no raw materials beyond the computers used).
+% Sustainability is therefore better seen as a property of software quality than of material
+% use: maintainability, modularity and choice of technology decide how long a system stays
+% useful and how efficiently it runs \parencite{lago_sustainability_software_quality,
+% calero_green_software}. But the indirect footprint should not be dismissed: ICT is a growing
+% contributor to global energy use and emissions \parencite{belkhir_ict_emissions}, and
+% hardware-accelerated rendering of large datasets is computationally intensive
+% (Section~\ref{sec:hardware_acceleration}). For a locally hosted prototype on existing laptops
+% this is small, but it would grow if deployed at scale.
+%
+% --- Suggestion 2: tie technical sustainability to the prototype ---
+% Built on open-source, widely supported tools and following established software-engineering
+% principles (Section~\ref{sec:software_principles_theory}), the prototype is maintainable and
+% extensible, supporting its technical sustainability.
+%
+% --- Suggestion 3: fold in the old "Environment" content ---
+% Electricity is the only direct input to run the system, so operational impact is modest.
+% More importantly, clearer visualization of \acrshort{ais} anomalies could help operators act
+% sooner on faulty or non-compliant vessels, reducing the environmental consequences of
+% incidents at sea.
+%
+% --- Suggestion 4: UN Sustainable Development Goals mapping (cite un_sdg) ---
+% Relate the project to UN SDG 9 (Industry, Innovation and Infrastructure) and SDG 14 (Life
+% Below Water) \parencite{un_sdg}: a standard web stack + open-source tools prototype new ways
+% to analyse \acrshort{ais} anomalies, supporting maritime-monitoring innovation without
+% specialised hardware (Goal 9); improving how vessel-behaviour anomalies are surfaced supports
+% detection of faulty/suspicious activity at sea, aiding maritime safety and marine-environment
+% protection (Goal 14).
+% =====================================================================================
+
 \section{Environment}
 
-The software not requiring physical components aside from computers, has a relatively low direct environmental footprint. Electricity being the only requirement to run the software, is the main environmental factor. Improved \acrshort{ais} detection could lead to action being taken sooner on faulty boats, leading to reduced environmental impact. The software itself is then unlikely to have a large environmental impact. 
+The software not requiring physical components aside from computers, has a relatively low direct environmental footprint. Electricity being the only requirement to run the software, is the main environmental factor. Improved \acrshort{ais} detection could lead to action being taken sooner on faulty boats, leading to reduced environmental impact. The software itself is then unlikely to have a large environmental impact.
