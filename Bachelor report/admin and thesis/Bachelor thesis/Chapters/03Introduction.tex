@@ -23,12 +23,12 @@
 %TODO Maybe add hexonagal binning since its mentioned later and was talked about early in scope.
 \section{Background}
 Norway manages one of the world's most extensive coastlines, and the \gls{nca} is the national agency responsible for coastal management, maritime safety, and emergency preparedness \parencite{kystverket_nca_role}.
-A central part of this is monitoring of sea-faring vessels. This is done through the use of AIS (Automatic Identification System), a messaging system that transmits information about a vessel, including its heading and location. 
+A central part of this is monitoring of sea-faring vessels. This is done through the use of \acrfull{ais}, a messaging system that transmits information about a vessel, including its heading and location.
 These messages are handled by "\acrshort{ais} Norway" which is a national tracking network operated by the \acrshort{nca} that combines around 90 shore base stations and a few \acrshort{ais} satellites \parencite{kystverket_ais_norge}.
-Even though it was originally developed as a anti-collision tool, the \acrfull{ais} is now a critical part of the infrastructure for vessel traffic services, search and rescue operations, and environmental protection \parencite{barentswatch_ais_status_report}.
+Even though it was originally developed as a anti-collision tool, the \acrshort{ais} is now a critical part of the infrastructure for \acrfull{vts}, search and rescue operations, and environmental protection \parencite{barentswatch_ais_status_report}.
 
 
-While the NCA currently utilizes analytical tools to identify deviations in AIS data, the existing solutions lack advanced visualization capabilities such as heat maps, clustering and temporal analysis. These features are essential for operators to gain proper insight into the anomalies, because of the massive scale of data. Every day millions of AIS messages are flagged as anomalies, which makes it hard for operators to differentiate between anomalies that are technical issues and potential security threats. To solve this issue, the \acrshort{nca} hopes for a more intuitive, web-based prototype with new visualization methods \parencite{kystverket_ais_norge}.
+While the \acrshort{nca} currently utilizes analytical tools to identify deviations in \acrshort{ais} data, the existing solutions lack advanced visualization capabilities such as heat maps, clustering and temporal analysis. These features are essential for operators to gain proper insight into the anomalies, because of the massive scale of data. Every day millions of \acrshort{ais} messages are flagged as anomalies, which makes it hard for operators to differentiate between anomalies that are technical issues and potential security threats. To solve this issue, the \acrshort{nca} hopes for a more intuitive, web-based prototype with new visualization methods \parencite{kystverket_ais_norge}.
 
 
 
@@ -93,7 +93,7 @@ The following technologies were used throughout the development of the project:
 \item \textbf{MapLibre GL JS:} Mapping engine for high-performance maps.
 \item \textbf{Customer provided backend} A Docker container-based backend system built in Go, used for data storage and querying.
 %\item \textbf{Azure:} Deployment and cloud environment. % Depends on if it counts as being used right now
-\item \textbf{NCA Test Datasets:} Simulated \acrshort{ais} anomaly data.
+\item \textbf{\acrshort{nca} Test Datasets:} Simulated \acrshort{ais} anomaly data.
 \end{itemize}
 
 % Not sure if we even need this?

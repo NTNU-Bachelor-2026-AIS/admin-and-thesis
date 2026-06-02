@@ -12,7 +12,7 @@ This chapter gives the theoretical background for the bachelor project, explaini
 \section{Automatic Identification System (AIS)}
 \label{sec:AIS}
 % source: Kystverket AIS‑Norway description (project brief)
-The Automatic Identification System (AIS) is a system used to transfer information about a ship, including its location and heading, to base stations, satellites and other ships, on coasts around the world. The system is prone to errors due to incorrect configurations, area jamming, or message spoofing. The NCA processes this data to detect errors in AIS messages. In practice, this pipeline identifies millions of anomalous messages per day, as illustrated in Figure~\ref{fig:ais_image}.
+The Automatic Identification System (AIS) is a system used to transfer information about a ship, including its location and heading, to base stations, satellites and other ships, on coasts around the world. The system is prone to errors due to incorrect configurations, area jamming, or message spoofing. The \acrshort{nca} processes this data to detect errors in \acrshort{ais} messages. In practice, this pipeline identifies millions of anomalous messages per day, as illustrated in Figure~\ref{fig:ais_image}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.85\textwidth,height=0.70\textheight,keepaspectratio]{Figures/ais-message-example.jpg}
@@ -27,7 +27,7 @@ The Automatic Identification System (AIS) is a system used to transfer informati
 \label{sec:digital_twin}
 % source: IBM “What is a digital twin?” https://www.ibm.com/think/topics/digital-twin
 
-A digital twin is a digital representation of a physical object or system. An AIS digital twin primarily represents a ship's location and speed, but may also include additional information such as the vessel type and heading. The main purpose of a digital twin is to enable real-time tracking and to provide historical data for further analysis \parencite{ibm_digital_twin}.
+A digital twin is a digital representation of a physical object or system. An \acrshort{ais} digital twin primarily represents a ship's location and speed, but may also include additional information such as the vessel type and heading. The main purpose of a digital twin is to enable real-time tracking and to provide historical data for further analysis \parencite{ibm_digital_twin}.
 %   – economic and safety benefits are described in the Capgemini report .
 
 
@@ -36,13 +36,16 @@ A digital twin is a digital representation of a physical object or system. An AI
 \label{sec:anomalies and anomaly groups}
 
 
-Anomalies refer to detected irregularities from AIS messages. Anomalous messages are of differing types, including speed, unexpected maneuver, and jumping anomalies, where these pertain to if a ship's message shows impossible speed or distance covered. Anomalies also contain an MMSI, being a ship's unique identification number. Anomaly groups are collections of anomalies of similar type. These groupings are created through proximity between anomalies. Anomaly groups themselves are in the GeoJSON data format as Features within a FeatureCollection. See Section~\ref{sec:geoJSON}.
+Anomalies refer to detected irregularities from \acrshort{ais} messages. Anomalous messages are of differing types, including speed, unexpected maneuver, and jumping anomalies, where these pertain to if a ship's message shows impossible speed or distance covered. Anomalies also contain a \acrfull{mmsi}, being a ship's unique identification number. Anomaly groups are collections of anomalies of similar type. These groupings are created through proximity between anomalies. Anomaly groups themselves are in the \acrshort{geojson} data format as Features within a FeatureCollection. See Section~\ref{sec:geoJSON}.
  
  
 \section{Signal Strength}
 \label{sec:signal_strength}
 
-Signal strength measures the received power of an electric signal over distance, measured in decibels. Weak signal strength leads to loss of data and clarity, with strong signals mitigating these factors. Signals travel through the air and other materials, distance affects the strength of the received signal, with long distances requiring more time to reach its recipient \parencite{tarmac_signal_strength}. For AIS, signal strength can be used to observe errors in anomaly messages. AIS messages should in theory transmit their message to the nearest basestation or satellite. If a message is received with a signal strength that is inconsistent with the expected reception distance traveled. 
+Signal strength measures the received power of an electric signal over distance, measured in decibels. Weak signal strength leads to loss of data and clarity, with strong signals mitigating these factors. Signals travel through the air and other materials, distance affects the strength of the received signal, with long distances requiring more time to reach its recipient \parencite{tarmac_signal_strength}. For \acrshort{ais}, signal strength can be used to observe errors in anomaly messages. \acrshort{ais} messages should in theory transmit their message to the nearest base station or satellite. So by reading the signal strength of a message it can be flagged for being inconsistent based on the expected value which indicated the data as error or anomaly in the data.
+% SUGGESTION (complete this sentence — it currently has no main clause): e.g. "If a message is received
+% with a signal strength inconsistent with the expected reception distance, this discrepancy can
+% indicate an error or anomaly in the message."
 %=====================================================================
 % 2.3  Human‑Centric Data Visualisation
 %=====================================================================
@@ -55,7 +58,7 @@ Signal strength measures the received power of an electric signal over distance,
 \section{Human-Centric Data Visualisation}
 \label{sec:human_centric_data_visualization}
 % source: https://ieeexplore.ieee.org/document/5599750
-\noindent Human visual perception excels at spotting patterns and extracting meaningful information. However, there are limits on the amount of information humans can parse. Therefore, visualisation techniques focus on presenting data in a way that better fits humans' pattern recognition. This is accomplished in various ways, one of which being reducing visual clutter through removing or aggregating data. 
+\noindent Human visual perception excels at spotting patterns and extracting meaningful information. However, there are limits on the amount of information humans can parse. Therefore, visualisation techniques focus on presenting data in a way that better fits humans pattern recognition. This is accomplished in various ways, one of which being reducing visual clutter through removing or aggregating data. 
 \parencite{human_data_visualization}
 
 \subsection{Heat-Map Visualisation}
@@ -112,30 +115,30 @@ Vector tiles are what is currently used by most web map providers. Vector tiles 
 \subsection{MapLibre}
 \label{sec:maplibre}
 
-MapLibre is an open source web mapping library, built around vector tile rendering. It started as a fork of mapbox-gl-js. It utilizes vector tile rendering with WebGL for efficient map rendering and interaction. MapLibre is used for rendering geospatial data into human-readable visualizations \parencite{maplibre_about,maplibre_github}.
+MapLibre is an open source web mapping library, built around vector tile rendering. It started as a fork of mapbox-gl-js. It utilizes vector tile rendering with \acrfull{webgl} for efficient map rendering and interaction. MapLibre is used for rendering geospatial data into human-readable visualizations \parencite{maplibre_about,maplibre_github}.
 
 \section{API}
 \label{sec:api_theory}
 \noindent
-An API (Application Programming Interface) is a method that allows different software to communicate with each other, most commonly through the client-server architecture. APIs define the protocols and rules for how software communicates, what format data is sent in and what data is exchanged \parencite{api_amazon,api_ibm}.
+An \acrfull{api} is a method that allows different software to communicate with each other, most commonly through the client-server architecture. \acrshortpl{api} define the protocols and rules for how software communicates, what format data is sent in and what data is exchanged \parencite{api_amazon,api_ibm}.
 
 \subsection{Client-Server Architecture}
 \label{sec:client_server_theory}
 \noindent
-The client-server architecture is structured around server computers, processing requests from clients over a network. This communication is done through protocols like HTTP, allowing the server to respond appropriately to client requests \parencite{client_server_review}.
+The client-server architecture is structured around server computers, processing requests from clients over a network. This communication is done through protocols like \acrfull{http}, allowing the server to respond appropriately to client requests \parencite{client_server_review}.
 
 
 \subsection{REST Architecture}
 \label{sec:rest_theory}
 \noindent 
-Representational State Transfer (REST) is a software architecture designed around constraints concerning the client-server model. REST is stateless, meaning the entire context of the communication is stored on the client, and the client sends the entire information related to the request to the server. This means that the server does not maintain state, while additionally REST is designed around a uniform interface, denoting that data transfer is optimized for the standard web communication, rather than to individual applications \parencite{Fielding_REST}.
+Representational State Transfer (REST) is a software architecture designed around constraints concerning the client-server model. \acrshort{rest} is stateless, meaning the entire context of the communication is stored on the client, and the client sends the entire information related to the request to the server. This means that the server does not maintain state, while additionally \acrshort{rest} is designed around a uniform interface, denoting that data transfer is optimized for the standard web communication, rather than to individual applications \parencite{Fielding_REST}.
 
 
 
 \subsection{REST API}
 \label{sec: rest api}
 % source: https://www.redhat.com/en/topics/api/what-is-a-rest-api
-A REST API (Representational State Transfer Application Programming Interface) is an API designed around the constraints of the REST Architecture. REST APIs are designed around creating, reading, updating, and deleting data (\acrshort{crud}). These operations are done through HTTP request, with an example being GET used as a request to access data on a server. REST APIs are commonly used for web APIs, chosen for their scalability and handling of different data formats \parencite{ibm_rest_api}.
+A REST API (Representational State Transfer Application Programming Interface) is an \acrshort{api} designed around the constraints of the \acrshort{rest} architecture. \acrshort{rest} \acrshortpl{api} are designed around creating, reading, updating, and deleting data (\acrshort{crud}). These operations are done through an \acrshort{http} request, with an example being GET used as a request to access data on a server. \acrshort{rest} \acrshortpl{api} are commonly used for web \acrshortpl{api}, chosen for their scalability and handling of different data formats \parencite{ibm_rest_api}.
 
 %=====================================================================
 % 2.5  Rendering Acceleration
@@ -144,14 +147,24 @@ A REST API (Representational State Transfer Application Programming Interface) i
 \label{sec:hardware_acceleration}
 
 
-Hardware acceleration is a method of increasing performance in tasks predominantly handled by the CPU (central processing unit). This is done by offloading work done by the CPU to other hardware in the computer such as the GPU (Graphics processing unit), which has significantly more parallel processing capability than the CPU. This frees up the CPU to perform other tasks, while providing a general performance increase on tasks that use hardware acceleration \parencite{hardware_acceleration_wonderfulpcb}.
+Hardware acceleration is a method of increasing performance in tasks predominantly handled by the \acrfull{cpu}. As defined by \textcite{sciencedirect_hardware_acceleration}, this is achieved by offloading highly parallelizable computing tasks from the general-purpose \acrshort{cpu} to other hardware in the computer such as the \acrfull{gpu}. Because the \acrshort{gpu} has significantly more parallel processing, this frees up the \acrshort{cpu} to perform other tasks, while providing a massive performance increase on heavy visual rendering tasks that use hardware acceleration \parencite{hardware_acceleration_wonderfulpcb}.
+% SUGGESTION — ground this in the upgraded source (ScienceDirect Topics, "Hardware Acceleration"):
+%   READ: https://www.sciencedirect.com/topics/computer-science/hardware-acceleration
+%   (the top "Definition"/overview excerpts; the parts describing offloading from a general-purpose CPU
+%   to specialised hardware such as GPUs/FPGAs/ASICs, and GPU parallelism).
+%   DRAFT (rewrite in your words; keep your sentence above): "Hardware acceleration is the use of
+%   specialised hardware to perform certain computations more efficiently than software running on a
+%   general-purpose CPU. Work is offloaded to dedicated units such as the GPU, which offers far greater
+%   parallel-processing capability for suitable workloads such as graphics rendering, freeing the CPU
+%   and yielding a large performance increase for accelerated tasks." Tie-in: your WebGL rendering is
+%   offloaded to the GPU (Section~\ref{sec:webgl_theory}).
  
 
 
 \subsection{WebGL}
 \label{sec:webgl_theory}
 
-WebGL is a graphics API that is used in both 2d and 3d graphics rendering in compatible web browsers. WebGL allows for hardware acceleration, leading to more efficient rendering performance. WebGL is supported by most modern browsers, in addition to not requiring browser plugins, leading to ease of use. WebGL is highly used in fields like data visualization applications and general graphics rendering in the browser \parencite{mozilla_webgl,sitepoint_webgl}.
+WebGL is a graphics \acrshort{api} that is used in both 2d and 3d graphics rendering in compatible web browsers. \acrshort{webgl} allows for hardware acceleration, leading to more efficient rendering performance. \acrshort{webgl} is supported by most modern browsers, in addition to not requiring browser plugins, leading to ease of use. \acrshort{webgl} is highly used in fields like data visualization applications and general graphics rendering in the browser \parencite{mozilla_webgl,sitepoint_webgl}.
 %=====================================================================
 % 2.6  Software‑Engineering Principles Might be in method unsure though.
 %=====================================================================
@@ -163,7 +176,19 @@ Software systems are frequently based on established software engineering princi
 \subsection{Cohesion and Coupling}
 \label{sec:cohesion_coupling_theory}
 
-Coupling and cohesion refer to design principles for creating sustainable and scalable code. Coupling refers to how tightly different parts of a software system depend on each other. If parts of the software have high coupling, then it will be harder to add or change the project without it breaking. Cohesion describes whether parts of the software are designed to complete a singular task, rather than being unfocused and serving multiple unrelated purposes. The goal for coupling and cohesion is to have high cohesion and low coupling, which in turn leads to better-designed software \parencite{geeksforgeeks_cohesion_coupling}.
+Coupling and cohesion are foundational structured design principles originally introduced by \textcite{stevens_structured_design_1974}  for creating sustainable and scalable code. Coupling refers to how tightly different parts of a software system depend on each other. If parts of the software have high coupling, it creates a "ripple effect" where it becomes harder to make changes to the project without other parts of the project breaking \parencite{stevens_structured_design_1974}. Cohesion, originally defined as "module strength", describes whether parts of the software are closely related and designed to complete a singular task, rather than being unfocused and serving multiple unrelated purposes \parencite{stevens_structured_design_1974}. The goal for coupling and cohesion is to have high cohesion and low coupling, which in turn leads to better-designed, maintainable software \parencite{geeksforgeeks_cohesion_coupling}.
+% SUGGESTION — ground this in the upgraded PRIMARY source (Stevens, Myers & Constantine, 1974,
+%   "Structured Design", IBM Systems Journal 13(2):115-139):
+%   READ: https://doi.org/10.1147/sj.132.0115  (free reprint often on IEEE Xplore, or search
+%   "Structured Design 1974 Stevens PDF"). Read the "coupling" section and the "module strength"
+%   (= cohesion) section.
+%   DRAFT (rewrite in your words; keep your text above): "Coupling and cohesion are foundational
+%   structured-design principles introduced by Stevens, Myers and Constantine. Coupling is the degree
+%   of interdependence between modules; tightly coupled modules are harder to change in isolation,
+%   since a change in one can force changes in others. Cohesion (originally 'module strength') is how
+%   strongly the elements within one module belong together and serve a single well-defined purpose.
+%   Structured design aims for low coupling and high cohesion, producing software that is easier to
+%   understand, test, modify and extend." Citing the 1974 origin reads far stronger than a blog.
 
 \subsection{Separation of Concerns}
 \label{sec:SOC_theory}
@@ -248,7 +273,18 @@ System architecture describes the structure and behaviour of a system.
 \subsection{React}
 \label{sec:react_theory}
 
-React is a JavaScript library with a component based architecture. Components are reusable pieces of code that define the user interface to be rendered. React's approach provides scalability, modularity and reusability to projects that implement it. React is commonly paired with TypeScript, TypeScript is an addition to JavaScript, with added types, enabling strongly typed React applications and improving type safety.  \parencite{typescript_w3schools,reactjs_geeksforgeeks}.
+React is a JavaScript library for building user interfaces through a component based architecture \parencite{stevens_structured_design_1974}. Following the official "Thinking in React" methodology, components are reusable pieces of code that receive data through "props" and combine to define the user interface to be rendered \parencite{react_docs}. React's approach provides scalability, modularity and reusability to projects that implement it. React is commonly paired with TypeScript, TypeScript is a strongly typed superset of JavaScript \parencite{typescript_handbook}. TypeScript adds static types to Javascript, enabling strongly typed React applications, catching errors at compile time, and improving overall type safety \parencite{typescript_handbook}.
+% SUGGESTION — ground this in the upgraded official sources:
+%   REACT — READ: https://react.dev/learn  ("Describing the UI" -> "Your First Component" for
+%     components; "Passing Props to a Component" for props; "Thinking in React" for composition).
+%   TYPESCRIPT — READ: https://www.typescriptlang.org/docs/handbook/intro.html  ("The Basics" and
+%     "Everyday Types" for static typing / type safety; the intro defines TS as a typed superset of JS).
+%   DRAFT (rewrite in your words; keep your text above): "React is a JavaScript library for building
+%   user interfaces from reusable, self-contained components. Components receive data through props and
+%   compose into larger interfaces, supporting modularity, reusability and scalability. React is
+%   commonly paired with TypeScript, a strongly typed superset of JavaScript that adds static type
+%   checking; using it with React gives strongly typed components, catching type errors at compile time
+%   and improving reliability and maintainability."
 
 
 \subsection{Deck.gl}
@@ -259,12 +295,12 @@ Deck.gl is an open source, high-performance, WebGL-based visualization framework
 \subsection{JSON (JavaScript Object Notation)}
 \label{sec:JSON_theory}
 
-JavaScript Object Notation is a data structure created for ease of readability for humans, being based on JavaScript. JSON data is architecturally designed around objects with name/value pairs, that can represent data as objects or arrays. The JSON format is widely supported and can be parsed across most programming languages \parencite{json_official_site}.
+\acrfull{json} is a data structure created for ease of readability for humans, being based on JavaScript. \acrshort{json} data is architecturally designed around objects with name/value pairs, that can represent data as objects or arrays. The \acrshort{json} format is widely supported and can be parsed across most programming languages \parencite{json_official_site}.
 
 \subsection{GeoJSON}
 \label{sec:geoJSON}
 
-GeoJSON is a data structure based on JSON, that represents geographic data. GeoJSON encodes the specifics of a geographic feature,which can contain data on specific points, objects or areas. Geographic features are stored as objects called Features in a FeatureCollection \parencite{geojson_datatracker}.
+GeoJSON is a data structure based on \acrshort{json}, that represents geographic data. \acrshort{geojson} encodes the specifics of a geographic feature,which can contain data on specific points, objects or areas. Geographic features are stored as objects called Features in a FeatureCollection \parencite{geojson_datatracker}.
 
 \subsection{Supercluster.js}
 \label{sec:supercluster}

@@ -32,6 +32,14 @@
 \usepackage{parskip}
 \usepackage{fontspec}
 \setmainfont{Verdana}
+\frenchspacing % uniform spacing after sentence-ending periods (removes the wide "double space" look after periods)
+
+% Tighten the vertical spacing around section headings (default book-class gaps look large with parskip).
+% If headings ever look wrong, simply remove this titlesec block.
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{2ex plus 1ex minus .2ex}{1ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{1.5ex plus .5ex minus .2ex}{0.6ex plus .2ex}
+\titlespacing*{\subsubsection}{0pt}{1.2ex plus .5ex minus .2ex}{0.5ex plus .2ex}
 
 
 \usepackage[backend = biber,

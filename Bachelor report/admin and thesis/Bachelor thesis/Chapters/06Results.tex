@@ -19,7 +19,7 @@
 % belongs in Discussion, not here.
 %TODO In relation to tool choice might mention it more in method or result to be clearer over why we chose them.
 
-This chapter presents the resulting application, a locally hosted visualization tool for AIS anomalies and anomaly groups. The system implements clustering, heat map, base station, anomaly group, and individual anomaly visualization layers, supported by a filtering system and interactive features. The technology stack was partly guided by the customer, with React and the map provider specified, while remaining tool choices were made by the group. The following sections describe the delivered system, organized in the same order as the Method chapter: project management, system architecture, frontend, backend and data handling, visualization, filtering and interaction, testing and performance, customer feedback, and project outcome.
+This chapter presents the resulting application, a locally hosted visualization tool for \acrshort{ais} anomalies and anomaly groups. The system implements clustering, heat map, base station, anomaly group, and individual anomaly visualization layers, supported by a filtering system and interactive features. The technology stack was partly guided by the customer, with React and the map provider specified, while remaining tool choices were made by the group. The following sections describe the delivered system, organized in the same order as the Method chapter: project management, system architecture, frontend, backend and data handling, visualization, filtering and interaction, testing and performance, customer feedback, and project outcome.
 
 \newpage
 \section{Project Management}
@@ -33,7 +33,7 @@ Team roles were maintained throughout the project. Beyond the Scrum Master and m
 \section{System Architecture}
 \label{sec:results_system_architecture}
 
-The final system architecture, resulting from the design described in Section~\ref{sec:system_architecture}, consists of a React frontend communicating with a backend REST API. The frontend is responsible for rendering visualization layers and handling user interaction, while the backend provides GeoJSON-formatted anomaly data and database generation. The architecture separates visualization, filtering, and data retrieval into different parts. The following diagrams illustrate the system's structure, data flow and user interaction.
+The final system architecture, resulting from the design described in Section~\ref{sec:system_architecture}, consists of a React frontend communicating with a backend \acrshort{rest} \acrshort{api}. The frontend is responsible for rendering visualization layers and handling user interaction, while the backend provides \acrshort{geojson}-formatted anomaly data and database generation. The architecture separates visualization, filtering, and data retrieval into different parts. The following diagrams illustrate the system's structure, data flow and user interaction.
 
 
 \subsection{Use Case Diagram}
@@ -103,7 +103,7 @@ A singular page was created for the application, being the only page needed for 
 Components such as a sidebar on the top right contain the entire dataset, allowing for searching of anomalies based on type or \acrshort{mmsi}. 
 A visualization dropdown menu allows switching between the two main visualization modes. 
 On the top middle of the page is a filtering component, allowing users to change the displayed dataset by filtering on anomaly type, date range, and \acrshort{mmsi}.
-Compared to the wireframes created during the design process (Section~\ref{sec:design_process}), the final layout diverged in several ways based on customer feedback and the features added during development. The filter component was moved to the top of the page and simplified: where the wireframe filter contained multiple custom-value fields and expandable lists, the delivered filter is a single wide bar containing only anomaly type, MMSI, and a start and end date, reducing clutter on the main page. After several visualization methods were added, a permanent area was placed in the top left for switching between the clustering and heat map visualizations. The sidebar stayed close to its wireframe but now spans the full height of the right side of the page. The anomaly info card also remained close to the original design, with the addition of a button that displays the anomalies within a group, which was requested by the customer.
+Compared to the wireframes created during the design process (Section~\ref{sec:design_process}), the final layout diverged in several ways based on customer feedback and the features added during development. The filter component was moved to the top of the page and simplified: where the wireframe filter contained multiple custom-value fields and expandable lists, the delivered filter is a single wide bar containing only anomaly type, \acrshort{mmsi}, and a start and end date, reducing clutter on the main page. After several visualization methods were added, a permanent area was placed in the top left for switching between the clustering and heat map visualizations. The sidebar stayed close to its wireframe but now spans the full height of the right side of the page. The anomaly info card also remained close to the original design, with the addition of a button that displays the anomalies within a group, which was requested by the customer.
 
 \section{Backend and Data Handling}
 \label{sec:results_backend_and_data}
@@ -137,13 +137,13 @@ The final \acrshort{geojson} structure is shown in Figure~\ref{fig:geoJSON-resul
 \end{figure}
 Anomaly data is completely integrated in a FeatureCollection, with the individual features being anomaly groups. These features are individually processed in the frontend, as a dataset, through Deck.gl.
 
-Each Feature carries the properties defined in the Terms list and are ID, MMSI, anomaly type, signal strength, heading, last activity, and location, which the frontend reads to drive the visualization layers.
+Each Feature carries the properties defined in the Terms list and are \acrshort{id}, \acrshort{mmsi}, anomaly type, signal strength, heading, last activity, and location, which the frontend reads to drive the visualization layers.
 % TODO (optional, quick): add one example record (a single Feature with real values) beside the figure
 % to make the structure concrete. Definitions live in Terms, so only the example values are needed.
 
 \subsection{Backend Query and Response Behaviour}
 Figure~\ref{fig:swagger-result_image} showcases an \acrshort{api} endpoint, created as a master query allowing for filtered requests on all relevant variables.
-The master query accepts four filter parameters: anomaly type, MMSI, and a start and end date. It returns the matching anomaly groups, where each group contains its individual anomalies, and each anomaly in turn includes its base-station links and signal strength values. This endpoint was the group's main contribution to the backend infrastructure provided by the customer, replacing frontend-side filtering of the full dataset with a single backend query (Section~\ref{sec:backend_and_data_flow_method}).
+The master query accepts four filter parameters: anomaly type, \acrshort{mmsi}, and a start and end date. It returns the matching anomaly groups, where each group contains its individual anomalies, and each anomaly in turn includes its base-station links and signal strength values. This endpoint was the group's main contribution to the backend infrastructure provided by the customer, replacing frontend-side filtering of the full dataset with a single backend query (Section~\ref{sec:backend_and_data_flow_method}).
 
 \begin{figure}[H]
     \centering
@@ -293,11 +293,11 @@ The product owner evaluated the delivered features across four areas: clustering
 
 \subsubsection{Clustering}
 
-The clustering visualization was assessed positively because it helped provide a proper overview over a large amount of data without the visual clutter. The product owner also noted that clustering is already utilized by other large data systems at Kystverket, however it has not yet been applied to the AIS anomaly monitoring. A suggestion that was given for further development was to be able to display the types and counts of anomalies within each cluster. This would allow operators to assess if further exploring a cluster is worthwhile quickly.
+The clustering visualization was assessed positively because it helped provide a proper overview over a large amount of data without the visual clutter. The product owner also noted that clustering is already utilized by other large data systems at Kystverket, however it has not yet been applied to the \acrshort{ais} anomaly monitoring. A suggestion that was given for further development was to be able to display the types and counts of anomalies within each cluster. This would allow operators to assess if further exploring a cluster is worthwhile quickly.
 
 \subsubsection{Signal Strength}
 
-The signal strength visualization was described as a concept they were very interested in. The product owner noted that low signal strength between a vessel and a base station is an error in AIS messages that causes the creation of anomaly messages. Other systems they utilise for signal strength take longer to find the data and do not visualise it properly, increasing the time to analyse anomaly groups and the time complexity for the operator. The delivered solution was assessed as effective both at the macro level, where lines from anomaly groups to base stations are visible while zoomed out, and at the micro level, where individual signal strength values are visible when zoomed in. A suggestion was given to extend the visualization to include additional data like signal strength before and after an anomaly occurs, however this would require additional data from Kystverket.
+The signal strength visualization was described as a concept they were very interested in. The product owner noted that low signal strength between a vessel and a base station is an error in \acrshort{ais} messages that causes the creation of anomaly messages. Other systems they utilise for signal strength take longer to find the data and do not visualise it properly, increasing the time to analyse anomaly groups and the time complexity for the operator. The delivered solution was assessed as effective both at the macro level, where lines from anomaly groups to base stations are visible while zoomed out, and at the micro level, where individual signal strength values are visible when zoomed in. A suggestion was given to extend the visualization to include additional data like signal strength before and after an anomaly occurs, however this would require additional data from Kystverket.
 
 \subsubsection{Heat Map}
 
@@ -354,7 +354,7 @@ Heat map visualization & Implemented & \\
 Base station layer & Implemented & \\
 Anomaly group layer & Implemented & Reimplemented to support signal strength \\
 Individual anomaly layer & Implemented & Added late at customer request \\
-Filtering (type, MMSI, dates) & Implemented & \\
+Filtering (type, \acrshort{mmsi}, dates) & Implemented & \\
 Signal strength visualization & Implemented & Added during the project; not in the original outline \\
 Temporal analysis (forward/backward in time) & Partial & Delivered as a date-range filter only \\
 Hexagonal binning & Not implemented & Cut due to time constraints \\

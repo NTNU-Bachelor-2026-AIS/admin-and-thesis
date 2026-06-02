@@ -1,26 +1,58 @@
-\textit{This  chapter discusses the societal and economic consequences, or lack thereof the project contains, while discussing sustainability and environmental sides.}
+\textit{This chapter discusses the societal and economic consequences, or lack thereof, of the project, while discussing sustainability and environmental aspects.}
+% SUGGESTION (HIGHEST grade leverage — criterion 2 "Ingeniørfaglig innsikt" is ~25%, and this is
+% currently the thinnest chapter relative to its weight). Two cheap ways to add depth, mirroring a
+% strong exemplar:
+%  (1) UN Sustainable Development Goals: map the project to 1-2 goals, e.g. Goal 9 (Industry,
+%      Innovation and Infrastructure) and Goal 14 (Life Below Water) — maritime safety / anomaly
+%      detection fits Goal 14 especially well. One short paragraph each, with a reference.
+%  (2) Economic: add a concrete angle — open-source tools mean no licensing cost, and prototyping
+%      avoids the cost of fully building an unproven feature into production. Even a rough comparison
+%      (prototype effort vs. full production cost) reads as engineering reflection.
+% Keep every claim supported (reference it or attribute it to the customer); avoid stating opinion as fact.
 
 \section{Societal and Ethical Impact}
 
 
-In communication with the customer on societal and ethical impact, key insights were given. Better visualization of AIS anomalies, is a tool that would transform how current work is done, rather than remove employment opportunities, leading to specialized workers, with access to more effective tools. As such the workplace impact of a fully developed software would not have a negative impacts on workers, neither would the use of better tools lead to loss of employment. As the system would be used to analyze data from large vessels, small vessels would not be affected by this. As a result no surveilance of individual persons would be committed if the tool was connected to real data. A fact of this is that boats are required to use AIS transponders by law \parencite{kystverket_ais_norge}, leading to the system not being a new form of surveillance on sea vessels.
+In communication with the customer on societal and ethical impact, key insights were given. Better visualization of \acrshort{ais} anomalies, is a tool that would transform how current work is done, rather than remove employment opportunities, leading to specialized workers, with access to more effective tools. As such the workplace impact of a fully developed software would not have a negative impacts on workers, neither would the use of better tools lead to loss of employment. As the system would be used to analyze data from large vessels, small vessels would not be affected by this. As a result no surveilance of individual persons would be committed if the tool was connected to real data. A fact of this is that boats are required to use \acrshort{ais} transponders by law \parencite{kystverket_ais_norge}, leading to the system not being a new form of surveillance on sea vessels.
 
-Another point raised in communication with the customer is around the scenario if this could be used to stop illegal smuggling or immigration, but the vessel type being large, means the likelihood of this is low, as large vessels are less suited for illegal tasks like smuggling. 
+Another point raised in communication with the customer is around the scenario if this could be used to stop illegal smuggling or immigration, but the vessel type being large, means the likelihood of this is low, as large vessels are less suited for illegal tasks like smuggling.
+% SUGGESTION (don't state an opinion as fact): attribute this to the customer and hedge it, e.g.
+% "the customer considered this unlikely, since the system targets large vessels, which are less
+% typically associated with smuggling." A sensor will flag an unsupported claim stated as fact;
+% framing it as the customer's assessment (or adding a reference) removes that risk.
 
 An ethical consideration is that anomaly detection can contain errors or false positives, that can lead to unnecessary investigation of non-anomalous vessels. This can happen if the tool is used in decision making, and not as a support tool for identifying anomalies. 
 
 \section{Economic}
 
 Software prototyping is widely recognized as an approach that can reduce cost and risk during the development of applications and features for software. This is achieved by early testing and feedback during the development process \parencite{geeksforgeeks_prototyping}.
-The prototype the group created indicates that feature testing can be used to evaluate the value or lack thereof in new features and systems. This can reduce financial risk through avoiding implementing features not providing sufficient value. This can reduce negative consequences economically. The use of open source tools can cut down on licensing and other costs, leading to the prototype being a financially viable way of testing new systems and features. The prototype itself required development time and effort, but is a mitigated downside in comparison to the value the prototype brings. 
+The prototype the group created indicates that feature testing can be used to evaluate the value or lack thereof in new features and systems. This can reduce financial risk through avoiding implementing features not providing sufficient value. This can reduce negative consequences economically. The use of open source tools can cut down on licensing and other costs, leading to the prototype being a financially viable way of testing new systems and features. The prototype itself required development time and effort, but is a mitigated downside in comparison to the value the prototype brings.
+% SUGGESTION — economic depth (draft to rewrite in your own words; add a real figure if you can):
+% "The prototype relies entirely on open-source tools (React, MapLibre, Deck.gl, Supercluster, Docker),
+% so it carries no software licensing cost, unlike commercial GIS or visualization platforms. Its main
+% cost is development time. Because the prototype lets the customer evaluate a feature's value before
+% committing to a full production implementation in their internal systems, the cost of a short
+% prototype is small compared to integrating and maintaining a production feature that may not provide
+% value." Even a one-line effort comparison (prototype person-weeks vs. a full production build) adds
+% engineering weight, mirroring the cost comparison a strong exemplar report uses.
 
 
 \section{Sustainability}
 
-The sustainability impact of a software development project is generally lower than other fields. This is because of software not requiring the same amount of physical components. However, there are core sustainability factors such as maintainable code and choice of technology \url{https://beetroot.co/greentech/best-practices-of-sustainable-software-development/} 
+The sustainability impact of a software development project is generally lower than other fields. This is because of software not requiring the same amount of physical components. However, there are core sustainability factors such as maintainable code and choice of technology.\footnote{\url{https://beetroot.co/greentech/best-practices-of-sustainable-software-development/}}
+% SUGGESTION (source quality, criterion 3): replace this bare-URL footnote with a proper \parencite to
+% a more academic/primary source on sustainable software; tertiary/blog sources cap the theory score.
 
 The group's project is a locally hosted, prototype. This suggests a relatively low environmental impact, as there is no material cost outside of personal computers. The prototype itself being used for evaluating the value of concepts, helps to make an informed decisions whether to implement said concepts in the customers current solution. This may contribute to a positive sustainability impact due to mitigating resource use on wasted features. The system itself is maintainable, while being able to be extended on functionality.
+% SUGGESTION — UN SDG paragraph (draft to rewrite in your own words; cite \parencite{un_sdg}, now in
+% the bibliography). This is the cheapest way to add engineering-insight depth (criterion 2, ~25%):
+% "This project aligns with the United Nations Sustainable Development Goals, particularly Goal 9
+% (Industry, Innovation and Infrastructure) and Goal 14 (Life Below Water). By using a standard web
+% stack and open-source tools to prototype new anomaly-analysis methods, it supports innovation in
+% maritime-monitoring infrastructure without specialised hardware (Goal 9). By improving how AIS
+% anomalies are surfaced and analysed, it can support more reliable detection of faulty or suspicious
+% vessel behaviour, contributing to maritime safety and protection of the marine environment (Goal 14)."
 
 \section{Environment}
 
-The software not requiring physical components aside from computers, has a relatively low direct environmental footprint. Electricity being the only requirement to run the software, is the main environmental factor. Improved AIS detection could lead to action being taken sooner on faulty boats, leading to reduced environmental impact. The software itself is then unlikely to have a large environmental impact. 
+The software not requiring physical components aside from computers, has a relatively low direct environmental footprint. Electricity being the only requirement to run the software, is the main environmental factor. Improved \acrshort{ais} detection could lead to action being taken sooner on faulty boats, leading to reduced environmental impact. The software itself is then unlikely to have a large environmental impact. 
