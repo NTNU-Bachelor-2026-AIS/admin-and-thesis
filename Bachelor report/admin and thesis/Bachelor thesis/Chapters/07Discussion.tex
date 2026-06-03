@@ -93,7 +93,7 @@ The base rendering performance of MapLibre was observed to be unproblematic, wit
 
 \subsection{System Responsiveness}
 
-The backend showed acceptable response times using the primary dataset size of 100,000 anomalies, with unfiltered requests returning in 196--461~ms and filtered requests in 55--62~ms (Table~\ref{tab:api_response_times}). The higher end of the unfiltered range remained interactive in practice, as the system does not render all data points at once; points are only rendered as the user zooms in past the clustering threshold, and subsequent queries benefit from database caching, making repeated requests noticeably faster.
+The backend showed acceptable response times using the primary dataset size of 100,000 anomalies, with unfiltered requests returning in 196--461~ms and filtered requests in 55--62~ms (Table~\ref{tab:api_response_times}). The higher end of the unfiltered range was still interactive in practice, because the system does not render all data points at once. Since points are only rendered as the user zooms past the clustering threshold. The robust backend also helps with subsequent queries because of database caching to make it seem more interactive. 
 
 For the one million anomaly dataset, unfiltered requests took 2.0--3.1~s and filtered requests returned in 592--920~ms. For intended use cases such as a concept prototype evaluated at the customer's data volumes, the 100,000-anomaly figures are more representative of expected operational conditions.
 
