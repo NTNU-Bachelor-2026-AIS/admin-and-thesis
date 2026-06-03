@@ -84,10 +84,11 @@
 \makeatother
 
 \begin{document}
-% Blank page 1 — reserved for the NTNU submission system to insert the official cover page
-\thispagestyle{empty}
-\null
-\clearpage
+% Two blank pages — reserved for the NTNU submission system to insert the official cover pages.
+% Each needs both \null (so the otherwise-empty page is actually shipped) and \thispagestyle{empty}
+% (so the book class's default "headings" style does not print a page number in the top corner).
+\null\thispagestyle{empty}\clearpage
+\null\thispagestyle{empty}\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{comment}
 % The title page:
