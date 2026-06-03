@@ -56,7 +56,6 @@
             ]{biblatex} %customize the look of your citations and bibliography
 \addbibresource{bibliography.bib} %declare the bibliography resource
 \usepackage{comment} %to be able to comment out sections in the .tex files
-\usepackage{pdfpages} %to include external PDF files in appendices
 \usepackage{afterpage} %to customize page commands such as below
 \newcommand\myemptypage{
     \null
@@ -150,13 +149,15 @@ Department of ICT and Natural Sciences \\
 \listoftables
 \phantomsection
 \addcontentsline{toc}{chapter}{\protect\numberline{}\listtablename}
+\markboth{}{} % clear the LIST OF TABLES mark so Abbreviations/Terms pages don't inherit it
 
 
 \chapter*{Abbreviations}
+\markboth{}{}
 \addcontentsline{toc}{chapter}{\protect\numberline{}Abbreviations}
 \input{Chapters/02Abbreviations}
 \chapter*{Terms}
-\addcontentsline{toc}{chapter}{\protect\numberline{}Terms}
+\markboth{}{}
 \input{Chapters/Terms}
 
 %\newpage
