@@ -92,18 +92,12 @@ The performance of the system is highly dependent on hardware specifications, wi
 The base rendering performance of MapLibre was observed to be unproblematic, with performance being taxed on the visualization methods and dataset size, rather than the map. Datasets ranging from a ten thousand to over 1 million points were tested. The architectural design of the project is not bottlenecked based on the backend, but with frontend using supercluster (Section~\ref{sec:supercluster}) to recalculate clusters based on zoom, and similar calculations being done on heat map, leads to zoom and move operations being most taxing on the system. This can be tweaked to recalculate fewer times on zoom level, but will lead to a less responsive system. The core bottleneck of any performance is then the frontend itself, as the backend response time scales with dataset size from under 500~ms at 100,000 anomalies to 2--3~s at one million anomalies for unfiltered requests (Table~\ref{tab:api_response_times}).
 
 \subsection{System Responsiveness}
-This subsection evaluates the responsiveness observed during manual testing.
-% SUGGESTION (write in your own words using the data below — this section is currently empty prose):
-% The backend showed acceptable response times at the primary test size of 100,000 anomalies
-% (196--461~ms unfiltered, 55--62~ms filtered), but scaled to 2.0--3.1~s unfiltered at one million
-% anomalies (Table~\ref{tab:api_response_times}). For the intended use case of a concept prototype
-% on the customer's existing data volumes, the 100k figures are more representative.
-% On the frontend, the main responsiveness cost was switching from the clustered view to the anomaly
-% group view, where signal-strength lines are computed — add a rough wait time here (under a second?
-% 1--2 seconds?). Heat maps were the slowest layer, recalculating area weights on every zoom and move;
-% this is bounded by Deck.gl's own implementation, so no further gain was available without a
-% fundamentally different approach such as a clustered heat map.
-% Filtering and layer switching were otherwise responsive, changing as soon as input was submitted.
+
+The backend showed acceptable response times using the primary dataset size of 100,000 anomalies, with unfiltered requests returning in 196--461~ms and filtered requests in 55--62~ms (Table~\ref{tab:api_response_times}). The higher end of the unfiltered range was still interactive in practice, because the system does not render all data points at once. Since points are only rendered as the user zooms past the clustering threshold. The robust backend also helps with subsequent queries because of database caching to make it seem more interactive. 
+
+For the one million anomaly dataset, unfiltered requests took 2.0--3.1~s and filtered requests returned in 592--920~ms. For intended use cases such as a concept prototype evaluated at the customer's data volumes, the 100,000-anomaly figures are more representative of expected operational conditions.
+
+On the frontend, the most costly interaction observed was switching from the clustered view to the anomaly group layer, where signal-strength lines are computed for each anomaly in the group. Other interactions, including applying filters, switching between clustering and heat map layers, and searching in the sidebar, responded immediately on both development laptops used during testing. The heat map was the slowest visualization layer overall, since it recalculates area weights on every zoom and drag event. This is bounded by Deck.gl's implementation and cannot be improved further without adopting a fundamentally different approach such as a pre-aggregated heat map.
 
 %=====================================================================
 
@@ -112,48 +106,26 @@ This subsection evaluates the responsiveness observed during manual testing.
 This section evaluates the project management process described in Section \ref{sec:dev_methodology}, focusing on how the chosen methodology, team structure, and communication practices influenced the development outcome.
 
 Although the adopted methods ensured a structured development process, several of them introduced weekly overhead that proved disproportionate for a two-person team operating under a fixed deadline. The following subsections evaluate each aspect individually.
-% SUGGESTION (self-reflection / lessons learned — high value for criterion 5; write in your own words):
-% consider adding a short reflective paragraph acknowledging that, in retrospect, the team should have
-% engaged more carefully with the project requirements and the grading criteria earlier, and used them
-% to focus the work. Frame it as a lesson learned rather than self-criticism: clearer early alignment on
-% requirements and assessment criteria would have improved prioritization and reduced time spent on work
-% that was later descoped. This pairs naturally with the team-capacity change and the reactive scope
-% management discussed below, and honest reflection of this kind tends to raise the assessment score.
+
+In retrospect, the team should have engaged more carefully with the project requirements and assessment criteria at an earlier stage, because it would have improved prioritization throughout the project. Clearer focus on which deliverables were most valued would have allowed the group to direct development time more effectively, which should have been a main focus given the reduced team capacity. This is a lesson that would be applied from the start in future projects of similar scope.
 
 \subsection{Scrum Framework and Sprint Structure}
 
-The Scrum framework provided a consistent structure for planning and delivery. The system was designed for large groups, so it had issues in relation to workload and redundancy for groups of two. Therefore, the daily stand-up system was altered and implemented to occur multiple times a day instead to make sure the group had proper accountability and focus in relation to scope. It also helped keep motivation high and allowed the group to quickly make changes to tasks depending on problems found with them. Instead of the standard two-week sprint, the group used weekly sprints as well, to supplement issues which were fixed by multiple daily stand-ups. Since it was a group of two, the focus of the project and scope were defined and worked toward each week while also making sure the backlog was handled.
+The Scrum framework provided a consistent structure for planning and delivery. The system was designed for large groups, so it had issues in relation to workload and redundancy for groups of two. Therefore, the daily stand-up system was altered and implemented to occur multiple times a day instead to make sure the group had proper accountability and focus in relation to scope. It also helped keep motivation high and allowed the group to quickly make changes to tasks depending on problems found with them. Instead of the standard two-week sprint, the group used weekly sprints for the majority of the project, and only utilizing two-week sprints for the final two cycles (weeks 15--16 and 17--18), because the focus shifted to report writing. The first two sprints were documented informally because the official sprint templates were not yet adopted, however from sprint three onward, planning, review, and retrospective documents were consistently maintained for all 13 sprints.
 
-However, several Scrum artifacts introduced documentation overhead that provided limited value at this team size. This became a bigger issue because of the decision to have weekly sprints, which increased the overhead that needed to be handled compared to the standard system. The problem was amplified because sprints documented and reviewed the backlog every week, even though group members had continuous visibility into task status through GitHub Projects.
- % Maybe ref or  section
+However, several Scrum artifacts introduced documentation overhead that provided limited value at this team size. This became a bigger issue because of the decision to have weekly sprints, which increased the overhead compared to the standard two-week cadence. The problem was amplified because sprints documented and reviewed the backlog every week, even though group members had continuous visibility into task status through GitHub Projects.
 
 In relation to sprint documentation, the sprint artefacts provided traceable project documentation, which served as a reference when writing the report while ensuring important information was not lost in miscommunication.
-% SUGGESTION (reconcile with the real sprint structure in Results 4.1; write in your own words):
-%  - The cadence was weekly EXCEPT the final two sprints, which each ran two weeks (15-16 and 17-18) as
-%    the team moved toward the report period. Adjust "the group used weekly sprints" to reflect this.
-%  - Small lessons-learned tie-in: the first two sprints were documented informally before the team
-%    found and adopted the official sprint templates, after which documentation was consistent. This
-%    supports the earlier reflection that engaging with the expected process/criteria sooner would have
-%    helped.
 
 \subsection{Team Composition and Workload Distribution}
 
+The project began with three members but continued with two after one member left early in the development period. This reduced team capacity raised the per-member workload and directly altered the scope decisions made with the customer. Because of that the visualization features offering the most prototype value were prioritized, while report generation and hexagonal binning were deprioritized. The daily stand-ups became more important in this context, because they ensured both members remained focused and that problems blocking progress were resolved quickly rather than accumulating into a pile of more issues.
+
 In a group of two where both members had mostly the same knowledge and expertise, workload was distributed based on member preference and the nature of each task, which made documentation responsibilities formally split where one member handled the sprint documentation while the other handled meeting documentation while development tasks were shared. In practice however, more demanding tasks were rotated between members to maintain motivation. This type of informal balancing worked well for a group of 2 but would not scale to a larger team, where responsibilities would be split more evenly with explicit role definitions.
-% SUGGESTION (reflect on the 3->2 team change — high value for criterion 5; write in your own words):
-% the project started with three members and continued with two after one dropped out. Reflect on the
-% impact: reduced capacity raised the per-member workload and led to a deliberate scope reduction toward
-% the most useful prototype features (data visualization) and away from report generation and hexagonal
-% binning; the two-person daily stand-ups and shared responsibilities became more important for keeping
-% momentum. Tie this to the scope decisions made with the customer (see Scope Management below).
 
 \subsection{Communication and Meeting Structure}
 
-Slack provided an efficient channel for direct communication with the customer, enabling rapid resolution of short technical questions.
-% SUGGESTION (add the customer's quantified observation as evidence — your wording): the product owner's
-% written feedback records 250+ Slack messages exchanged by 11 May, and notes that the group took the
-% initiative to arrange progress meetings to show development. Citing this customer-sourced detail backs
-% up the "communication was effective" claim with a concrete number instead of an assertion.
-The customer's domain expertise allowed complex questions to be resolved within short discussions rather than through a long discussion. While communication with the supervisor was handled primarily through email, with in person consultations used for urgent issues, because most work was conducted on campus.
+Slack provided an efficient channel for direct communication with the customer, enabling rapid resolution of short technical questions. The product owner's written evaluation noted over 250 messages exchanged through Slack by the 11th of May, and acknowledged that the group took initiative in arranging progress meetings to present ongoing development. The customer's domain expertise allowed complex questions to be resolved within short discussions rather than through a long discussion. While communication with the supervisor was handled primarily through email, with in person consultations used for urgent issues, because most work was conducted on campus.
 
 For meetings, biweekly meetings were held with both the supervisor and the customer at Kystverket. Before these meetings, discussions were held to discuss which questions should be asked. However, most of these discussions happened through a small meeting before the actual meeting or through daily stand-ups within the group.
 
@@ -167,11 +139,8 @@ For version control, Git was utilized because it allows code to be reverted easi
 
 \subsection{Scope Management}
 
-% SUGGESTION (link scope reduction to the team change — write in your own words): note that the move
-% from three to two members directly drove the scope reduction. In agreement with the customer, the team
-% prioritized the data-visualization features that gave the most prototype value and dropped report
-% generation and hexagonal binning. Framing the cut features as a deliberate, capacity-based decision
-% (made with the customer) reads as sound engineering judgement rather than a shortfall.
+The reduction from three to two team members early in the project heavily influenced scope decisions. Because of the large change in the amount of workload the group could handle the customer agreed that the team would prioritize the visualization features that offered the most prototype value. The features that offered the most value were: clustering, heat maps, signal strength visualization, and filtering, however the customer also wanted the group to deprioritize report generation, hexagonal binning, and satellite orbit plotting. This was a deliberate decision based on the groups capacity rather than an unplanned shortfall, while keeping the delivered system focused on what the customer most needed to evaluate as a concept prototype.
+
 Scope management was handled reactively through customer meetings rather than through a formal change process, which had both benefits and drawbacks. The weekly sprint cycle allowed scope changes to be incorporated quickly, which was valuable given the short development period and limited team capacity. This approach kept development aligned with the customer's interests and prevented time from being spent on challenging features that were not needed. However, the absence of a formal scope freeze meant that new requests led to planned features being cut to accommodate them. The reactive approach worked well within the constrained timeline, although a longer project would have permitted more features to be properly developed and polished. For a project of similar length, a formal scope freeze date would improve predictability. Weighted prioritization could also help larger teams manage competing requests, but the small team size and direct communication with the customer made this less necessary in this project.
 
 % Should be in technical solution and discussion of that since 

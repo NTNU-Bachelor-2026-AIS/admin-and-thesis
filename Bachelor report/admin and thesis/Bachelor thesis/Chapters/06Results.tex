@@ -244,6 +244,7 @@ A date-time range selector allows the visualization to be restricted to a chosen
     \caption[Date picker component]{Date picker calendar component allowing operators to select a start and end date for temporal filtering}
     \label{fig:date_picker_image}
 \end{figure}
+When a date range is applied, the map updates to display only the anomaly groups which were active within the selected period, while the sidebar reflects the same filtered dataset that is rendered. Both the start and end date can be set independently, which allows operators to examine anomaly patterns within any time window available in the dataset.
 
 \subsection{Satellite Visualization}
 Satellite connections are displayed as a layer that appears only when a data point is clicked, as shown in Figure~\ref{fig:satellite_layer_image}. The satellite-orbit \acrshort{api} is access-restricted and requires credentials, so relying on it would prevent others from testing this public prototype. Each satellite point is therefore approximated by finding the closest position in time within a 24-hour window of the anomaly. The 24-hour pass data is stored as a static JSON file bundled with the frontend and searched in memory at runtime, requiring no network call.
