@@ -84,6 +84,10 @@
 \makeatother
 
 \begin{document}
+% Blank page 1 — reserved for the NTNU submission system to insert the official cover page
+\thispagestyle{empty}
+\null
+\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\begin{comment}
 % The title page:
@@ -150,17 +154,22 @@ Department of ICT and Natural Sciences \\
 \listoftables
 \phantomsection
 \addcontentsline{toc}{chapter}{\protect\numberline{}\listtablename}
+\markboth{}{} % clear LIST OF TABLES mark
 
-\pagestyle{plain} 
+\pagestyle{plain}
 
-\chapter*{Abbreviations}
+% Use \let\cleardoublepage\clearpage inside a group so fncychap cannot insert a blank page
+% before Abbreviations or Terms (which would show a spurious "LIST OF TABLES" header).
+{\let\cleardoublepage\clearpage
+\chapter*{Abbreviations}}
 \markboth{}{}
 \addcontentsline{toc}{chapter}{\protect\numberline{}Abbreviations}
 \input{Chapters/02Abbreviations}
-\markboth{}{}
 
-\chapter*{Terms}
+{\let\cleardoublepage\clearpage
+\chapter*{Terms}}
 \markboth{}{}
+\addcontentsline{toc}{chapter}{\protect\numberline{}Terms}
 \input{Chapters/Terms}
 \cleardoublepage
 

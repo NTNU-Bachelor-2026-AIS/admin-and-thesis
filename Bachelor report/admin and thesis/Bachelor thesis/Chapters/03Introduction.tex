@@ -30,29 +30,19 @@ Even though it was originally developed as a anti-collision tool, the \acrshort{
 
 While the \acrshort{nca} currently utilizes analytical tools to identify deviations in \acrshort{ais} data, the existing solutions lack advanced visualization capabilities such as heat maps, clustering and temporal analysis. These features are essential for operators to gain proper insight into the anomalies, because of the massive scale of data. Every day millions of \acrshort{ais} messages are flagged as anomalies, which makes it hard for operators to differentiate between anomalies that are technical issues and potential security threats. To solve this issue, the \acrshort{nca} hopes for a more intuitive, web-based prototype with new visualization methods \parencite{kystverket_ais_norge}.
 
-
-
-
-%Information about the seafaring vessels around the Norwegian coast are paramount for national security and the security of said vessels, thus it is paramount that such information is available in a concise and easy to understand format for the professionals working in the Norwegian coastal administration. Every day millions of anomaly messages are sent out from a ships \acrshort{ais} messaging unit, and parsing through all these messages to see which are more important than others is a significant and important task for our government.  
-
-% Maybe we should add some refrences here
-
-\cleardoublepage
-
-
 \section{Objective}
 
 The objective of this project is to develop a web-based program that can visualize \acrshort{ais} anomaly data to provide maritime experts with improved insights. The program will also serve as a tool for both live monitoring and historical analysis.
 
 \textbf{Specific goals include:}
 \begin{itemize}
-\item \textbf{Advanced Map Visualization:} Implementing a map interface using MapLibre to display anomaly clusters, satellite paths, and base station locations.
+\item \textbf{Advanced Map Visualization:} Implementing a map interface using \gls{maplibre} to display anomaly clusters, satellite paths, and base station locations.
 
 \item \textbf{Data Aggregation and Clustering:} Developing methods to handle high-density data without overwhelming the user interface.
 
 \item \textbf{Temporal Analysis:} Provide a time-based feature that allows users to visualize data forward and backward in time to observe development of anomalies.
 
-\item \textbf{Efficient Querying:} Building a bridge between the React frontend and the backend database to allow users to filter data by ship type, anomaly category, and time intervals.
+\item \textbf{Efficient Querying:} Building a bridge between the \gls{react} frontend and the backend database to allow users to filter data by ship type, anomaly category, and time intervals.
 \end{itemize}
 
 % Need to have meeting to discuss both our motivations. Also see if it means our motivation for picking the project or for the problem existing.
@@ -80,8 +70,8 @@ Functional requirements from the customer include support for new visualization 
 
 The solution will be implemented as a local database and a website that can query and visualize the stored data. All data processing will be handled on the device hosting the database. 
 \begin{itemize}
-\item \textbf{Frontend:} Must be built using React and TypeScript
-\item \textbf{Map Engine:} Must utilize MapLibre or an equivalent library used by the \acrshort{nca}.
+\item \textbf{Frontend:} Must be built using \gls{react} and \gls{typescript}
+\item \textbf{Map Engine:} Must utilize \gls{maplibre} or an equivalent library used by the \acrshort{nca}.
 \item \textbf{Data Querying:} The application must be able to query a database to handle the large amounts of data.
 \end{itemize}
 %TODO Need to add more of the tools and technologies we used making sure nothing is missing.
@@ -89,9 +79,9 @@ The solution will be implemented as a local database and a website that can quer
 \section{Software and Technology Stack}
 The following technologies were used throughout the development of the project:
 \begin{itemize}
-\item \textbf{React \& TypeScript:} Frontend framework and language
-\item \textbf{MapLibre GL JS:} Mapping engine for high-performance maps.
-\item \textbf{Customer provided backend} A Docker container-based backend system built in Go, used for data storage and querying.
+\item \textbf{\gls{react} \& \gls{typescript}:} Frontend framework and language
+\item \textbf{\gls{maplibre} GL JS:} Mapping engine for high-performance maps.
+\item \textbf{Customer provided backend} A \gls{docker} container-based backend system built in Go, used for data storage and querying.
 %\item \textbf{Azure:} Deployment and cloud environment. % Depends on if it counts as being used right now
 \item \textbf{\acrshort{nca} Test Datasets:} Simulated \acrshort{ais} anomaly data.
 \end{itemize}

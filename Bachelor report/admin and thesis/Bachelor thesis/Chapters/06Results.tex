@@ -19,7 +19,7 @@
 % belongs in Discussion, not here.
 %TODO In relation to tool choice might mention it more in method or result to be clearer over why we chose them.
 
-This chapter presents the resulting application, a locally hosted visualization tool for \acrshort{ais} anomalies and anomaly groups. The system implements clustering, heat map, base station, anomaly group, and individual anomaly visualization layers, supported by a filtering system and interactive features. The technology stack was partly guided by the customer, with React and the map provider specified, while remaining tool choices were made by the group. The following sections describe the delivered system, organized in the same order as the Method chapter: project management, system architecture, frontend, backend and data handling, visualization, filtering and interaction, testing and performance, customer feedback, and project outcome.
+This chapter presents the resulting application, a locally hosted visualization tool for \acrshort{ais} anomalies and anomaly groups. The system implements clustering, heat map, base station, anomaly group, and individual anomaly visualization layers, supported by a filtering system and interactive features. The technology stack was partly guided by the customer, with \gls{react} and the map provider specified, while remaining tool choices were made by the group. The following sections describe the delivered system, organized in the same order as the Method chapter: project management, system architecture, frontend, backend and data handling, visualization, filtering and interaction, testing and performance, customer feedback, and project outcome.
 
 \newpage
 \section{Project Management}
@@ -35,7 +35,7 @@ Team roles were maintained throughout the project. Beyond the Scrum Master and m
 \section{System Architecture}
 \label{sec:results_system_architecture}
 
-The final system architecture, resulting from the design described in Section~\ref{sec:system_architecture}, consists of a React frontend communicating with a backend \acrshort{rest} \acrshort{api}. The frontend is responsible for rendering visualization layers and handling user interaction, while the backend provides \acrshort{geojson}-formatted anomaly data and database generation. The architecture separates visualization, filtering, and data retrieval into different parts. The following diagrams illustrate the system's structure, data flow and user interaction.
+The final system architecture, resulting from the design described in Section~\ref{sec:system_architecture}, consists of a \gls{react} frontend communicating with a backend \acrshort{rest} \acrshort{api}. The frontend is responsible for rendering visualization layers and handling user interaction, while the backend provides \acrshort{geojson}-formatted anomaly data and database generation. The architecture separates visualization, filtering, and data retrieval into different parts. The following diagrams illustrate the system's structure, data flow and user interaction.
 
 
 \subsection{Use Case Diagram}
@@ -59,7 +59,7 @@ The use case diagram in Figure~\ref{fig:Use_Case_image} illustrates the expected
     \label{fig:Package_Diagram_image}
 \end{figure}
 
-The package diagram in Figure~\ref{fig:Package_Diagram_image} outlines the modular directory structure used in the frontend repository. Files are put into folders related to their function, such as components being isolated within a dedicated component folder, with necessary subfolders. This aligns with standard React component patterns as described in Section~\ref{sec:react_theory}.
+The package diagram in Figure~\ref{fig:Package_Diagram_image} outlines the modular directory structure used in the frontend repository. Files are put into folders related to their function, such as components being isolated within a dedicated component folder, with necessary subfolders. This aligns with standard \gls{react} component patterns as described in Section~\ref{sec:react_theory}.
 
 % TODO (you): replace the figure once the package diagram is updated to include all packages.
 % SUGGESTION: the evaluative "modular and easily navigable" clause was correctly moved out; keep that
@@ -81,7 +81,7 @@ The sequence diagram in Figure~\ref{fig:Sequence_Diagram_image} maps the data fl
 \subsection{MapLibre}
 % MOVED here from Visualization Results (4.6): MapLibre is architecture/runtime behavior, mirroring
 % its place under System Architecture in Method 3.2, not a visualization result.
-MapLibre initializes itself upon application boot, in a bright style used for readability for users. After its initialization, it is responsible for interaction, in dragging and zooming the map. Interaction leads to states being updated that other parts of the program can use, such as clusters being updated through zooming, and map location. Visualization functionality is something MapLibre has, being able to natively visualize scatterplots and other layers. 
+\gls{maplibre} initializes itself upon application boot, in a bright style used for readability for users. After its initialization, it is responsible for interaction, in dragging and zooming the map. Interaction leads to states being updated that other parts of the program can use, such as clusters being updated through zooming, and map location. Visualization functionality is something \gls{maplibre} has, being able to natively visualize scatterplots and other layers. 
 % SUGGESTION (tool rationale belongs in Method 3.2, not Results — drafted from your answer):
 % "The recommended tools were tried first, and once they worked for rendering they were adopted, as
 % they provided many of the built-in features the project needed and let the group draw on the
@@ -126,7 +126,7 @@ The backend, described in Section~\ref{sec:backend_and_data_flow_method}, was de
 
 Figures~\ref{fig:databse_model_diagram_image} and~\ref{fig:database_schema_image} show the backend database structure. An anomaly group contains anomalies, where the anomaly group itself has the start time and last activity time, sourced from the first instance of an anomaly being created in a group. Anomalies themselves have signal strength and their own data, with the group containing general data related to the group such as the general area of the anomalies, represented as location. 
 
-The anomalies and anomaly groups are generated by the Docker backend, with the amount of anomalies set through a configuration file. Specific commands to generate anomalies and build the database are used, leading to a database filled with an amount of points set by the developer. The Docker backend running allows for the frontend to send requests to \acrshort{api} endpoints to request data, while the frontend itself runs through localhost.
+The anomalies and anomaly groups are generated by the \gls{docker} backend, with the amount of anomalies set through a configuration file. Specific commands to generate anomalies and build the database are used, leading to a database filled with an amount of points set by the developer. The \gls{docker} backend running allows for the frontend to send requests to \acrshort{api} endpoints to request data, while the frontend itself runs through localhost.
 
 \subsection{GeoJSON Data Structure}
 
@@ -137,7 +137,7 @@ The final \acrshort{geojson} structure is shown in Figure~\ref{fig:geoJSON-resul
     \caption[GeoJSON FeatureCollection structure]{Example GeoJSON FeatureCollection returned by the backend API, with anomaly groups as individual features}
     \label{fig:geoJSON-result_image}
 \end{figure}
-Anomaly data is completely integrated in a FeatureCollection, with the individual features being anomaly groups. These features are individually processed in the frontend, as a dataset, through Deck.gl.
+Anomaly data is completely integrated in a FeatureCollection, with the individual features being anomaly groups. These features are individually processed in the frontend, as a dataset, through \gls{deckgl}.
 
 Each Feature carries the properties defined in the Terms list and are \acrshort{id}, \acrshort{mmsi}, anomaly type, signal strength, heading, last activity, and location, which the frontend reads to drive the visualization layers.
 % TODO (optional, quick): add one example record (a single Feature with real values) beside the figure
@@ -236,7 +236,7 @@ The filter system allows the rendered dataset to be narrowed by anomaly type, \a
 \end{figure}
 
 \subsection{Temporal Filtering}
-A date-time range selector allows the visualization to be restricted to a chosen time period. The selector reuses an existing expandable React calendar component, which diverged from and simplified the date picker shown in the wireframe, as shown in Figure~\ref{fig:date_picker_image}.
+A date-time range selector allows the visualization to be restricted to a chosen time period. The selector reuses an existing expandable \gls{react} calendar component, which diverged from and simplified the date picker shown in the wireframe, as shown in Figure~\ref{fig:date_picker_image}.
 % TODO (you): describe in your own words what the user sees when a date range is applied.
 \begin{figure}[H]
     \centering
@@ -272,7 +272,7 @@ Interaction features such as clicking individual data points were each verified 
 % search, click/info cards, date range), and add 1-2 concrete bugs found AND fixed during testing
 % (e.g. the cluster-recalculation issue from Method) — discuss with your group member.
 
-Performance was observed during normal use of the application, primarily at the default zoom level with two to three page refreshes per observation, on the two laptops used by the group for ordinary schoolwork. Each visualization type was observed at different zoom levels and across different areas of the map. The application was tested with a main dataset of 10,000 points, and additionally with larger datasets of 100,000 and one million anomalies generated through backend configuration files. Backend \acrshort{api} response times were recorded from Docker logs and are summarized in Table~\ref{tab:api_response_times}. For the 100,000-anomaly dataset, unfiltered requests returned in 196--461~ms, with the higher end reflecting cold requests before database caching took effect. Applying a single anomaly type filter reduced response times to 55--62~ms. For the one million anomaly dataset, unfiltered requests took 2.0--3.1~s, while filtered requests returned in 592--920~ms.
+Performance was observed during normal use of the application, primarily at the default zoom level with two to three page refreshes per observation, on the two laptops used by the group for ordinary schoolwork. Each visualization type was observed at different zoom levels and across different areas of the map. The application was tested with a main dataset of 10,000 points, and additionally with larger datasets of 100,000 and one million anomalies generated through backend configuration files. Backend \acrshort{api} response times were recorded from \gls{docker} logs and are summarized in Table~\ref{tab:api_response_times}. For the 100,000-anomaly dataset, unfiltered requests returned in 196--461~ms, with the higher end reflecting cold requests before database caching took effect. Applying a single anomaly type filter reduced response times to 55--62~ms. For the one million anomaly dataset, unfiltered requests took 2.0--3.1~s, while filtered requests returned in 592--920~ms.
 
 \begin{table}[H]
 \centering
@@ -284,7 +284,7 @@ Performance was observed during normal use of the application, primarily at the 
 1,000,000 anomalies & 153,910 & 2.0--3.1 s  & 592--920 ms \\
 \bottomrule
 \end{tabular}
-\caption[Backend API response times]{Backend \acrshort{api} response times for the anomaly-groups endpoint across two dataset sizes, measured from Docker logs. The unfiltered range reflects initial cold requests versus subsequent requests benefiting from database caching. Filtered results used a single anomaly type filter.}
+\caption[Backend API response times]{Backend \acrshort{api} response times for the anomaly-groups endpoint across two dataset sizes, measured from \gls{docker} logs. The unfiltered range reflects initial cold requests versus subsequent requests benefiting from database caching. Filtered results used a single anomaly type filter.}
 \label{tab:api_response_times}
 \end{table}
 
@@ -310,7 +310,7 @@ Clustering had a significant effect on the rendering performance of the applicat
 
 \subsection{System Responsiveness}
 
-Responsiveness of the system is observed to be at a satisfactory level, although some operations cost more than others, such as going from a clustered view to an anomaly group view, with signal strength lines being computed, causes some slowdown, but remains responsive after the layer is changed. Other parts of the system like filtering and changing of layers are responsive, and change as soon as input is submitted. The slowest layer is heat maps, as changing zoom or moving around the map, causes it to recalculate the weight of each area. The heat map itself is as responsive as Deck.gl implemented it, leading to no considerable performance gains to be doable, outside of trying to implement a clustered heat map in some way.
+Responsiveness of the system is observed to be at a satisfactory level, although some operations cost more than others, such as going from a clustered view to an anomaly group view, with signal strength lines being computed, causes some slowdown, but remains responsive after the layer is changed. Other parts of the system like filtering and changing of layers are responsive, and change as soon as input is submitted. The slowest layer is heat maps, as changing zoom or moving around the map, causes it to recalculate the weight of each area. The heat map itself is as responsive as \gls{deckgl} implemented it, leading to no considerable performance gains to be doable, outside of trying to implement a clustered heat map in some way.
 % SUGGESTION (relocate evaluation + quantify — your call): "satisfactory level" and "no considerable
 % performance gains to be doable" are judgments → move to Discussion. Here, state observed behavior
 % only, and add approximate wait times for the slower operations (e.g. the clustered to anomaly-group
