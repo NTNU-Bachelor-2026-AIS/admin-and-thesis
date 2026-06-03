@@ -42,7 +42,7 @@ The final system architecture, resulting from the design described in Section~\r
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\textwidth,height=0.7\textheight,keepaspectratio]{Figures/Use_Case_Diagram.png}
+    \includegraphics[width=0.90\textwidth,height=0.7\textheight,keepaspectratio]{Figures/Use_Case_Diagram.png}
     \caption[Use Case Diagram]{Use case diagram showing the expected interactions between a maritime operator and the system's core features}
     \label{fig:Use_Case_image}
 \end{figure}
@@ -54,7 +54,7 @@ The use case diagram in Figure~\ref{fig:Use_Case_image} illustrates the expected
 % SUGGESTION: replace with an updated package-diagram image if the directory structure changed.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\textwidth,height=0.7\textheight,keepaspectratio]{Figures/Package_Diagram.png}
+    \includegraphics[width=0.90\textwidth,height=0.7\textheight,keepaspectratio]{Figures/Package_Diagram.png}
     \caption[Package Diagram]{Package diagram showing the modular directory structure of the frontend repository}
     \label{fig:Package_Diagram_image}
 \end{figure}
@@ -71,7 +71,7 @@ The package diagram in Figure~\ref{fig:Package_Diagram_image} outlines the modul
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\textwidth,height=0.7\textheight,keepaspectratio]{Figures/Sequence_Diagram.png}
+    \includegraphics[width=0.90\textwidth,height=0.7\textheight,keepaspectratio]{Figures/Sequence_Diagram.png}
     \caption[Sequence Diagram]{Sequence diagram illustrating the data flow from a user filter action to an updated visualization layer}
     \label{fig:Sequence_Diagram_image}
 \end{figure}
@@ -95,7 +95,7 @@ The resulting frontend of the project was created following the method in Sectio
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.95\textwidth,height=0.7\textheight,keepaspectratio]{Figures/full_application_image.png}
+    \includegraphics[width=0.90\textwidth,height=0.7\textheight,keepaspectratio]{Figures/full_application_image.png}
     \caption[Frontend application]{The completed single-page application showing the map view with visualization overlay, sidebar, and filter component}
     \label{fig:frontend_result_image}
 \end{figure}
@@ -103,7 +103,7 @@ The resulting frontend of the project was created following the method in Sectio
 A singular page was created for the application, being the only page needed for all functionality. As shown in Figure~\ref{fig:frontend_result_image}, the user interface is made up of multiple parts. The base map takes up the center of the application, with visualization overlaid on top of the map.
 
 Components such as a sidebar on the top right contain the entire dataset, allowing for searching of anomalies based on type or \acrshort{mmsi}. 
-A visualization dropdown menu allows switching between the two main visualization modes. 
+A visualization dropdown menu allows switching between the two primary visualization modes — clustering and heat map. The anomaly group and individual anomaly views are entered by clicking a map point, forming a drill-down navigation rather than a separate top-level selection.
 On the top middle of the page is a filtering component, allowing users to change the displayed dataset by filtering on anomaly type, date range, and \acrshort{mmsi}.
 Compared to the wireframes created during the design process (Section~\ref{sec:design_process}), the final layout diverged in several ways based on customer feedback and the features added during development. The filter component was moved to the top of the page and simplified: where the wireframe filter contained multiple custom-value fields and expandable lists, the delivered filter is a single wide bar containing only anomaly type, \acrshort{mmsi}, and a start and end date, reducing clutter on the main page. After several visualization methods were added, a permanent area was placed in the top left for switching between the clustering and heat map visualizations. The sidebar stayed close to its wireframe but now spans the full height of the right side of the page. The anomaly info card also remained close to the original design, with the addition of a button that displays the anomalies within a group, which was requested by the customer.
 
@@ -112,14 +112,14 @@ Compared to the wireframes created during the design process (Section~\ref{sec:d
 The backend, described in Section~\ref{sec:backend_and_data_flow_method}, was developed by the customer and provided as part of the project infrastructure. It exposes a \acrshort{rest}~\acrshort{api} used by the frontend to retrieve anomaly data. Anomaly data is stored as a \acrshort{geojson} FeatureCollection, with each feature representing a single anomaly group.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/db_models.png}
+    \includegraphics[width=0.75\textwidth,height=0.5\textheight,keepaspectratio]{Figures/db_models.png}
     \caption[Database model diagram]{Database model diagram showing the relationship between anomaly groups and individual anomalies}
     \label{fig:databse_model_diagram_image}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/db_result.png}
+    \includegraphics[width=0.75\textwidth,height=0.5\textheight,keepaspectratio]{Figures/db_result.png}
     \caption[Database schema]{Database schema showing table structure, field definitions, and data types}
     \label{fig:database_schema_image}
 \end{figure}
@@ -133,7 +133,7 @@ The anomalies and anomaly groups are generated by the Docker backend, with the a
 The final \acrshort{geojson} structure is shown in Figure~\ref{fig:geoJSON-result_image}.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/geoJSON-result.png}
+    \includegraphics[width=0.75\textwidth,height=0.5\textheight,keepaspectratio]{Figures/geoJSON-result.png}
     \caption[GeoJSON FeatureCollection structure]{Example GeoJSON FeatureCollection returned by the backend API, with anomaly groups as individual features}
     \label{fig:geoJSON-result_image}
 \end{figure}
@@ -149,7 +149,7 @@ The master query accepts four filter parameters: anomaly type, \acrshort{mmsi}, 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/swagger_api.png}
+    \includegraphics[width=0.75\textwidth,height=0.5\textheight,keepaspectratio]{Figures/swagger_api.png}
     \caption[Swagger API endpoint]{Swagger UI showing the master query endpoint with all available filter parameters}
     \label{fig:swagger-result_image}
 \end{figure}
@@ -163,7 +163,7 @@ All visualization methods described in the Method chapter were implemented in th
 The clustering visualization was implemented as described in Section~\ref{sec:clustering_method}. The clustering approach uses Supercluster.js to calculate clusters through proximity based on radius and zoom level (Section~\ref{sec:supercluster}). This approach produces grouped anomaly points, with numeric labels indicating the number of anomalies in each cluster, as shown in Figure~\ref{fig:clustering_result_image}.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth,height=0.35\textheight,keepaspectratio]{Figures/clustering-result.png}
+    \includegraphics[width=0.75\textwidth,height=0.5\textheight,keepaspectratio]{Figures/clustering-result.png}
     \caption[Clustering visualization result]{Clustering visualization showing anomaly groups aggregated by proximity, with numeric labels indicating the group count per cluster}
     \label{fig:clustering_result_image}
 \end{figure}
@@ -176,7 +176,7 @@ At the zoomed-out level shown in Figure~\ref{fig:clustering_result_image}, the f
 The system includes a heat map visualization layer. The heat map is implemented as in Section~\ref{sec:Heat_Map_method}. An example of the implemented heat map visualization is shown in Figure~\ref{fig:heatmap_result_image}.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.54\textwidth,height=0.35\textheight,keepaspectratio]{Figures/heatmap-result.png}
+    \includegraphics[width=0.85\textwidth,height=0.5\textheight,keepaspectratio]{Figures/heatmap-result.png}
     \caption[Heat map visualization result]{Heat map visualization showing anomaly density across the dataset, with warmer colors indicating higher concentrations}
     \label{fig:heatmap_result_image}
 \end{figure}
@@ -188,7 +188,7 @@ In Figure~\ref{fig:heatmap_result_image}, the highest-density hot spots appear a
 A base station layer is part of the application, implemented as mentioned in Section~\ref{sec:base_station}. The base station layer is visualized through blue icons in Figure~\ref{fig:base_station_result_image}. The base station layer itself is persistent, meaning that it is a visualization layer that will always be present in the app, even if other methods of visualizing the data points are changed. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth,height=0.2\textheight,keepaspectratio]{Figures/Base-station-view.png}
+    \includegraphics[width=0.85\textwidth,height=0.45\textheight,keepaspectratio]{Figures/Base-station-view.png}
     \caption[Base station layer]{Base station layer showing fixed AIS receiver locations as blue icons, providing persistent geographic reference points on the map}
     \label{fig:base_station_result_image}
 \end{figure}
@@ -209,14 +209,14 @@ The layer shows an info component for the current group, with coordinates, start
 
 
 \subsection{Individual Anomaly Visualization}
-Individual anomalies are shown as a scatter plot (Section~\ref{sec:scatter_plot}). The visualization shows the points colored based on signal strength, from red to green.
+Individual anomalies are shown as a scatter plot (Section~\ref{sec:scatter_plot}). The visualization shows the points colored based on signal strength, from red through yellow to green.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.54\textwidth,height=0.4\textheight,keepaspectratio]{Figures/individual_anomaly_layer_result.png}
-    \caption[Individual anomaly layer]{Individual anomaly layer displaying anomalies as a scatter plot, colored from red to green based on signal strength}
+    \includegraphics[width=0.85\textwidth,height=0.5\textheight,keepaspectratio]{Figures/individual_anomaly_layer_result.png}
+    \caption[Individual anomaly layer]{Individual anomaly layer displaying anomalies as a scatter plot, colored from red through yellow to green based on signal strength}
     \label{fig:individual_anomaly_result_image}
 \end{figure}
-Figure~\ref{fig:individual_anomaly_result_image} shows the completed layer. Anomalies are correctly colored through the signal strength variable, with an info component being shown for an anomaly, through clicking on it. The info component illustrates features of the anomaly, like its direction, name, and \acrshort{mmsi}.
+Figure~\ref{fig:individual_anomaly_result_image} shows the completed layer. Anomalies are correctly colored through the signal strength variable, with an info component being shown for an anomaly, through clicking on it. The info component illustrates features of the anomaly, like its direction, name, and \acrshort{mmsi}. The point radius scales dynamically with the current zoom level so that anomaly points remain visually proportionate as the user zooms in and out.
 
 % SUGGESTION (4.7 — mirrors Method 3.6;
 % YOU still need to: add the screenshots (filter panel, a before/after of the dataset changing, the
@@ -226,20 +226,36 @@ Figure~\ref{fig:individual_anomaly_result_image} shows the completed layer. Anom
 This section presents the delivered filtering and interaction features, implemented as described in Section~\ref{sec:filter_and_interaction_method}.
 
 \subsection{Filter System}
-The filter system allows the rendered dataset to be narrowed by anomaly type, \acrshort{mmsi}, and a start and end date.
-% TODO (you): add a screenshot of the filter panel (Figure ref), and ideally a before/after pair
-% showing the rendered dataset shrinking when a filter is applied.
+The filter system allows the rendered dataset to be narrowed by anomaly type, \acrshort{mmsi}, and a start and end date, as shown in Figure~\ref{fig:filter_panel_image}.
+% TODO (you): optionally add a before/after pair showing the rendered dataset shrinking when a filter is applied.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.90\textwidth,height=0.25\textheight,keepaspectratio]{Figures/filter-panel.png}
+    \caption[Filter panel]{Filter component showing the anomaly type selector, MMSI input, and date range fields used to narrow the rendered dataset}
+    \label{fig:filter_panel_image}
+\end{figure}
 
 \subsection{Temporal Filtering}
-A date-time range selector allows the visualization to be restricted to a chosen time period. The selector reuses an existing expandable React calendar component, which diverged from and simplified the date picker shown in the wireframe.
-% TODO (you): add a screenshot of the date picker (Figure ref) and describe what the user sees when a range is applied.
+A date-time range selector allows the visualization to be restricted to a chosen time period. The selector reuses an existing expandable React calendar component, which diverged from and simplified the date picker shown in the wireframe, as shown in Figure~\ref{fig:date_picker_image}.
+% TODO (you): describe in your own words what the user sees when a date range is applied.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth,height=0.45\textheight,keepaspectratio]{Figures/date-picker.png}
+    \caption[Date picker component]{Date picker calendar component allowing operators to select a start and end date for temporal filtering}
+    \label{fig:date_picker_image}
+\end{figure}
 
 \subsection{Satellite Visualization}
-Satellite connections are displayed as a layer that appears only when a data point is clicked. The satellite-orbit \acrshort{api} is access-restricted and requires credentials, so relying on it would prevent others from testing this public prototype. Each satellite point is therefore approximated by finding the closest position in time within a 24-hour window of the anomaly.
+Satellite connections are displayed as a layer that appears only when a data point is clicked, as shown in Figure~\ref{fig:satellite_layer_image}. The satellite-orbit \acrshort{api} is access-restricted and requires credentials, so relying on it would prevent others from testing this public prototype. Each satellite point is therefore approximated by finding the closest position in time within a 24-hour window of the anomaly. The 24-hour pass data is stored as a static JSON file bundled with the frontend and searched in memory at runtime, requiring no network call.
 % SUGGESTION (verify/rephrase in your own words): this now states the real reason (access-restricted API
 % for a public prototype) instead of "API not available", which contradicted the project brief
 % ("API ... er klart"). Confirm the wording matches what actually happened.
-% TODO (you): add a screenshot of the satellite layer appearing on click (Figure ref).
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth,height=0.5\textheight,keepaspectratio]{Figures/satellite-layer.png}
+    \caption[Satellite layer on click]{Satellite connections displayed when clicking a data point, showing each satellite approximated to its closest position within a 24-hour window of the anomaly}
+    \label{fig:satellite_layer_image}
+\end{figure}
 
 \subsection{Interactive Components}
 The interface provides interactive controls for selecting filter values: a pop-up calendar component for the date range, a dropdown for selecting the anomaly type, and a numeric input for \acrshort{mmsi}. In addition, a visualization toggle switches between the clustering and heat map layers, and a search bar above the sidebar filters the already-loaded dataset on the client side, without sending a new request to the backend.
@@ -255,7 +271,22 @@ Interaction features such as clicking individual data points were each verified 
 % search, click/info cards, date range), and add 1-2 concrete bugs found AND fixed during testing
 % (e.g. the cluster-recalculation issue from Method) — discuss with your group member.
 
-Performance was observed during normal use of the application, primarily at the default zoom level with two to three page refreshes per observation, on the two laptops used by the group for ordinary schoolwork. Each visualization type was observed at different zoom levels and across different areas of the map. The application was tested with a main dataset of 10,000 points, and additionally with larger datasets of up to 100,000 and one million points generated through backend configuration files. Across these tests the application rendered the requested data within roughly a second of the backend request, with most of that time spent sending the request and receiving the response, keeping the interface within a responsive range.
+Performance was observed during normal use of the application, primarily at the default zoom level with two to three page refreshes per observation, on the two laptops used by the group for ordinary schoolwork. Each visualization type was observed at different zoom levels and across different areas of the map. The application was tested with a main dataset of 10,000 points, and additionally with larger datasets of 100,000 and one million anomalies generated through backend configuration files. Backend \acrshort{api} response times were recorded from Docker logs and are summarized in Table~\ref{tab:api_response_times}. For the 100,000-anomaly dataset, unfiltered requests returned in 196--461~ms, with the higher end reflecting cold requests before database caching took effect. Applying a single anomaly type filter reduced response times to 55--62~ms. For the one million anomaly dataset, unfiltered requests took 2.0--3.1~s, while filtered requests returned in 592--920~ms.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l r r r}
+\toprule
+\textbf{Dataset size} & \textbf{Groups} & \textbf{Unfiltered response} & \textbf{Filtered response} \\
+\midrule
+100,000 anomalies  & 15,331  & 196--461 ms & 55--62 ms \\
+1,000,000 anomalies & 153,910 & 2.0--3.1 s  & 592--920 ms \\
+\bottomrule
+\end{tabular}
+\caption[Backend API response times]{Backend \acrshort{api} response times for the anomaly-groups endpoint across two dataset sizes, measured from Docker logs. The unfiltered range reflects initial cold requests versus subsequent requests benefiting from database caching. Filtered results used a single anomaly type filter.}
+\label{tab:api_response_times}
+\end{table}
+
 % TODO (you): add the rough specs of the two laptops (CPU, and whether integrated or dedicated GPU),
 % since rendering performance depends on the graphics hardware (Section~\ref{sec:hardware_acceleration}).
 
@@ -268,14 +299,13 @@ The rendering performance is responsive, but will vary based on graphics process
 \subsection{Effect of Clustering on Performance}
 \label{sec:effect_of_clustering_results}
 
-Clustering had a profound effect on the speed of the application, where rendering a scatterplot natively, with over one hundred thousand data points, proved very inefficient. Clustering renders fewer data points, while the same data remains on the actual map. Due to data points being rendered as they are in view, clustering leads to fewer data points being shown while zoomed out, with zooming in showing more data points, while still not being cluttered as a normal scatterplot would be.
-% SUGGESTION (quantify — highest-leverage fix, you write it): "profound effect" / "very inefficient"
-% are judgments with no number behind them. Replace with a concrete observation you can state even
-% from informal testing, e.g. "the plain scatter plot became unresponsive above approximately N
-% points, while the clustered view remained interactive." Add the point counts rendered with vs
-% without clustering at a given zoom if you have them; move any remaining judgment to Discussion.
-% TODO (you): run a quick timing test, then replace "profound effect"/"very inefficient" with the
-% actual point count where the un-clustered scatter became laggy versus the clustered view staying smooth.
+Clustering had a significant effect on the rendering performance of the application. Clustering renders fewer visual points on screen at any given zoom level, while the full dataset remains loaded. Due to data points being rendered only as they are in view, clustering leads to fewer points being shown while zoomed out, with zooming in progressively splitting clusters into smaller ones, while remaining less cluttered than a plain scatter plot would be.
+% SUGGESTION (quantify — write in your own words): replace the opening sentence with a concrete
+% observation, e.g.: "At 100,000 anomalies in 15,331 groups, the clustered view remained interactive
+% at all zoom levels, while rendering the same data as an unfiltered individual-anomaly scatter plot
+% became noticeably slow, as the GPU was required to draw all points simultaneously rather than only
+% those visible within the current cluster radius." Move any evaluative judgment ("significant",
+% "efficient") to Discussion 5.3.
 
 \subsection{System Responsiveness}
 

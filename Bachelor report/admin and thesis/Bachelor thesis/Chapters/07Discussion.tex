@@ -36,18 +36,18 @@ Deck.gl (Section~\ref{sec:deckgl}) proved to be an effective choice for visualiz
 % Needs to be fully rewritten/ add more context since we have experience, just not the knowledge needed for developing a map based application and the logic that should be used as well as standards.
 The use of React with TypeScript enforced stronger type safety than plain React, but introduced an initial learning curve. The group's lack of experience with the coding standards needed for react and typescript, led to development time being spent on learning the basics as well as more advanced tools such as Context, which was ultimately used to simplify the code.  
 
-The single-page design, which covered all required functionality through interactive components, suited the project well. One advantage over a multi-page architecture, was that the map and visualization remained visible at all times, including during manual testing of other components. The overall simplicity of the interface also aligned with the projects focus on concept testing, particularly as the customer themselves had requested that less time would be spent on design and more on functionality.
+The single-page design, which covered all required functionality through interactive components, suited the project well. One advantage over a multi-page architecture, was that the map and visualization remained visible at all times, including during manual testing of other components. The overall simplicity of the interface also aligned with the project's focus on concept testing, particularly as the customer themselves had requested that less time would be spent on design and more on functionality.
  
 Overall, the frontend implementation fulfilled the project's main goals while highlighting how the use of third party tools can present challenges, and how tool selection is an important step in any software development project. 
 
 \subsection{Code Quality and Maintainability}
 
-The code quality was designed to follow software principles, but due to lack of experience with react itself, some uncertainties about use of specific methods arose. The use of prior programming experience to create files that handle specific tasks, are however used to simplify the program, with refactoring being done multiple times to follow these guidelines
+The code quality was designed to follow software principles, but due to lack of experience with React itself, some uncertainties about use of specific methods arose. The use of prior programming experience to create files that handle specific tasks, are however used to simplify the program, with refactoring being done multiple times to follow these guidelines
 
 
 \subsection{Visualization Methods and User Interaction}
 
-The chosen visualization methods were effective for different aspects of anomaly visualization, each with their own strenghts and weaknesses related to readability, performance and interaction. 
+The chosen visualization methods were effective for different aspects of anomaly visualization, each with their own strengths and weaknesses related to readability, performance and interaction. 
 
 % TODO: Add the date for change in efficeny for clustering and singular scatter plot.
 Clustering, implemented as described in Section~\ref{sec:clustering_method} and shown in Section~\ref{sec:effect_of_clustering_results}, produced a measurable performance improvement compared to a normal scatter plot of all points in the dataset, while also improving readability. 
@@ -64,7 +64,7 @@ The individual anomaly layer, implemented as a scatter plot (Section~\ref{sec:sc
 
 The remaining visualizations, including the base station layer (Section~\ref{sec:base_station}) and the satellite layer, are required for layers such as the anomaly group with signal strength to provide any useful information. As static reference points, the base stations also give operators visual feedback on the spatial relationship and distance between anomaly clusters and the base stations that received their transmissions. They are therefore crucial to the project and present no notable drawbacks in their implementation.
 
-User interaction is a core element of the application, and users should be able to navigate and retrieve information without noticeable slowdown or errors. Based on manual testing during development, user interaction was observed to remain responsive, even though performance remains heavily dependant on hardware used, with the available \acrshort{gpu} acting as the main limiting factor for rendering performance (Section~\ref{sec:hardware_acceleration}).% TODO: Add measured data for interaction latency
+User interaction is a core element of the application, and users should be able to navigate and retrieve information without noticeable slowdown or errors. Based on manual testing during development, user interaction was observed to remain responsive, even though performance remains heavily dependent on hardware used, with the available \acrshort{gpu} acting as the main limiting factor for rendering performance (Section~\ref{sec:hardware_acceleration}).% TODO: Add measured data for interaction latency
 % Combine both into one maybe
 Most user interaction centers on zoom level and camera position within the map. Although this map interaction has performance costs, it enables access to anomaly information, filtering and searching. As interactivity is a core feature of the application, this trade off is acceptable, since dynamic datasets are far easier to analyze interactively than statically.
 
@@ -73,7 +73,7 @@ Most user interaction centers on zoom level and camera position within the map. 
 
 The backend was provided by the customer with most of the endpoints required by the project already implemented, supported by comprehensive Swagger documentation. Docker simplified the process of running the backend, requiring only a few commands to start and fill the database with test data. 
 
-The group's main contribution to the backend was a master query endpoint ((Section~\ref{sec:backend_and_data_flow_method}), which combines all filter parameters into a single backend query and returns only the matching dataset.
+The group's main contribution to the backend was a master query endpoint (Section~\ref{sec:backend_and_data_flow_method}), which combines all filter parameters into a single backend query and returns only the matching dataset.
 Client-side filtering on top of an already-filtered dataset would have been possible, however that solution would have required keeping the original dataset in memory and rerunning the filter logic on the frontend to further filter the data the group already has. However that would be inefficient at the dataset sizes used in this project, because the containerized backend responds in the millisecond range and routing filter operations to the backend to then be handled by the query proved faster than client-side re-filtering. Because of this the rendered dataset always reflects the currently active filters directly, without the need to keep a separate "full dataset" on the frontend. When users need to drill down further within the active dataset, the sidebar search component provides this functionality locally without requiring an additional backend request.
 
 Observation of the backend showed no critical performance or data errors. However, working with the delivered backend introduced limitations, on being constrained to the predefined \acrshort{api} structure, with extensions being more complicated for the group to implement themselves, due to lack of experience with the programming language GO. Although the observed performance was satisfactory, testing of the performance was not controlled by the group itself, with core negatives of the backend implementation being wait time for customer to implement required features, a less often occurrence. As a result the backend was well implemented, but not controlled solely by the group, this being a tradeoff.
@@ -89,18 +89,21 @@ The performance of the system is highly dependent on hardware specifications, wi
 
 \subsection{Rendering Performance}
 
-The base rendering performance of MapLibre was observed to be unproblematic, with performance being taxed on the visualization methods and dataset size, rather than the map. Datasets ranging from a ten thousand to over 1 million points were tested. The architectural design of the project is not bottlenecked based on the backend, but with frontend using supercluster (Section~\ref{sec:supercluster}) to recalculate clusters based on zoom, and similar calculations being done on heat map, leads to zoom and move operations being most taxing on the system. This can be tweaked to recalculate fewer times on zoom level, but will lead to a less responsive system. The core bottleneck of any performance is then the frontend itself, with the backend being called in milliseconds.
+The base rendering performance of MapLibre was observed to be unproblematic, with performance being taxed on the visualization methods and dataset size, rather than the map. Datasets ranging from a ten thousand to over 1 million points were tested. The architectural design of the project is not bottlenecked based on the backend, but with frontend using supercluster (Section~\ref{sec:supercluster}) to recalculate clusters based on zoom, and similar calculations being done on heat map, leads to zoom and move operations being most taxing on the system. This can be tweaked to recalculate fewer times on zoom level, but will lead to a less responsive system. The core bottleneck of any performance is then the frontend itself, as the backend response time scales with dataset size from under 500~ms at 100,000 anomalies to 2--3~s at one million anomalies for unfiltered requests (Table~\ref{tab:api_response_times}).
 
 \subsection{System Responsiveness}
 This subsection evaluates the responsiveness observed during manual testing.
-% DRAFT (move the evaluative judgments here from Results 4.8 "System Responsiveness" and
-% "Effect of Clustering on Performance", then add approximate numbers):
-% Overall the system stayed responsive during use. The main cost was switching from a clustered view to
-% an anomaly-group view, where the signal-strength lines are computed, causing a brief slowdown before
-% settling. Heat maps were the slowest layer, recalculating area weights on every zoom and move; this is
-% bounded by Deck.gl's implementation, so little further gain was available without a different approach
-% (e.g. a clustered heat map). Clustering versus a plain scatter plot: <state the point count where the
-% plain scatter became laggy versus the clustered view staying smooth, once measured>. 
+% SUGGESTION (write in your own words using the data below — this section is currently empty prose):
+% The backend showed acceptable response times at the primary test size of 100,000 anomalies
+% (196--461~ms unfiltered, 55--62~ms filtered), but scaled to 2.0--3.1~s unfiltered at one million
+% anomalies (Table~\ref{tab:api_response_times}). For the intended use case of a concept prototype
+% on the customer's existing data volumes, the 100k figures are more representative.
+% On the frontend, the main responsiveness cost was switching from the clustered view to the anomaly
+% group view, where signal-strength lines are computed — add a rough wait time here (under a second?
+% 1--2 seconds?). Heat maps were the slowest layer, recalculating area weights on every zoom and move;
+% this is bounded by Deck.gl's own implementation, so no further gain was available without a
+% fundamentally different approach such as a clustered heat map.
+% Filtering and layer switching were otherwise responsive, changing as soon as input was submitted.
 
 %=====================================================================
 
@@ -149,7 +152,8 @@ Slack provided an efficient channel for direct communication with the customer, 
 % SUGGESTION (add the customer's quantified observation as evidence — your wording): the product owner's
 % written feedback records 250+ Slack messages exchanged by 11 May, and notes that the group took the
 % initiative to arrange progress meetings to show development. Citing this customer-sourced detail backs
-% up the "communication was effective" claim with a concrete number instead of an assertion. The customer's domain expertise allowed complex questions to be resolved within short discussions rather than through a long discussion. While communication with the supervisor was handled primarily through email, with in person consultations used for urgent issues, because most work was conducted on campus.
+% up the "communication was effective" claim with a concrete number instead of an assertion.
+The customer's domain expertise allowed complex questions to be resolved within short discussions rather than through a long discussion. While communication with the supervisor was handled primarily through email, with in person consultations used for urgent issues, because most work was conducted on campus.
 
 For meetings, biweekly meetings were held with both the supervisor and the customer at Kystverket. Before these meetings, discussions were held to discuss which questions should be asked. However, most of these discussions happened through a small meeting before the actual meeting or through daily stand-ups within the group.
 
@@ -186,7 +190,7 @@ Although the project fulfilled the main requirements as adjusted through custome
 
 \subsection{Technical Limitations}
 
-One technical limitation is that real \acrshort{ais} data from the customer was not integrated into the project. This integration would not have been feasible within the scope of the project, as the data is classified which makes it a task that would need to be handled internally. Another limitations is the absence of satellite orbit plotting, which was a requested but could not be implemented within the available time. This feature would have allowed users to view a satellite's orbit from from its current position to its future projected positions. Although satellite orbits were not implemented, satellites themselves are present in the system and appear in the signal strength visualization. A further feature from the original project outline that was not implemented is automatic report generation. This was removed from the scope during the project as focus shifted toward concept testing. 
+One technical limitation is that real \acrshort{ais} data from the customer was not integrated into the project. This integration would not have been feasible within the scope of the project, as the data is classified which makes it a task that would need to be handled internally. Another limitation is the absence of satellite orbit plotting, which was requested but could not be implemented within the available time. This feature would have allowed users to view a satellite's orbit from its current position to its future projected positions. Although satellite orbits were not implemented, satellites themselves are present in the system and appear in the signal strength visualization. A further feature from the original project outline that was not implemented is automatic report generation. This was removed from the scope during the project as focus shifted toward concept testing. 
 
 
 
