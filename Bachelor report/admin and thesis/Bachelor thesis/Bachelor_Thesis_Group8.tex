@@ -31,6 +31,7 @@
 \usepackage{color, xcolor} %edit e.g. text colors
 \usepackage{setspace}
 \setstretch{1.15}
+\raggedbottom % prevent book-class flushbottom from stretching gaps between short sections
 \usepackage{parskip}
 \usepackage{iftex}
 \ifXeTeX
@@ -137,13 +138,17 @@ Department of ICT and Natural Sciences \\
 \input{Chapters/01Preface}
 
 \tableofcontents
+\phantomsection
 \addcontentsline{toc}{chapter}{\protect\numberline{}Contents}
 
 %add to table of contents list of figures and tables, and insert list of figures and tables
-\addcontentsline{toc}{chapter}{\protect\numberline{}\listfigurename}
 \listoffigures
-\addcontentsline{toc}{chapter}{\protect\numberline{}\listtablename}
+\phantomsection
+\addcontentsline{toc}{chapter}{\protect\numberline{}\listfigurename}
+
 \listoftables
+\phantomsection
+\addcontentsline{toc}{chapter}{\protect\numberline{}\listtablename}
 
 
 \chapter*{Abbreviations}
